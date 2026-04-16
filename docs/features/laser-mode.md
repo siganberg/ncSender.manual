@@ -7,6 +7,9 @@ Laser mode transforms the visualizer and controls for laser engraving and cuttin
 
 ## Enabling Laser Mode
 
+<!-- TODO: Screenshot of laser settings dialog -->
+![Laser settings](../assets/images/features/laser-settings.png){ .placeholder }
+
 1. Open **Laser Settings** from the visualizer toolbar
 2. Select the spindle used for your laser under **Spindle use for Laser**
 3. Enable **Mode of operation ($32)** to set the controller to laser mode
@@ -26,6 +29,9 @@ Laser mode transforms the visualizer and controls for laser engraving and cuttin
 
 ## Visualizer Changes
 
+<!-- TODO: Screenshot of laser mode with beam, power bar, and burn effect -->
+![Laser mode visualization](../assets/images/features/laser-visualization.png){ .placeholder }
+
 When laser mode is active:
 
 - **Laser head model** replaces the spindle model
@@ -33,6 +39,9 @@ When laser mode is active:
 - **Burn effect** animates where the laser contacts the workpiece
 - **Power bar** displays current laser power as a color-coded bar (0-100%)
 - **Rapids hidden** — G0 moves are not displayed (laser doesn't fire during rapids)
+
+<!-- TODO: GIF/WebP animation of laser running a job with beam and burn effect -->
+![Laser animation](../assets/images/features/laser-running.webp){ .placeholder }
 
 ## Z-Offset
 

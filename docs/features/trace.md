@@ -5,6 +5,9 @@
 
 Trace your toolpath bounding box directly on the material or workpiece to verify the job fits before cutting.
 
+<!-- TODO: GIF/WebP animation of trace running (machine tracing bounding box) -->
+![Trace animation](../assets/images/features/trace.webp){ .placeholder }
+
 ## How It Works
 
 Trace moves the machine along the bounding rectangle of the loaded G-code program at a safe Z height. This lets you visually confirm:

@@ -4,6 +4,9 @@ The ncSender pendant is a wireless handheld controller for your CNC machine, con
 
 ## Hardware
 
+<!-- TODO: Photo of pendant and dongle hardware -->
+![Pendant and dongle](../assets/images/features/pendant-hardware.png){ .placeholder }
+
 - **Pendant** — ESP32-based handheld with LCD display, jog wheel, and buttons
 - **Dongle** — ESP32-S3 USB stick (LilyGO T-Dongle-S3) that plugs into the host computer
 
@@ -19,6 +22,9 @@ The ncSender pendant is a wireless handheld controller for your CNC machine, con
 
 ## Connection
 
+<!-- TODO: GIF/WebP animation showing pendant powering on and connecting -->
+![Pendant connection](../assets/images/features/pendant-connecting.webp){ .placeholder }
+
 The pendant connects wirelessly via ESP-NOW protocol:
 
 1. Plug the USB dongle into the host computer
@@ -28,6 +34,19 @@ The pendant connects wirelessly via ESP-NOW protocol:
 
 !!! tip "WiFi Channel Sync"
     The pendant automatically discovers and syncs the WiFi channel with the dongle on first connection. Subsequent boots use the stored channel for instant connection.
+
+## Pendant Display
+
+<!-- TODO: Screenshot/photo of pendant LCD showing DRO, status, overrides -->
+![Pendant display](../assets/images/features/pendant-display.png){ .placeholder }
+
+The pendant LCD shows:
+
+- Machine status (Idle, Run, Hold, Alarm)
+- X, Y, Z coordinates (work position)
+- Active workspace (G54-G59)
+- Feed rate and spindle overrides
+- Job progress during program execution
 
 ## Communication Protocol
 

@@ -2,6 +2,9 @@
 
 The 3D Visualizer is the centerpiece of ncSender, providing a real-time preview of your G-code toolpath and live machine position tracking.
 
+<!-- TODO: Hero screenshot of visualizer with toolpath loaded -->
+![Visualizer hero](../assets/images/features/visualizer-hero.png){ .placeholder }
+
 ## Views
 
 ncSender offers four different viewing modes:
@@ -12,6 +15,9 @@ ncSender offers four different viewing modes:
 | **Top** | Orthographic top-down view (XY plane) | Verifying 2D layouts, checking positions |
 | **Front** | Orthographic front view (XZ plane) | Checking depth passes, Z movements |
 | **Split** | Quad-view showing Top, Front, and 3D simultaneously | Detailed inspection |
+
+<!-- TODO: Screenshot grid showing all 4 view modes side by side -->
+![View modes](../assets/images/features/visualizer-views.png){ .placeholder }
 
 Switch views using the view preset buttons in the visualizer toolbar.
 
@@ -30,6 +36,9 @@ When a G-code file is loaded, the visualizer renders the complete toolpath:
 - **Arcs (G2/G3)** — Smooth curved paths
 - **Current position** — Animated toolhead (spindle or laser) following execution progress
 
+<!-- TODO: Screenshot showing toolpath with rapids and feed moves highlighted -->
+![Toolpath rendering](../assets/images/features/visualizer-toolpath.png){ .placeholder }
+
 ## Toolhead Display
 
 The visualizer shows an animated 3D model at the current machine position:
@@ -37,10 +46,16 @@ The visualizer shows an animated 3D model at the current machine position:
 - **Spindle mode** — Shows a rotating spindle with collet
 - **Laser mode** — Shows a laser head with beam reaching the workbed (**Pro only**)
 
+<!-- TODO: Side-by-side screenshot of spindle vs laser toolhead -->
+![Toolhead modes](../assets/images/features/visualizer-toolheads.png){ .placeholder }
+
 !!! tip "Spindle View"
     Toggle **Spindle View** to see the spindle rotate when the spindle is active. This helps visually confirm spindle direction (CW/CCW).
 
 ## Controls
+
+<!-- TODO: Screenshot of visualizer toolbar with controls labeled -->
+![Visualizer controls](../assets/images/features/visualizer-controls.png){ .placeholder }
 
 ### Auto-Fit
 
@@ -52,6 +67,9 @@ If your G-code has been modified by a plugin (e.g., Edge Align rotation or 3DMes
 
 ## Workspace Markers
 
+<!-- TODO: Screenshot showing workspace markers (G54, G55 origins on grid) -->
+![Workspace markers](../assets/images/features/visualizer-workspace-markers.png){ .placeholder }
+
 The visualizer displays workspace origin markers for G54 through G59. These show where each coordinate system's origin is positioned relative to the machine.
 
 - Active workspace is highlighted
@@ -59,6 +77,9 @@ The visualizer displays workspace origin markers for G54 through G59. These show
 - Markers auto-scale with zoom level
 
 ## Tool Legend
+
+<!-- TODO: Screenshot of tool legend showing multiple tools with colors -->
+![Tool legend](../assets/images/features/visualizer-tool-legend.png){ .placeholder }
 
 When multiple tools are used in a program, the legend panel shows:
 
@@ -73,6 +94,9 @@ If the loaded toolpath exceeds the machine's travel limits, ncSender displays a 
 
 ## Aux Controls
 
+<!-- TODO: Screenshot of aux control toggles (Flood, Mist) -->
+![Aux controls](../assets/images/features/visualizer-aux-controls.png){ .placeholder }
+
 The visualizer includes toggle switches for auxiliary outputs:
 
 - **Flood Coolant (M8)** — Toggle flood coolant on/off
@@ -81,3 +105,15 @@ The visualizer includes toggle switches for auxiliary outputs:
 
 !!! note "Realtime Control"
     Flood and Mist toggles use grblHAL realtime commands (0xA0/0xA1) that bypass the planner buffer. This means you can toggle coolant even while a program is running.
+
+## Program Execution
+
+<!-- TODO: GIF/WebP animation showing a program running with toolhead moving -->
+![Program execution animation](../assets/images/features/visualizer-running.webp){ .placeholder }
+
+During program execution:
+
+- The toolhead follows the current position in real-time
+- Completed paths are highlighted
+- Progress bar and runtime are displayed at the top
+- Feed rate and spindle RPM are shown in the info bar

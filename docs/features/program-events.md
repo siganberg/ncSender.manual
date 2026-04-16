@@ -30,6 +30,9 @@ Executed automatically **after** a program completes successfully.
 
 ## Configuring Events
 
+<!-- TODO: Screenshot of Events tab showing Program Start and End editors with toggles -->
+![Events tab](../assets/images/features/events-tab.png){ .placeholder }
+
 1. Go to the **Events** tab in the console panel
 2. Write your G-code in the editor for each event
 3. Click **Save**

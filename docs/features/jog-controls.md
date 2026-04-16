@@ -4,6 +4,9 @@ Jog controls let you manually move the machine to position your workpiece, set z
 
 ## Jog Panel Layout
 
+<!-- TODO: Annotated screenshot of jog panel with labeled areas -->
+![Jog panel layout](../assets/images/features/jog-panel.png){ .placeholder }
+
 The jog panel consists of:
 
 - **3x3 XY grid** — Directional buttons including diagonals
@@ -14,6 +17,9 @@ The jog panel consists of:
 - **Feed rate selector** — Per-category speed control
 
 ## Step Sizes
+
+<!-- TODO: Screenshot showing step size selector with categories expanded -->
+![Step sizes](../assets/images/features/jog-step-sizes.png){ .placeholder }
 
 Steps are organized into three categories. Tap to jog, long-press (500ms) to see all options in a dropdown.
 
@@ -48,6 +54,9 @@ Tap a direction button to move a fixed distance (the selected step size). Each t
 
 ### Continuous Jog
 
+<!-- TODO: GIF/WebP animation of continuous jog (holding button) -->
+![Continuous jog](../assets/images/features/jog-continuous.webp){ .placeholder }
+
 Long-press and hold a direction button to move continuously. The machine moves at the selected feed rate until you release the button. An automatic jog cancel (0x85) is sent on release.
 
 ### Diagonal Jog
@@ -66,6 +75,9 @@ The four corner buttons (↖ ↗ ↙ ↘) move both X and Y axes simultaneously.
     Double-click an axis card in the DRO to manually type a coordinate value. Long-press an axis card to zero it at the current position.
 
 ## XY0 and Z0 Buttons
+
+<!-- TODO: Screenshot of XY0 and Z0 buttons -->
+![Zero buttons](../assets/images/features/jog-zero-buttons.png){ .placeholder }
 
 Quick-zero buttons are available below the jog panel:
 

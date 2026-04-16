@@ -2,6 +2,9 @@
 
 Surface mesh probing with Z compensation for milling curved or uneven materials using flat (2D) G-code programs.
 
+<!-- TODO: Screenshot of 3DMesh dialog with 3D mesh visualization -->
+![3DMesh dialog](../assets/images/plugins/3dmesh-dialog.png){ .placeholder }
+
 ## How It Works
 
 3DMesh probes a grid of points across your workpiece surface to create a height map. It then adjusts the Z-coordinates in your G-code to follow the surface contour, compensating for material curvature or mounting inconsistencies.
@@ -23,6 +26,9 @@ Surface mesh probing with Z compensation for milling curved or uneven materials 
 
 ## 3D Visualization
 
+<!-- TODO: Screenshot of the 3D mesh visualization with color-coded height map -->
+![Mesh visualization](../assets/images/plugins/3dmesh-visualization.png){ .placeholder }
+
 After probing, the plugin displays an interactive 3D view of the measured surface:
 
 - Isometric projection with drag rotation
@@ -31,6 +37,9 @@ After probing, the plugin displays an interactive 3D view of the measured surfac
 - Mesh data table with X, Y, Z coordinates
 
 ## Mesh Library
+
+<!-- TODO: Screenshot of saved meshes list -->
+![Mesh library](../assets/images/plugins/3dmesh-library.png){ .placeholder }
 
 Save and manage multiple mesh profiles:
 

@@ -4,6 +4,9 @@ The console panel provides direct access to your CNC controller with command inp
 
 ## Terminal
 
+<!-- TODO: Screenshot of terminal with commands and responses -->
+![Terminal](../assets/images/features/console-terminal.png){ .placeholder }
+
 The terminal tab shows a real-time log of all communication with the controller:
 
 - **Commands** — Shown with a `>` prefix
@@ -23,6 +26,9 @@ Toggle auto-scroll to keep the latest messages visible. Disable it to read throu
 Click the detach button to open the terminal in a larger modal window for better visibility.
 
 ## Quick Controls
+
+<!-- TODO: Screenshot of quick control buttons row -->
+![Quick controls](../assets/images/features/console-quick-controls.png){ .placeholder }
 
 The console provides one-click buttons for common operations:
 
@@ -47,6 +53,9 @@ Quick spindle controls with RPM input:
 - **M5** — Spindle stop
 
 ## G-Code Preview
+
+<!-- TODO: Screenshot of G-code preview tab with syntax highlighting -->
+![G-code preview](../assets/images/features/console-gcode-preview.png){ .placeholder }
 
 The G-Code tab shows the loaded program with:
 

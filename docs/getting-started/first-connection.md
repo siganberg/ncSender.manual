@@ -6,10 +6,16 @@
 2. Open ncSender
 3. The application will automatically detect and connect to your controller
 
+<!-- TODO: Screenshot of connection status changing to "Idle" -->
+![Connection status](../assets/images/getting-started/connection-status.png){ .placeholder }
+
 !!! tip "Auto-Connect"
     ncSender scans available serial ports automatically. If your controller isn't detected, check **Settings > Connection** to manually select the port and baud rate.
 
 ## Connection Settings
+
+<!-- TODO: Screenshot of Settings > Connection panel -->
+![Connection settings](../assets/images/getting-started/connection-settings.png){ .placeholder }
 
 | Setting | Description | Default |
 |---------|-------------|---------|
@@ -29,6 +35,9 @@ Once connected, you should see:
 - Status changes from "Disconnected" to "Idle" (or "Alarm" if homing is required)
 - Machine coordinates appear in the DRO (Digital Readout)
 - The controller greeting message appears in the console
+
+<!-- TODO: Screenshot showing connected state with DRO and greeting -->
+![Connected state](../assets/images/getting-started/connected-state.png){ .placeholder }
 
 ## Troubleshooting Connection Issues
 

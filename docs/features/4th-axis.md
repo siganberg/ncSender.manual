@@ -5,6 +5,9 @@
 
 Full 4th axis (A-axis) control with 3D visualization for rotary and indexing operations.
 
+<!-- TODO: Screenshot of 4th axis visualization with rotary workpiece -->
+![4th axis visualization](../assets/images/features/4th-axis.png){ .placeholder }
+
 ## Features
 
 - **DRO display** — A-axis coordinate shown alongside X, Y, Z

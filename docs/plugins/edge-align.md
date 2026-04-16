@@ -2,6 +2,9 @@
 
 Material alignment by edge probing — measure the rotation angle of your workpiece and apply XY compensation to your G-code.
 
+<!-- TODO: Screenshot of Edge Align dialog -->
+![Edge Align dialog](../assets/images/plugins/edge-align-dialog.png){ .placeholder }
+
 ## How It Works
 
 Edge Align probes two points along a material edge to determine how much the workpiece is rotated on the table. It then rotates your G-code program to compensate, ensuring accurate cuts even when the material isn't perfectly aligned.
@@ -17,6 +20,13 @@ Edge Align probes two points along a material edge to determine how much the wor
 7. Review the detected rotation angle
 8. Click **Apply Rotation** to compensate the loaded G-code
 
+## Edge Selection
+
+<!-- TODO: Screenshot of the interactive edge selection visual -->
+![Edge selection](../assets/images/plugins/edge-align-selection.png){ .placeholder }
+
+Click directly on the visual diagram to select which edge to probe. The numbered dots (1 and 2) show the probe sequence and where to position the probe.
+
 ## Settings
 
 | Setting | Description | Default |
@@ -27,17 +37,26 @@ Edge Align probes two points along a material edge to determine how much the wor
 | **Travel Feed Rate** | Speed when moving between probe points | 2000 mm/min |
 | **Retract Clearance** | Distance to retract after each probe | 5 mm |
 
-## Edge Selection
-
-Click directly on the visual diagram to select which edge to probe. The numbered dots (1 and 2) show the probe sequence and where to position the probe.
-
 ## Probe Sequence
+
+<!-- TODO: GIF/WebP animation of the probing sequence -->
+![Probing sequence](../assets/images/plugins/edge-align-probing.webp){ .placeholder }
 
 1. Probe toward the edge at current position (**Point 1**)
 2. Retract by the clearance distance
 3. Travel along the edge using G38.3 (safe probe-away move)
 4. Probe toward the edge again (**Point 2**)
 5. Calculate the rotation angle
+
+## Results
+
+<!-- TODO: Screenshot of probe results showing angle -->
+![Probe results](../assets/images/plugins/edge-align-results.png){ .placeholder }
+
+After probing, the results panel shows:
+
+- Point 1 and Point 2 coordinates
+- Calculated rotation angle
 
 ## Applying Rotation
 

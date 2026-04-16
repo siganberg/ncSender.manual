@@ -1,5 +1,8 @@
 # Installation
 
+<!-- TODO: Screenshot of ncSender running on each platform -->
+![ncSender on multiple platforms](../assets/images/getting-started/installation-hero.png){ .placeholder }
+
 ## Downloads
 
 ### Community Edition (Free)
@@ -32,14 +35,26 @@ Download from [ncSender Pro Releases](https://github.com/siganberg/ncsenderpro.r
     2. Run the installer and follow the prompts
     3. Launch ncSender from the Start menu
 
+    <!-- TODO: Screenshot of Windows installer -->
+    ![Windows installer](../assets/images/getting-started/install-windows.png){ .placeholder }
+
 === "macOS"
 
     1. Download the `.dmg` file
     2. Open the DMG and drag ncSender to Applications
-    3. On first launch, right-click and select "Open" to bypass Gatekeeper
+    3. On first launch, clear the quarantine attribute:
+    ```bash
+    xattr -c /Applications/ncSender.app
+    ```
+
+    <!-- TODO: Screenshot of macOS DMG drag-to-install -->
+    ![macOS installer](../assets/images/getting-started/install-macos.png){ .placeholder }
 
 === "Linux"
 
     1. Download the `.deb` package
     2. Install: `sudo dpkg -i ncSender_*.deb`
     3. Launch from the application menu or run `ncsender`
+
+    <!-- TODO: Screenshot of Linux terminal install -->
+    ![Linux installer](../assets/images/getting-started/install-linux.png){ .placeholder }

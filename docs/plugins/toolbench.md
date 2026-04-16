@@ -2,6 +2,9 @@
 
 G-code generator for surfacing, jointing, boring, and wasteboard operations.
 
+<!-- TODO: Screenshot of ToolBench planer dialog -->
+![ToolBench planer](../assets/images/plugins/toolbench-planer.png){ .placeholder }
+
 ## Tools
 
 ### Planer (Surfacing)
@@ -15,6 +18,9 @@ Generate surfacing toolpaths for flattening material or wasteboards.
 | **Target Depth** | Top of material | Remove a fixed depth from the surface |
 | **Target Thickness** | Bottom of material (wasteboard) | Mill down to a specific thickness |
 | **Wasteboard Surfacing** | Top of material | Surface the entire machine bed |
+
+<!-- TODO: Screenshot of wasteboard surfacing mode with dimensions auto-populated -->
+![Wasteboard mode](../assets/images/plugins/toolbench-wasteboard.png){ .placeholder }
 
 **Wasteboard Surfacing** automatically reads machine travel limits ($130/$131) and fills the entire work area. The origin picker and dimensions are disabled — the machine does all the work.
 
@@ -33,9 +39,5 @@ Generate surfacing toolpaths for flattening material or wasteboards.
 | **Spindle RPM** | Spindle speed |
 | **Coolant** | Mist (M7) and Flood (M8) toggles |
 
-### Additional Tools
-
-ToolBench also includes generators for:
-
-- **Jointing** — Edge jointing operations
-- **Boring** — Hole boring operations
+<!-- TODO: GIF/WebP animation of generated surfacing toolpath in visualizer -->
+![Surfacing toolpath](../assets/images/plugins/toolbench-toolpath.webp){ .placeholder }

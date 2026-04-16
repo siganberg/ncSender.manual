@@ -4,6 +4,9 @@ ncSender supports a plugin system that extends functionality with custom tools, 
 
 ## Installing Plugins
 
+<!-- TODO: Screenshot of plugin store/settings panel -->
+![Plugin store](../assets/images/plugins/plugin-store.png){ .placeholder }
+
 1. Go to **Settings > Plugins**
 2. Browse available plugins in the plugin store
 3. Click **Install** on the plugin you want
@@ -36,6 +39,9 @@ Generate G-code programs directly from parameter inputs. These plugins create te
 General-purpose tools that extend ncSender's capabilities.
 
 ## Managing Plugins
+
+<!-- TODO: Screenshot of plugin management with enable/disable toggles -->
+![Plugin management](../assets/images/plugins/plugin-management.png){ .placeholder }
 
 - **Enable/Disable** — Toggle plugins on or off without uninstalling
 - **Update** — Plugins can be updated through the plugin store
