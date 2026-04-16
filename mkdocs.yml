@@ -1,0 +1,90 @@
+site_name: ncSender Documentation
+site_description: User manual and documentation for ncSender CNC controller software
+site_url: https://docs.ncsender.com
+repo_url: https://github.com/siganberg/ncSender
+repo_name: siganberg/ncSender
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - First Connection: getting-started/first-connection.md
+    - Interface Overview: getting-started/interface-overview.md
+  - Features:
+    - Visualizer: features/visualizer.md
+    - Jog Controls: features/jog-controls.md
+    - Probing: features/probing.md
+    - Tool Management: features/tool-management.md
+    - Macros: features/macros.md
+    - Console & Terminal: features/console.md
+    - Program Events: features/program-events.md
+    - Laser Mode: features/laser-mode.md
+    - Pendant: features/pendant.md
+  - Plugins:
+    - Overview: plugins/overview.md
+    - Edge Align: plugins/edge-align.md
+    - 3DMesh: plugins/3dmesh.md
+    - ToolBench: plugins/toolbench.md
+    - Rapid Change ATC: plugins/rapid-change-atc.md
+    - Manual Tool Changer: plugins/manual-tool-changer.md
+    - Replicator: plugins/replicator.md
+    - BoxJoints: plugins/boxjoints.md
+  - Controller Setup:
+    - grblHAL: controllers/grblhal.md
+    - FluidNC: controllers/fluidnc.md
+  - Troubleshooting: troubleshooting.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/siganberg/ncSender
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/ncsender
