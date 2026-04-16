@@ -1,8 +1,5 @@
 # Pendant
 
-!!! info "Pro Feature"
-    Pendant support is available in **ncSender Pro** only.
-
 The ncSender pendant is a wireless handheld controller for your CNC machine, connected via ESP-NOW wireless protocol through a USB dongle.
 
 ## Hardware

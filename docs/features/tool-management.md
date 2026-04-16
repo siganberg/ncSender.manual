@@ -1,8 +1,5 @@
 # Tool Management
 
-!!! info "Pro Feature"
-    Tool management with tool slots, TLS, and automatic tool changes is available in **ncSender Pro** only.
-
 ## Tool Slots
 
 Configure the number of tool slots (magazine size) in the Tools tab. Each slot represents a position in your tool changer or manual tool change workflow.

@@ -68,6 +68,11 @@ nav:
     - Program Events: features/program-events.md
     - Laser Mode: features/laser-mode.md
     - Pendant: features/pendant.md
+    - Multi-Workspace: features/multi-workspace.md
+    - 4th Axis: features/4th-axis.md
+    - Trace: features/trace.md
+    - Virtual Keyboard: features/virtual-keyboard.md
+    - Safety Door: features/safety-door.md
   - Plugins:
     - Overview: plugins/overview.md
     - Edge Align: plugins/edge-align.md

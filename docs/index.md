@@ -16,11 +16,16 @@ ncSender is a desktop application for controlling CNC machines. It provides a ri
 | Console & Terminal | :material-check: | :material-check: |
 | Plugin System | :material-check: | :material-check: |
 | Macros | :material-check: | :material-check: |
-| Tool Management | | :material-check: |
+| Tool Management | :material-check: | :material-check: |
+| Pendant Support | :material-check: | :material-check: |
+| ESP-NOW Wireless | :material-check: | :material-check: |
+| Touch Screen / Kiosk | :material-check: | :material-check: |
+| Multi-Workspace (G54-G59) | | :material-check: |
+| 4th Axis (A-axis) | | :material-check: |
 | Laser Mode | | :material-check: |
-| Pendant Support | | :material-check: |
-| ESP-NOW Wireless | | :material-check: |
-| Touch Screen / Kiosk | | :material-check: |
+| Trace | | :material-check: |
+| Virtual Keyboard | | :material-check: |
+| Safety Door Intelligence | | :material-check: |
 
 ## Supported Controllers
 
