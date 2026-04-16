@@ -82,6 +82,8 @@ nav:
     - FluidNC: controllers/fluidnc.md
   - Troubleshooting: troubleshooting.md
 
+dev_addr: '127.0.0.1:8001'
+
 extra:
   social:
     - icon: fontawesome/brands/github
