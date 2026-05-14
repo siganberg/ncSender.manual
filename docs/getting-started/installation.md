@@ -1,7 +1,6 @@
 # Installation
 
-<!-- TODO: Screenshot of ncSender running on each platform -->
-![ncSender on multiple platforms](../assets/images/getting-started/installation-hero.png){ .placeholder }
+![ncSender main interface](../assets/images/getting-started/installation-hero.png)
 
 ## Downloads
 
@@ -20,6 +19,8 @@ Download the latest release from [GitHub Releases](https://github.com/siganberg/
 ### Pro Edition
 
 Download from [ncSender Pro Releases](https://github.com/siganberg/ncsenderpro.releases/releases).
+
+After installing, see [License Activation](license-activation.md) to unlock the Pro features with your Installation ID.
 
 ## System Requirements
 
