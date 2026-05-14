@@ -6,16 +6,14 @@
 2. Open ncSender
 3. The application will automatically detect and connect to your controller
 
-<!-- TODO: Screenshot of connection status changing to "Idle" -->
-![Connection status](../assets/images/getting-started/connection-status.png){ .placeholder }
+![Connection status](../assets/images/getting-started/connection-status.png)
 
 !!! tip "Auto-Connect"
     ncSender scans available serial ports automatically. If your controller isn't detected, check **Settings > Connection** to manually select the port and baud rate.
 
 ## Connection Settings
 
-<!-- TODO: Screenshot of Settings > Connection panel -->
-![Connection settings](../assets/images/getting-started/connection-settings.png){ .placeholder }
+![Connection settings](../assets/images/getting-started/connection-settings.png)
 
 | Setting | Description | Default |
 |---------|-------------|---------|
@@ -36,8 +34,7 @@ Once connected, you should see:
 - Machine coordinates appear in the DRO (Digital Readout)
 - The controller greeting message appears in the console
 
-<!-- TODO: Screenshot showing connected state with DRO and greeting -->
-![Connected state](../assets/images/getting-started/connected-state.png){ .placeholder }
+![Connected state](../assets/images/getting-started/connected-state.png)
 
 ## Troubleshooting Connection Issues
 
@@ -45,3 +42,4 @@ Once connected, you should see:
 - **Wrong device detected**: ncSender filters out Bluetooth and debug ports automatically
 - **Controller not responding**: Try a different baud rate or USB cable
 - See [Troubleshooting](../troubleshooting.md) for more help
+

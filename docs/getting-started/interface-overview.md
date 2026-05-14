@@ -4,8 +4,7 @@ ncSender's interface is organized into several key areas.
 
 ## Main Layout
 
-<!-- TODO: Annotated screenshot of full interface with labeled areas -->
-![Interface overview](../assets/images/getting-started/interface-overview.png){ .placeholder }
+![Interface overview](../assets/images/getting-started/interface-overview.png)
 
 The interface consists of:
 
@@ -18,8 +17,7 @@ The interface consists of:
 
 ## DRO (Digital Readout)
 
-<!-- TODO: Close-up screenshot of DRO cards showing X, Y, Z values -->
-![DRO cards](../assets/images/getting-started/dro-cards.png){ .placeholder }
+![DRO cards](../assets/images/getting-started/dro-cards.png)
 
 The DRO displays both work and machine coordinates for each axis.
 
@@ -27,13 +25,11 @@ The DRO displays both work and machine coordinates for each axis.
 - **Double-click** to manually enter a coordinate value
 - **XY link** button zeros both X and Y simultaneously
 
-<!-- TODO: GIF/WebP animation of long-press zeroing an axis -->
-![Zero axis animation](../assets/images/getting-started/zero-axis.webp){ .placeholder }
+![Zero axis animation](../assets/images/getting-started/zero-axis.webp)
 
 ## Visualizer
 
-<!-- TODO: Screenshot of visualizer with loaded toolpath -->
-![Visualizer with toolpath](../assets/images/getting-started/visualizer-toolpath.png){ .placeholder }
+![Visualizer with toolpath](../assets/images/getting-started/visualizer-toolpath.webp)
 
 The 3D visualizer shows:
 
@@ -44,8 +40,7 @@ The 3D visualizer shows:
 
 ## Console Panel Tabs
 
-<!-- TODO: Screenshot showing console panel with tabs -->
-![Console panel](../assets/images/getting-started/console-panel.png){ .placeholder }
+![Console panel](../assets/images/getting-started/console-panel.png)
 
 | Tab | Description |
 |-----|-------------|
