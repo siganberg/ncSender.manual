@@ -4,8 +4,7 @@ Macros let you save frequently-used G-code sequences as reusable buttons.
 
 ## Creating a Macro
 
-<!-- TODO: Screenshot of macro editor panel -->
-![Macro editor](../assets/images/features/macros-editor.png){ .placeholder }
+![Macros tab](../assets/images/features/macros-editor.png)
 
 1. Go to the **Macros** tab in the console panel
 2. Click **+ New** to create a new macro
@@ -34,8 +33,7 @@ The macro editor provides:
 
 ## Searching Macros
 
-<!-- TODO: Screenshot showing macro search filtering results -->
-![Macro search](../assets/images/features/macros-search.png){ .placeholder }
+![Macro search](../assets/images/features/macros-search.png)
 
 Use the search bar to filter macros by name, description, body text, or ID number.
 
