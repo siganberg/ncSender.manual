@@ -5,9 +5,11 @@
   it entirely.
 
   Release version + star + fork counts are fetched client-side from
-  GitHub's REST API by `assets/js/source-stats.js`. The Pro version is
-  read from the public release repo (siganberg/ncsenderpro.releases),
-  since that's where the tagged release objects with assets actually live.
+  GitHub's REST API by `assets/js/source-stats.js`. The Pro link points
+  to the public release repo (siganberg/ncSenderPro.releases) because
+  the actual code repo (ncSenderProV2) is private; that's also where the
+  tagged release objects with downloadable assets live, so stats and
+  the link target line up.
 #}
 {% set icon = config.theme.icon.repo or "fontawesome/brands/git-alt" %}
 <div class="md-source ncs-source">
@@ -32,10 +34,10 @@
   <span class="ncs-source__divider" aria-hidden="true"></span>
   <div class="ncs-source__entry"
        data-ncs-source="pro"
-       data-ncs-repo="siganberg/ncSenderProV2"
-       data-ncs-releases="siganberg/ncsenderpro.releases">
-    <a href="https://github.com/siganberg/ncSenderProV2"
-       title="ncSenderPro on GitHub"
+       data-ncs-repo="siganberg/ncSenderPro.releases"
+       data-ncs-releases="siganberg/ncSenderPro.releases">
+    <a href="https://github.com/siganberg/ncSenderPro.releases"
+       title="ncSenderPro Releases on GitHub"
        class="ncs-source__link">
       <span class="ncs-source__icon md-icon">
         {% include ".icons/" ~ icon ~ ".svg" %}
