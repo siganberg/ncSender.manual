@@ -2,8 +2,7 @@
 
 The 3D Visualizer is the centerpiece of ncSender, providing a real-time preview of your G-code toolpath and live machine position tracking.
 
-<!-- TODO: Hero screenshot of visualizer with toolpath loaded -->
-![Visualizer hero](../assets/images/features/visualizer-hero.png){ .placeholder }
+![Visualizer hero](../assets/images/features/visualizer-hero.png)
 
 ## Views
 
@@ -16,8 +15,7 @@ ncSender offers four different viewing modes:
 | **Front** | Orthographic front view (XZ plane) | Checking depth passes, Z movements |
 | **Split** | Quad-view showing Top, Front, and 3D simultaneously | Detailed inspection |
 
-<!-- TODO: Screenshot grid showing all 4 view modes side by side -->
-![View modes](../assets/images/features/visualizer-views.png){ .placeholder }
+![View modes](../assets/images/features/visualizer-views.webp)
 
 Switch views using the view preset buttons in the visualizer toolbar.
 
@@ -36,8 +34,7 @@ When a G-code file is loaded, the visualizer renders the complete toolpath:
 - **Arcs (G2/G3)** — Smooth curved paths
 - **Current position** — Animated toolhead (spindle or laser) following execution progress
 
-<!-- TODO: Screenshot showing toolpath with rapids and feed moves highlighted -->
-![Toolpath rendering](../assets/images/features/visualizer-toolpath.png){ .placeholder }
+![Toolpath rendering](../assets/images/features/visualizer-toolpath.webp)
 
 ## Toolhead Display
 
