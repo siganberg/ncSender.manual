@@ -97,6 +97,9 @@ dev_addr: '127.0.0.1:8001'
 extra_css:
   - assets/css/custom.css
 
+extra_javascript:
+  - assets/js/source-stats.js
+
 extra:
   social:
     - icon: fontawesome/brands/github

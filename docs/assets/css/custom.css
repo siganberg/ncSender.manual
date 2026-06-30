@@ -40,9 +40,13 @@ img.placeholder[src$=".webp"]::after {
 .ncs-source {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-size: 0.7rem;
   line-height: 1.2;
+}
+
+.ncs-source__entry {
+  display: inline-flex;
 }
 
 .ncs-source__link {
@@ -61,8 +65,8 @@ img.placeholder[src$=".webp"]::after {
 }
 
 .ncs-source__icon {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.5rem;
+  height: 1.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -78,33 +82,69 @@ img.placeholder[src$=".webp"]::after {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 2px;
 }
 
 .ncs-source__name {
   font-weight: 600;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .ncs-source__edition {
-  font-size: 0.62rem;
-  opacity: 0.7;
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 5px;
+  font-size: 0.55rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.18);
+  vertical-align: middle;
+}
+
+.ncs-source__stats {
+  display: inline-flex;
+  gap: 10px;
+  font-size: 0.6rem;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+.ncs-source__stats:empty::before {
+  /* Reserve a slim row so the header doesn't jump when stats arrive. */
+  content: "";
+  display: inline-block;
+  height: 0.85em;
+}
+
+.ncs-source__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.ncs-source__stat-icon {
+  width: 0.85em;
+  height: 0.85em;
+  fill: currentColor;
 }
 
 .ncs-source__divider {
   width: 1px;
-  height: 1.6rem;
+  height: 1.8rem;
   background: var(--md-primary-bg-color);
   opacity: 0.25;
 }
 
 @media screen and (max-width: 60em) {
-  /* Header gets tight on phones — drop the edition tag and divider */
+  /* Header gets tight on phones — drop the edition tag, stats, divider */
   .ncs-source {
     gap: 10px;
   }
   .ncs-source__edition,
+  .ncs-source__stats,
   .ncs-source__divider {
     display: none;
   }
