@@ -1,0 +1,36 @@
+{#
+  Custom header source — this manual covers both editions, so we show
+  links to the Community and Pro repos side by side instead of the
+  default single repo card. Material's `partials/source.html` only knows
+  about one `repo_url`, so this override replaces it entirely.
+#}
+{% set icon = config.theme.icon.repo or "fontawesome/brands/git-alt" %}
+<div class="md-source ncs-source">
+  <a
+    href="https://github.com/siganberg/ncSender"
+    title="ncSender (Community Edition) on GitHub"
+    class="ncs-source__link"
+  >
+    <span class="ncs-source__icon md-icon">
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </span>
+    <span class="ncs-source__label">
+      <span class="ncs-source__name">ncSender</span>
+      <span class="ncs-source__edition">Community</span>
+    </span>
+  </a>
+  <span class="ncs-source__divider" aria-hidden="true"></span>
+  <a
+    href="https://github.com/siganberg/ncSenderProV2"
+    title="ncSenderPro on GitHub"
+    class="ncs-source__link"
+  >
+    <span class="ncs-source__icon md-icon">
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </span>
+    <span class="ncs-source__label">
+      <span class="ncs-source__name">ncSenderPro</span>
+      <span class="ncs-source__edition">Pro</span>
+    </span>
+  </a>
+</div>

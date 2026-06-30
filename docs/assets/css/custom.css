@@ -35,3 +35,77 @@ img.placeholder[src$=".webp"]::after {
   font-size: 14px;
   font-style: italic;
 }
+
+/* Header source — show two repo entries (Community + Pro) side by side. */
+.ncs-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.7rem;
+  line-height: 1.2;
+}
+
+.ncs-source__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--md-primary-bg-color);
+  opacity: 0.92;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.ncs-source__link:hover,
+.ncs-source__link:focus-visible {
+  opacity: 1;
+}
+
+.ncs-source__icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ncs-source__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.ncs-source__label {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ncs-source__name {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.ncs-source__edition {
+  font-size: 0.62rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ncs-source__divider {
+  width: 1px;
+  height: 1.6rem;
+  background: var(--md-primary-bg-color);
+  opacity: 0.25;
+}
+
+@media screen and (max-width: 60em) {
+  /* Header gets tight on phones — drop the edition tag and divider */
+  .ncs-source {
+    gap: 10px;
+  }
+  .ncs-source__edition,
+  .ncs-source__divider {
+    display: none;
+  }
+}
