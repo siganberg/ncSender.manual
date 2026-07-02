@@ -99,6 +99,7 @@ extra_css:
 
 extra_javascript:
   - assets/js/source-stats.js
+  - assets/js/pro-badge.js
 
 extra:
   social:

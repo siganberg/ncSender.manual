@@ -36,6 +36,23 @@ img.placeholder[src$=".webp"]::after {
   font-style: italic;
 }
 
+/* Pro badge on nav entries for Pro-only features — small superscript "exponent". */
+.ncs-pro-badge {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 4px;
+  font-size: 0.5em;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--md-primary-fg-color);
+  border-radius: 4px;
+  vertical-align: super;
+  white-space: nowrap;
+}
+
 /* Header source — show two repo entries (Community + Pro) side by side. */
 .ncs-source {
   display: inline-flex;
