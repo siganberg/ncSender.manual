@@ -134,8 +134,7 @@ Toggle **Spindle View** / **LaserHead View** in the
 [view toggles](#view-toggles-top-left) to frame the camera on the head so
 you can watch the cut up close.
 
-<!-- TODO: Side-by-side screenshot of spindle vs laser toolhead -->
-![Toolhead modes](../assets/images/features/visualizer-toolheads.png){ .placeholder }
+![Toolhead modes](../assets/images/features/visualizer-toolheads.png)
 
 ## Workspace Markers
 
