@@ -115,7 +115,9 @@ The Setup screen holds the pendant's own preferences.
 
 ## Managing the pendant from ncSender
 
-Open the **Pendant** dialog in ncSender to manage the connection and firmware.
+Click the **pendant icon** in the ncSender toolbar (next to the connection
+status) to open the **Pendant** dialog, where you manage the connection and
+firmware.
 
 ![ncSender pendant dialog](../assets/images/features/pendant-ncsender-dialog.png)
 
