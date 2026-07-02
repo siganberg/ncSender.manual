@@ -68,6 +68,34 @@ While one of these is enabled it becomes the *source* for the tool settings abov
 the button count and forces the appropriate TLS / Probe options on. Removing or disabling
 the plugin returns control to the Tool Library.
 
+### How `M6` is handled (grblHAL)
+
+Whether a plugin is installed changes what happens when the program (or a tool button)
+issues an `M6` tool change:
+
+- **No tool-changer plugin** — ncSender passes `M6` straight through to the controller.
+  On grblHAL, the firmware then handles the change according to its **`$341` Tool Change
+  Mode** setting.
+- **Tool-changer plugin enabled** — ncSender **intercepts** `M6` and runs the plugin's
+  own tool-change routine instead of leaving it to the firmware.
+
+The grblHAL `$341` Tool Change Mode options are:
+
+| `$341` | Tool Change Mode | Behaviour |
+|--------|------------------|-----------|
+| 0 | **Normal** | Allows jogging for a manual touch off; set the new position manually. |
+| 1 | **Manual touch off** | Rapids to the tool-change position; use jogging or `$TPW` for touch off. |
+| 2 | **Manual touch off @ G59.3** | Rapids to the tool-change position, then to G59.3 for a manual touch off. |
+| 3 | **Automatic touch off @ G59.3** | Rapids to the tool-change position, then to G59.3 for an automatic touch off. |
+| 4 | **Ignore M6** | The controller ignores `M6` entirely. |
+
+The tool-change position above is the tool-axis home, G59.3, or G30 position depending on
+your other grblHAL settings.
+
+!!! note "FluidNC"
+    This passthrough behaviour is documented for grblHAL. FluidNC tool-change handling
+    isn't covered here yet.
+
 ## Tool Length Setter (TLS)
 
 The TLS establishes a **Tool Length Reference (TLR)** so Z stays consistent across tool
