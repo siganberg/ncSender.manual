@@ -2,15 +2,13 @@
 
 ncSender includes a built-in probe dialog supporting multiple probe types for automated workpiece zeroing.
 
-<!-- TODO: Screenshot of probe dialog overview -->
-![Probe dialog](../assets/images/features/probe-dialog.png){ .placeholder }
+![Probe dialog](../assets/images/features/probe-dialog.webp)
 
 ## Probe Types
 
 ### 3D Probe
 
-<!-- TODO: Screenshot of 3D probe configuration -->
-![3D probe](../assets/images/features/probe-3d.png){ .placeholder }
+![3D probe](../assets/images/features/probe-3d.png)
 
 For use with 3D touch probes (ball-point probes).
 
@@ -27,12 +25,12 @@ For use with 3D touch probes (ball-point probes).
 
 - Ball point diameter
 - Z-plunge depth
-- Rapid speed (1000-5000 mm/min)
+- Z-offset
+- Rapid movement speed
 
 ### Standard Block
 
-<!-- TODO: Screenshot of standard block probe configuration -->
-![Standard block probe](../assets/images/features/probe-block.png){ .placeholder }
+![Standard block probe](../assets/images/features/probe-block.png)
 
 For use with rectangular touch-off blocks (edge finders).
 
@@ -45,14 +43,14 @@ For use with rectangular touch-off blocks (edge finders).
 
 ### AutoZero Touch
 
-<!-- TODO: Screenshot of AutoZero touch configuration -->
-![AutoZero touch](../assets/images/features/probe-autozero.png){ .placeholder }
+![AutoZero touch](../assets/images/features/probe-autozero.png)
 
-Simplified touch probe for quick Z-only zeroing.
+A simplified touch probe that needs almost no setup — pick the probing axis and let
+it detect the tip. Choose the same probing axes as the 3D probe (Z, X/Y, XY, XYZ).
 
 **Configuration:**
 
-- Diameter options: Auto, Tip, or custom value
+- Bit diameter: **Auto** (detected), or a specific value
 
 ## Using the Probe Dialog
 
@@ -63,8 +61,7 @@ Simplified touch probe for quick Z-only zeroing.
 5. Click the visual indicator to select which corner/edge to probe
 6. Click **Start Probe**
 
-<!-- TODO: GIF/WebP animation of a probing cycle in action -->
-![Probing animation](../assets/images/features/probe-cycle.webp){ .placeholder }
+![Probing animation](../assets/images/features/probe-cycle.webp)
 
 !!! warning "Safety"
     Always verify your probe configuration before probing. An incorrect Z-plunge depth or feedrate can damage the probe or workpiece.
