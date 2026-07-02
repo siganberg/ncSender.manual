@@ -1,58 +1,125 @@
 # Pendant
 
-The ncSender pendant is a wireless handheld controller for your CNC machine, connected via ESP-NOW wireless protocol through a USB dongle.
+The ncSender Wireless Pendant is a handheld controller for your CNC machine. It
+gives you a live position readout and hands-on control of jogging, zeroing,
+homing, and running jobs — right at the machine, without reaching for the
+keyboard.
+
+It connects to ncSender wirelessly through a small USB dongle, so you can walk
+around the machine while you work.
 
 ## Hardware
 
 <!-- TODO: Photo of pendant and dongle hardware -->
 ![Pendant and dongle](../assets/images/features/pendant-hardware.png){ .placeholder }
 
-- **Pendant** — ESP32-based handheld with LCD display, jog wheel, and buttons
-- **Dongle** — ESP32-S3 USB stick (LilyGO T-Dongle-S3) that plugs into the host computer
+- **Pendant** — a battery-powered handheld with a touch display, a jog knob
+  (rotary encoder), three soft buttons, and a power button.
+- **Dongle** — a small USB stick that plugs into the computer running ncSender
+  and links to the pendant wirelessly.
 
-## Features
+## Getting connected
 
-- Real-time DRO (position display)
-- Jog wheel for precise positioning
-- Feed rate and spindle override
-- Start/Pause/Stop job controls
-- Tool change confirmation
-- Zero X, Y, Z axes
-- Home machine
+1. Plug the dongle into the computer running ncSender.
+2. Power on the pendant (hold the power button).
+3. The pendant and dongle pair automatically and the status bar shows the
+   connection icon.
 
-## Connection
+Once connected, the pendant mirrors your machine state in real time and any
+button you press acts on the machine immediately.
 
-<!-- TODO: GIF/WebP animation showing pendant powering on and connecting -->
-![Pendant connection](../assets/images/features/pendant-connecting.webp){ .placeholder }
+!!! tip "First-time pairing"
+    If the pendant and dongle have never been paired, open the **Setup** screen
+    on the pendant and choose **ESP-NOW → Scan** to pair them. After the first
+    pairing the connection is remembered and reconnects on its own.
 
-The pendant connects wirelessly via ESP-NOW protocol:
+![Pendant ESP-NOW pairing screen](../assets/images/features/pendant-pairing-screen.png)
 
-1. Plug the USB dongle into the host computer
-2. Power on the pendant
-3. The pendant and dongle pair automatically
-4. ncSender detects the dongle and begins communication
+The pairing screen shows whether the pendant is currently paired. Press
+**Scan** to search for a dongle; press **&lt;Back** to return to Setup.
 
-!!! tip "WiFi Channel Sync"
-    The pendant automatically discovers and syncs the WiFi channel with the dongle on first connection. Subsequent boots use the stored channel for instant connection.
+## The Jog screen
 
-## Pendant Display
+This is the pendant's home screen — your live readout and jogging controls.
 
-<!-- TODO: Screenshot/photo of pendant LCD showing DRO, status, overrides -->
-![Pendant display](../assets/images/features/pendant-display.png){ .placeholder }
+![Pendant jog screen](../assets/images/features/pendant-jog-screen.png)
 
-The pendant LCD shows:
+**Status bar (top)** shows, left to right: the active workspace (e.g. `G54`),
+the machine status (`IDLE`, `RUN`, `HOLD`, `ALARM`, …), the connection icon,
+and the battery level.
 
-- Machine status (Idle, Run, Hold, Alarm)
-- X, Y, Z coordinates (work position)
-- Active workspace (G54-G59)
-- Feed rate and spindle overrides
-- Job progress during program execution
+**Position readout** lists each axis (X, Y, Z) with its work position in large
+type and the machine position in smaller type underneath. The highlighted axis
+is the one the jog knob will move; the small number next to each axis label
+(e.g. `1.00`) is the current jog step size.
 
-## Communication Protocol
+**Turn the jog knob** to move the selected axis. The step size sets how far each
+click travels; turning faster moves faster.
 
-The pendant uses a compact DRO format for efficient data transfer over ESP-NOW's 250-byte packet limit:
+**Buttons:**
 
-- **Full DRO** (`$!` prefix) — All machine state fields
-- **Delta DRO** (`$` prefix) — Only changed fields
+- **HOME** — run the homing cycle.
+- **XY0 / X0 / Y0 / Z0** — zero the work position for those axes at the current
+  location.
 
-The host pushes DRO updates every second, ensuring the pendant always shows current state.
+**Footer** — the three soft buttons below the screen. On the Jog screen they
+select the axis / step and switch between screens (**Prev / Step-Zero / Next**).
+
+## The Job screen
+
+When you start a program, the pendant automatically switches to the Job screen
+so the controls you need while cutting are front and center.
+
+![Pendant job screen](../assets/images/features/pendant-job-screen.png)
+
+- **Feedrate / Spindle** (top) — the live feed rate and spindle speed the
+  machine is actually running.
+- **Feed Override / Spindle Override** — turn the jog knob to trim feed rate or
+  spindle speed on the fly. Select which slider to adjust with the footer
+  buttons; each shows the current override percentage.
+- **Cycle** — start / resume the program.
+- **Pause** — feed-hold the running program.
+- **Stop** — stop the program.
+
+When the job finishes or you stop it, the pendant returns to the Jog screen
+automatically.
+
+## The Info screen
+
+The Info screen shows the pendant's current connection type, firmware version,
+and device name. It's the quickest way to check which firmware you're running —
+useful before and after a firmware update. Press **Setup** here to open the
+Setup screen.
+
+![Pendant info screen](../assets/images/features/pendant-info-screen.png)
+
+## The Setup screen
+
+The Setup screen holds the pendant's own preferences.
+
+![Pendant setup screen](../assets/images/features/pendant-setup-screen.png)
+
+- **Show G-Code** — when on, jog and command output from the pendant is echoed
+  in ncSender's console. Off keeps the console quiet.
+- **Accuracy Mode** — chooses how the jog knob behaves. On gives precise,
+  step-locked movement; off gives quicker continuous jogging.
+- **Idle Shutdown** — how long the pendant waits, with no activity, before it
+  powers itself off to save battery. Choose from **5 to 30 minutes**. Turn the
+  jog knob (or tap the row) to change the value.
+- **ESP-NOW** — pair or unpair with a dongle.
+
+!!! note "Idle shutdown only runs on battery"
+    While the pendant is plugged into USB (or charging), it stays on
+    indefinitely. The idle timer only starts once it's running on battery, and
+    any touch, button, or knob movement resets it.
+
+## Managing the pendant from ncSender
+
+Some pendant tasks are handled from the ncSender app on your computer:
+
+- **Firmware updates** — ncSender checks for new pendant firmware and can flash
+  it over the existing connection. No cables or tools required.
+- **Unpair dongle** — release the current pendant so a different one can pair.
+
+<!-- TODO: screenshot of ncSender's pendant dialog -->
+![ncSender pendant settings](../assets/images/features/pendant-ncsender-dialog.png){ .placeholder }
