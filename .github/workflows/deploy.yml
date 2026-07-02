@@ -9,9 +9,12 @@ permissions:
   pages: write
   id-token: write
 
+# Allow one concurrent deployment; let in-progress deploys finish rather than
+# cancelling them mid-flight (cancelling mid-deploy can leave a duplicate
+# github-pages artifact and fail the next run).
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
