@@ -53,4 +53,4 @@ This was fixed in v2.0.74. The issue was caused by the plugin installer overwrit
 ## Getting Help
 
 - [GitHub Issues](https://github.com/siganberg/ncSender/issues) — Report bugs
-- [Discord](https://discord.gg/ncsender) — Community support
+- [Discord](https://discord.gg/3U5Jx2q2wZ) — Community support

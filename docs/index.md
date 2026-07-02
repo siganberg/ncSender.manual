@@ -43,4 +43,4 @@ ncSender is a desktop application for controlling CNC machines. It provides a ri
 ## Community
 
 - [GitHub](https://github.com/siganberg/ncSender) — Source code and issue tracker
-- [Discord](https://discord.gg/ncsender) — Community chat and support
+- [Discord](https://discord.gg/3U5Jx2q2wZ) — Community chat and support
