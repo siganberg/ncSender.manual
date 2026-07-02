@@ -139,8 +139,7 @@ you can watch the cut up close.
 
 ## Workspace Markers
 
-<!-- TODO: Screenshot showing workspace markers (G54, G55 origins on grid) -->
-![Workspace markers](../assets/images/features/visualizer-workspace-markers.png){ .placeholder }
+![Workspace markers](../assets/images/features/visualizer-workspace-markers.png)
 
 The visualizer displays workspace origin markers for G54 through G59. These
 show where each coordinate system's origin sits relative to the machine.
@@ -151,8 +150,7 @@ show where each coordinate system's origin sits relative to the machine.
 
 ## Tool Legend
 
-<!-- TODO: Screenshot of the right-side legend showing tools, Spindle, Workspaces, Extents -->
-![Tool legend](../assets/images/features/visualizer-tool-legend.png){ .placeholder }
+![Tool legend](../assets/images/features/visualizer-tool-legend.png)
 
 A small legend on the right edge of the canvas lists every element drawn
 on top of the grid:
@@ -172,8 +170,7 @@ covered on the [Tool Management](tool-management.md) page.
 
 ## Aux Controls
 
-<!-- TODO: Screenshot of aux control toggles (Flood, Mist) -->
-![Aux controls](../assets/images/features/visualizer-aux-controls.png){ .placeholder }
+![Aux controls](../assets/images/features/visualizer-aux-controls.png)
 
 The bottom-left cluster has toggle switches for auxiliary outputs:
 
@@ -194,8 +191,7 @@ before you start the job rather than mid-cut.
 
 ## Program Execution
 
-<!-- TODO: GIF/WebP animation showing a program running with toolhead moving -->
-![Program execution animation](../assets/images/features/visualizer-running.webp){ .placeholder }
+![Program execution animation](../assets/images/features/visualizer-running.webp)
 
 During program execution:
 
