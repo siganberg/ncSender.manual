@@ -115,11 +115,13 @@ The Setup screen holds the pendant's own preferences.
 
 ## Managing the pendant from ncSender
 
-Some pendant tasks are handled from the ncSender app on your computer:
+Open the **Pendant** dialog in ncSender to manage the connection and firmware.
 
-- **Firmware updates** — ncSender checks for new pendant firmware and can flash
-  it over the existing connection. No cables or tools required.
-- **Unpair dongle** — release the current pendant so a different one can pair.
+![ncSender pendant dialog](../assets/images/features/pendant-ncsender-dialog.png)
 
-<!-- TODO: screenshot of ncSender's pendant dialog -->
-![ncSender pendant settings](../assets/images/features/pendant-ncsender-dialog.png){ .placeholder }
+- **Connection** — shows how the pendant is connected (USB or the ESP-NOW
+  dongle), the port, and its current firmware version.
+- **Firmware Update** — ncSender checks for new pendant firmware and shows when
+  an update is available. Press **Update Now** to flash it over the existing
+  connection — no cables or tools required. **Flash from file** lets you install
+  a specific firmware `.bin` instead.
