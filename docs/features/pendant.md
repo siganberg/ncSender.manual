@@ -10,8 +10,7 @@ around the machine while you work.
 
 ## Hardware
 
-<!-- TODO: Photo of pendant and dongle hardware -->
-![Pendant and dongle](../assets/images/features/pendant-hardware.png){ .placeholder }
+![Pendant and dongle](../assets/images/features/pendant-hardware.png)
 
 - **Pendant** — a battery-powered handheld with a touch display, a jog knob
   (rotary encoder), three soft buttons, and a power button.
