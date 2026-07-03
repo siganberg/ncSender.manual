@@ -10,8 +10,7 @@ controls and drives tool changes for you.
 Open **Settings → Tool Library**. This is where you keep an inventory of your bits and
 assign them to the slots (pockets) in your tool magazine.
 
-<!-- TODO: Screenshot of Settings > Tool Library -->
-![Tool Library settings](../assets/images/features/tool-library.png){ .placeholder }
+![Tool Library settings](../assets/images/features/tool-library.webp)
 
 Add, edit, and delete tools here. Each tool holds:
 
@@ -22,6 +21,33 @@ Add, edit, and delete tools here. Each tool holds:
 - **Diameter**
 - **Tool length offset (TLO)** and its **TLS probe offsets** (X / Y / Z)
 - **Notes** and **SKU** for your own reference
+
+### Assigning a tool to a magazine slot
+
+A tool only occupies a magazine pocket once you give it a slot. There are two ways to do
+that:
+
+- **From the Add / Edit Tool dialog** — set the **Assigned To Slot** dropdown to a slot
+  (`Slot 1`, `Slot 2`, …). Leave it on **None (Not in magazine)** to keep the bit in
+  inventory without a pocket.
+- **From the tool table** — click the tool's **slot cell** (the `SLOT#` / *No Slot* badge
+  in the Tool ID column) to open a slot picker, then choose a slot.
+
+The available slots are limited by **Magazine size** — you can only assign Slot 1 through
+Slot N, where N is the magazine size.
+
+!!! tip "Slots swap automatically"
+    If you assign a tool to a slot that another tool already occupies, ncSender **swaps**
+    them — the other tool moves to the slot the current tool just left. You won't get a
+    conflict error.
+
+!!! note "Shrinking the magazine"
+    Lowering the magazine size unassigns any tools sitting in slots above the new size (it
+    asks you to confirm first). The tools stay in your library — they just lose their slot.
+
+Assigned tools show an amber **`SLOT#`** badge in the table; unassigned ones show
+*No Slot*. The slot strip along the bottom is a quick visual map of the magazine — click
+an occupied slot to jump to that tool in the table.
 
 ### Tool button controls
 
@@ -44,8 +70,7 @@ The Tool Library also decides what appears in the visualizer's tool area:
 
 The tool buttons live at the bottom-right of the visualizer.
 
-<!-- TODO: Screenshot of tool buttons in the visualizer footer -->
-![Tool buttons](../assets/images/features/tool-buttons.png){ .placeholder }
+![Tool buttons](../assets/images/features/tool-buttons.png)
 
 - **T1, T2, … TN** — one button per magazine slot. The **active tool** is highlighted, and
   any tool that appears in the loaded G-code is marked so you can see what the job needs.
@@ -106,28 +131,23 @@ changes. Pressing **TLS** (or running `$TLS`) performs the measurement:
 3. Sets the tool length offset for the current tool.
 4. Restores the normal probe source and returns to the previous XY position.
 
-<!-- TODO: GIF/WebP animation of TLS probing sequence -->
-![TLS probing](../assets/images/features/tool-tls.webp){ .placeholder }
-
 ### The glowing TLS button
 
 When a tool is loaded but its length hasn't been measured yet, the **TLS button pulses
 with a red glow**. It's a reminder that no Tool Length Reference is set — run TLS before
 you rely on Z.
 
-<!-- TODO: Screenshot of the glowing TLS button -->
-![Glowing TLS button](../assets/images/features/tool-tls-glow.png){ .placeholder }
+![Glowing TLS button](../assets/images/features/tool-tls-glow.png)
 
-If you try to **set Z0 without a Tool Length Reference**, ncSender interrupts with a
-warning dialog — *"Tool Length Reference Not Set"* — explaining that zeroing Z without a
-TLR can cause unpredictable Z offsets during tool changes. You can:
+If you try to **set Z0 (material height) without a Tool Length Reference**, ncSender
+interrupts with a warning dialog — *"Tool Length Reference Not Set"* — explaining that
+zeroing Z without a TLR can cause unpredictable Z offsets during tool changes. You can:
 
 - **Run TLS** — measure now to establish the reference (recommended), or
-- **Continue Anyway** — proceed and set Z0 without a TLR, or
+- **Zero Z Anyway** — proceed and set Z0 without a TLR, or
 - **Cancel**.
 
-<!-- TODO: Screenshot of the Tool Length Reference warning dialog -->
-![Tool Length Reference warning](../assets/images/features/tool-tlr-dialog.png){ .placeholder }
+![Tool Length Reference warning](../assets/images/features/tool-tlr-dialog.png)
 
 !!! warning "Laser mode"
     Tool buttons and the TLS glow/warning don't apply in laser mode — there's no tool
