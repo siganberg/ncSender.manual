@@ -41,3 +41,9 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # GitHub's Pages build queue can sit in "deployment_queued" for a
+          # while; the default 10-min poll gives up before it drains even
+          # though the deployment finishes server-side. Wait up to 30 min so
+          # the run reports the real outcome instead of a false timeout.
+          timeout: 1800000
