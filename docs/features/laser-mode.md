@@ -7,12 +7,12 @@ Laser mode transforms the visualizer and controls for laser engraving and cuttin
 
 ## Enabling Laser Mode
 
-<!-- TODO: Screenshot of laser settings dialog -->
-![Laser settings](../assets/images/features/laser-settings.png){ .placeholder }
+![Laser settings](../assets/images/features/laser-settings.webp)
 
 1. Open **Laser Settings** from the visualizer toolbar
-2. Select the spindle used for your laser under **Spindle use for Laser**
-3. Enable **Mode of operation ($32)** to set the controller to laser mode
+2. Under **Spindle use for Laser**, select the spindle output your laser is wired to
+   (e.g. *PWM2 (Spindle 1)*)
+3. Adjust **Z-Offset Laser** if you want a different visual head height (optional)
 4. Click **Save**
 5. Toggle **Laser Mode** in the visualizer controls
 
@@ -23,14 +23,13 @@ Laser mode transforms the visualizer and controls for laser engraving and cuttin
 
 | Setting | Description |
 |---------|-------------|
-| **Spindle use for Laser** | Which spindle output drives the laser module |
-| **Mode of operation ($32)** | Firmware laser mode — consecutive G1/G2/G3 commands won't halt when power changes |
+| **Spindle use for Laser** | Which spindle output drives the laser module (e.g. *PWM2 (Spindle 1)*) |
+| **Mode of operation ($32)** | Firmware laser mode. You don't set this by hand — toggling **Laser Mode** automatically sets `$32=1` when on and `$32=0` when off. This prevents the laser silently not firing (forgot `$32` on) or parking moves being skipped (forgot `$32` off). |
 | **Z-Offset Laser (mm)** | Visual height of the laser head above the workbed in the visualizer (default: 30mm). Does not affect machine position or G-code. |
 
 ## Visualizer Changes
 
-<!-- TODO: Screenshot of laser mode with beam, power bar, and burn effect -->
-![Laser mode visualization](../assets/images/features/laser-visualization.png){ .placeholder }
+![Laser mode visualization](../assets/images/features/laser-visualization.png)
 
 When laser mode is active:
 
@@ -40,8 +39,7 @@ When laser mode is active:
 - **Power bar** displays current laser power as a color-coded bar (0-100%)
 - **Rapids hidden** — G0 moves are not displayed (laser doesn't fire during rapids)
 
-<!-- TODO: GIF/WebP animation of laser running a job with beam and burn effect -->
-![Laser animation](../assets/images/features/laser-running.webp){ .placeholder }
+![Laser animation](../assets/images/features/laser-running.webp)
 
 ## Z-Offset
 
