@@ -4,14 +4,17 @@ The console panel provides direct access to your CNC controller with command inp
 
 ## Terminal
 
-<!-- TODO: Screenshot of terminal with commands and responses -->
-![Terminal](../assets/images/features/console-terminal.png){ .placeholder }
+![Terminal](../assets/images/features/console-terminal.png)
 
-The terminal tab shows a real-time log of all communication with the controller:
+The **Terminal** is one tab of the panel below the visualizer, alongside
+[G-Code Preview](gcode-preview.md), [Macros](macros.md), Plugins, and
+[Events](program-events.md). It shows a real-time log of all communication with the
+controller:
 
-- **Commands** — Shown with a `>` prefix
-- **Responses** — Color-coded by status (success/error/pending)
-- **Timestamps** — Each entry is timestamped
+- **Timestamped** — every line is stamped with the time it was logged
+- **Status icons** — each entry is marked by status: a green check for accepted
+  commands, a blue dot for info messages, and an error marker for problems
+- **Both directions** — your sent commands and the controller's replies are all logged
 
 ### Sending Commands
 
@@ -21,49 +24,39 @@ Type G-code or controller commands in the input field and press ++enter++ to sen
 
 Toggle auto-scroll to keep the latest messages visible. Disable it to read through history without interruption.
 
-### Detach Terminal
+## Detached terminal & quick controls
 
-Click the detach button to open the terminal in a larger modal window for better visibility.
+Click the **expand** button at the top-right of the terminal to open it in a large modal
+window. The detached view adds a left sidebar of one-click **quick controls** — these
+appear only in the detached modal, not in the docked panel.
 
-## Quick Controls
+![Detached terminal with quick controls](../assets/images/features/console-quick-controls.png)
 
-<!-- TODO: Screenshot of quick control buttons row -->
-![Quick controls](../assets/images/features/console-quick-controls.png){ .placeholder }
-
-The console provides one-click buttons for common operations:
-
-| Button | Command | Description |
-|--------|---------|-------------|
+| Button | Sends | Description |
+|--------|-------|-------------|
+| **Clear** | — | Clears the terminal log (no command sent) |
 | **Home** | `$H` | Run homing cycle |
 | **Unlock** | `$X` | Clear alarm and unlock |
-| **Reset** | `Ctrl+X` | Soft reset (emergency) |
-| **Status** | `0x87` | Request full status report |
+| **Reset** | `Ctrl+X` (`0x18`) | Soft reset |
+| **Status Report** | `0x87` | Full real-time status report |
 | **Help** | `$help` | Show controller help |
-| **Info** | `$I` | Controller build info |
-| **Settings** | `$$` | List all GRBL settings |
-| **State** | `$G` | Show G-code modal state |
-| **Clear** | — | Clear terminal history |
+| **Information** | `$I` | Controller build info |
+| **Controller Settings** | `$$` | List all controller settings |
+| **Modal State** | `$G` | Show active G-code modal state |
 
-### Spindle Controls
+### Spindle controls
 
-Quick spindle controls with RPM input:
+Buttons to spin up the spindle, each with an RPM dropdown (1000–24000 rpm in 1000-rpm
+steps, default 10000):
 
-- **M3** — Spindle clockwise
-- **M4** — Spindle counter-clockwise
-- **M5** — Spindle stop
+- **Spindle CW** — `M3 S<rpm>`
+- **Spindle CCW** — `M4 S<rpm>`
+- **Stop Spindle** — `M5`
 
-## G-Code Preview
+## Other panel tabs
 
-<!-- TODO: Screenshot of G-code preview tab with syntax highlighting -->
-![G-code preview](../assets/images/features/console-gcode-preview.png){ .placeholder }
+The Terminal shares its panel with a few sibling tabs, each documented on its own page:
 
-The G-Code tab shows the loaded program with:
-
-- **Syntax highlighting** — Color-coded G-code
-- **Line numbers** — For reference
-- **Find & Replace** — Search with regex, case-sensitive, and whole-word options
-- **Current line tracking** — Highlights the line being executed during a job
-
-## Events Tab
-
-See [Program Events](program-events.md) for details on the Program Start and Program End event system.
+- **[G-Code Preview](gcode-preview.md)** — the loaded program with syntax highlighting and find & replace
+- **[Macros](macros.md)** — your saved command macros
+- **[Events](program-events.md)** — the Program Start / Program End event system

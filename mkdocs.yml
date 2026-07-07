@@ -70,6 +70,7 @@ nav:
     - Tool Management: features/tool-management.md
     - Macros: features/macros.md
     - Console & Terminal: features/console.md
+    - G-Code Preview: features/gcode-preview.md
     - Program Events: features/program-events.md
     - Laser Mode: features/laser-mode.md
     - Pendant: features/pendant.md
