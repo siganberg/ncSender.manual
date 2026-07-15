@@ -1,10 +1,18 @@
 # ncSender Documentation
 
+![ncSender desktop](assets/images/home/desktop-hero.png)
+
 Welcome to the official documentation for **ncSender** — a modern, cross-platform CNC controller application for grblHAL and FluidNC.
 
 ## What is ncSender?
 
 ncSender is a desktop application for controlling CNC machines. It provides a rich 3D visualizer, jog controls, probing workflows, tool management, plugin support, and more — all wrapped in a clean, responsive interface that works on Windows, macOS, and Linux.
+
+<p style="text-align: center; margin: 1.5rem 0;">
+  <img src="assets/images/home/touch-view.png" alt="ncSender touchscreen / kiosk view" style="max-width: 320px; width: 100%; border-radius: 8px;" />
+  <br />
+  <em style="color: var(--md-default-fg-color--light); font-size: 0.85rem;">Also runs full-screen on touchscreens and kiosks.</em>
+</p>
 
 ## Editions
 

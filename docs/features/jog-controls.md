@@ -77,7 +77,7 @@ The four corner buttons (↖ ↗ ↙ ↘) move both X and Y axes simultaneously.
 | ++page-up++ / ++page-down++ | Jog Z+ / Z- |
 
 !!! tip "Quick Zero"
-    Double-click an axis card in the DRO to manually type a coordinate value. Long-press an axis card to zero it at the current position.
+    Double-click an axis card in the DRO to manually type a coordinate value. Long-press an axis card to zero it at the current position. See [DRO](dro.md) for the full set of gestures.
 
 ## Homing
 
@@ -107,8 +107,7 @@ one. Hold a button to run its move; a progress bar fills as you hold.
 
 !!! tip "Setting zero vs. going to zero"
     These buttons *travel* to a stored zero. To *set* a work zero at the current
-    position instead, press and hold the matching axis card in the DRO (see the
-    **Quick Zero** tip above).
+    position instead, press and hold the matching axis card in the [DRO](dro.md).
 
 !!! note "Homing requirement"
     When homing is disabled (`$22=0`) these move buttons are always enabled. When homing

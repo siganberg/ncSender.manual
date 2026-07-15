@@ -66,6 +66,7 @@ nav:
   - Features:
     - Visualizer: features/visualizer.md
     - Jog Controls: features/jog-controls.md
+    - DRO: features/dro.md
     - Probing: features/probing.md
     - Tool Management: features/tool-management.md
     - Macros: features/macros.md
@@ -80,8 +81,8 @@ nav:
     - Safety Door: features/safety-door.md
   - Accessories:
     - Pendant: accessories/pendant.md
-  - Utilities:
-    - Wireless USB Flasher: utility/wireless-usb-flasher.md
+    - AutoDustBoot: accessories/autodustboot.md
+    - Smart RGB LED: accessories/smart-rgb-led.md
   - Plugins:
     - Overview: plugins/overview.md
     - Edge Align: plugins/edge-align.md
@@ -95,6 +96,8 @@ nav:
     - grblHAL: controllers/grblhal.md
     - FluidNC: controllers/fluidnc.md
   - Troubleshooting: troubleshooting.md
+  - Utilities:
+    - Wireless USB Flasher: utility/wireless-usb-flasher.md
 
 dev_addr: '127.0.0.1:8001'
 

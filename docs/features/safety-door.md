@@ -5,6 +5,8 @@
 
 Enhanced safety door handling for professional CNC machines with `$61` (Ignore when idle) support.
 
+![Safety Door animation](../assets/images/features/safety-door.webp)
+
 ## Features
 
 ### Automatic Spindle Stop

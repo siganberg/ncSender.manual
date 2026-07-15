@@ -5,6 +5,8 @@
 
 Built-in virtual keyboard for kiosk and touchscreen setups where no physical keyboard is attached.
 
+![Virtual Keyboard animation](../assets/images/features/virtual-keyboard.webp)
+
 ## Features
 
 - **QWERTY layout** — Full keyboard with shift support

@@ -5,8 +5,7 @@
 
 Trace your toolpath bounding box directly on the material or workpiece to verify the job fits before cutting.
 
-<!-- TODO: GIF/WebP animation of trace running (machine tracing bounding box) -->
-![Trace animation](../assets/images/features/trace.webp){ .placeholder }
+![Trace animation](../assets/images/features/trace.webp)
 
 ## How It Works
 

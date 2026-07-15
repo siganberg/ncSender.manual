@@ -5,8 +5,7 @@
 
 Run multiple workspaces (G54–G59) in a single job, each with its own work offset and toolpath — ideal for batch production and tiling setups.
 
-<!-- TODO: Screenshot of multi-workspace visualization showing G54-G59 origins -->
-![Multi-workspace](../assets/images/features/multi-workspace.png){ .placeholder }
+![Multi-workspace](../assets/images/features/multi-workspace.webp)
 
 ## How It Works
 
@@ -22,5 +21,4 @@ Instead of running the same program multiple times with manual offset changes, M
 
 The 3D visualizer shows origin markers for all active workspaces (G54-G59), so you can verify positions before running.
 
-<!-- TODO: GIF/WebP animation of multi-workspace job running through each workspace -->
-![Multi-workspace animation](../assets/images/features/multi-workspace-running.webp){ .placeholder }
+![Multi-workspace animation](../assets/images/features/multi-workspace-running.webp)
