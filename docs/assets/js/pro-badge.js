@@ -8,6 +8,7 @@
  */
 (function () {
   var PRO_PAGES = [
+    'getting-started/license-activation',
     'features/laser-mode',
     'features/4th-axis',
     'features/multi-workspace',
@@ -15,6 +16,12 @@
     'features/safety-door',
     'features/virtual-keyboard',
     'plugins/rapid-change-atc',
+  ];
+
+  // Tab labels (inside Material `=== "…"` blocks) whose entire tab is Pro-only.
+  // Match is case-insensitive against the trimmed label text.
+  var PRO_TAB_LABELS = [
+    'Raspberry Pi 5',
   ];
 
   function slugFromHref(href) {
@@ -53,6 +60,18 @@
       if (isProSlug(slugFromHref(link.getAttribute('href')))) {
         link.classList.add('ncs-pro-link');
         link.appendChild(badge());
+      }
+    }
+
+    var proTabsLower = PRO_TAB_LABELS.map(function (s) { return s.toLowerCase(); });
+    var tabLabels = document.querySelectorAll('.tabbed-set > label, .tabbed-labels > label');
+    for (var j = 0; j < tabLabels.length; j++) {
+      var lbl = tabLabels[j];
+      if (lbl.querySelector('.ncs-pro-badge')) continue;
+      var text = (lbl.textContent || '').trim().toLowerCase();
+      if (proTabsLower.indexOf(text) !== -1) {
+        lbl.classList.add('ncs-pro-link');
+        lbl.appendChild(badge());
       }
     }
   }

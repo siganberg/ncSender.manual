@@ -60,7 +60,7 @@ nav:
   - Home: index.md
   - Getting Started:
     - Installation: getting-started/installation.md
-    - License Activation (Pro): getting-started/license-activation.md
+    - License Activation: getting-started/license-activation.md
     - First Connection: getting-started/first-connection.md
     - Interface Overview: getting-started/interface-overview.md
   - Features:
