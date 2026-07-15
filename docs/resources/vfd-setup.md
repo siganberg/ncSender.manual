@@ -129,11 +129,10 @@ common "spindle spins but ncSender shows wrong RPM / won't stop" complaint.
 | `$470` | RPM multiplier (read) | `60.0` | `60` |
 | `$471` | RPM divider (read) | `10.0` | `100` |
 
-!!! tip "Where these came from"
-    Cross-referenced against a working PwnCNC-on-AltMill grbl dump —
-    [`siganberg/cnc-stuff` → `AltMill/stable/firmware-settings-…-PwnCNC-VFD.grbl`](https://github.com/siganberg/cnc-stuff/blob/main/AltMill/stable/firmware-settings-2025-12-04.-PwnCNC-VFD.grbl).
-    If your grblHAL build ships a different `$471` default, the RPM
-    displayed in ncSender will be off by 10× — that's the tell.
+!!! tip "Diagnosing wrong RPM"
+    If ncSender's spindle RPM display is off by a constant factor (most
+    commonly 10×), you have the wrong `$471` — that setting divides the
+    raw ModBus reply into the RPM ncSender shows.
 
 ## Wiring cheat-sheet
 
