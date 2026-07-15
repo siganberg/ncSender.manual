@@ -80,6 +80,8 @@ nav:
     - Safety Door: features/safety-door.md
   - Accessories:
     - Pendant: accessories/pendant.md
+  - Utilities:
+    - Wireless USB Flasher: utility/wireless-usb-flasher.md
   - Plugins:
     - Overview: plugins/overview.md
     - Edge Align: plugins/edge-align.md

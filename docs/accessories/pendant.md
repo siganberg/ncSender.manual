@@ -5,37 +5,50 @@ gives you a live position readout and hands-on control of jogging, zeroing,
 homing, and running jobs — right at the machine, without reaching for the
 keyboard.
 
-It connects to ncSender wirelessly through a small USB dongle, so you can walk
-around the machine while you work.
+It connects to ncSender wirelessly through a small Wireless USB, so you can
+walk around the machine while you work.
+
+!!! info "Minimum versions for wireless multi-device support"
+    Running the pendant alongside other wireless accessories on the same
+    Wireless USB requires:
+
+    - **ncSender** — v2.0.63 or newer
+    - **ncSender Pro** — v2.0.117 or newer
+    - **Pendant firmware** — v1.0.16 or newer (any recent build is fine)
+    - **Wireless USB firmware** — v0.2.2 or newer
+
+    See [Wireless USB](#wireless-usb) below for how to flash a Wireless USB
+    update. If you're on older versions and only use the pendant on its own,
+    no updates are needed.
 
 ## Hardware
 
-![Pendant and dongle](../assets/images/features/pendant-hardware.png)
+![Pendant and Wireless USB](../assets/images/features/pendant-hardware.png)
 
 - **Pendant** — a battery-powered handheld with a touch display, a jog knob
   (rotary encoder), three soft buttons, and a power button.
-- **Dongle** — a small USB stick that plugs into the computer running ncSender
-  and links to the pendant wirelessly.
+- **Wireless USB** — a small USB stick that plugs into the computer running
+  ncSender and links to the pendant wirelessly.
 
 ## Getting connected
 
-1. Plug the dongle into the computer running ncSender.
+1. Plug the Wireless USB into the computer running ncSender.
 2. Power on the pendant (hold the power button).
-3. The pendant and dongle pair automatically and the status bar shows the
-   connection icon.
+3. The pendant and Wireless USB pair automatically and the status bar shows
+   the connection icon.
 
 Once connected, the pendant mirrors your machine state in real time and any
 button you press acts on the machine immediately.
 
 !!! tip "First-time pairing"
-    If the pendant and dongle have never been paired, open the **Setup** screen
-    on the pendant and choose **ESP-NOW → Scan** to pair them. After the first
-    pairing the connection is remembered and reconnects on its own.
+    If the pendant and Wireless USB have never been paired, open the **Setup**
+    screen on the pendant and choose **Wireless → Scan** to pair them. After
+    the first pairing the connection is remembered and reconnects on its own.
 
-![Pendant ESP-NOW pairing screen](../assets/images/features/pendant-pairing-screen.png)
+![Pendant wireless pairing screen](../assets/images/features/pendant-pairing-screen.png)
 
 The pairing screen shows whether the pendant is currently paired. Press
-**Scan** to search for a dongle; press **&lt;Back** to return to Setup.
+**Scan** to search for a Wireless USB; press **&lt;Back** to return to Setup.
 
 ## The Jog screen
 
@@ -105,7 +118,7 @@ The Setup screen holds the pendant's own preferences.
 - **Idle Shutdown** — how long the pendant waits, with no activity, before it
   powers itself off to save battery. Choose from **5 to 30 minutes**. Turn the
   jog knob (or tap the row) to change the value.
-- **ESP-NOW** — pair or unpair with a dongle.
+- **Wireless** — pair or unpair with a Wireless USB.
 
 !!! note "Idle shutdown only runs on battery"
     While the pendant is plugged into USB (or charging), it stays on
@@ -120,9 +133,49 @@ firmware.
 
 ![ncSender pendant dialog](../assets/images/features/pendant-ncsender-dialog.png)
 
-- **Connection** — shows how the pendant is connected (USB or the ESP-NOW
-  dongle), the port, and its current firmware version.
+- **Connection** — shows how the pendant is connected (USB or the Wireless
+  USB), the port, and its current firmware version.
 - **Firmware Update** — ncSender checks for new pendant firmware and shows when
   an update is available. Press **Update Now** to flash it over the existing
   connection — no cables or tools required. **Flash from file** lets you install
   a specific firmware `.bin` instead.
+
+## Wireless USB
+
+The Wireless USB is a small USB-A stick that ncSender uses to talk to the
+pendant (and other wireless accessories) over the air. Under normal use you
+never touch it — you plug it in once and forget it. There are two situations
+where the Wireless USB firmware needs updating.
+
+**When to update the Wireless USB firmware:**
+
+- **You're enabling wireless multi-device support** — running the pendant
+  alongside other accessories (AutoDustBoot, Smart RGB LED) on the same
+  Wireless USB. Multi-device support requires **Wireless USB firmware v0.2.2
+  or newer**; older firmware only supports a single paired pendant.
+- **A newer firmware fixes an issue you're hitting** — pairing failures,
+  intermittent disconnects, LCD glitches, etc.
+
+**How to update:**
+
+Unlike the pendant, the Wireless USB does not update through ncSender's
+Pendant dialog. Use the browser-based flasher below (Google Chrome or
+Microsoft Edge required — it uses the Web Serial API):
+
+**[Open the Wireless USB Flasher &rarr;](../utility/wireless-usb-flasher.md)**
+
+The flasher lists the available firmware versions — pick one, then follow the
+on-screen **Boot Mode Instructions** (hold the small **BOOT** button on the
+Wireless USB while plugging it in), click **Connect**, then **Flash firmware**.
+When it finishes, unplug and replug the Wireless USB. The new version shows
+on its LCD at power-on.
+
+!!! tip "Checking the Wireless USB firmware version"
+    The Wireless USB prints its firmware version on its own LCD at power-on
+    (`v0.2.2`, `v0.2.2`, …). You can also see it in ncSender's **Pendant**
+    dialog under **Connection**.
+
+!!! warning "Compatibility"
+    A pendant and a Wireless USB running mismatched firmware major versions
+    may fail to pair. If you update the Wireless USB to v0.2.x, make sure the
+    pendant is on v1.0.16 or newer as well.
