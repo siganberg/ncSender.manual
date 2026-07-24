@@ -98,6 +98,7 @@ nav:
   - Resources:
     - Overview: resources/index.md
     - VFD Setup (RS485/ModBus): resources/vfd-setup.md
+  - FAQ: faq.md
   - Troubleshooting: troubleshooting.md
   - Utilities:
     - Wireless USB Flasher: utility/wireless-usb-flasher.md
