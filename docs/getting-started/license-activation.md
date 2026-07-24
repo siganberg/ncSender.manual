@@ -3,7 +3,7 @@
 !!! info "Pro Feature"
     License activation and deactivation apply to **ncSender Pro** only. The Community edition does not require a license.
 
-ncSender Pro is licensed per machine. After installing the Pro edition, you'll need to activate it using the Installation ID that was emailed to you after purchase. If you later move to a different machine, you can deactivate from the current device to free that slot.
+ncSender Pro is licensed per machine. After installing the Pro edition, you'll need to activate it using the Installation ID that was emailed to you after purchase. If you later move to a different machine, deactivate from the current device first, then activate on the new one.
 
 ## Activating ncSender Pro
 
@@ -24,23 +24,11 @@ When you launch ncSender Pro for the first time on an unlicensed machine, the **
 
 ### Activation Limit
 
-Each license includes a fixed number of **activation slots** — currently **3**. Each slot is a "seat" your license can occupy on a distinct machine.
+Your Installation ID is meant for use on **one machine at a time**, and can be moved between up to **3 different machines** in total. That gives you room to transfer the license if your machine breaks, you upgrade hardware, or you switch PCs.
 
-**How a slot is used:**
+Re-activating on a machine you've activated before doesn't count against the limit — for example, after an OS reinstall or a hard-drive swap on the same PC.
 
-- Activating on a **machine ncSender Pro has never been activated on before** consumes **one slot**. That slot stays tied to that machine's hardware fingerprint.
-- Re-activating on a machine that already has a slot is **always free** — for example, after reinstalling the OS or restoring from a backup on the same hardware.
-- **Deactivating does not refund a slot.** It only releases the *current binding* so you can install elsewhere. See [Deactivating ncSender Pro](#deactivating-ncsender-pro).
-
-**Example — a 3-slot license:**
-
-1. Activate on **Machine A** → uses slot 1.
-2. Activate on **Machine B** → uses slot 2.
-3. Activate on **Machine C** → uses slot 3. You are now at your limit.
-4. Deactivate on **Machine C** and try to activate on **Machine D** → **fails**, because Machine C already burned a slot. Deactivating didn't give it back.
-5. Re-activating on Machine A, B, or C at any time → free (already has a slot).
-
-**If you run out of slots:** email [support@franciscreation.com](mailto:support@franciscreation.com) with your License ID and we'll reset your activation count so you can activate on new machines again.
+**If you run out of activations:** email [support@franciscreation.com](mailto:support@franciscreation.com) with your License ID and we'll reset your count so you can activate on new machines again.
 
 ## Viewing Your License
 
@@ -71,12 +59,12 @@ Deactivate when you want to **move ncSender Pro to a different machine** or stop
 
 5. ncSender Pro contacts the licensing server, removes the local license, and reloads — you'll see the **License Activation** screen again.
 
-!!! warning "Deactivation Does Not Refund a Slot"
-    Deactivating releases the *binding* so you can re-activate elsewhere, but it does **not** add an activation slot back. Moving to a brand-new machine still consumes one of your activations. Moving back to a machine you've previously activated does not.
+!!! warning "Moving to a new machine still counts"
+    Deactivating releases the license from this machine so you can re-activate elsewhere. Activating on a machine you've never used before counts against your 3-machine limit. Activating on a machine you've used before (for example, moving back to an older PC) does not.
 
 ### Troubleshooting
 
 - **"Not bound to this machine"** — The server's binding for this license is on a different device or in a pending state. ncSender Pro will still remove the local license so you can re-activate cleanly.
 - **"License was not found on the server"** — The server has no record of this license. Double-check the License ID; if it looks correct, contact support.
 - **"Cannot reach the deactivation server"** — Network connectivity issue. Verify the machine can reach `franciscreation.com` and try again.
-- **Out of activation slots** — Email [support@franciscreation.com](mailto:support@franciscreation.com) with your License ID and we'll reset the count.
+- **Out of activations** — Email [support@franciscreation.com](mailto:support@franciscreation.com) with your License ID and we'll reset the count.
