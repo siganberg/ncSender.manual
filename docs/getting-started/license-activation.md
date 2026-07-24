@@ -24,9 +24,23 @@ When you launch ncSender Pro for the first time on an unlicensed machine, the **
 
 ### Activation Limit
 
-Each license includes a fixed number of activation slots (currently **3**). A slot is consumed the first time you activate on a *different* machine — re-activating on the same machine never burns a slot.
+Each license includes a fixed number of **activation slots** — currently **3**. Each slot is a "seat" your license can occupy on a distinct machine.
 
-If you run out of slots, email [support@franciscreation.com](mailto:support@franciscreation.com) and we'll reset your activations.
+**How a slot is used:**
+
+- Activating on a **machine ncSender Pro has never been activated on before** consumes **one slot**. That slot stays tied to that machine's hardware fingerprint.
+- Re-activating on a machine that already has a slot is **always free** — for example, after reinstalling the OS or restoring from a backup on the same hardware.
+- **Deactivating does not refund a slot.** It only releases the *current binding* so you can install elsewhere. See [Deactivating ncSender Pro](#deactivating-ncsender-pro).
+
+**Example — a 3-slot license:**
+
+1. Activate on **Machine A** → uses slot 1.
+2. Activate on **Machine B** → uses slot 2.
+3. Activate on **Machine C** → uses slot 3. You are now at your limit.
+4. Deactivate on **Machine C** and try to activate on **Machine D** → **fails**, because Machine C already burned a slot. Deactivating didn't give it back.
+5. Re-activating on Machine A, B, or C at any time → free (already has a slot).
+
+**If you run out of slots:** email [support@franciscreation.com](mailto:support@franciscreation.com) with your License ID and we'll reset your activation count so you can activate on new machines again.
 
 ## Viewing Your License
 
