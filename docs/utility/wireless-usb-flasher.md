@@ -4,6 +4,18 @@ Flash firmware to the ncSender **Wireless USB** directly from your browser.
 Requires **Google Chrome or Microsoft Edge (v89+)** — the tool uses the Web
 Serial API.
 
+!!! info "Activation & your Installation ID"
+    Each Wireless USB must be **activated** with an Installation ID in ncSender
+    before it will relay. If you bought a pendant in the **first batch**, you
+    should have received an email containing the Installation ID for your
+    Wireless USB as well. Didn't get it? Email
+    [support@franciscreation.com](mailto:support@franciscreation.com).
+
+!!! tip "Updating keeps your activation"
+    This flasher performs an **app-only update** — it does **not** erase the
+    device's activation or paired-device list. You can safely flash new firmware
+    versions without re-activating.
+
 <div class="wusb">
 <div class="wusb-warning" id="wusb-browser-warning">Web Serial API is not supported in this browser. Please use <a href="https://www.google.com/chrome/" target="_blank" rel="noopener">Google Chrome</a> or <a href="https://www.microsoft.com/edge" target="_blank" rel="noopener">Microsoft Edge</a> (v89+).</div>
 <div class="wusb-notice show"><b>Close ncSender before flashing.</b> If ncSender (Desktop or Pro) is running on any computer connected to this Wireless USB, it holds the serial port open and the flash will fail to connect. Fully quit ncSender — or unplug the Wireless USB from the other machine — before continuing.</div>
