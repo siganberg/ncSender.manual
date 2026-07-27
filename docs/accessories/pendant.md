@@ -50,6 +50,44 @@ button you press acts on the machine immediately.
 The pairing screen shows whether the pendant is currently paired. Press
 **Scan** to search for a Wireless USB; press **&lt;Back** to return to Setup.
 
+## Re-pairing the pendant
+
+The first pairing is automatic and sticks — you shouldn't normally have to do
+it again. A few situations do call for a re-pair:
+
+- **You flashed a major Wireless USB firmware update** (e.g. `v0.1.x → v0.2.x`).
+  Major-version firmware resets the Wireless USB's paired-device list.
+- **You swapped in a different Wireless USB.**
+- **You want to move the pendant to a different Wireless USB / different machine.**
+- **The pairing has become unstable** and reconnects don't recover.
+
+**Steps:**
+
+1. **Clear the old pairing on the ncSender side.** Click the pendant icon in
+   the ncSender toolbar to open the **Wireless USB** dialog. Under **Devices**,
+   click **Unpair** next to the pendant row and confirm.
+2. **Clear the old pairing on the pendant.** On the pendant, go to
+   **Setup → Wireless** and choose **Unpair** if the pendant still shows
+   itself as paired.
+3. **Open a new pairing window on ncSender.** Back in the Wireless USB dialog,
+   click **+ Pair New Device**. A 30-second countdown starts — the Wireless
+   USB is now listening for a new device to pair.
+4. **Scan on the pendant.** While the ncSender window is still open, go to
+   **Setup → Wireless → Scan** on the pendant. The pendant finds the Wireless
+   USB and completes the pairing.
+5. **Verify.** The connection icon in the pendant's status bar should light up
+   within a few seconds, and the pendant row in the ncSender Wireless USB
+   dialog shows as **Connected**.
+
+!!! tip "If the pendant doesn't find the Wireless USB"
+    - The 30-second window closes fast — start **Scan** on the pendant as soon
+      as you click **+ Pair New Device** in ncSender.
+    - If the two firmwares are on mismatched major versions, pairing can
+      silently fail. Make sure the pendant is on **v1.0.16 or newer** when the
+      Wireless USB is on **v0.2.x**.
+    - If it still won't pair, flash the latest Wireless USB firmware (see
+      [Wireless USB](#wireless-usb)) and try again.
+
 ## The Jog screen
 
 This is the pendant's home screen — your live readout and jogging controls.
@@ -144,10 +182,9 @@ firmware.
 
 The Wireless USB is a small USB-A stick that ncSender uses to talk to the
 pendant (and other wireless accessories) over the air. Under normal use you
-never touch it — you plug it in once and forget it. There are two situations
-where the Wireless USB firmware needs updating.
+never touch it — you plug it in once and forget it.
 
-**When to update the Wireless USB firmware:**
+### When to flash new firmware
 
 - **You're enabling wireless multi-device support** — running the pendant
   alongside other accessories (AutoDustBoot, Smart RGB LED) on the same
@@ -156,26 +193,48 @@ where the Wireless USB firmware needs updating.
 - **A newer firmware fixes an issue you're hitting** — pairing failures,
   intermittent disconnects, LCD glitches, etc.
 
-**How to update:**
+### How to flash the Wireless USB firmware
 
-Unlike the pendant, the Wireless USB does not update through ncSender's
-Pendant dialog. Use the browser-based flasher below (Google Chrome or
-Microsoft Edge required — it uses the Web Serial API):
+Unlike the pendant, the Wireless USB is flashed from your browser, not from
+inside ncSender. You'll need **Google Chrome or Microsoft Edge (v89+)** —
+Safari and Firefox do not support the Web Serial API the flasher uses.
 
-**[Open the Wireless USB Flasher &rarr;](../utility/wireless-usb-flasher.md)**
-
-The flasher lists the available firmware versions — pick one, then follow the
-on-screen **Boot Mode Instructions** (hold the small **BOOT** button on the
-Wireless USB while plugging it in), click **Connect**, then **Flash firmware**.
-When it finishes, unplug and replug the Wireless USB. The new version shows
-on its LCD at power-on.
+1. **Quit ncSender** on every computer that has this Wireless USB plugged in.
+   Only one program can hold the serial port at a time — if ncSender is
+   running, the flasher's **Connect** step will fail.
+2. **Open the flasher** in Chrome or Edge:
+   [Wireless USB Flasher &rarr;](../utility/wireless-usb-flasher.md)
+3. **Pick a firmware version** from the list on the page. **v0.2.2** is the
+   current multi-device release; **v0.1.0** is only for rolling back to
+   the old single-pendant behavior.
+4. **Put the Wireless USB into boot mode:**
+    1. Press and hold the small **BOOT** button on the Wireless USB.
+    2. While still holding, plug it into a USB port on your computer.
+    3. Continue holding for about **1 second**, then release.
+5. **Click Connect** in the flasher. A browser dialog asks which serial device
+   to attach — pick the entry that just appeared (usually shows *ESP32-S3* or
+   similar). If nothing appears in the list, the Wireless USB isn't in boot
+   mode — unplug it and repeat step 4.
+6. **Click Flash firmware.** A progress bar fills as the new firmware writes.
+   It takes about 10–20 seconds. Do not unplug the Wireless USB while it's
+   flashing.
+7. When the progress reaches 100%, **unplug the Wireless USB and plug it back
+   in**. On power-up it shows the new firmware version on its own LCD.
 
 !!! tip "Checking the Wireless USB firmware version"
     The Wireless USB prints its firmware version on its own LCD at power-on
-    (`v0.2.2`, `v0.2.2`, …). You can also see it in ncSender's **Pendant**
-    dialog under **Connection**.
+    (e.g. `v0.2.2`). You can also see it in ncSender's **Wireless USB**
+    dialog (click the pendant icon in the toolbar).
 
 !!! warning "Compatibility"
     A pendant and a Wireless USB running mismatched firmware major versions
     may fail to pair. If you update the Wireless USB to v0.2.x, make sure the
-    pendant is on v1.0.16 or newer as well.
+    pendant is on **v1.0.16 or newer** as well.
+
+### After a major firmware update
+
+A major-version bump on the Wireless USB (for example `v0.1.x → v0.2.x`)
+wipes the stored paired-device list. Your pendant will show as *disconnected*
+even though both devices power on normally. Follow the
+[Re-pairing the pendant](#re-pairing-the-pendant) steps to re-establish the
+link — you only have to do this once per firmware major-version change.
