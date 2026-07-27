@@ -165,18 +165,28 @@ The Setup screen holds the pendant's own preferences.
 
 ## Managing the pendant from ncSender
 
+Two ncSender surfaces work with the pendant. They cover different things:
+
+| Surface | What it does |
+|---|---|
+| **Wireless USB** dialog (built-in) | Pair / unpair the pendant with the Wireless USB. Also handles Wireless USB activation and shows every device currently paired (pendant, AutoDustBoot, Smart RGB LED, …). |
+| **Pendant** plugin | Activate the pendant itself, check the pendant's firmware version, and flash pendant firmware updates over the air. |
+
 Click the **pendant icon** in the ncSender toolbar (next to the connection
-status) to open the **Pendant** dialog, where you manage the connection and
-firmware.
+status) to open the **Wireless USB** dialog. Everything to do with which
+devices are paired to your Wireless USB lives here — including the pendant.
 
-![ncSender pendant dialog](../assets/images/features/pendant-ncsender-dialog.png)
+For pendant **activation and firmware updates**, install the **Pendant**
+plugin from ncSender's plugin catalog. The plugin adds a **Pendant** entry to
+the tools menu; open it to see the current connection, activate the pendant,
+or check for and flash firmware updates.
 
-- **Connection** — shows how the pendant is connected (USB or the Wireless
-  USB), the port, and its current firmware version.
-- **Firmware Update** — ncSender checks for new pendant firmware and shows when
-  an update is available. Press **Update Now** to flash it over the existing
-  connection — no cables or tools required. **Flash from file** lets you install
-  a specific firmware `.bin` instead.
+!!! info "Why is pendant firmware a plugin?"
+    Previously the pendant had its own built-in dialog in ncSender. Splitting
+    it into a plugin (like AutoDustBoot) lets pendant firmware ship on its own
+    release cadence — you get new firmware and activation features without
+    waiting for a full ncSender release, and users who don't own a pendant
+    don't have unused UI in their toolbar.
 
 ## Wireless USB
 
