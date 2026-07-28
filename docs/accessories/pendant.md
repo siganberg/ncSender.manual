@@ -15,7 +15,7 @@ walk around the machine while you work.
     - **ncSender** — v2.0.63 or newer
     - **ncSender Pro** — v2.0.117 or newer
     - **Pendant firmware** — v1.0.16 or newer (any recent build is fine)
-    - **Wireless USB firmware** — v0.2.2 or newer
+    - **Wireless USB firmware** — v0.3.0 or newer
 
     See [Wireless USB](#wireless-usb) below for how to flash a Wireless USB
     update. If you're on older versions and only use the pendant on its own,
@@ -55,7 +55,7 @@ The pairing screen shows whether the pendant is currently paired. Press
 The first pairing is automatic and sticks — you shouldn't normally have to do
 it again. A few situations do call for a re-pair:
 
-- **You flashed a major Wireless USB firmware update** (e.g. `v0.1.x → v0.2.x`).
+- **You flashed a major Wireless USB firmware update** (e.g. `v0.2.x → v0.3.x`).
   Major-version firmware resets the Wireless USB's paired-device list.
 - **You swapped in a different Wireless USB.**
 - **You want to move the pendant to a different Wireless USB / different machine.**
@@ -84,7 +84,7 @@ it again. A few situations do call for a re-pair:
       as you click **+ Pair New Device** in ncSender.
     - If the two firmwares are on mismatched major versions, pairing can
       silently fail. Make sure the pendant is on **v1.0.16 or newer** when the
-      Wireless USB is on **v0.2.x**.
+      Wireless USB is on **v0.3.x**.
     - If it still won't pair, flash the latest Wireless USB firmware (see
       [Wireless USB](#wireless-usb)) and try again.
 
@@ -198,7 +198,7 @@ never touch it — you plug it in once and forget it.
 
 - **You're enabling wireless multi-device support** — running the pendant
   alongside other accessories (AutoDustBoot, Smart RGB LED) on the same
-  Wireless USB. Multi-device support requires **Wireless USB firmware v0.2.2
+  Wireless USB. Multi-device support requires **Wireless USB firmware v0.3.0
   or newer**; older firmware only supports a single paired pendant.
 - **A newer firmware fixes an issue you're hitting** — pairing failures,
   intermittent disconnects, LCD glitches, etc.
@@ -214,9 +214,8 @@ Safari and Firefox do not support the Web Serial API the flasher uses.
    running, the flasher's **Connect** step will fail.
 2. **Open the flasher** in Chrome or Edge:
    [Wireless USB Flasher &rarr;](../utility/wireless-usb-flasher.md)
-3. **Pick a firmware version** from the list on the page. **v0.2.2** is the
-   current multi-device release; **v0.1.0** is only for rolling back to
-   the old single-pendant behavior.
+3. **Pick a firmware version** from the list on the page. **v0.3.0** is the
+   current release (multi-device support with per-Wireless-USB licensing).
 4. **Put the Wireless USB into boot mode:**
     1. Press and hold the small **BOOT** button on the Wireless USB.
     2. While still holding, plug it into a USB port on your computer.
@@ -233,17 +232,17 @@ Safari and Firefox do not support the Web Serial API the flasher uses.
 
 !!! tip "Checking the Wireless USB firmware version"
     The Wireless USB prints its firmware version on its own LCD at power-on
-    (e.g. `v0.2.2`). You can also see it in ncSender's **Wireless USB**
+    (e.g. `v0.3.0`). You can also see it in ncSender's **Wireless USB**
     dialog (click the pendant icon in the toolbar).
 
 !!! warning "Compatibility"
     A pendant and a Wireless USB running mismatched firmware major versions
-    may fail to pair. If you update the Wireless USB to v0.2.x, make sure the
+    may fail to pair. If you update the Wireless USB to v0.3.x, make sure the
     pendant is on **v1.0.16 or newer** as well.
 
 ### After a major firmware update
 
-A major-version bump on the Wireless USB (for example `v0.1.x → v0.2.x`)
+A major-version bump on the Wireless USB (for example `v0.2.x → v0.3.x`)
 wipes the stored paired-device list. Your pendant will show as *disconnected*
 even though both devices power on normally. Follow the
 [Re-pairing the pendant](#re-pairing-the-pendant) steps to re-establish the
