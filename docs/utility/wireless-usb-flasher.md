@@ -30,7 +30,7 @@ Serial API.
 <section class="wusb-card">
 <div class="wusb-card__title"><span class="wusb-dot"></span> Firmware</div>
 <div class="wusb-versions">
-<button type="button" class="wusb-ver" data-url="" data-name="" data-asset-pattern="firmware_wireless_dongle_v" data-github-repo="siganberg/ncsender.wireless-dongle.releases"><div class="wusb-ver__head"><span class="wusb-ver__tag" id="wusb-ver-tag">Loading…</span><span class="wusb-ver__badge wusb-ver__badge--latest">Latest</span></div><div class="wusb-ver__title">Licensed multi-device</div><div class="wusb-ver__desc">Pendant + AutoDustBoot + Smart RGB LED on the same Wireless USB. App-only update that keeps your activation. A Wireless USB must be activated with your Installation ID in ncSender before it will relay.</div></button>
+<button type="button" class="wusb-ver" data-url="firmware/firmware_wireless_dongle_v0.3.1.bin" data-name="firmware_wireless_dongle_v0.3.1.bin"><div class="wusb-ver__head"><span class="wusb-ver__tag">v0.3.1</span><span class="wusb-ver__badge wusb-ver__badge--latest">Latest</span></div><div class="wusb-ver__title">Licensed multi-device</div><div class="wusb-ver__desc">Pendant + AutoDustBoot + Smart RGB LED on the same Wireless USB. App-only update that keeps your activation. A Wireless USB must be activated with your Installation ID in ncSender before it will relay.</div></button>
 </div>
 <div class="wusb-selected" id="wusb-selected"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="wusb-selected__name" id="wusb-file-name"></span><span class="wusb-selected__size" id="wusb-file-size"></span><button type="button" class="wusb-selected__remove" id="wusb-remove" aria-label="Remove file">&times;</button></div>
 <div class="wusb-controls">
@@ -379,11 +379,6 @@ Serial API.
 <script type="module">
   import { ESPLoader, Transport } from 'https://unpkg.com/esptool-js@0.5.4/bundle.js';
 
-  // Cloudflare Worker that mirrors GitHub release .bin downloads with
-  // CORS enabled. Source: scripts/github-firmware-proxy.worker.js.
-  // Swap the URL below with your own deployed Worker.
-  const FIRMWARE_PROXY_URL = 'https://github-firmware-proxy.YOUR-SUBDOMAIN.workers.dev/';
-
   const $ = (id) => document.getElementById(id);
   const connectBtn = $('wusb-connect');
   const flashBtn = $('wusb-flash');
@@ -479,49 +474,18 @@ Serial API.
     updateFlashBtn();
   }
 
-  // Resolve each versioned button's asset URL from the latest release of
-  // its `data-github-repo`. Keeps the download link auto-current after
-  // every dongle firmware release — no page edit needed per version bump.
-  // Asset picked by prefix (`data-asset-pattern`), so the CI-uploaded
-  // `firmware_wireless_dongle_vX.Y.Z.bin` is matched regardless of tag.
-  async function resolveLatestAsset(btn) {
-    const repo = btn.getAttribute('data-github-repo');
-    const pattern = btn.getAttribute('data-asset-pattern');
-    if (!repo || !pattern) return;
-    const tagEl = btn.querySelector('.wusb-ver__tag');
-    try {
-      const res = await fetch('https://api.github.com/repos/' + repo + '/releases/latest');
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      const asset = (data.assets || []).find((a) => a.name && a.name.startsWith(pattern));
-      if (!asset) throw new Error('no matching asset in ' + (data.tag_name || 'latest release'));
-      // Route the download through our own tiny Cloudflare Worker
-      // that mirrors the GitHub release asset with CORS enabled.
-      // GitHub's release-assets.githubusercontent.com CDN sends no
-      // Access-Control-Allow-Origin header, so a direct browser fetch
-      // dies with "Failed to fetch". Worker source lives at
-      // scripts/github-firmware-proxy.worker.js in this repo.
-      const dl = asset.browser_download_url;
-      btn.setAttribute('data-url', FIRMWARE_PROXY_URL + '?url=' + encodeURIComponent(dl));
-      btn.setAttribute('data-name', asset.name);
-      if (tagEl) tagEl.textContent = data.tag_name || '';
-      return true;
-    } catch (err) {
-      if (tagEl) tagEl.textContent = 'Unavailable';
-      btn.disabled = true;
-      log('Could not load release info for ' + repo + ': ' + err.message, 'err');
-      return false;
-    }
-  }
-
-  // Resolve every tile, then load the first one that resolved. Nearly
-  // everyone wants the latest build, and leaving it unselected meant the
-  // Flash button sat greyed out with nothing on screen explaining that a
-  // tile still had to be clicked. Clicking another tile still overrides it.
+  // Auto-select the first version tile so the Flash button lights up
+  // right away. Each tile carries a static `data-url` pointing at a
+  // firmware .bin committed under docs/utility/firmware/ — we host the
+  // bins in this repo instead of fetching from GitHub Releases at
+  // runtime, because GitHub's release-asset CDN sends no CORS headers
+  // and the unauthenticated API is rate-limited to 60 req/hour/IP.
+  // Wireless USB firmware updates are rare, so shipping the bin with
+  // the manual is cheaper than any proxy setup.
   (async () => {
     for (const btn of versionBtns) {
-      const ok = await resolveLatestAsset(btn);
-      if (ok && !firmwareData) await loadFirmware(btn, { quiet: true });
+      if (btn.disabled) continue;
+      if (!firmwareData) await loadFirmware(btn, { quiet: true });
     }
   })();
 
