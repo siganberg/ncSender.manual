@@ -490,7 +490,13 @@ Serial API.
       const data = await res.json();
       const asset = (data.assets || []).find((a) => a.name && a.name.startsWith(pattern));
       if (!asset) throw new Error('no matching asset in ' + (data.tag_name || 'latest release'));
-      btn.setAttribute('data-url', asset.browser_download_url);
+      // Use the api.github.com asset endpoint with Accept:
+      // application/octet-stream — that path returns the binary WITH
+      // CORS headers, unlike `browser_download_url` which 302s to
+      // release-assets.githubusercontent.com (no CORS → browsers fail
+      // with "Failed to fetch"). See loadFirmware() for the matching
+      // Accept header on the actual download call.
+      btn.setAttribute('data-url', 'https://api.github.com/repos/' + repo + '/releases/assets/' + asset.id);
       btn.setAttribute('data-name', asset.name);
       if (tagEl) tagEl.textContent = data.tag_name || '';
       return true;
@@ -527,7 +533,10 @@ Serial API.
     btn.classList.add('is-loading');
     try {
       log('Fetching ' + name + '…');
-      const res = await fetch(url);
+      // Accept: application/octet-stream tells the api.github.com
+      // asset endpoint to return the raw firmware bytes (with CORS)
+      // instead of the JSON asset metadata.
+      const res = await fetch(url, { headers: { Accept: 'application/octet-stream' } });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const buf = await res.arrayBuffer();
       versionBtns.forEach((b) => b.classList.remove('is-selected'));
