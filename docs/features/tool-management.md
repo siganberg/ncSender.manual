@@ -22,6 +22,21 @@ Add, edit, and delete tools here. Each tool holds:
 - **Tool length offset (TLO)** and its **TLS probe offsets** (X / Y / Z)
 - **Notes** and **SKU** for your own reference
 
+### Import / Export
+
+The header shows **Import** and **Export** buttons for backing up your library or
+moving it between machines.
+
+- **Export** writes the current library to a `.json` file you can save anywhere.
+- **Import** reads a saved `.json` file back in. If a tool number in the file already
+  exists locally, ncSender surfaces the conflict and asks whether to overwrite.
+
+!!! info "Pro Feature"
+    The **Import** button in ncSender Pro also accepts **Vectric tool libraries
+    (`.vtdb`)** — the SQLite database VCarve / Aspire / Cut2D use for their tool
+    databases. Pick the file, review the mapped tools, and confirm the import.
+    Everything else on this page works the same in both editions.
+
 ### Assigning a tool to a magazine slot
 
 A tool only occupies a magazine pocket once you give it a slot. There are two ways to do
