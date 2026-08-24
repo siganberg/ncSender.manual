@@ -93,16 +93,42 @@ The V2 controller talks to ncSender over the
 1. Plug the Wireless USB into the computer running ncSender.
 2. Power up the AutoDustBoot V2 controller.
 3. Open the **AutoDustBoot** plugin (Plugins panel), Connections tab.
-4. Flip the toggle to **Wireless**, then click **Pair New Device**.
-   Follow the shared pairing flow — see
-   [Wireless USB &rarr;](wireless-usb.md) for details.
-5. Once paired the plugin shows the boot's state, position, saved
+4. Flip the toggle to **Wireless**, then click **+ Pair New Device**
+   in the Wireless USB dialog. The Wireless USB opens a 30-second
+   pairing window.
+5. On the AutoDustBoot, put it into pairing mode: **hold the top
+   (Retract ▲) and bottom (Extend ▼) buttons together for about 3
+   seconds** until it starts scanning.
+6. Once paired the plugin shows the boot's state, position, saved
    position, and homed flag; you can drive the boot up and down
    manually from the Connections tab.
 
 Wireless setup **requires the plugin** — there's no equivalent to
 "type M8 from the terminal" for the wireless controller because it
 doesn't sit on an aux pin.
+
+## Physical buttons
+
+The V2 controller has three physical buttons on top: **Retract (▲)**,
+**Mode (●)** in the middle, and **Extend (▼)**. They give you a
+useful subset of the plugin's actions right at the machine — handy
+for setup, bench-testing, or getting out of trouble without walking
+back to the computer.
+
+| Gesture | What it does |
+|---|---|
+| **Retract ▲** tap | Nudge the boot up one jog step (fine height dial-in). |
+| **Retract ▲** hold | Continuous retract (release to stop). |
+| **Extend ▼** tap | Nudge the boot down one jog step. |
+| **Extend ▼** hold | Continuous extend (release to stop). |
+| **Mode ●** double-press | **Save the current position as the *expand* position** — where the boot returns to after a retract. |
+| **Mode ●** long-press | Reboot the controller (which re-homes on startup). |
+| **Retract ▲ + Extend ▼** held together (~3 s) | **Enter pairing mode** — the controller starts scanning for a Wireless USB. Use this with **+ Pair New Device** in ncSender. |
+| Hold **Retract ▲** while powering on | **Skip auto-home on boot.** Useful when the boot is stuck in a position that would crash into the workpiece if it re-homed. |
+
+The plugin's Connections tab mirrors the same actions — Retract,
+Expand, Home, Save — so anything you can do on the buttons you can
+do from ncSender too, and vice-versa.
 
 ## The plugin
 
@@ -111,22 +137,37 @@ then open it from the **Plugins** panel.
 
 ### Connections
 
-Pick which control path you're using and (for Wireless) pair the
-controller.
+Pick which control path you're using — **Wired** or **Wireless** —
+and configure it. The tab reshapes itself around the choice.
 
-![AutoDustBoot Connections tab](../assets/images/features/autodustboot-connections.png)
+**Wired mode.** Assumes the boot is driven by an aux pin on your CNC
+controller (Flood / Mist / M64 P<n>). You edit the exact G-code
+sequences the plugin fires to raise and lower the boot; anything valid
+for your controller is fair game, including `G4` dwells to let the
+boot finish its stroke before motion continues.
 
-- **Wired / Wireless toggle** — set to match how the AutoDustBoot is
-  attached. *Wired* means the boot is driven by an aux pin on your
-  controller; *Wireless* means the V2 controller is paired to a
-  Wireless USB.
-- **Pair New Device** (Wireless only) — power on the AutoDustBoot,
-  then click. See [Wireless USB &rarr;](wireless-usb.md) for the
-  shared pairing flow.
-- **Direct control** (Wireless only, once paired) — **Retract**,
-  **Expand**, **Home**, and **Save** actions plus a read-out of the
-  current state, position, saved position, and homed flag. Handy for
-  testing the boot outside a job.
+![AutoDustBoot Connections tab — Wired mode](../assets/images/features/autodustboot-connections-wired.png)
+
+- **Retract Sequence** — G-code fired before homing / tool change /
+  (optionally) console rapids. Default is `M8` · `G4 P0.1` · `M9` ·
+  `G4 P1` — pulse the pin on, dwell, pin off, dwell so the motion
+  completes.
+- **Expand Sequence** — G-code fired after the boot's job is done
+  (e.g. right before the next cut). Default is a single `M8`.
+
+**Wireless mode.** For the V2 wireless controller only. Once paired,
+the plugin drives the boot directly over ESP-NOW and gets live state
+back.
+
+![AutoDustBoot Connections tab — Wireless mode](../assets/images/features/autodustboot-connections-wireless.png)
+
+- **+ Pair New Device** (via the Wireless USB dialog) — starts a
+  30-second pairing window. Put the AutoDustBoot into pairing mode
+  (see [Physical buttons](#physical-buttons) below) to complete.
+- **Direct control** (once paired) — **Retract**, **Expand**,
+  **Home**, and **Save** actions live on the Connections tab, with a
+  read-out of the current state, position, saved position, and homed
+  flag. Handy for testing outside a job.
 
 ### Options
 
@@ -150,10 +191,17 @@ Click **Save** after changing anything.
 
 ### Firmware
 
-Check for and flash new AutoDustBoot firmware over the wireless
-link. Progress is shown in the plugin. Only applies to V2 wireless
-controllers; V1 (TTL-only) and wired-mode V2 setups don't have
-firmware you update from here.
+Check for and flash new AutoDustBoot firmware over the wireless link.
+Only applies to V2 wireless controllers; V1 (TTL-only) and wired-mode
+V2 setups don't have firmware you update from here.
+
+![AutoDustBoot Firmware tab](../assets/images/features/autodustboot-firmware.png)
+
+The card shows the connected controller's firmware version and lights
+up the **Update Firmware** button when a newer release is available;
+the button is disabled (like above) when you're already on the
+current release. Flashes go over the wireless link — no cables
+needed if the AutoDustBoot is already paired.
 
 ## What the plugin does that a wired setup doesn't
 
