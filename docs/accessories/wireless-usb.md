@@ -5,7 +5,7 @@ wireless accessories — the Pendant, AutoDustBoot, and Smart RGB LED — over
 the air. One Wireless USB can host all of them simultaneously; you plug it
 into the computer running ncSender once and forget it.
 
-<!-- TODO: screenshot — Wireless USB hardware close-up -->
+![Wireless USB stick](../assets/images/features/wireless-usb-hardware.png){ width="360" }
 
 ## What it does
 
