@@ -80,6 +80,7 @@ nav:
     - Virtual Keyboard: features/virtual-keyboard.md
     - Safety Door: features/safety-door.md
   - Accessories:
+    - Wireless USB: accessories/wireless-usb.md
     - Pendant: accessories/pendant.md
     - AutoDustBoot: accessories/autodustboot.md
     - Smart RGB LED: accessories/smart-rgb-led.md

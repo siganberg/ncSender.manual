@@ -2,24 +2,28 @@
 
 The ncSender Wireless Pendant is a handheld controller for your CNC machine. It
 gives you a live position readout and hands-on control of jogging, zeroing,
-homing, and running jobs — right at the machine, without reaching for the
-keyboard.
+homing, tool changes, aux outputs, and running jobs — right at the machine,
+without reaching for the keyboard.
 
 It connects to ncSender wirelessly through a small Wireless USB, so you can
 walk around the machine while you work.
 
-!!! info "Minimum versions for wireless multi-device support"
-    Running the pendant alongside other wireless accessories on the same
-    Wireless USB requires:
+!!! info "Minimum versions"
+    - **Wireless multi-device support** (running the pendant alongside other
+      wireless accessories on the same Wireless USB):
+        - **ncSender** — v2.0.63 or newer
+        - **ncSender Pro** — v2.0.117 or newer
+        - **Pendant firmware** — v1.0.16 or newer
+        - **Wireless USB firmware** — v0.3.0 or newer
+    - **Reliable direct-USB firmware update** (per-chunk CRC + retry, catches
+      the byte-drop failures older USB drivers occasionally introduced):
+        - **ncSender** — v2.0.106 or newer
+        - **ncSender Pro** — v2.0.168 or newer
+        - **Pendant firmware** — v1.0.20 or newer
 
-    - **ncSender** — v2.0.63 or newer
-    - **ncSender Pro** — v2.0.117 or newer
-    - **Pendant firmware** — v1.0.16 or newer (any recent build is fine)
-    - **Wireless USB firmware** — v0.3.0 or newer
-
-    See [Wireless USB](#wireless-usb) below for how to flash a Wireless USB
-    update. If you're on older versions and only use the pendant on its own,
-    no updates are needed.
+    See [Wireless USB &rarr;](wireless-usb.md) for how to flash a Wireless
+    USB update. If you're on older versions and only use the pendant on its
+    own, no updates are needed.
 
 ## Hardware
 
@@ -42,7 +46,7 @@ button you press acts on the machine immediately.
 
 !!! tip "First-time pairing"
     If the pendant and Wireless USB have never been paired, open the **Setup**
-    screen on the pendant and choose **Wireless → Scan** to pair them. After
+    screen on the pendant and choose **ESP-NOW → Scan** to pair them. After
     the first pairing the connection is remembered and reconnects on its own.
 
 ![Pendant wireless pairing screen](../assets/images/features/pendant-pairing-screen.png)
@@ -67,13 +71,13 @@ it again. A few situations do call for a re-pair:
    the ncSender toolbar to open the **Wireless USB** dialog. Under **Devices**,
    click **Unpair** next to the pendant row and confirm.
 2. **Clear the old pairing on the pendant.** On the pendant, go to
-   **Setup → Wireless** and choose **Unpair** if the pendant still shows
+   **Setup → ESP-NOW** and choose **Unpair** if the pendant still shows
    itself as paired.
 3. **Open a new pairing window on ncSender.** Back in the Wireless USB dialog,
    click **+ Pair New Device**. A 30-second countdown starts — the Wireless
    USB is now listening for a new device to pair.
 4. **Scan on the pendant.** While the ncSender window is still open, go to
-   **Setup → Wireless → Scan** on the pendant. The pendant finds the Wireless
+   **Setup → ESP-NOW → Scan** on the pendant. The pendant finds the Wireless
    USB and completes the pairing.
 5. **Verify.** The connection icon in the pendant's status bar should light up
    within a few seconds, and the pendant row in the ncSender Wireless USB
@@ -86,11 +90,17 @@ it again. A few situations do call for a re-pair:
       silently fail. Make sure the pendant is on **v1.0.16 or newer** when the
       Wireless USB is on **v0.3.x**.
     - If it still won't pair, flash the latest Wireless USB firmware (see
-      [Wireless USB](#wireless-usb)) and try again.
+      [Wireless USB &rarr;](wireless-usb.md)) and try again.
 
-## The Jog screen
+## Screens
 
-This is the pendant's home screen — your live readout and jogging controls.
+The pendant has five screens you'll cycle through with the footer soft
+buttons: **Jog**, **Aux & Tool Change**, **Job** (auto-swapped in while a
+program runs), **Info**, and **Setup**.
+
+### Jog
+
+The home screen — your live readout and jogging controls.
 
 ![Pendant jog screen](../assets/images/features/pendant-jog-screen.png)
 
@@ -103,8 +113,16 @@ type and the machine position in smaller type underneath. The highlighted axis
 is the one the jog knob will move; the small number next to each axis label
 (e.g. `1.00`) is the current jog step size.
 
-**Turn the jog knob** to move the selected axis. The step size sets how far each
-click travels; turning faster moves faster.
+**Turn the jog knob** to move the selected axis. The step size sets how far
+each click travels; turning faster moves faster. Z jog is speed-limited to
+what your machine can accelerate and decelerate cleanly, so fast rotations
+stay smooth and stop without overshooting the end of travel.
+
+**Changing the step size.** Use the footer **Prev / Next** buttons to focus
+the axis you want, then press **Select** (middle) to cycle its step size.
+Available steps are `0.01`, `0.1`, and `1.0` — the current value shows next
+to the axis label (e.g. `X 0.10`). X and Y share the same step; Z has its
+own so you can jog Z fine while still moving XY in millimetres.
 
 **Buttons:**
 
@@ -112,20 +130,70 @@ click travels; turning faster moves faster.
 - **XY0 / X0 / Y0 / Z0** — zero the work position for those axes at the current
   location.
 
-**Footer** — the three soft buttons below the screen. On the Jog screen they
-select the axis / step and switch between screens (**Prev / Step-Zero / Next**).
+**Footer.** Three soft buttons below the screen: **Prev / Select / Next**.
 
-## The Job screen
+- **Prev / Next** — cycle focus through axes and action buttons (Home,
+  XY0, X0, Y0, Z0).
+- **Select** (labelled **Step / Zero** on this screen) — its action
+  depends on what's focused: on an axis it cycles the step size, on an
+  action button (Home / X0 / Y0 / Z0 / XY0) it fires that action.
+- **Long-press Prev / Next** — switch between screens.
 
-When you start a program, the pendant automatically switches to the Job screen
-so the controls you need while cutting are front and center.
+### Aux & Tool Change
+
+The Aux & Tool Change screen groups everything you tend to reach for mid-job
+into one place: aux switches (coolant, air, laser, whatever you've wired
+up), the ATC slot picker, and manual tool-change actions.
+
+![Pendant Aux & Tool Change screen](../assets/images/features/pendant-outputs-screen.png)
+
+**Aux grid (top).** A fixed 2 × 3 grid of aux buttons — always six cells so
+the layout doesn't shuffle when you add or remove outputs. Each configured
+aux shows its name, its `M`-command hint (e.g. `M8`, `M64 P0`), and an
+ON/OFF dot on the right; unconfigured cells show as *Empty* placeholders.
+
+If you haven't defined any custom aux outputs, the pendant seeds the first
+two cells with **Flood** (`M8`) and **Mist** (`M7`) so coolant is always
+one tap away. Add or edit them in ncSender under **Settings → Advanced →
+Auxiliary I/O**; changes push to the pendant right away.
+
+![ncSender Auxiliary I/O settings](../assets/images/features/ncsender-aux-outputs.png)
+
+**Slot picker (middle).** Shows the target slot on the left (`1 /6` — the
+current pick over your total slots) and the action on the right (`LOAD` or
+`UNLOAD`, with the loaded tool number `T3` underneath). Rotate the jog knob
+to change the slot; long-press **Select** to load or unload.
+
+The total slot count comes from whichever tool-change plugin you have set
+up — Pneumatic ATC, Rapid Change ATC, or Manual Tool Changer. Save the
+plugin's config and the pendant picks up the count automatically. With no
+tool-change plugin configured, the picker shows `-/-`.
+
+**Actions (bottom).**
+
+- **Manual** — send an `M6` (routed through whichever tool-change plugin is
+  configured). Long-press to fire.
+- **TLS** — run the tool-length probe (`$TLS`). Long-press to fire.
+
+Both require a **long-press** to fire, so a stray tap on the touchscreen
+mid-job can't accidentally launch a probe cycle or start a tool change.
+
+**Footer.** Use **Prev** and **Next** to move the focus around the screen
+(the current selection is highlighted). **Select** activates the focused
+item — short-press for aux switches, long-press for items that need a hold
+to fire. Long-press **Prev** or **Next** to switch between screens.
+
+### Job
+
+When you start a program, the pendant automatically switches to the Job
+screen so the controls you need while cutting are front and centre.
 
 ![Pendant job screen](../assets/images/features/pendant-job-screen.png)
 
 - **Feedrate / Spindle** (top) — the live feed rate and spindle speed the
   machine is actually running.
-- **Feed Override / Spindle Override** — turn the jog knob to trim feed rate or
-  spindle speed on the fly. Select which slider to adjust with the footer
+- **Feed Override / Spindle Override** — turn the jog knob to trim feed rate
+  or spindle speed on the fly. Select which slider to adjust with the footer
   buttons; each shows the current override percentage.
 - **Cycle** — start / resume the program.
 - **Pause** — feed-hold the running program.
@@ -134,34 +202,36 @@ so the controls you need while cutting are front and center.
 When the job finishes or you stop it, the pendant returns to the Jog screen
 automatically.
 
-## The Info screen
+### Info
 
-The Info screen shows the pendant's current connection type, firmware version,
-and device name. It's the quickest way to check which firmware you're running —
-useful before and after a firmware update. Press **Setup** here to open the
-Setup screen.
+The Info screen shows the pendant's current connection type, firmware
+version, and device name. It's the quickest way to check which firmware
+you're running — useful before and after a firmware update. Press **Setup**
+here to open the Setup screen.
 
 ![Pendant info screen](../assets/images/features/pendant-info-screen.png)
 
-## The Setup screen
+!!! note ""
+    Firmware version shown in the screenshot is a development build — the
+    number on your pendant reflects the release you've actually installed.
+
+### Setup
 
 The Setup screen holds the pendant's own preferences.
 
 ![Pendant setup screen](../assets/images/features/pendant-setup-screen.png)
 
-- **Show G-Code** — when on, jog and command output from the pendant is echoed
-  in ncSender's console. Off keeps the console quiet.
-- **Accuracy Mode** — chooses how the jog knob behaves. On gives precise,
-  step-locked movement; off gives quicker continuous jogging.
-- **Idle Shutdown** — how long the pendant waits, with no activity, before it
-  powers itself off to save battery. Choose from **5 to 30 minutes**. Turn the
-  jog knob (or tap the row) to change the value.
-- **Wireless** — pair or unpair with a Wireless USB.
+- **Show G-Code** — when on, jog and command output from the pendant is
+  echoed in ncSender's console. Off keeps the console quiet.
+- **Idle Shutdown** — how long the pendant waits, with no activity, before
+  it powers itself off to save battery. Choose from **5 to 30 minutes**.
+  Turn the jog knob (or tap the row) to change the value.
+- **ESP-NOW** — pair or unpair with a Wireless USB.
 
 !!! note "Idle shutdown only runs on battery"
     While the pendant is plugged into USB (or charging), it stays on
-    indefinitely. The idle timer only starts once it's running on battery, and
-    any touch, button, or knob movement resets it.
+    indefinitely. The idle timer only starts once it's running on battery,
+    and any touch, button, or knob movement resets it.
 
 ## Managing the pendant from ncSender
 
@@ -177,9 +247,9 @@ status) to open the **Wireless USB** dialog. Everything to do with which
 devices are paired to your Wireless USB lives here — including the pendant.
 
 For pendant **activation and firmware updates**, install the **Pendant**
-plugin from ncSender's plugin catalog. The plugin adds a **Pendant** entry to
-the tools menu; open it to see the current connection, activate the pendant,
-or check for and flash firmware updates.
+plugin from ncSender's plugin catalog. The plugin adds a **Pendant** entry
+to the tools menu; open it to see the current connection, activate the
+pendant, or check for and flash firmware updates.
 
 !!! info "Why is pendant firmware a plugin?"
     Previously the pendant had its own built-in dialog in ncSender. Splitting
@@ -188,62 +258,30 @@ or check for and flash firmware updates.
     waiting for a full ncSender release, and users who don't own a pendant
     don't have unused UI in their toolbar.
 
+### Pendant firmware updates
+
+The Pendant plugin can flash pendant firmware two ways:
+
+- **Wireless (via the Wireless USB / dongle)** — the default. Works whenever
+  the pendant is paired and communicating. Slower than USB (small ESP-NOW
+  frames, per-chunk ACKs) but very robust — the underlying transport already
+  retries dropped chunks.
+- **Direct USB** — plug the pendant into the computer with a USB-C cable and
+  the plugin uses that link instead. Faster (a full 1 MB firmware finishes
+  in ~10 seconds) and does not need the Wireless USB to be paired.
+
+!!! success "Reliable USB flashing (v2.0.106 / v2.0.168 / firmware v1.0.20)"
+    Older versions of the USB flash path could fail with a vague *End failed*
+    message when the operating-system USB driver dropped a byte mid-transfer.
+    On the current versions, the host and pendant negotiate a chunked
+    protocol with **per-chunk CRC-32** and **retry**, plus **whole-image
+    MD5** verification at the end. Any dropped chunk gets resent
+    automatically — if the flash succeeds you know the image on flash matches
+    the file byte-for-byte.
+
 ## Wireless USB
 
-The Wireless USB is a small USB-A stick that ncSender uses to talk to the
-pendant (and other wireless accessories) over the air. Under normal use you
-never touch it — you plug it in once and forget it.
-
-### When to flash new firmware
-
-- **You're enabling wireless multi-device support** — running the pendant
-  alongside other accessories (AutoDustBoot, Smart RGB LED) on the same
-  Wireless USB. Multi-device support requires **Wireless USB firmware v0.3.0
-  or newer**; older firmware only supports a single paired pendant.
-- **A newer firmware fixes an issue you're hitting** — pairing failures,
-  intermittent disconnects, LCD glitches, etc.
-
-### How to flash the Wireless USB firmware
-
-Unlike the pendant, the Wireless USB is flashed from your browser, not from
-inside ncSender. You'll need **Google Chrome or Microsoft Edge (v89+)** —
-Safari and Firefox do not support the Web Serial API the flasher uses.
-
-1. **Quit ncSender** on every computer that has this Wireless USB plugged in.
-   Only one program can hold the serial port at a time — if ncSender is
-   running, the flasher's **Connect** step will fail.
-2. **Open the flasher** in Chrome or Edge:
-   [Wireless USB Flasher &rarr;](../utility/wireless-usb-flasher.md)
-3. **Pick a firmware version** from the list on the page. **v0.3.0** is the
-   current release (multi-device support with per-Wireless-USB licensing).
-4. **Put the Wireless USB into boot mode:**
-    1. Press and hold the small **BOOT** button on the Wireless USB.
-    2. While still holding, plug it into a USB port on your computer.
-    3. Continue holding for about **1 second**, then release.
-5. **Click Connect** in the flasher. A browser dialog asks which serial device
-   to attach — pick the entry that just appeared (usually shows *ESP32-S3* or
-   similar). If nothing appears in the list, the Wireless USB isn't in boot
-   mode — unplug it and repeat step 4.
-6. **Click Flash firmware.** A progress bar fills as the new firmware writes.
-   It takes about 10–20 seconds. Do not unplug the Wireless USB while it's
-   flashing.
-7. When the progress reaches 100%, **unplug the Wireless USB and plug it back
-   in**. On power-up it shows the new firmware version on its own LCD.
-
-!!! tip "Checking the Wireless USB firmware version"
-    The Wireless USB prints its firmware version on its own LCD at power-on
-    (e.g. `v0.3.0`). You can also see it in ncSender's **Wireless USB**
-    dialog (click the pendant icon in the toolbar).
-
-!!! warning "Compatibility"
-    A pendant and a Wireless USB running mismatched firmware major versions
-    may fail to pair. If you update the Wireless USB to v0.3.x, make sure the
-    pendant is on **v1.0.16 or newer** as well.
-
-### After a major firmware update
-
-A major-version bump on the Wireless USB (for example `v0.2.x → v0.3.x`)
-wipes the stored paired-device list. Your pendant will show as *disconnected*
-even though both devices power on normally. Follow the
-[Re-pairing the pendant](#re-pairing-the-pendant) steps to re-establish the
-link — you only have to do this once per firmware major-version change.
+Pendant traffic runs over the [Wireless USB &rarr;](wireless-usb.md), the
+same accessory the AutoDustBoot and Smart RGB LED use. Pairing, unpairing,
+and firmware flashing for the Wireless USB are on that page — the pendant
+never needs to be re-flashed when the Wireless USB is updated.
