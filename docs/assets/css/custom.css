@@ -166,3 +166,29 @@ img.placeholder[src$=".webp"]::after {
     display: none;
   }
 }
+
+/* Helper classes used through attr_list ({ .center }, <sup class="badge-soon">). */
+.md-typeset img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* "Soon" badge — matches .ncs-pro-badge shape, orange fill instead of teal.
+   Applied by soon-badge.js to nav + H1 for pages in SOON_PAGES, and can
+   also be dropped inline as <sup class="ncs-soon-badge">Soon</sup>. */
+.ncs-soon-badge {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 4px;
+  font-size: 0.5em;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: #ff9800;
+  border-radius: 4px;
+  vertical-align: super;
+  white-space: nowrap;
+}

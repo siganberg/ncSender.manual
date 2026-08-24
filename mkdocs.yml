@@ -55,6 +55,17 @@ markdown_extensions:
 
 plugins:
   - search
+  # Click any image in the docs to zoom in — helpful when a screenshot
+  # bundles a wide UI + a small annotation. Uses GLightbox under the hood.
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
 
 nav:
   - Home: index.md
@@ -112,6 +123,7 @@ extra_css:
 extra_javascript:
   - assets/js/source-stats.js
   - assets/js/pro-badge.js
+  - assets/js/soon-badge.js
 
 extra:
   social:

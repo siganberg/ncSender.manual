@@ -49,7 +49,7 @@ button you press acts on the machine immediately.
     screen on the pendant and choose **ESP-NOW → Scan** to pair them. After
     the first pairing the connection is remembered and reconnects on its own.
 
-![Pendant wireless pairing screen](../assets/images/features/pendant-pairing-screen.png)
+![Pendant wireless pairing screen](../assets/images/features/pendant-pairing-screen.png){ .center }
 
 The pairing screen shows whether the pendant is currently paired. Press
 **Scan** to search for a Wireless USB; press **&lt;Back** to return to Setup.
@@ -102,7 +102,7 @@ program runs), **Info**, and **Setup**.
 
 The home screen — your live readout and jogging controls.
 
-![Pendant jog screen](../assets/images/features/pendant-jog-screen.png)
+![Pendant jog screen](../assets/images/features/pendant-jog-screen.png){ .center }
 
 **Status bar (top)** shows, left to right: the active workspace (e.g. `G54`),
 the machine status (`IDLE`, `RUN`, `HOLD`, `ALARM`, …), the connection icon,
@@ -145,7 +145,7 @@ The Aux & Tool Change screen groups everything you tend to reach for mid-job
 into one place: aux switches (coolant, air, laser, whatever you've wired
 up), the ATC slot picker, and manual tool-change actions.
 
-![Pendant Aux & Tool Change screen](../assets/images/features/pendant-outputs-screen.png)
+![Pendant Aux & Tool Change screen](../assets/images/features/pendant-outputs-screen.png){ .center }
 
 **Aux grid (top).** A fixed 2 × 3 grid of aux buttons — always six cells so
 the layout doesn't shuffle when you add or remove outputs. Each configured
@@ -188,7 +188,7 @@ to fire. Long-press **Prev** or **Next** to switch between screens.
 When you start a program, the pendant automatically switches to the Job
 screen so the controls you need while cutting are front and centre.
 
-![Pendant job screen](../assets/images/features/pendant-job-screen.png)
+![Pendant job screen](../assets/images/features/pendant-job-screen.png){ .center }
 
 - **Feedrate / Spindle** (top) — the live feed rate and spindle speed the
   machine is actually running.
@@ -209,7 +209,7 @@ version, and device name. It's the quickest way to check which firmware
 you're running — useful before and after a firmware update. Press **Setup**
 here to open the Setup screen.
 
-![Pendant info screen](../assets/images/features/pendant-info-screen.png)
+![Pendant info screen](../assets/images/features/pendant-info-screen.png){ .center }
 
 !!! note ""
     Firmware version shown in the screenshot is a development build — the
@@ -219,7 +219,7 @@ here to open the Setup screen.
 
 The Setup screen holds the pendant's own preferences.
 
-![Pendant setup screen](../assets/images/features/pendant-setup-screen.png)
+![Pendant setup screen](../assets/images/features/pendant-setup-screen.png){ .center }
 
 - **Show G-Code** — when on, jog and command output from the pendant is
   echoed in ncSender's console. Off keeps the console quiet.

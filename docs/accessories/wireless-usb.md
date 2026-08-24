@@ -5,7 +5,7 @@ wireless accessories — the Pendant, AutoDustBoot, and Smart RGB LED — over
 the air. One Wireless USB can host all of them simultaneously; you plug it
 into the computer running ncSender once and forget it.
 
-![Wireless USB stick](../assets/images/features/wireless-usb-hardware.png){ width="360" }
+![Wireless USB stick](../assets/images/features/wireless-usb-hardware.png){ .center width="360" }
 
 ## What it does
 
@@ -23,15 +23,17 @@ into the computer running ncSender once and forget it.
 Everything you need to pair, unpair, activate, or check device status is in
 one place — the **Wireless USB** dialog in ncSender.
 
-**To open it:** click the **pendant icon** in the ncSender toolbar (next to
-the connection status).
+**To open it:** click the **Wireless USB icon** in the ncSender toolbar
+(circled in the screenshot below — sits next to the workspace / status
+indicators). The dialog opens over the visualizer.
 
-![Wireless USB dialog](../assets/images/features/wireless-usb-dialog.png)
+![Opening the Wireless USB dialog from the ncSender toolbar](../assets/images/features/ncsender-wireless-usb-button.png)
 
-The dialog shows the Wireless USB's firmware version, its activation status,
-and every device currently paired (with its own connection state and any
-per-device info). If the Wireless USB isn't plugged in you'll see a
-*Not connected* placeholder like the one above.
+The dialog shows whether the Wireless USB is plugged in and activated,
+and lists every accessory in the paired-device catalogue. Ones you've
+paired show as **Connected** with an **Unpair** button; ones you don't
+own yet show a **Get One** link. Use **+ Pair New Device** at the top
+of the list to pair a new accessory.
 
 ## Pairing a new device
 

@@ -14,13 +14,13 @@ a 3.3 V or 5 V logic output can drive it. That's how the original
 AutoDustBoot integrates with Masso, Buildbotics, grblHAL, and every
 other controller that has a spare TTL-level aux output.
 
-**AutoDustBoot V2** keeps the TTL input for backward compatibility —
-so it drops straight into a V1 setup — and adds a **wireless link** to
-ncSender through the [Wireless USB &rarr;](wireless-usb.md). On the
-wireless link the controller reports state, position, saved position,
-and homed status, and accepts direct retract / expand / home / save
-commands. That's the "better communication" a V2 buys you on
-grblHAL + ncSender.
+**AutoDustBoot V2** <sup class="ncs-soon-badge">Soon</sup> keeps
+the TTL input for backward compatibility — so it drops straight into
+a V1 setup — and adds a **wireless link** to ncSender through the
+[Wireless USB &rarr;](wireless-usb.md). On the wireless link the
+controller reports state, position, saved position, and homed status,
+and accepts direct retract / expand / home / save commands. That's
+the "better communication" a V2 buys you on grblHAL + ncSender.
 
 You can run a V2 as:
 

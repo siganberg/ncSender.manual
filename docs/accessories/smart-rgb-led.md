@@ -10,13 +10,21 @@ G-code to add.
 
 ## Hardware
 
-- Wireless controller board driving a **SK6812 RGBW** or **WS2811 /
-  WS2812 RGB** LED strip. Strip type is set on the controller's own
-  firmware — the plugin doesn't need to know.
-- Powers over USB-C (5 V) or 12 V rail. A full strip pulls real
-  current — use a 12 V supply sized for the strip.
+- Wireless controller board driving a **WS2811 RGB** LED strip. That's
+  the only strip type supported right now.
+- **Requires a 24 V power supply.** The board and strip are engineered
+  around a 24 V rail — 5 V / 12 V feeds don't drive the strip cleanly.
+  Size the supply to your strip length (LED strips pull real current).
 - Pairs with the [Wireless USB &rarr;](wireless-usb.md) — the same
   Wireless USB the pendant and AutoDustBoot use.
+
+!!! warning "Wireless USB is required"
+    Unlike the pendant (which can run over its own direct USB cable)
+    and the AutoDustBoot (which can run over a TTL aux pin without any
+    ncSender at all), the Smart RGB LED **only** talks to ncSender
+    through the [Wireless USB &rarr;](wireless-usb.md). If you don't
+    have a Wireless USB paired, the plugin can't reach the controller
+    and the strip won't reflect machine state.
 
 ## The plugin
 
@@ -106,10 +114,9 @@ accordingly. That means:
   power. Also verify **LED count** on the Status tab matches your
   actual strip length.
 - **Wrong colours (green looks turquoise, red looks pink).** The
-  strip type is likely mis-configured on the controller (SK6812 RGBW
-  is 4 bytes/pixel, WS2812 is 3 bytes in a different order). See the
-  [ncsender.rgb](https://github.com/siganberg/ncsender.rgb) firmware
-  repo for the strip-type command.
+  Smart RGB LED is built for **WS2811** strips only — plugging in a
+  different chipset (SK6812 RGBW, WS2812) shifts the byte order and
+  the colours read as wrong. Confirm your strip's chipset.
 - **State colour override doesn't stick after re-pair.** State-colour
   overrides are stored on the controller — if the controller lost
   power without saving, tap the colour picker again and it'll
