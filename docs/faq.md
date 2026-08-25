@@ -375,22 +375,28 @@ resolution, which matters on higher-powered lasers.
 
 ## Plugins and generated G-code
 
-### Boring leaves a post in the middle of the hole
+### Cutting a circle, hole or pocket without opening CAM
 
-**Symptom.** ToolBench's bore operation cuts a clean circle at the diameter you
-asked for, but the middle of the hole is left standing.
+**Use QuickCut.** Its **Circle** and **Rectangle** operations generate the
+G-code from a dialog, and which mode you pick decides whether material in the
+middle is removed:
 
-**Cause.** That is what boring is: a **helical cut around the circumference**,
-meant to make a through hole or free a disc. It is not a pocketing routine and
-does not clear material.
+- **Inner (perimeter)** — cuts around the inside of the line. On a through cut
+  this frees a slug and leaves the centre uncut, which is what you want for a
+  hole whose waste you intend to push out.
+- **Inner (clearing)** — clears the whole area, so a blind pocket comes out
+  flat-bottomed with nothing standing in the middle.
+- **Outer** — cuts outside the line, for parting a disc or a rectangle off the
+  stock.
 
-**Fix.** Depends what you want:
+Circles are cut with a helical entry and a final finish pass.
 
-- **A through hole, or a disc** — this is correct; the slug drops out.
-- **A blind, flat-bottomed hole** — use a bit at least **half the hole
-  diameter** so the helix overlaps at the centre.
-- **A true pocket** — use your CAM software. ncSender does not generate
-  clearing toolpaths.
+So if a hole comes out with a post in the middle, you asked for a perimeter cut
+where you wanted a clearing one — switch the mode rather than changing the bit.
+
+!!! note "QuickCut replaces the old ToolBench bore operation"
+    Older videos and forum posts point at ToolBench for circular cuts. QuickCut
+    is the current answer; ToolBench remains for surfacing and jointing.
 
 ### A plugin's settings dialog has no visible Save or Close button
 
