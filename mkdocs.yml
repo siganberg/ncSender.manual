@@ -99,6 +99,7 @@ nav:
     - Overview: plugins/overview.md
     - Edge Align: plugins/edge-align.md
     - 3DMesh: plugins/3dmesh.md
+    - QuickCut: plugins/quickcut.md
     - ToolBench: plugins/toolbench.md
     - Rapid Change ATC: plugins/rapid-change-atc.md
     - Manual Tool Changer: plugins/manual-tool-changer.md

@@ -18,7 +18,8 @@ ncSender supports a plugin system that extends functionality with custom tools, 
 |--------|----------|-------------|
 | [Edge Align](edge-align.md) | G-code Generator | Material alignment by edge probing with rotation compensation |
 | [3DMesh](3dmesh.md) | G-code Generator | Surface mesh probing with Z compensation |
-| [ToolBench](toolbench.md) | G-code Generator | Surfacing, jointing, boring, and wasteboard operations |
+| [QuickCut](quickcut.md) | G-code Generator | Rectangles, circles, polygons, planer, jointer, and parting cuts |
+| [ToolBench](toolbench.md) | G-code Generator | Surfacing and jointing — superseded by QuickCut |
 | [Rapid Change ATC](rapid-change-atc.md) | Tool Changer | Automatic tool changer support |
 | [Manual Tool Changer](manual-tool-changer.md) | Tool Changer | Manual tool change workflow with TLS |
 | [Replicator](replicator.md) | G-code Generator | Replicate G-code in grid patterns |

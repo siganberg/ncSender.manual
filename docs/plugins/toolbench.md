@@ -1,6 +1,13 @@
 # ToolBench
 
-G-code generator for surfacing, jointing, boring, and wasteboard operations.
+G-code generator for surfacing and jointing operations.
+
+!!! warning "Superseded by QuickCut"
+    [QuickCut &rarr;](quickcut.md) replaces this plugin. It has the same Planer
+    and Jointer operations plus parting cuts and shape generation, and it is
+    where boring now lives — as a Circle, which can clear the middle of the hole
+    as well as cut its perimeter. This page is kept for machines still running
+    ToolBench.
 
 <!-- TODO: Screenshot of ToolBench planer dialog -->
 ![ToolBench planer](../assets/images/plugins/toolbench-planer.png){ .placeholder }
