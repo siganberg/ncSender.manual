@@ -86,9 +86,11 @@ support the Web Serial API the flasher uses.
    running, the flasher's *Connect* step will fail.
 2. **Open the flasher** in Chrome or Edge:
    [Wireless USB Flasher &rarr;](../utility/wireless-usb-flasher.md)
-3. **Pick a firmware version** from the list on the page. **v0.3.0** is
-   the current release (multi-device support with per-Wireless-USB
-   licensing).
+3. **Pick a firmware version** from the list on the page. **v0.3.4** is
+   the current release. It is required for wireless firmware updates —
+   on v0.3.3 and older the Wireless USB resets itself partway through an
+   over-the-air update, so pendant / AutoDustBoot / Smart RGB LED updates
+   stall and never finish.
 4. **Put the Wireless USB into boot mode:**
     1. Press and hold the small **BOOT** button on the Wireless USB.
     2. While still holding, plug it into a USB port on your computer.
