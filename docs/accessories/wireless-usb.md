@@ -76,6 +76,14 @@ when:
 
 ## How to flash the Wireless USB firmware
 
+!!! success "You only have to do this once"
+    **v0.3.5 is the last firmware that needs the browser flasher.** From
+    v0.3.5 onward the Wireless USB can update *itself*, so every future
+    update — for the Wireless USB and for every accessory paired to it —
+    is done from inside ncSender / ncSender Pro under **Accessories**. No
+    BOOT button, no unplugging, no browser. Flash v0.3.5 once, and you are
+    finished with this page.
+
 Unlike the pendant / AutoDustBoot / Smart RGB LED, the Wireless USB is
 flashed from your browser, not from inside ncSender. You'll need
 **Google Chrome or Microsoft Edge (v89+)** — Safari and Firefox do not
@@ -86,11 +94,12 @@ support the Web Serial API the flasher uses.
    running, the flasher's *Connect* step will fail.
 2. **Open the flasher** in Chrome or Edge:
    [Wireless USB Flasher &rarr;](../utility/wireless-usb-flasher.md)
-3. **Pick a firmware version** from the list on the page. **v0.3.4** is
-   the current release. It is required for wireless firmware updates —
-   on v0.3.3 and older the Wireless USB resets itself partway through an
-   over-the-air update, so pendant / AutoDustBoot / Smart RGB LED updates
-   stall and never finish.
+3. **Pick a firmware version** from the list on the page. **v0.3.5** is
+   the current release, and it is the last one you will ever flash this
+   way — see the note below. It is also required for wireless firmware
+   updates: on v0.3.3 and older the Wireless USB resets itself partway
+   through an over-the-air update, so pendant / AutoDustBoot / Smart RGB
+   LED updates stall and never finish.
 4. **Put the Wireless USB into boot mode:**
     1. Press and hold the small **BOOT** button on the Wireless USB.
     2. While still holding, plug it into a USB port on your computer.
