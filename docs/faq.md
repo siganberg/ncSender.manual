@@ -425,6 +425,6 @@ Exporting the folder produces a file the importer will not read.
 
 ### Upgrading from 0.3.x to 2.0.x
 
-The in-app updater does not cross that boundary; download and install 2.x
-manually. On Linux, remove the old version and its configuration first — leftover
+The [in-app updater](getting-started/software-updates.md) does not cross that
+boundary; download and install 2.x manually. On Linux, remove the old version and its configuration first — leftover
 0.3.x config has caused connections that appear to succeed and then do nothing.

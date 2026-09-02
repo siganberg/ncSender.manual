@@ -48,6 +48,8 @@ After installing, see [License Activation](license-activation.md) to unlock the 
     ```bash
     xattr -c /Applications/ncSender.app
     ```
+    This is a one-time step. Later versions installed through the app's own
+    [updater](software-updates.md) don't need it.
 
 === "Linux"
 
