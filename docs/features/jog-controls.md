@@ -110,8 +110,8 @@ one. Hold a button to run its move; a progress bar fills as you hold.
 - **Park** — Hold ~1 second to move to the saved parking position (safe Z retract first).
   To **set** a new parking position, jog to the spot you want, then **double-tap** Park:
   the button changes to **Save**. Tap it once to store the current machine position; it
-  flashes **Saved** and returns to **Park**. If you don't tap within a few seconds it
-  returns to **Park** on its own.
+  flashes **Saved** and returns to **Park**. Tap anywhere else, or wait a few seconds,
+  and it returns to **Park** without saving.
 
 !!! tip "Setting zero vs. going to zero"
     These buttons *travel* to a stored zero. To *set* a work zero at the current
