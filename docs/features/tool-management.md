@@ -92,9 +92,11 @@ The tool buttons live at the bottom-right of the visualizer.
 - **Manual** — for manual tool-changer workflows; active when the current tool isn't one
   of the numbered slots.
 - **TLS** — runs the Tool Length Setter (see below). Disabled when no tool is loaded.
+  When the loaded tool has no measured length yet, the button pulses red until you
+  run it.
 - **Probe** — the probe tool (T99); active while the probe is the current tool.
 
-Press and hold a tool button (about half a second) to trigger it. Numbered tools issue a
+Press and hold a tool button (about 1 second) to trigger it. Numbered tools issue a
 tool change (`M6`); the TLS button runs `$TLS`.
 
 ## Tool Changer Plugins

@@ -90,6 +90,12 @@ other action buttons, homing is a deliberate press-and-hold so it can't fire by 
   Hold one to home just that axis (`$HX`, `$HY`, `$HZ`) — handy when you only need to
   re-establish a single axis.
 
+!!! info "Not-homed indicator"
+    While homing is enabled in the controller (`$22` > 0) and the machine has not been
+    homed yet, the Home button pulses to catch your attention. It stops as soon as a
+    homing cycle completes. If homing is disabled altogether the indicator never shows,
+    because the controller cannot report a homed state in that case.
+
 ## Go To Zero & Park
 
 ![Go to zero — hold XY0 to move, double-tap to split into X0 / Y0](../assets/images/features/jog-zero-buttons.webp)
@@ -101,9 +107,11 @@ one. Hold a button to run its move; a progress bar fills as you hold.
   then moves in XY. **Double-tap** to split into separate **X0** and **Y0** buttons, each
   of which holds-to-move a single axis.
 - **Z0** — Hold to move Z to its work zero.
-- **Park** — Hold ~1 second to move to the saved parking position (safe Z retract first);
-  keep holding to about 2 seconds to **save** the current machine position as the new
-  park location.
+- **Park** — Hold ~1 second to move to the saved parking position (safe Z retract first).
+  To **set** a new parking position, jog to the spot you want, then **double-tap** Park:
+  the button changes to **Save**. Tap it once to store the current machine position; it
+  flashes **Saved** and returns to **Park**. If you don't tap within a few seconds it
+  returns to **Park** on its own.
 
 !!! tip "Setting zero vs. going to zero"
     These buttons *travel* to a stored zero. To *set* a work zero at the current
@@ -111,5 +119,7 @@ one. Hold a button to run its move; a progress bar fills as you hold.
 
 !!! note "Homing requirement"
     When homing is disabled (`$22=0`) these move buttons are always enabled. When homing
-    is enabled, the machine must be homed first before it will travel to a stored
-    position.
+    is enabled and the machine has not been homed, holding **XY0**, **X0 / Y0** or **Z0**
+    first shows the *Machine is not homed* prompt — the same one a tool change shows —
+    so a rapid to an unknown position never happens by accident. Choose **Continue** to
+    move anyway or **Abort** to stop.
