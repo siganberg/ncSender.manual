@@ -40,7 +40,9 @@ ncSender polls grblHAL for status at the configured polling interval (default 10
 
 ## Alarms
 
-grblHAL alarm codes are automatically fetched and displayed with descriptions. Use `$X` to clear alarms, or the **Unlock** button in the toolbar.
+grblHAL alarm codes are automatically fetched and displayed with descriptions. The [alarm dialog](../features/visualizer.md#alarm-dialog) in the visualizer names each alarm in plain English, says how to clear it, and keeps retrying **Press to Unlock** for 30 seconds. You can also send `$X` from the console.
+
+A wrong switch inversion (`$5`, `$6`) or motor fault input (`$744`, `$745`) trips an alarm the moment it is applied. The [Machine Setup Wizard](../getting-started/setup-wizard.md) checks these live and lets you flip the inversion back and unlock from the same page.
 
 ## Probing
 

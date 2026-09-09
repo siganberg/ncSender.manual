@@ -73,7 +73,9 @@ nav:
     - Installation: getting-started/installation.md
     - License Activation: getting-started/license-activation.md
     - First Connection: getting-started/first-connection.md
+    - Machine Setup Wizard: getting-started/setup-wizard.md
     - Interface Overview: getting-started/interface-overview.md
+    - Tips & Tricks: getting-started/tips-and-tricks.md
     - Software Updates: getting-started/software-updates.md
   - Features:
     - Visualizer: features/visualizer.md

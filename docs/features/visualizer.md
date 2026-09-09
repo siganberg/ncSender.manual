@@ -184,9 +184,51 @@ The bottom-left cluster has toggle switches for auxiliary outputs:
 
 ## Out-of-Bounds Detection
 
-If the loaded toolpath exceeds the machine's travel limits, ncSender
-displays a warning at the top of the visualizer. This catches the problem
-before you start the job rather than mid-cut.
+If the loaded toolpath falls outside the machine's travel, a red banner
+slides up near the bottom of the visualizer: **Toolpath exceeds machine
+boundaries**, followed by the offending directions when they are known, for
+example *at X, Y* or *at Z below machine limit (-120)*. It nudges every few
+seconds so it is hard to miss.
+
+The check runs in machine coordinates, so it is re-evaluated whenever the
+work zero, workspace, tool length offset or home location changes, and it
+keeps running while the job is cutting. The banner has no button. It goes
+away on its own once the toolpath is back inside the envelope or the file is
+unloaded.
+
+!!! tip
+    A toolpath that sits outside the envelope right after homing usually
+    means the home corner or `$22` is wrong, not the file. See the
+    [FAQ](../faq.md#the-toolpath-sits-outside-the-machine-after-homing).
+
+## Alarm Dialog
+
+When the controller raises an alarm, a dialog appears over the 3D view and
+disappears on its own as soon as the alarm clears.
+
+- The **title** is a plain-English name for the alarm, such as *Hard limit
+  hit* or *Homing required*, instead of a bare code.
+- The **main line** tells you how to clear it, for example *Release the
+  E-stop button, then press Unlock. Re-home afterwards if the machine was
+  moving.*
+- The controller's own wording is kept underneath with an **Alarm N** badge,
+  so nothing from grblHAL is lost.
+
+Alarms without a code, which are common right after power-on, are named from
+the pin that caused them: an asserted E-stop shows as **Power-on safety
+check** with the instruction to press the E-stop in, release it, then unlock.
+
+### Press to Unlock
+
+**Press to Unlock** sends a soft reset followed by `$X`, then keeps retrying
+about every three seconds for up to 30 seconds. The button counts down while
+it works, and only the first attempt is echoed to the console. The loop
+stops as soon as the alarm clears.
+
+If the controller answers with error 79, the dialog adds a line explaining
+that it refuses to unlock while the cause is still active. Release the
+E-stop, clear the switch, or fix the motor fault input, and the next retry
+goes through.
 
 ## Program Execution
 

@@ -1,5 +1,11 @@
 # First Connection
 
+!!! tip "New controller?"
+    On its first launch ncSender opens the [Machine Setup Wizard](setup-wizard.md),
+    which sets up the connection and checks travel, switches, homing and
+    safety limits live on the machine. This page covers the connection on
+    its own.
+
 ## Connecting via USB
 
 1. Connect your CNC controller to your computer via USB
@@ -20,6 +26,11 @@
 | **Connection Type** | USB or Ethernet | USB |
 | **Port** | Serial port (Auto-Detect or manual) | Auto-Detect |
 | **Baud Rate** | Communication speed | 115200 |
+| **IP address / Port** | Ethernet only: the controller's address | 23 (Telnet) or 81 (WebSocket) |
+| **Protocol** | Ethernet only: Telnet or WebSocket | Telnet |
+
+Click **Save & connect**. The status card under the form shows the live
+result, including which port and baud rate, or which address, it is using.
 
 ## Supported Baud Rates
 
