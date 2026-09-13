@@ -79,6 +79,46 @@ run the update again.
 - **Windows** — if you see *"cannot access the file because it is being used
   by another process"*, another program (usually antivirus) is still scanning
   the downloaded installer. Wait a few seconds and click Download Update again.
+- **Windows** — if you see *"An Application Control policy has blocked this
+  file"*, see [Smart App Control](#windows-smart-app-control) below.
+
+## Windows: Smart App Control
+
+Windows 11 ships with **Smart App Control**, which refuses to run programs
+that are not code-signed by a publisher it recognises. The ncSender installer
+is not signed yet, so on a PC where Smart App Control is **On**, the in-app
+update downloads fine and then fails at the moment it tries to start the
+installer, with an error like:
+
+> An error occurred trying to start process
+> `C:\Users\…\AppData\Local\Temp\ncsender-update-….exe`.
+> An Application Control policy has blocked this file.
+
+Your installed version is untouched. You have two ways forward:
+
+=== "Keep Smart App Control on"
+
+    Install updates by hand. Download the Windows installer for the release
+    from the [ncSender releases page](https://github.com/siganberg/ncSender/releases)
+    (Pro users: from the Pro releases page linked in your licence email), then
+    run it. If Windows still refuses to open it, right-click the file, choose
+    **Properties**, tick **Unblock**, and run it again. The in-app update will
+    keep failing on this PC until the installer is signed.
+
+=== "Turn Smart App Control off"
+
+    Open **Windows Security → App & browser control → Smart App Control
+    settings** and set it to **Off**. In-app updates then work as described
+    above.
+
+    Windows only lets you turn Smart App Control **off**. Once off, it cannot
+    be turned back on without reinstalling Windows, so make that choice
+    deliberately.
+
+On a company-managed PC the same error can come from an **AppLocker** or
+**Windows Defender Application Control** policy set by IT. Only IT can allow
+the installer there; manual installation may be blocked too.
+
 - **macOS** — the update log is at `$TMPDIR/ncsender-update.log` if you need
   to see what happened.
 - **Upgrading from 0.3.x** — the updater does not cross that boundary; see
