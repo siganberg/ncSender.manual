@@ -14,3 +14,6 @@ hardware manual before flashing settings blindly.
 - **[VFD Setup (RS485/ModBus)](vfd-setup.md)** — grblHAL settings and matching
   parameters for the most common CNC-router VFDs: Huanyang v1, Huanyang P2A,
   H100 (Zhong Hua Jiang), and PwnCNC (MODVFD).
+- **[CAM Integration](cam-integration.md)** — how any CAM or post-processor
+  can send a finished `.nc` program straight to ncSender over its HTTP API,
+  with curl, Python, PowerShell and C# examples.

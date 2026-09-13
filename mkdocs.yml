@@ -114,6 +114,7 @@ nav:
   - Resources:
     - Overview: resources/index.md
     - VFD Setup (RS485/ModBus): resources/vfd-setup.md
+    - CAM Integration: resources/cam-integration.md
   - FAQ: faq.md
   - Troubleshooting: troubleshooting.md
   - Utilities:
