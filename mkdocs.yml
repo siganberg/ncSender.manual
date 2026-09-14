@@ -82,6 +82,7 @@ nav:
     - Jog Controls: features/jog-controls.md
     - DRO: features/dro.md
     - Probing: features/probing.md
+    - Calibration: features/calibration.md
     - Tool Management: features/tool-management.md
     - Macros: features/macros.md
     - Console & Terminal: features/console.md

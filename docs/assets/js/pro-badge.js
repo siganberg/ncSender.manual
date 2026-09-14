@@ -10,6 +10,7 @@
   var PRO_PAGES = [
     'getting-started/license-activation',
     'features/laser-mode',
+    'features/calibration',
     'features/4th-axis',
     'features/multi-workspace',
     'features/trace',
