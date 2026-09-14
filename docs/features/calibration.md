@@ -3,9 +3,8 @@
 !!! info "Pro Feature"
     The Calibration guides are available in **ncSender Pro** only, on grblHAL controllers.
 
-Three guided tools that walk you through dialing in your machine, step by step, with plain-language
-instructions and a drawing for every step. No G-code, no settings to look up. Open them from
-**Settings → Calibration**.
+Three guided tools that walk you through dialing in your machine, step by step. Each one tells you
+what to do in plain words and shows a drawing of it. Open them from **Settings → Calibration**.
 
 ![Calibration tab](../assets/images/features/calibration-tab.webp)
 
@@ -18,11 +17,6 @@ instructions and a drawing for every step. No G-code, no settings to look up. Op
 !!! tip "Do them in this order"
     Travel Accuracy first, for every axis. Both other guides rely on the machine counting distance
     correctly, so an inaccurate axis throws off the limit and the squareness result by the same amount.
-
-Every guide has the same layout: a step strip across the top, the drawing on the right, a red
-**Cancel** button and a **Back** button at the bottom left, and the next action at the bottom right.
-Anything that goes wrong (an alarm, a move that did not finish) shows in one red bar just above those
-buttons, with a **Clear alarm** button when the machine is in alarm.
 
 ## Travel Accuracy
 
@@ -180,12 +174,10 @@ toward the front or back. The drawing shows the tilt exaggerated against a dotte
 
 ## When something goes wrong
 
-- **"Not available right now"** on the tab explains why: not connected, a job running, the machine in
-  alarm, view-only remote access, homing disabled (Travel Limits), or a FluidNC controller.
-- **Alarm during a guide**: the red bar shows the alarm and a **Clear alarm** button. It sends a soft
-  reset followed by unlock. If the controller says the cause is still present (E-stop held, a limit
-  switch pressed, a motor fault), release it first, then try again.
-- **A move stopped early**: put the bit back on your start mark before trying again; the guide says
-  so in the bar.
-- **Restored soft limits and jog limits** appears on the Calibration tab if a Travel Limits run was
-  interrupted before it could put them back. Nothing else is needed.
+- **"Not available right now"**: the message on the tab says why. Usually the machine is not
+  connected, a job is running, or the machine is in alarm. Travel Limits also needs homing enabled.
+- **The machine alarms during a guide**: press **Clear alarm**. If it will not clear, release the
+  E-stop or move off the limit switch first, then press it again.
+- **A move was stopped part way**: put the bit back on your start mark and start that step again.
+- **"Restored soft limits and jog limits"** on the Calibration tab means a Travel Limits run was
+  interrupted earlier and the guide has already put those settings back. Nothing else to do.

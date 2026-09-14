@@ -58,6 +58,9 @@
     for (var i = 0; i < links.length; i++) {
       var link = links[i];
       if (link.querySelector('.ncs-pro-badge')) continue;
+      // In-page table-of-contents entries (href="#section") resolve to the
+      // current page's slug; one badge on the page entry is enough.
+      if ((link.getAttribute('href') || '').indexOf('#') !== -1) continue;
       if (isProSlug(slugFromHref(link.getAttribute('href')))) {
         link.classList.add('ncs-pro-link');
         link.appendChild(badge());
