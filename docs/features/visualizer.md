@@ -1,247 +1,257 @@
 # Visualizer
 
-The 3D Visualizer is the centerpiece of ncSender, providing a real-time
-preview of your G-code toolpath and live machine position tracking.
+The Visualizer shows your G-code toolpath in 3D and tracks where the machine
+is while it runs. You also start, pause and stop jobs from here.
 
-![Visualizer hero](../assets/images/features/visualizer-hero.png)
+![Visualizer](../assets/images/features/visualizer-hero.webp)
 
-## Views
+## Changing the View
 
-ncSender offers four different viewing modes:
+Pick a view with the **Top**, **Side**, **3D** and **Split** buttons:
 
-| View | Description | Best For |
-|------|-------------|----------|
-| **3D** | Isometric perspective view with rotation | General use, inspecting toolpaths |
-| **Top** | Orthographic top-down view (XY plane) | Verifying 2D layouts, checking positions |
-| **Side** | Orthographic front-facing view (XZ plane) | Checking depth passes, Z movements |
-| **Split** | Quad-view showing Top, Side, and 3D simultaneously | Detailed inspection |
+| View | What it shows | Best for |
+|------|---------------|----------|
+| **Top** | Looking down on the XY plane | Checking 2D layouts and positions |
+| **Side** | Looking from the front at the XZ plane | Checking depth passes and Z moves |
+| **3D** | A perspective view you can rotate | General use, inspecting toolpaths |
+| **Split** | Top, Side and 3D at the same time | Detailed inspection |
 
 ![View modes](../assets/images/features/visualizer-views.webp)
 
-## Navigation
+### Moving Around
 
-- **Pan** — Click and drag to move the view
-- **Zoom** — Mouse wheel or trackpad pinch to zoom in/out
-- **Rotate** (3D view only) — Right-click and drag to orbit
+- **Pan**: left-click and drag, in any view.
+- **Rotate**: right-click and drag. This works in 3D, and in the 3D pane of
+  Split.
+- **Zoom**: use the mouse wheel. The view zooms toward the point under the
+  cursor. On a touchscreen, pinch. The view zooms toward the point between your
+  fingers.
 
-## Controls
+![Zooming toward the cursor](../assets/images/features/visualizer-zoom.webp)
 
-The visualizer surfaces its controls as floating toolbars around the canvas,
-so the 3D preview stays full-bleed. Each cluster is labeled below.
+### View Toggles
 
-![Visualizer controls](../assets/images/features/visualizer-controls.png)
+- **Spindle View** (or **LaserHead View** in [Laser Mode](laser-mode.md)):
+  keeps the camera close to the moving head so you can watch the cut. The
+  spindle turns while it runs, so you can check the direction (CW or CCW).
+- **Auto-Fit**: when on, the camera fits the loaded file. When off, it shows
+  the whole grid.
 
-### View buttons (top-left)
+## Loading a File
 
-Switch between **Top**, **Side**, **3D**, and **Split** at any time. The
-active button is highlighted. See [Views](#views) for what each mode shows.
+- **Upload G-code**: pick a `.nc`, `.gcode`, `.gc`, `.ngc`, `.tap` or `.txt`
+  file from your computer.
+- **Open Folder**: browse files saved in ncSender's G-code library.
+- **Drag and drop**: drop a file onto the ncSender window.
+- **Clear**: unload the current file. You can't clear a file while a job is
+  running.
 
-### View toggles (top-left)
+## Running a Job
 
-- **Spindle View / LaserHead View** — frames the camera tight on the moving
-  spindle (or laser head, when [Laser Mode](laser-mode.md) is on) so you can
-  watch cuts as they happen. The spindle rotates while active so you can
-  visually confirm direction (CW/CCW).
-- **Auto-Fit** — when on, the camera frames the loaded G-code's bounds. When
-  off, it frames the full grid. Auto-Fit only kicks in when a file is
-  loaded; otherwise the view stays put.
+- **Cycle**: starts the loaded file. When the machine is on hold, it resumes.
+  Cycle works when a file is loaded and the machine is Idle, or when it is on
+  Hold. It stays off while the safety door is open.
+- **Pause**: holds the running job. It takes the place of **Trace** while a job
+  is running or on hold.
+- **Stop**: stops the job. If a probe cycle is running, **Stop** stops the probe
+  instead.
+- **Trace**: moves around the outline of the toolpath with the spindle off, so
+  you can check clearances and workholding. See [Trace](trace.md).
+- **From Line**: starts the job from a line you choose. Use it to pick up after a
+  broken bit or a power cut. You can also double-click a line in the
+  [G-Code Preview](gcode-preview.md) tab. **From Line** is hidden while a job is
+  running.
 
-### File controls (top-right)
+All job buttons are off while ncSender is not connected. They are also off when
+the controller requires homing at startup and the machine is not homed yet.
 
-- **Clear** — drop the currently loaded G-code (only shown when a file is
-  loaded; disabled while a job is running).
-- **Upload (↑)** — pick a `.nc` / `.gcode` / `.gc` / `.ngc` / `.tap` / `.txt`
-  file from disk.
-- **Open Folder** — browse files stored in ncSender's gcode library.
+![Job running](../assets/images/features/visualizer-running.webp)
 
-### Job action bar (bottom-center)
+While a job runs:
 
-- **Cycle / Resume** — start the loaded program, or resume from Hold.
-  Disabled until you've loaded a file, homed, and cleared any alarms.
-- **Stop** — abort the current job. Sends a soft-reset to the controller.
-- **Trace** — dry-run the toolpath with the spindle off so you can verify
-  travel limits and workholding before cutting.
-- **From Line** — start the job from a specific line number. Useful for
-  resuming after a tool change, a power blip, or just for testing a
-  specific section. Double-clicking a line in the G-Code Preview tab also
-  opens this dialog with that line pre-filled.
+- The toolhead follows the machine in real time.
+- Completed paths change colour.
+- The **Job Progress** card shows progress and run time.
+- The live feed rate and spindle RPM (actual and target) show above the override
+  sliders.
 
-### Probe (bottom-right)
+### Overrides
 
-Opens the probing dialog (Z-touch, X/Y edge, corner, center, 3D, etc.).
-Hidden in Laser Mode. Disabled if no probe is configured or the machine
-isn't homed.
+Use the **Feedrate** and **Spindle** sliders to speed up or slow down a running
+job. Each goes from 0 % to 200 % in 10 % steps. The change takes effect right
+away, without pausing. Press ↻ next to a slider to reset it to 100 %.
 
-### Overrides (bottom-center)
+In Laser Mode the second slider is **Laser Power**.
 
-Two live sliders for **Feedrate** and **Spindle** overrides (each 10–200 %,
-in 10 % steps). Changes are sent as grblHAL real-time commands and take
-effect mid-program without pausing the job.
+## Probe Button
 
-## Transform Context Menu
+Press **Probe** to open the probing dialog. See [Probing](probing.md).
 
-Open a context menu on the visualizer to apply quick toolpath
-transforms, an offset, or move the spindle to a clicked location.
+The button is off while a job is running, while connecting, in an alarm, while
+homing, or when homing is required first. It is hidden in Laser Mode.
 
-- **Mouse** — right-click on the canvas
-- **Touch screen** — single-finger long-press for ~500 ms
-  (drift more than ~12 px and the gesture is cancelled)
+## Transform Menu
 
-The menu is disabled while a job is running.
+Use the transform menu to rotate, mirror or offset the loaded file, or to move
+the spindle to a spot.
 
-![Transform context menu](../assets/images/features/visualizer-context-menu.webp)
+- **Mouse**: right-click the canvas.
+- **Touchscreen**: press and hold one finger for about half a second. If your
+  finger slides, the menu doesn't open.
 
-### What's available in each view
+The menu always opens fully on screen. It is not available while a job is
+running. Press ++escape++ or click outside the menu to close it.
 
-The items shown depend on the active view:
+![Transform menu](../assets/images/features/visualizer-context-menu.webp)
+
+The items depend on the view:
 
 | Action | Top | Side | 3D | Split |
 |---|---|---|---|---|
-| **Rotate 90° CW / CCW** | ✓ | — | ✓ | — |
+| **Rotate 90° CW / Rotate 90° CCW** | ✓ | — | ✓ | — |
 | **Mirror X Axis / Mirror Y Axis** | ✓ | — | ✓ | — |
 | **Offset Material** | ✓ | ✓ | ✓ | ✓ |
-| **Reset to Original** *(only when the file has been modified by a plugin or a prior transform)* | ✓ | ✓ | ✓ | ✓ |
-| **Move To** *(jog the spindle to the clicked X/Y)* | ✓ | — | — | — |
+| **Reset to Original** *(only after a plugin or a transform changed the file)* | ✓ | ✓ | ✓ | ✓ |
+| **Move To** *(needs a connection)* | ✓ | — | — | — |
+
+### Moving to a Spot
+
+1. Switch to **Top** view.
+2. Right-click where you want the spindle to go, then choose **Move To**.
+3. The **Move To** dialog opens with X and Y filled in from your click. These
+   are machine coordinates. Change them if needed.
+4. Press **Move**. The spindle rises to a safe Z height first, then moves.
+
+<!-- CAPTURE NEEDED: assets/images/features/visualizer-move-to.webp (Move To) -->
 
 !!! note "Why Move To is Top-only"
-    The Top view is the only one where the click maps cleanly to a
-    machine X/Y position. The 3D view's perspective projection makes
-    its X/Y ambiguous, so the option is hidden there to prevent
-    surprise jogs. Move To also requires an active controller
-    connection.
+    Only in Top view does a click match an exact X and Y on the machine. In the
+    other views the spot you click is ambiguous, so Move To is hidden.
 
-Press **Escape** or click outside the menu to dismiss it.
+## Toolpath Display
 
-## Toolpath Rendering
-
-When a G-code file is loaded, the visualizer renders the complete toolpath:
-
-- **Rapid moves (G0)** — Dashed lines showing non-cutting travel
-- **Feed moves (G1)** — Solid lines showing cutting paths
-- **Arcs (G2/G3)** — Smooth curved paths
-- **Current position** — Animated toolhead (spindle or laser) following execution progress
+- **Rapid moves (G0)**: dashed lines.
+- **Cutting moves (G1)**: solid lines.
+- **Arcs (G2/G3)**: smooth curves.
+- **Machine travel**: a cyan outline shows how far the machine can move.
 
 ![Toolpath rendering](../assets/images/features/visualizer-toolpath.webp)
 
-## Toolhead Display
+### Toolhead
 
-The visualizer shows an animated 3D model at the current machine position:
+A 3D model shows where the machine is:
 
-- **Spindle mode** — a rotating spindle with collet
-- **Laser mode** — a laser head with a beam reaching the workbed (**Pro only**)
+- **Spindle**: a turning spindle with its collet. The bit is hidden when no tool
+  is loaded.
+- **Laser head**: a laser head with its beam. Needs
+  [Laser Mode](laser-mode.md) (Pro).
 
-Toggle **Spindle View** / **LaserHead View** in the
-[view toggles](#view-toggles-top-left) to frame the camera on the head so
-you can watch the cut up close.
+<!-- CAPTURE NEEDED: assets/images/features/visualizer-toolheads.webp (Spindle and laser head) -->
 
-![Toolhead modes](../assets/images/features/visualizer-toolheads.png)
-
-## Workspace Markers
+### Workspace Markers
 
 ![Workspace markers](../assets/images/features/visualizer-workspace-markers.png)
 
-The visualizer displays workspace origin markers for G54 through G59. These
-show where each coordinate system's origin sits relative to the machine.
+Markers show where the origins of G54 to G59 are on the machine. The active
+workspace is highlighted.
 
-- The active workspace is highlighted
-- Toggle visibility from the **Workspaces** item in the right-side legend
-- Markers auto-scale with zoom level
+### Legend
 
-## Tool Legend
+![Legend and tool slots](../assets/images/features/visualizer-tool-legend.webp)
 
-![Tool legend](../assets/images/features/visualizer-tool-legend.png)
+Click an item in the legend to show or hide it:
 
-A small legend on the right edge of the canvas lists every element drawn
-on top of the grid:
+- **Tool T1, T2, …**: one entry for each tool in the file, in the same colour as
+  its paths.
+- **Spindle** (or **Laser**): the toolhead.
+- **Workspaces**: the G54 to G59 markers. Only shown when more than one
+  workspace is set.
+- **Extents**: a box around the toolpath. Only shown when a file is loaded.
 
-- **Tool T1, T2, …** — one row per tool number used in the loaded program,
-  color-coded to match its paths. Click a row to hide / show that tool's
-  segments.
-- **Spindle** (or **Laser** in laser mode) — toggle the animated toolhead.
-- **Workspaces** — toggle the G54–G59 origin markers (only shown when more
-  than one workspace has been configured).
-- **Extents** — toggle the toolpath bounding box overlay (only shown when a
-  file is loaded).
+## Tool Slots
 
-The bottom-right area also has a separate row of active **tool slots**
-(numbered slots, Manual, TLS, Probe) for changing the active tool — that's
-covered on the [Tool Management](tool-management.md) page.
+The slot buttons change the tool in the spindle. They are, in order:
+**Slot1**, **Slot2** …, **Manual**, **Probe** and **TLS**.
 
-## Aux Controls
+- **Hold** a slot for 1 second to change to that tool. Hold the current tool to
+  unload it.
+- **Tap** a slot to see its tool ID, diameter and type. Tap again to hide it.
+- A **dot** on a slot means that tool has a stored tool length offset (TLO). The
+  Probe button shows the same dot.
+- With more than 8 slots, use the arrows to scroll.
 
-![Aux controls](../assets/images/features/visualizer-aux-controls.png)
+![Tap a slot to see its tool](../assets/images/features/visualizer-slot-tap.webp)
 
-The bottom-left cluster has toggle switches for auxiliary outputs:
+See [Tool Management](tool-management.md) for setup.
 
-- **Flood Coolant (M8)** — Toggle flood coolant on/off
-- **Mist Coolant (M7)** — Toggle mist coolant on/off
-- **Custom Aux Outputs** — M64/M65 digital outputs (configurable in
-  Settings)
+## Coolant and Outputs
 
-!!! note "Realtime control"
-    Flood and Mist toggles use grblHAL realtime commands (0xA0/0xA1) that
-    bypass the planner buffer, so you can toggle coolant even mid-program.
+![Coolant and outputs](../assets/images/features/visualizer-aux-controls.webp)
 
-## Out-of-Bounds Detection
+- **Flood** and **Mist**: turn coolant on or off. They work during a job too.
+- **Your own outputs**: any outputs you set up in Settings.
+- **Hold** outputs: an output marked "Hold" needs a 1-second press, so you
+  can't switch it by accident.
+- **Laser Mode** (Pro): switches between spindle and laser. The button next to
+  it opens the laser settings. See [Laser Mode](laser-mode.md).
 
-If the loaded toolpath falls outside the machine's travel, a red banner
-slides up near the bottom of the visualizer: **Toolpath exceeds machine
-boundaries**, followed by the offending directions when they are known, for
-example *at X, Y* or *at Z below machine limit (-120)*. It nudges every few
-seconds so it is hard to miss.
+## Keepout Zone
 
-The check runs in machine coordinates, so it is re-evaluated whenever the
-work zero, workspace, tool length offset or home location changes, and it
-keeps running while the job is cutting. The banner has no button. It goes
-away on its own once the toolpath is back inside the envelope or the file is
+The keepout zone is available in ncSender Pro only.
+
+When the keepout zone is on, it shows as a red box labelled **KEEPOUT ZONE**. It
+pulses if the loaded file passes through it. ncSender moves around the zone or
+refuses moves that end inside it. See [Keepout Zone](keepout-zone.md).
+
+![Keepout zone](../assets/images/features/visualizer-keepout.webp)
+
+## Out-of-Bounds Warning
+
+<!-- CAPTURE NEEDED: assets/images/features/visualizer-out-of-bounds.webp (Out-of-bounds warning) -->
+
+If the toolpath goes past the machine's travel, a red banner shows
+**Toolpath exceeds machine boundaries**. When known, it adds which way the file
+goes past the limit, for example *at X+, Y-* or *at Z below machine limit
+(-120)*. The banner moves every few seconds so you notice it.
+
+The check uses machine coordinates. It runs again when you change the work zero,
+workspace, tool length offset or home position, and it keeps checking during the
+job. The banner goes away on its own when the toolpath fits again or the file is
 unloaded.
 
 !!! tip
-    A toolpath that sits outside the envelope right after homing usually
-    means the home corner or `$22` is wrong, not the file. See the
+    If the toolpath is outside the machine right after homing, check the home
+    corner setting before the file. See the
     [FAQ](../faq.md#the-toolpath-sits-outside-the-machine-after-homing).
 
 ## Alarm Dialog
 
-When the controller raises an alarm, a dialog appears over the 3D view and
-disappears on its own as soon as the alarm clears.
+<!-- CAPTURE NEEDED: assets/images/features/visualizer-alarm.webp (Alarm dialog) -->
 
-- The **title** is a plain-English name for the alarm, such as *Hard limit
-  hit* or *Homing required*, instead of a bare code.
-- The **main line** tells you how to clear it, for example *Release the
-  E-stop button, then press Unlock. Re-home afterwards if the machine was
-  moving.*
-- The controller's own wording is kept underneath with an **Alarm N** badge,
-  so nothing from grblHAL is lost.
+When the controller raises an alarm, a dialog opens. It closes on its own when
+the alarm clears.
 
-Alarms without a code, which are common right after power-on, are named from
-the pin that caused them: an asserted E-stop shows as **Power-on safety
-check** with the instruction to press the E-stop in, release it, then unlock.
+- The **title** names the alarm in plain words, such as *Hard limit hit* or
+  *Homing required*.
+- The **main line** tells you how to clear it, for example *Release the E-stop
+  button, then press Unlock. Re-home afterwards if the machine was moving.*
+- The controller's own message is kept below, with an **Alarm N** badge.
+
+An alarm without a code, common right after power-on, is named after its cause.
+For example, a pressed E-stop shows as **Power-on safety check**: press the
+E-stop in, release it, then unlock.
 
 ### Press to Unlock
 
-**Press to Unlock** sends a soft reset followed by `$X`, then keeps retrying
-about every three seconds for up to 30 seconds. The button counts down while
-it works, and only the first attempt is echoed to the console. The loop
-stops as soon as the alarm clears.
+**Press to Unlock** resets the controller and unlocks it. It keeps trying about
+every 3 seconds for up to 30 seconds, and counts down while it works. It stops
+as soon as the alarm clears.
 
-If the controller answers with error 79, the dialog adds a line explaining
-that it refuses to unlock while the cause is still active. Release the
-E-stop, clear the switch, or fix the motor fault input, and the next retry
+If the controller refuses because the cause is still there, the dialog says so.
+Release the E-stop, clear the switch or fix the motor fault, and the next try
 goes through.
 
-## Program Execution
-
-![Program execution animation](../assets/images/features/visualizer-running.webp)
-
-During program execution:
-
-- The toolhead follows the current position in real-time
-- Completed paths are highlighted
-- Progress bar and runtime are displayed at the top
-- Feed rate and spindle RPM are shown in the info bar
-
-!!! tip "Resetting modified toolpaths"
-    If a plugin or the [transform context menu](#transform-context-menu)
-    changed the loaded G-code, the same context menu's **Reset to
-    Original** item reverts to the unmodified source file.
+!!! tip "Undoing changes to a file"
+    If a plugin or the [transform menu](#transform-menu) changed the loaded
+    file, choose **Reset to Original** in the transform menu to get the original
+    back.

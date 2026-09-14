@@ -1,26 +1,20 @@
 # AutoDustBoot
 
-The AutoDustBoot is a stepper-driven dust boot with its own onboard
-controller. The controller does the retract / expand mechanically —
-there's no pneumatic cylinder and no spring — and exposes two control
-paths so the boot works with a lot of different CNC setups.
+The AutoDustBoot is a motor-driven dust boot with its own controller. It
+retracts and expands the boot for you, and can be driven in two ways, so it
+works with many CNC setups.
 
 ## V1 vs V2
 
-**AutoDustBoot V1** is TTL-only: the controller listens for a
-level-triggered input on a single wire — high retracts, low expands
-(or vice-versa depending on how you wire it). Anything that can drive
-a 3.3 V or 5 V logic output can drive it. That's how the original
-AutoDustBoot integrates with Masso, Buildbotics, grblHAL, and every
-other controller that has a spare TTL-level aux output.
+**AutoDustBoot V1** is TTL-only. The controller watches a single input wire
+from your CNC controller to retract or expand. Anything with a 3.3 V or 5 V
+logic output can drive it, including Masso, Buildbotics and grblHAL.
 
-**AutoDustBoot V2** <sup class="ncs-soon-badge">Soon</sup> keeps
-the TTL input for backward compatibility — so it drops straight into
-a V1 setup — and adds a **wireless link** to ncSender through the
-[Wireless USB &rarr;](wireless-usb.md). On the wireless link the
-controller reports state, position, saved position, and homed status,
-and accepts direct retract / expand / home / save commands. That's
-the "better communication" a V2 buys you on grblHAL + ncSender.
+**AutoDustBoot V2** <sup class="ncs-soon-badge">Soon</sup> keeps the TTL input,
+so it drops straight into a V1 setup. It also adds a **wireless link** to
+ncSender through the [Wireless USB &rarr;](wireless-usb.md). Wirelessly, it
+reports its state, position, saved position and whether it is homed, and
+accepts retract, expand, home and save commands.
 
 You can run a V2 as:
 
@@ -29,9 +23,8 @@ You can run a V2 as:
 | **TTL (V1-compatible)** | The TTL aux input | Any CNC controller with a spare 3.3–5 V logic output (Masso, Buildbotics, grblHAL, …) |
 | **Wireless + ncSender plugin** | The [Wireless USB &rarr;](wireless-usb.md) | ncSender only |
 
-If you're running ncSender on grblHAL, wireless is what you want. If
-you're on another controller, keep it wired to a TTL aux and drive it
-from your G-code.
+If you run ncSender on grblHAL, use wireless. On another controller, wire it
+to a TTL aux output and drive it from your G-code.
 
 <!-- TODO: screenshot — AutoDustBoot V2 controller hardware close-up -->
 
@@ -39,20 +32,14 @@ from your G-code.
 
 ### What you need
 
-- **Any 3.3 V or 5 V TTL aux output on your CNC controller.** Common
-  choices on a grblHAL / FluidNC board are the **Flood** (`M8`) or
-  **Mist** (`M7`) pins, since they're already broken out and driven
-  by standard G-code. Any `M64 P<n>` / `M65 P<n>` aux pin works
-  equally well.
-- **Wire from that pin to the AutoDustBoot's control input.** Signal
-  and ground.
-
-The AutoDustBoot only cares about the logic level; it doesn't care
-which pin drives it or which controller you're on.
+- **A 3.3 V or 5 V aux output on your CNC controller.** The **Flood** (`M8`)
+  or **Mist** (`M7`) pins are common choices. Any `M64 P<n>` / `M65 P<n>` aux
+  pin works too.
+- **A wire from that pin to the AutoDustBoot's control input**, plus ground.
 
 ### Operating it
 
-Once wired, retract / expand is a simple G-code toggle:
+Once wired, retract and expand with G-code:
 
 | Action | With M7 / M8 | With M64 aux pin |
 |---|---|---|
@@ -61,183 +48,151 @@ Once wired, retract / expand is a simple G-code toggle:
 
 ### From ncSender, no plugin
 
-If ncSender is running the machine but you don't install the plugin,
-you drive the boot yourself:
+Without the plugin, you drive the boot yourself:
 
-1. **From the terminal** — type `M8` (retract) and `M9` (expand)
-   whenever you want.
-2. **From your G-code / CAM post-processor** — most of the workflow
-   lives here. Add the retract before `M6` / `$H`, the expand after
-   the first XY move at the next cut location, etc. Vectric,
-   Fusion 360, and every other CAM has a post-processor you can
-   customize to add the commands.
+1. **From the console** — type `M8` to retract and `M9` to expand.
+2. **From your G-code** — add a retract before each `M6` and `$H`, and an
+   expand after the first move at the next cut. Most CAM programs let you add
+   these in the post-processor.
 
-!!! warning "You're on the hook for correctness"
-    Without the plugin, ncSender doesn't know the AutoDustBoot exists
-    — every retract / expand has to come from you or from your
-    G-code. If your program has an `M6` without a preceding retract,
-    the boot will run right into your spindle carriage.
+!!! warning "You're responsible for every retract"
+    Without the plugin, ncSender doesn't know the AutoDustBoot exists. If your
+    program has an `M6` with no retract before it, the boot will hit the
+    spindle carriage.
 
 ### From other controllers (Masso, Buildbotics, …)
 
-Wire it the same way — pick a TTL-level aux output and drive it with
-whatever your controller uses to toggle that pin (usually `M8` /
-`M9`, or your controller's macro / event system). The
-AutoDustBoot behaves identically; it's just a logic input.
+Wire it the same way, and toggle the pin with whatever your controller uses
+(usually `M8` / `M9`, or its macros).
 
 ## Wireless setup (V2 only)
 
-The V2 controller talks to ncSender over the
-[Wireless USB &rarr;](wireless-usb.md). Getting connected:
-
 1. Plug the Wireless USB into the computer running ncSender.
-2. Power up the AutoDustBoot V2 controller.
-3. Open the **AutoDustBoot** plugin (Plugins panel), Connections tab.
-4. Flip the toggle to **Wireless**, then click **+ Pair New Device**
-   in the Wireless USB dialog. The Wireless USB opens a 30-second
-   pairing window.
-5. On the AutoDustBoot, put it into pairing mode: **hold the top
-   (Retract ▲) and bottom (Extend ▼) buttons together for about 3
-   seconds** until it starts scanning.
-6. Once paired the plugin shows the boot's state, position, saved
-   position, and homed flag; you can drive the boot up and down
-   manually from the Connections tab.
+2. Power on the AutoDustBoot V2.
+3. In ncSender, open **Accessories** (the pendant icon in the toolbar) and
+   click **Pair Device**. You have **60 seconds**.
+4. On the AutoDustBoot, start pairing mode.
+   <!-- OWNER: confirm the AutoDustBoot pairing gesture. This page used to say "hold Retract ▲ + Extend ▼ together for about 3 seconds until it starts scanning"; wireless-usb.md said "hold the pair button for 3 seconds (LED blinks)". -->
+5. Select **AutoDustBoot** in Accessories. It shows **Connected**.
+6. If it shows **!**, click **Activate**. See
+   [Wireless USB &rarr;](wireless-usb.md#activating).
+7. Install the plugin (see [The plugin](#the-plugin)), open **Connections**,
+   and choose **Wireless**.
 
-Wireless setup **requires the plugin** — there's no equivalent to
-"type M8 from the terminal" for the wireless controller because it
-doesn't sit on an aux pin.
+![AutoDustBoot in Accessories](../assets/images/accessories/accessories-autodustboot.webp)
+
+Wireless use **needs the plugin**. The wireless controller isn't on an aux
+pin, so typing `M8` does nothing.
 
 ## Physical buttons
 
-The V2 controller has three physical buttons on top: **Retract (▲)**,
-**Mode (●)** in the middle, and **Extend (▼)**. They give you a
-useful subset of the plugin's actions right at the machine — handy
-for setup, bench-testing, or getting out of trouble without walking
-back to the computer.
+The V2 controller has three buttons on top: **Retract (▲)**, **Mode (●)** in
+the middle, and **Extend (▼)**.
 
 | Gesture | What it does |
 |---|---|
-| **Retract ▲** tap | Nudge the boot up one jog step (fine height dial-in). |
-| **Retract ▲** hold | Continuous retract (release to stop). |
-| **Extend ▼** tap | Nudge the boot down one jog step. |
-| **Extend ▼** hold | Continuous extend (release to stop). |
-| **Mode ●** double-press | **Save the current position as the *expand* position** — where the boot returns to after a retract. |
-| **Mode ●** long-press | Reboot the controller (which re-homes on startup). |
-| **Retract ▲ + Extend ▼** held together (~3 s) | **Enter pairing mode** — the controller starts scanning for a Wireless USB. Use this with **+ Pair New Device** in ncSender. |
-| Hold **Retract ▲** while powering on | **Skip auto-home on boot.** Useful when the boot is stuck in a position that would crash into the workpiece if it re-homed. |
+| **Retract ▲** tap | Move the boot up one small step. |
+| **Retract ▲** hold | Retract until you let go. |
+| **Extend ▼** tap | Move the boot down one small step. |
+| **Extend ▼** hold | Extend until you let go. |
+| **Mode ●** double-press | **Save the current position as the expand position.** |
+| **Mode ●** long-press | Restart the controller. It homes on startup. |
+| Hold **Retract ▲** while powering on | **Skip homing on startup.** Use this when homing would crash the boot into the work. |
 
-The plugin's Connections tab mirrors the same actions — Retract,
-Expand, Home, Save — so anything you can do on the buttons you can
-do from ncSender too, and vice-versa.
+<!-- OWNER: confirm the pairing-mode gesture and add it back to this table. -->
+
+The plugin's Connections tab has the same actions: Retract, Expand, Home and
+Save.
 
 ## The plugin
 
-Install the **AutoDustBoot** plugin from ncSender's plugin catalog,
-then open it from the **Plugins** panel.
+Install it from **Settings → Plugins → Install Plugin**, and choose
+**AutoDustboot**. Then open **AutoDustBoot** from the Tools menu.
+
+![Installing the AutoDustboot plugin](../assets/images/accessories/plugins-install-autodustboot.webp)
+
+The plugin changes how the boot behaves. Firmware updates and activation are
+in **Accessories**.
 
 ### Connections
 
-Pick which control path you're using — **Wired** or **Wireless** —
-and configure it. The tab reshapes itself around the choice.
+Choose **Wired** or **Wireless**.
 
-**Wired mode.** Assumes the boot is driven by an aux pin on your CNC
-controller (Flood / Mist / M64 P<n>). You edit the exact G-code
-sequences the plugin fires to raise and lower the boot; anything valid
-for your controller is fair game, including `G4` dwells to let the
-boot finish its stroke before motion continues.
+**Wired.** For a boot driven by an aux pin on your CNC controller. Edit the
+G-code the plugin sends to raise and lower the boot. You can add `G4` pauses to
+let the boot finish moving before the machine continues.
 
-![AutoDustBoot Connections tab — Wired mode](../assets/images/features/autodustboot-connections-wired.png)
+<!-- CAPTURE NEEDED: assets/images/accessories/autodustboot-connections-wired.webp (AutoDustBoot Connections tab — Wired) -->
 
-- **Retract Sequence** — G-code fired before homing / tool change /
-  (optionally) console rapids. Default is `M8` · `G4 P0.1` · `M9` ·
-  `G4 P1` — pulse the pin on, dwell, pin off, dwell so the motion
-  completes.
-- **Expand Sequence** — G-code fired after the boot's job is done
-  (e.g. right before the next cut). Default is a single `M8`.
+- **Retract Sequence** — sent before homing, tool changes and (if turned on)
+  console rapids. The default is `M8` · `G4 P0.1` · `M9` · `G4 P1`.
+- **Expand Sequence** — sent when the boot should come back down, right
+  before the next cut. The default is `M8`.
 
-**Wireless mode.** For the V2 wireless controller only. Once paired,
-the plugin drives the boot directly over ESP-NOW and gets live state
-back.
+**Wireless.** For the V2 wireless controller only.
 
-![AutoDustBoot Connections tab — Wireless mode](../assets/images/features/autodustboot-connections-wireless.png)
+![AutoDustBoot Connections tab — Wireless](../assets/images/accessories/autodustboot-connections-wireless.webp)
 
-- **+ Pair New Device** (via the Wireless USB dialog) — starts a
-  30-second pairing window. Put the AutoDustBoot into pairing mode
-  (see [Physical buttons](#physical-buttons) below) to complete.
-- **Direct control** (once paired) — **Retract**, **Expand**,
-  **Home**, and **Save** actions live on the Connections tab, with a
-  read-out of the current state, position, saved position, and homed
-  flag. Handy for testing outside a job.
+- **Pair New Device** — opens the same 60-second pairing window as **Pair
+  Device** in Accessories. **Unpair Device** removes the pairing.
+- **Retract**, **Expand** and **Home** move the boot. Hold the up or down
+  arrow to jog it, and click **Save** to store the current position as the
+  expand position.
+- **State**, **Position**, **Saved** and **Homed** show the boot's live
+  status.
+
+<!-- CAPTURE NEEDED: assets/images/accessories/autodustboot-retract-expand.webp (Retract and expand from the plugin) -->
 
 ### Options
 
-The three toggles decide when the plugin injects retract / expand
-commands into your G-code stream.
+Choose when the plugin retracts the boot.
 
-![AutoDustBoot Options tab](../assets/images/features/autodustboot-options.png)
+![AutoDustBoot Options tab](../assets/images/accessories/autodustboot-options.webp)
 
-- **Retract on Home** *(on by default)* — lifts the boot before any
-  `$H`. Homing rapids across the whole work area; without this the
-  boot drags across the workpiece.
-- **Retract on Rapid Moves** *(on by default)* — lifts the boot when
-  a `G0` "move to" command runs from the console or a macro. G0 moves
-  *inside* a running program are left alone (the program's own logic
-  handles positioning).
-- **Show in Terminal** *(off by default)* — echoes every injected
-  command in the console. Leave off for a quiet console; turn on when
-  troubleshooting.
+- **Retract on Home** *(on by default)* — retracts before homing, so the boot
+  doesn't drag across the work.
+- **Retract on Rapid Moves** *(on by default)* — retracts before a `G0` sent
+  from the console or a macro. `G0` moves inside a running program are left
+  alone.
+- **Show in Terminal** *(off by default)* — shows the plugin's commands in the
+  console. Turn it on when troubleshooting.
 
 Click **Save** after changing anything.
 
-### Firmware
+## Firmware updates
 
-Check for and flash new AutoDustBoot firmware over the wireless link.
-Only applies to V2 wireless controllers; V1 (TTL-only) and wired-mode
-V2 setups don't have firmware you update from here.
+Firmware updates apply to the V2 only.
 
-![AutoDustBoot Firmware tab](../assets/images/features/autodustboot-firmware.png)
+1. Open **Accessories** and select **AutoDustBoot**.
+2. Click **Update to v…** in the Firmware card.
+3. Keep the AutoDustBoot powered and connected until it finishes.
 
-The card shows the connected controller's firmware version and lights
-up the **Update Firmware** button when a newer release is available;
-the button is disabled (like above) when you're already on the
-current release. Flashes go over the wireless link — no cables
-needed if the AutoDustBoot is already paired.
+With a USB cable plugged in, the update goes over the cable, which is much
+faster. Otherwise it goes wirelessly. If an update is interrupted, the current
+firmware keeps working. Just start again.
 
-## What the plugin does that a wired setup doesn't
+## What the plugin does for you
 
-Everything the plugin buys you is automation on top of the physical
-mechanism. Skip the plugin and you handle these yourself in G-code.
+**Tool change (`M6` / `$TLS`).** Retracts the boot before the tool change, and
+expands it again right before the first move of the next cut. If your G-code
+already expands the boot at that point, the plugin skips its own so the boot
+doesn't move twice.
 
-**Tool change (`M6` / `$TLS`).** The plugin retracts the boot before
-the tool change, then re-expands it right before the first XY move
-that follows — which is when the machine has finished positioning
-for the next cut. If your G-code already contains an expand at that
-spot, the plugin comments it out so the boot doesn't double-pulse.
+**Homing (`$H`).** With *Retract on Home* on, retracts before homing.
 
-**Homing (`$H`).** With *Retract on Home* enabled, the retract runs
-before the `$H`.
-
-**Manual rapid (`G0`).** With *Retract on Rapid Moves* enabled, a
-`G0` typed into the console (or fired from a macro) triggers a
-retract first. G0s inside a running program don't trigger this —
-that's on the program.
+**Console rapids (`G0`).** With *Retract on Rapid Moves* on, retracts before a
+`G0` sent from the console or a macro.
 
 ## Troubleshooting
 
-- **Wired: boot doesn't respond.** Verify the aux pin is wired to
-  the AutoDustBoot's input and the polarity is right — bench-test by
-  typing the matching command in the console (e.g. `M8` if you're on
-  Flood, or `M64 P0` if you're on an aux pin) and watching the
-  stepper move.
-- **Wireless: boot doesn't retract on tool change.** Confirm the
-  AutoDustBoot shows as *Connected* in the
-  [Wireless USB dialog &rarr;](wireless-usb.md). If it's disconnected,
-  power-cycle the controller; if it stays disconnected, re-pair it.
-- **Unexpected retract mid-job.** *Retract on Rapid Moves* only
-  fires for console / macro G0s, but a macro that fires a G0 during
-  a job window will trip it. Turn the option off if that's causing
-  trouble.
-- **Boot travels the wrong distance.** Boot travel is set on the
-  controller itself (Save button in the plugin's Connections tab, or
-  the equivalent gesture on V1). If the retract doesn't clear your
-  workpiece, re-home the boot and re-save.
+- **Wired: boot doesn't respond.** Check the wiring and polarity. Type the
+  matching command in the console (e.g. `M8` for Flood, or `M64 P0` for an aux
+  pin) and watch the boot move.
+- **Wireless: boot doesn't retract on tool change.** Open **Accessories** and
+  select **AutoDustBoot**. If it isn't **Connected**, power-cycle the
+  controller. If it still doesn't connect, pair it again.
+- **Unexpected retract during a job.** A macro that sends a `G0` during a job
+  triggers *Retract on Rapid Moves*. Turn the option off if that's a problem.
+- **Boot doesn't clear the work.** Move the boot to the height you want and
+  save it again, with **Save** in the plugin or a double-press of **Mode ●**
+  on the controller.

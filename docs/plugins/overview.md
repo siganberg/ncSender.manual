@@ -1,60 +1,100 @@
 # Plugins
 
-ncSender supports a plugin system that extends functionality with custom tools, workflows, and integrations.
+Plugins add tools to ncSender: tool changers, quick G-code generators, probing
+helpers and support for ncSender accessories. They work in both ncSender
+Community and ncSender Pro, unless a plugin page says otherwise.
 
-## Installing Plugins
+## Install a plugin
 
-<!-- TODO: Screenshot of plugin store/settings panel -->
-![Plugin store](../assets/images/plugins/plugin-store.png){ .placeholder }
+![Install Plugin, Registry tab](../assets/images/plugins/plugins-install-registry.webp)
 
-1. Go to **Settings > Plugins**
-2. Browse available plugins in the plugin store
-3. Click **Install** on the plugin you want
-4. The plugin appears in the toolbar under **Tools**
+1. Open **Settings** > **Plugins**.
+2. Press **Install Plugin**.
+3. On the **Registry** tab, type in **Search plugins...** to find a plugin.
+4. Press **Install** on the plugin you want.
 
-## Available Plugins
+Plugins already on your machine show **Installed** instead of **Install**.
 
-| Plugin | Category | Description |
-|--------|----------|-------------|
-| [Edge Align](edge-align.md) | G-code Generator | Material alignment by edge probing with rotation compensation |
-| [3DMesh](3dmesh.md) | G-code Generator | Surface mesh probing with Z compensation |
-| [QuickCut](quickcut.md) | G-code Generator | Rectangles, circles, polygons, planer, jointer, and parting cuts |
-| [ToolBench](toolbench.md) | G-code Generator | Surfacing and jointing — superseded by QuickCut |
-| [Rapid Change ATC](rapid-change-atc.md) | Tool Changer | Automatic tool changer support |
-| [Manual Tool Changer](manual-tool-changer.md) | Tool Changer | Manual tool change workflow with TLS |
-| [Replicator](replicator.md) | G-code Generator | Replicate G-code in grid patterns |
-| [BoxJoints](boxjoints.md) | G-code Generator | Box joint (finger joint) generation |
+### Install from a ZIP file or link
 
-## Plugin Categories
+![Install Plugin, ZIP tab](../assets/images/plugins/plugins-install-zip.webp)
 
-### Tool Changers
+Use this when someone gives you a plugin file or a download link.
 
-Only one tool changer plugin can be active at a time. Installing a new tool changer automatically disables the previous one.
+1. Open **Settings** > **Plugins** > **Install Plugin** > **ZIP**.
+2. Either press **Choose File**, pick the `.zip`, then press **Install from File**,
+   or paste the link and press **Install from URL**.
 
-### G-code Generators
+## Use a plugin
 
-Generate G-code programs directly from parameter inputs. These plugins create temporary files that can be run immediately or saved.
+![Plugins tab in the console area](../assets/images/plugins/plugins-console-tab.webp)
 
-### Utilities
+1. Open the **Plugins** tab in the console area.
+2. Press the plugin's button.
 
-General-purpose tools that extend ncSender's capabilities.
+Only enabled plugins have a button. The buttons are locked while a job is
+running.
 
-## Managing Plugins
+## Manage installed plugins
 
-<!-- TODO: Screenshot of plugin management with enable/disable toggles -->
-![Plugin management](../assets/images/plugins/plugin-management.png){ .placeholder }
+![Installed plugins in Settings](../assets/images/plugins/plugins-settings-list.webp)
 
-- **Enable/Disable** — Toggle plugins on or off without uninstalling
-- **Update** — Plugins can be updated through the plugin store
-- **Uninstall** — Remove plugins you no longer need
-- **Priority** — Drag to reorder plugin priority in the tools menu
+Open **Settings** > **Plugins**. Each installed plugin has these buttons:
 
-## Developing Plugins
+- **Enable** / **Disable**: turn the plugin on or off without removing it.
+- **Configure**: open the plugin's settings.
+- **Reload**: restart the plugin, for example after it stops responding.
+- **Uninstall**: remove the plugin. ncSender asks you to confirm, because this
+  also deletes the plugin's saved settings and cannot be undone.
 
-Plugins use a V2 format with:
+### Update a plugin
 
-- `manifest.json` — Plugin metadata and configuration
-- `config.html` — Client-side UI (rendered in a dialog)
-- `index.js` — Thin wrapper for loading the UI
+![Plugin update dialog](../assets/images/plugins/plugins-update-dialog.webp)
 
-Plugins communicate with ncSender via HTTP API (`fetch()`) for settings, commands, and server state.
+When a newer version exists, the plugin shows **Update available**.
+
+1. Press **Update available**.
+2. Check the **Current version**, **Latest version** and **Release Notes**.
+   Press **View on GitHub** for the full notes.
+3. Press **Update**.
+
+## Available plugins
+
+| Plugin | Type | What it does |
+|--------|------|--------------|
+| [QuickCut](quickcut.md) | G-code generator | Rectangles, circles, polygons, surfacing, edge jointing and cut-to-size |
+| [Manual Tool Changer](manual-tool-changer.md) | Tool changer | Guided hand tool changes with automatic tool measuring |
+| [Rapid Change ATC](rapid-change-atc.md) | Tool changer | Automatic tool changes with a RapidChange magazine |
+| [Pneumatic ATC](pneumatic-atc.md) | Tool changer | Automatic tool changes with an air-powered drawbar and a tool rack |
+| [Edge Align](edge-align.md) | Probing | Measures how crooked your stock sits and rotates the program to match (Pro) |
+| [3DMesh](3dmesh.md) | Probing | Probes an uneven surface so a flat program follows it (Pro) |
+| [Replicator](replicator.md) | G-code generator | Repeats the loaded program in a grid |
+| [BoxJoints](boxjoints.md) | G-code generator | Finger joints for boxes and drawers |
+| [AutoDustBoot](../accessories/autodustboot.md) | Accessory | Raises the AutoDustBoot for tool changes, homing and rapid moves |
+| [Pendant](../accessories/pendant.md) | Accessory | Activates the ncSender pendant and updates its firmware |
+| [RGB LED](../accessories/smart-rgb-led.md) | Accessory | Sets the colours of the Smart RGB LED strip |
+
+The Registry also lists plugins written by other people. Their authors look
+after them.
+
+Some plugins show a **Beta** label in their title. They work, but they are
+still changing, so write down or back up your settings before you update.
+
+## Tool changer plugins
+
+Only one tool changer plugin can be enabled at a time.
+
+- If you install a second tool changer, it installs but stays disabled.
+- To switch, **Enable** the other tool changer. The one that was on is turned
+  off automatically.
+
+While a tool changer is enabled, it controls the tool buttons on the main
+screen. See [Tool Management](../features/tool-management.md).
+
+## Troubleshooting
+
+
+### A plugin's settings have no Save or Close button
+
+The buttons are below the edge of the screen. See
+[the FAQ](../faq.md#a-plugins-settings-dialog-has-no-visible-save-or-close-button).

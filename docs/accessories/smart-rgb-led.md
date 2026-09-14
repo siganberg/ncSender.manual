@@ -1,126 +1,104 @@
-# Smart RGB LED
+# RGB LED
 
-The ncSender Smart RGB LED is a wireless RGB / RGBW light strip that
-mirrors your machine state — green while a job is running, red on an
-alarm, teal while probing, a small light show when a job finishes.
-Everything runs automatically once the strip is paired; there's no
+The ncSender RGB LED is a wireless light strip that shows your machine state:
+green while a job runs, red on an alarm, teal while probing, and a small light
+show when a job finishes. Once it is paired, it works on its own. There's no
 G-code to add.
 
-<!-- TODO: screenshot — Smart RGB LED hardware close-up -->
+<!-- TODO: screenshot — RGB LED hardware close-up -->
 
 ## Hardware
 
-- Wireless controller board driving a **WS2811 RGB** LED strip. That's
-  the only strip type supported right now.
-- **Requires a 24 V power supply.** The board and strip are engineered
-  around a 24 V rail — 5 V / 12 V feeds don't drive the strip cleanly.
-  Size the supply to your strip length (LED strips pull real current).
-- Pairs with the [Wireless USB &rarr;](wireless-usb.md) — the same
-  Wireless USB the pendant and AutoDustBoot use.
+- A wireless controller driving a **WS2811 RGB** LED strip. No other strip type
+  is supported.
+- Its own power supply, sized to your strip length.
+  <!-- OWNER: confirm the RGB LED power supply. This page said "Requires a 24 V power supply … 5 V / 12 V feeds don't drive the strip cleanly" in Hardware, but "Check the strip's own power (USB-C or 12 V)" in Troubleshooting. -->
+- Pairs with the [Wireless USB &rarr;](wireless-usb.md), the same one the
+  pendant and AutoDustBoot use.
 
 !!! warning "Wireless USB is required"
-    Unlike the pendant (which can run over its own direct USB cable)
-    and the AutoDustBoot (which can run over a TTL aux pin without any
-    ncSender at all), the Smart RGB LED **only** talks to ncSender
-    through the [Wireless USB &rarr;](wireless-usb.md). If you don't
-    have a Wireless USB paired, the plugin can't reach the controller
-    and the strip won't reflect machine state.
+    The RGB LED only talks to ncSender through the
+    [Wireless USB &rarr;](wireless-usb.md). Without a paired Wireless USB,
+    the strip won't show machine state.
+
+## Getting connected
+
+1. Plug the Wireless USB into the computer running ncSender.
+2. In ncSender, open **Accessories** (the pendant icon in the toolbar) and
+   click **Pair Device**. You have **60 seconds**.
+3. Power on the RGB LED controller.
+4. Select **RGB LED** in Accessories. It shows **Connected**.
+5. If it shows **!**, click **Activate**. See
+   [Wireless USB &rarr;](wireless-usb.md#activating).
+
+![RGB LED in Accessories](../assets/images/accessories/accessories-rgbled.webp)
 
 ## The plugin
 
-Install the **RGB LED** plugin from ncSender's plugin catalog, then
-open it from the **Plugins** panel. The plugin has three tabs.
+Install it from **Settings → Plugins → Install Plugin**, and choose
+**RGB LED (Beta)**. Then open **RGB LED** from the Tools menu.
+
+The plugin changes how the strip looks. Firmware updates and activation are in
+**Accessories**.
 
 ### Status
 
-Pair the strip, tune brightness / LED count / idle behaviour, and see
-what the strip is showing right now.
+See what the strip is showing and set it up.
 
-![RGB LED Status tab](../assets/images/features/rgbled-status.png)
+![RGB LED Status tab](../assets/images/accessories/rgbled-status.webp)
 
-- **Pair New Device** — pair the LED controller to your Wireless USB
-  ([Wireless USB &rarr;](wireless-usb.md) has the full step-by-step).
-- **Machine state / Strip shows / Firmware** — three read-only cards
-  showing what the machine is doing, what the strip is rendering, and
-  the firmware version on the controller. Handy for confirming the
-  plugin and strip are in sync.
-- **LED count** — how many pixels are on your strip. Set once to match
-  the strip you wired up; the controller persists the value.
-- **Brightness** — master 1 – 255 slider. Persists on the controller
-  so it survives reboots and re-pairs.
-- **Idle dim (min)** — after this many minutes without a machine-state
-  change the strip dims to a soft baseline; any state change wakes it
-  back up. Set to `0` to disable.
-- **Identify** — flashes the strip six times so you can pick out which
-  controller you're looking at when you have more than one.
+- **Pair New Device** — opens the same 60-second pairing window as **Pair
+  Device** in Accessories.
+- **Machine State / Strip Shows / Firmware** — what the machine is doing, what
+  the strip is showing, and the controller's firmware version.
+- **LED count** — the number of LEDs on your strip. Change it if you shorten or
+  extend the strip.
+- **Brightness** — overall brightness. Kept on the controller.
+- **Idle dim (min)** — minutes without a state change before the strip dims.
+  Any state change brings it back. Set to `0` to turn off.
+- **Identify** — flashes the strip so you can tell which controller it is.
 
 ### Colors
 
-Fully customize what the strip does for every machine state, plus two
-optional overlays.
+Choose what the strip does for each machine state.
 
-![RGB LED Colors tab](../assets/images/features/rgbled-colors.png)
+![RGB LED Colors tab](../assets/images/accessories/rgbled-colors.webp)
 
 **Overlays & Shows**
 
-- **X-axis follower** — overlays a small cluster onto the strip that
-  tracks the spindle's X position in real time. Useful as a "where's
-  the tool" indicator when the strip is where you can see it but the
-  spindle isn't.
-- **Job Completion** — the animation the strip plays when a job
-  finishes. Pick from **Fireworks** (default), or one of the other
-  built-in shows in the dropdown. Each show runs a few seconds and
-  then the strip returns to the hold colour.
+- **X-axis follower** — adds a small group of lights that follows the
+  spindle's X position.
+- **Job Completion** — the light show played when a job finishes. **Fireworks**
+  is the default. After a few seconds the strip returns to its normal colour.
 
 **State Colors**
 
-A per-state colour picker for every machine state: Idle, Running,
-Jogging, Hold, Alarm, Door, Probing, Homing, Tool Change. Click the
-colour chip to open a picker; **Reset** returns that single state to
-its factory colour. **Restore defaults** at the top of the card
-resets everything at once.
+Pick a colour for each state: Idle, Running, Jogging, Hold, Alarm, Door,
+Probing, Homing and Tool Change. Click a colour to change it. **Reset** returns
+one state to its default. **Restore defaults** resets them all.
 
-Overrides live on the *controller*, so they survive reboots and follow
-the strip if you move it to a different machine.
+Colours are kept on the controller, so they survive restarts and go with the
+strip to another machine.
 
-### Firmware
+<!-- CAPTURE NEEDED: assets/images/accessories/rgbled-states.webp (RGB LED showing machine states) -->
 
-Check for and flash new controller firmware over the wireless link.
+## Firmware updates
 
-![RGB LED Firmware tab](../assets/images/features/rgbled-firmware.png)
+1. Open **Accessories** and select **RGB LED**.
+2. Click **Update to v…** in the Firmware card.
+3. Keep the controller powered and in range until it finishes.
 
-Waits for the strip to report its version, then offers an update when
-a newer release is available. Uses the same chunked, verified
-transport the pendant's wireless OTA uses, so dropped ESP-NOW frames
-retry automatically.
-
-## How the colours work
-
-ncSender sends the **state name** to the controller (idle, running,
-alarm, probing, homing, tool-changing, complete, …). The controller
-looks up the colour + animation for that name and drives the strip
-accordingly. That means:
-
-- Colours you pick under **State Colors** override the built-in
-  defaults but stay on the controller — no per-project or per-machine
-  configuration to remember.
-- New machine states added in future ncSender / firmware releases
-  just work — the plugin only forwards the name.
+The RGB LED always updates wirelessly. If an update is interrupted, the current
+firmware keeps working. Just start again.
 
 ## Troubleshooting
 
-- **Strip stays dark.** Check the strip's own power (USB-C or 12 V).
-  The controller can be paired and healthy while the strip has no
-  power. Also verify **LED count** on the Status tab matches your
-  actual strip length.
-- **Wrong colours (green looks turquoise, red looks pink).** The
-  Smart RGB LED is built for **WS2811** strips only — plugging in a
-  different chipset (SK6812 RGBW, WS2812) shifts the byte order and
-  the colours read as wrong. Confirm your strip's chipset.
-- **State colour override doesn't stick after re-pair.** State-colour
-  overrides are stored on the controller — if the controller lost
-  power without saving, tap the colour picker again and it'll
-  persist.
-- **Strip freezes on one colour.** Power-cycle the controller. If it
-  keeps happening, check the Wireless USB shows the LED as *Connected*
-  — a dropped link freezes the strip on whatever it last received.
+- **Strip stays dark.** Check the strip has power. The controller can be
+  paired and working while the strip has none. Also check that **LED count**
+  on the Status tab matches your strip.
+- **Wrong colours (green looks turquoise, red looks pink).** The RGB LED only
+  works with **WS2811** strips. Other strip types show the wrong colours.
+- **A colour change doesn't stick.** Pick the colour again.
+- **Strip freezes on one colour.** Power-cycle the controller. If it keeps
+  happening, open **Accessories** and check **RGB LED** shows **Connected**.
+  When the link drops, the strip keeps its last colour.

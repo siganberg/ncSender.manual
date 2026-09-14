@@ -1,74 +1,67 @@
 # Edge Align
 
-Material alignment by edge probing — measure the rotation angle of your workpiece and apply XY compensation to your G-code.
+Edge Align measures how crooked your stock sits on the table, then turns your
+program to match. Use it when the stock isn't square to the machine.
 
-<!-- TODO: Screenshot of Edge Align dialog -->
-![Edge Align dialog](../assets/images/plugins/edge-align-dialog.png){ .placeholder }
+Edge Align is for **ncSender Pro**. You need a touch probe.
 
-## How It Works
+## Before you start
 
-Edge Align probes two points along a material edge to determine how much the workpiece is rotated on the table. It then rotates your G-code program to compensate, ensuring accurate cuts even when the material isn't perfectly aligned.
+1. Install Edge Align from **Settings** > **Plugins** > **Install Plugin**.
+2. Connect your probe and home the machine.
+3. Load your program.
+4. Set work zero (X0 Y0). The program turns around work zero.
 
-## Usage
+## Measure the edge
 
-1. Load your G-code program
-2. Open **Edge Align** from the Tools menu
-3. Click the edge to probe on the visual diagram (Left, Right, Front, or Back)
-4. Configure measurement distance and probe settings
-5. Position the probe near the edge using the built-in jog controls
-6. Click **Probe** — the plugin probes two points automatically
-7. Review the detected rotation angle
-8. Click **Apply Rotation** to compensate the loaded G-code
+<!-- CAPTURE NEEDED: assets/images/plugins/edge-align-probe.webp (Edge Align, Probe section) -->
 
-## Edge Selection
+1. Open the **Plugins** tab in the console area and press **Edge Align**.
+2. Jog the probe close to the edge you want to measure.
+3. Under **Edge Selection**, pick **Left**, **Right**, **Front** or **Back**.
+4. Check the summary: selected edge, distances and speeds.
+5. Press **Probe**.
 
-<!-- TODO: Screenshot of the interactive edge selection visual -->
-![Edge selection](../assets/images/plugins/edge-align-selection.png){ .placeholder }
+The probe touches the edge at two points. Press **Stop** at any time to halt.
 
-Click directly on the visual diagram to select which edge to probe. The numbered dots (1 and 2) show the probe sequence and where to position the probe.
+<!-- CAPTURE NEEDED: assets/images/plugins/edge-align-probing.webp (Probing an edge) -->
+
+## Apply the rotation
+
+<!-- CAPTURE NEEDED: assets/images/plugins/edge-align-results.webp (Probe Results) -->
+
+**Probe Results** shows both touch points and the **Rotation Angle**.
+
+Press **Apply Rotation**. Edge Align makes a turned copy of your program and
+loads it. Your original file is kept. To go back, use **Reset to Original** in
+the visualizer.
+
+<!-- CAPTURE NEEDED: assets/images/plugins/edge-align-applied.webp (Rotated program) -->
+
+The last result is kept when you close Edge Align, so you can apply it again
+without probing again. Press **Clear Results** to start fresh.
+
+If the probe triggers an alarm, press **Unlock**.
+
+!!! tip "Check your measurement"
+    On a square piece, every edge should give the same angle. Probe a second
+    edge to confirm.
 
 ## Settings
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| **Measurement Distance** | Distance between probe points along the edge | 50 mm |
-| **Max Probe Distance** | Maximum travel toward the edge per probe | 20 mm |
-| **Probe Feed Rate** | Speed when probing toward the edge | 100 mm/min |
-| **Travel Feed Rate** | Speed when moving between probe points | 2000 mm/min |
-| **Retract Clearance** | Distance to retract after each probe | 5 mm |
+<!-- CAPTURE NEEDED: assets/images/plugins/edge-align-settings.webp (Edge Align, Settings section) -->
 
-## Probe Sequence
+| Setting | What it does | Default |
+|---|---|---|
+| **Measurement Distance** | How far apart the two touch points are. Longer gives a more accurate angle. | 50 mm |
+| **Max Probe Distance** | How far the probe moves toward the edge before giving up | 20 mm |
+| **Retract Clearance** | How far the probe backs off after each touch | 5 mm |
+| **Probe Feed Rate** | How fast the probe moves toward the edge | 100 mm/min |
+| **Travel Feed Rate** | How fast it moves between the two points. This move stops if the probe touches something. | 2000 mm/min |
 
-<!-- TODO: GIF/WebP animation of the probing sequence -->
-![Probing sequence](../assets/images/plugins/edge-align-probing.webp){ .placeholder }
+## Troubleshooting
 
-1. Probe toward the edge at current position (**Point 1**)
-2. Retract by the clearance distance
-3. Travel along the edge using G38.3 (safe probe-away move)
-4. Probe toward the edge again (**Point 2**)
-5. Calculate the rotation angle
-
-## Results
-
-<!-- TODO: Screenshot of probe results showing angle -->
-![Probe results](../assets/images/plugins/edge-align-results.png){ .placeholder }
-
-After probing, the results panel shows:
-
-- Point 1 and Point 2 coordinates
-- Calculated rotation angle
-
-## Applying Rotation
-
-The rotation is applied using a 2D rotation matrix around the work origin (0,0):
-
-- Both X and Y coordinates are rotated
-- Arc offsets (I, J) in G2/G3 commands are also rotated
-- The original file is preserved — use "Reset to Original" in the visualizer to revert
-
-## Re-Applying Without Re-Probing
-
-The last measured angle is saved automatically. When you reopen Edge Align, the previous results are shown and you can apply rotation again without re-probing.
-
-!!! tip "Consistency Check"
-    For a rectangular workpiece, probing any edge should give the same angle (assuming the sides are perpendicular). This is a good way to verify your measurement.
+- **The probe doesn't find the edge.** Jog closer, or raise
+  **Max Probe Distance**.
+- **The rotated program is in the wrong place.** Set work zero before you press
+  **Apply Rotation**, then apply again from the original.

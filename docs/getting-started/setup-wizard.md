@@ -15,13 +15,15 @@ travel, limit switches and probe, homing and safety limits.
     Click **Skip for now** on the welcome page. The wizard is meant for a new
     controller; re-applying settings to a working machine is not needed.
     Skipping marks the wizard as done, so it will not open again on the next
-    launch. Closing it from a later step does not, and it will come back.
+    launch. Closing it from a later step does not, and it will come back,
+    unless you already applied settings.
+
+![Machine Setup Wizard welcome page](../assets/images/getting-started/wizard-welcome.webp)
 
 ## Walking through it
 
-The step rail on the left shows your progress. Completed steps get a check
-mark and can be clicked to go back. The dot at the bottom of the rail shows
-whether the controller is connected.
+Completed steps get a check mark. Click one to go back to it. The wizard also
+shows whether the controller is connected.
 
 Nothing is written to the controller until the **Review** step, with two
 exceptions called out below: switch inversion and motor fault inputs are sent
@@ -36,9 +38,10 @@ Pick **USB** or **Ethernet**.
 | **USB** | Serial port (**Auto-detect** or a specific port, with **Rescan**) and baud rate. grblHAL boards use 115200. |
 | **Ethernet** | IP address, port and protocol (**Telnet** on port 23 or **WebSocket** on port 81). |
 
-Click **Save & connect**. ncSender connects on its own, and the status card at
-the bottom of the step shows the live result. **Next** stays disabled until
-the controller answers.
+Click **Save & connect**. ncSender connects on its own and shows the live
+result. **Next** stays disabled until the controller answers.
+
+![Connection step](../assets/images/getting-started/wizard-connection.webp)
 
 This is the same connection setup found under **Settings → General**, so you
 can change it later without running the wizard again. See
@@ -60,6 +63,8 @@ shows the other way round, turn on **Invert** for it.
 The **Probe** row works the same way; a **Toolsetter** row appears when the
 controller reports a second probe input.
 
+<!-- CAPTURE NEEDED: assets/images/getting-started/wizard-switches-invert.webp (Checking a limit switch and Invert) -->
+
 !!! warning "Applied immediately"
     Invert is written to the controller the moment you toggle it (`$5` for
     limit switches, `$6` for probes), so the light shows the real result. An
@@ -78,6 +83,8 @@ stop the moment a drive faults. If a healthy motor raises a motor fault alarm
 as soon as you enable it, the input reads backwards. Turn on **Invert** for
 that axis, then press **Unlock** on the alarm bar.
 
+<!-- CAPTURE NEEDED: assets/images/getting-started/wizard-motor-fault.webp (Motor fault step) -->
+
 ### Homing
 
 - **Enable homing (`$22`).** The recommended value is 75: homing on,
@@ -90,6 +97,8 @@ that axis, then press **Unlock** on the alarm bar.
   does not change the controller's homing direction.
 - **Pull-off after homing (`$27`).** How far each axis backs off its switch.
   2 to 5 mm is typical.
+
+![Homing step](../assets/images/getting-started/wizard-homing.webp)
 
 ### Safety
 
@@ -105,6 +114,8 @@ The review table lists every setting that differs from what the controller
 has now, with the current and new values side by side. Values already applied
 live on the switches and motor fault pages are not repeated.
 
+![Review and apply](../assets/images/getting-started/wizard-review.webp)
+
 Click **Apply**. Settings are written one at a time in a safe order (homing
 before soft limits, since soft limits will not enable without homing). If a
 write fails, the wizard stops and tells you how many settings went through.
@@ -112,7 +123,19 @@ write fails, the wizard stops and tells you how many settings went through.
 When everything already matches, the button reads **Finish** and nothing is
 sent.
 
+<!-- CAPTURE NEEDED: assets/images/getting-started/wizard-applied.webp (Setup applied) -->
+
 !!! tip "Home before the first move"
     After applying, home the machine so the new travel and limits start from
     a known position. Every value can still be changed individually under
     **Settings → Firmware**.
+
+## After the Wizard
+
+- **Home the machine**, then check a jog in each direction.
+- **Fine-tune the machine** (Pro): steps/mm, max travel and squareness can be
+  measured and corrected in **Settings → Calibration**. See
+  [Calibration](../features/calibration.md).
+- **Motor fault alarm later on?** If it appears right after you enabled the
+  motor fault inputs, run the wizard again and turn on **Invert** for that
+  axis.

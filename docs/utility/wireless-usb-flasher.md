@@ -4,17 +4,26 @@ Flash firmware to the ncSender **Wireless USB** directly from your browser.
 Requires **Google Chrome or Microsoft Edge (v89+)** — the tool uses the Web
 Serial API.
 
-!!! info "Activation & your Installation ID"
-    Each Wireless USB must be **activated** with an Installation ID in ncSender
-    before it will relay. If you bought a pendant in the **first batch**, you
-    should have received an email containing the Installation ID for your
-    Wireless USB as well. Didn't get it? Email
+!!! success "On v0.3.5 or newer? You don't need this page"
+    Check your version in ncSender: click the pendant icon in the toolbar to
+    open **Accessories**, select **Wireless USB**, and look at **Installed** in
+    the Firmware card. On **v0.3.5 or newer**, update from there with
+    **Update to v…**. See [Wireless USB &rarr;](../accessories/wireless-usb.md#updating-firmware).
+
+!!! warning "Use only the file on this page"
+    This page doesn't check which device a file is for. Flash only the
+    Wireless USB firmware listed below.
+
+!!! info "Activation"
+    Activate the Wireless USB in ncSender under **Accessories → Wireless USB →
+    Activate**. If it has been activated before, no Installation ID is needed.
+    If it is new to the store, enter the Installation ID that came with it.
+    Can't find it? Email
     [support@franciscreation.com](mailto:support@franciscreation.com).
 
 !!! tip "Updating keeps your activation"
-    This flasher performs an **app-only update** — it does **not** erase the
-    device's activation or paired-device list. You can safely flash new firmware
-    versions without re-activating.
+    This flasher doesn't erase the device's activation or paired devices. You
+    don't need to activate again after flashing.
 
 <div class="wusb">
 <div class="wusb-warning" id="wusb-browser-warning">Web Serial API is not supported in this browser. Please use <a href="https://www.google.com/chrome/" target="_blank" rel="noopener">Google Chrome</a> or <a href="https://www.microsoft.com/edge" target="_blank" rel="noopener">Microsoft Edge</a> (v89+).</div>
@@ -30,7 +39,7 @@ Serial API.
 <section class="wusb-card">
 <div class="wusb-card__title"><span class="wusb-dot"></span> Firmware</div>
 <div class="wusb-versions">
-<button type="button" class="wusb-ver" data-url="../firmware/firmware_wireless_dongle_v0.3.5.bin" data-name="firmware_wireless_dongle_v0.3.5.bin"><div class="wusb-ver__head"><span class="wusb-ver__tag">v0.3.5</span><span class="wusb-ver__badge wusb-ver__badge--latest">Latest</span></div><div class="wusb-ver__title">Licensed multi-device</div><div class="wusb-ver__desc"><strong>The last update you need this tool for.</strong> v0.3.5 teaches the Wireless USB to update itself, so from here on you update it — and every accessory paired to it — from ncSender / ncSender Pro under <em>Accessories</em>. No more BOOT button, no more unplugging. Flash this one over USB, then put the tool away. Also required for wireless firmware updates: on v0.3.3 and older the Wireless USB resets itself partway through an over-the-air update, so pendant / AutoDustBoot / Smart RGB LED updates stall and never finish. Pendant + AutoDustBoot + Smart RGB LED on the same Wireless USB. App-only update that keeps your activation. A Wireless USB must be activated with your Installation ID in ncSender before it will relay.</div></button>
+<button type="button" class="wusb-ver" data-url="../firmware/firmware_wireless_dongle_v0.3.5.bin" data-name="firmware_wireless_dongle_v0.3.5.bin"><div class="wusb-ver__head"><span class="wusb-ver__tag">v0.3.5</span><span class="wusb-ver__badge wusb-ver__badge--latest">Latest</span></div><div class="wusb-ver__title">Licensed multi-device</div><div class="wusb-ver__desc"><strong>The last update you need this tool for.</strong> From v0.3.5 on, update the Wireless USB and every accessory in ncSender: toolbar pendant icon → <em>Accessories</em> → select the device → <em>Update</em>. Also needed for wireless updates: on v0.3.3 and older, pendant, AutoDustBoot and RGB LED updates stall. Pendant, AutoDustBoot and RGB LED on the same Wireless USB. Keeps your activation.</div></button>
 </div>
 <div class="wusb-selected" id="wusb-selected"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span class="wusb-selected__name" id="wusb-file-name"></span><span class="wusb-selected__size" id="wusb-file-size"></span><button type="button" class="wusb-selected__remove" id="wusb-remove" aria-label="Remove file">&times;</button></div>
 <div class="wusb-controls">

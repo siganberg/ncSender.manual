@@ -1,20 +1,22 @@
 # ncSender Documentation
 
-![ncSender desktop](assets/images/home/desktop-hero.png)
+![ncSender desktop](assets/images/getting-started/home-desktop-hero.webp)
 
-Welcome to the official documentation for **ncSender** — a modern, cross-platform CNC controller application for grblHAL and FluidNC.
+Welcome to the official documentation for **ncSender**, a CNC controller application for grblHAL.
 
 ## What is ncSender?
 
-ncSender is a desktop application for controlling CNC machines. It provides a rich 3D visualizer, jog controls, probing workflows, tool management, plugin support, and more — all wrapped in a clean, responsive interface that works on Windows, macOS, and Linux.
+ncSender controls your CNC machine. It gives you a 3D visualizer, jog controls, probing, tool management, plugins and more. It runs on Windows, macOS and Linux, and you can also open it from a phone, tablet or laptop browser on the same network.
 
 <p style="text-align: center; margin: 1.5rem 0;">
-  <img src="assets/images/home/touch-view.png" alt="ncSender touchscreen / kiosk view" style="max-width: 320px; width: 100%; border-radius: 8px;" />
+  <img src="assets/images/getting-started/home-kiosk-portrait.webp" alt="ncSender touchscreen / kiosk view" style="max-width: 320px; width: 100%; border-radius: 8px;" />
   <br />
   <em style="color: var(--md-default-fg-color--light); font-size: 0.85rem;">Also runs full-screen on touchscreens and kiosks.</em>
 </p>
 
 ## Editions
+
+**Community** is free and open source. **Pro** is a commercial edition with extra features and needs a licence.
 
 | Feature | Community | Pro |
 |---------|:---------:|:---:|
@@ -25,30 +27,37 @@ ncSender is a desktop application for controlling CNC machines. It provides a ri
 | Plugin System | :material-check: | :material-check: |
 | Macros | :material-check: | :material-check: |
 | Tool Management | :material-check: | :material-check: |
-| Pendant Support | :material-check: | :material-check: |
-| ESP-NOW Wireless | :material-check: | :material-check: |
+| Machine Setup Wizard | :material-check: | :material-check: |
+| Tips & Tricks | :material-check: | :material-check: |
+| Keepout Zone | :material-check: | :material-check: |
+| Backup & Restore | :material-check: | :material-check: |
+| Accessories (Pendant, Wireless USB, …) | :material-check: | :material-check: |
 | Touch Screen / Kiosk | :material-check: | :material-check: |
+| In-App Updates | Debian Linux only | Windows, macOS, Debian Linux |
 | Multi-Workspace (G54-G59) | | :material-check: |
 | 4th Axis (A-axis) | | :material-check: |
 | Laser Mode | | :material-check: |
 | Trace | | :material-check: |
 | Virtual Keyboard | | :material-check: |
 | Safety Door Intelligence | | :material-check: |
+| Calibration | | :material-check: |
+| UI Language (Deutsch, Français, Español) | | :material-check: |
 
 ## Supported Controllers
 
-- **grblHAL** — Full support including firmware settings, alarms, and real-time overrides
-- **FluidNC** — Full support including WiFi configuration and YAML-based setup
+- **grblHAL**: firmware settings, alarms, real-time overrides and the Machine Setup Wizard.
 
 ## Quick Links
 
-- [Installation Guide](getting-started/installation.md) — Get up and running
-- [First Connection](getting-started/first-connection.md) — Connect to your CNC controller
-- [Interface Overview](getting-started/interface-overview.md) — Learn the layout
-- [Plugins](plugins/overview.md) — Extend ncSender with plugins
-- [Troubleshooting](troubleshooting.md) — Common issues and solutions
+- [Installation Guide](getting-started/installation.md): get up and running
+- [License Activation](getting-started/license-activation.md): unlock ncSender Pro
+- [Machine Setup Wizard](getting-started/setup-wizard.md): set up a new controller
+- [First Connection](getting-started/first-connection.md): connect to your CNC controller
+- [Interface Overview](getting-started/interface-overview.md): find your way around
+- [Plugins](plugins/overview.md): extend ncSender with plugins
+- [Troubleshooting](troubleshooting.md): common issues and solutions
 
 ## Community
 
-- [GitHub](https://github.com/siganberg/ncSender) — Source code and issue tracker
-- [Discord](https://discord.gg/3U5Jx2q2wZ) — Community chat and support
+- [GitHub](https://github.com/siganberg/ncSender): Community edition source code and issue tracker
+- [Discord](https://discord.gg/3U5Jx2q2wZ): chat and support for both editions

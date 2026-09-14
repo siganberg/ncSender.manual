@@ -94,19 +94,28 @@ nav:
     - Trace: features/trace.md
     - Virtual Keyboard: features/virtual-keyboard.md
     - Safety Door: features/safety-door.md
+    - Keepout Zone: features/keepout-zone.md
+    - Language & Region: features/language-region.md
+  - Settings:
+    - Firmware Settings & Flashing: settings/firmware.md
+    - Controls (Keyboard & Gamepad): settings/controls.md
+    - Backup & Restore: settings/backup-restore.md
+    - Logs: settings/logs.md
+    - Remote Access: settings/remote-access.md
+    - Alarms: settings/alarms.md
   - Accessories:
     - Wireless USB: accessories/wireless-usb.md
     - Pendant: accessories/pendant.md
     - AutoDustBoot: accessories/autodustboot.md
-    - Smart RGB LED: accessories/smart-rgb-led.md
+    - RGB LED: accessories/smart-rgb-led.md
   - Plugins:
     - Overview: plugins/overview.md
+    - QuickCut: plugins/quickcut.md
+    - Manual Tool Changer: plugins/manual-tool-changer.md
+    - Rapid Change ATC: plugins/rapid-change-atc.md
+    - Pneumatic ATC: plugins/pneumatic-atc.md
     - Edge Align: plugins/edge-align.md
     - 3DMesh: plugins/3dmesh.md
-    - QuickCut: plugins/quickcut.md
-    - ToolBench: plugins/toolbench.md
-    - Rapid Change ATC: plugins/rapid-change-atc.md
-    - Manual Tool Changer: plugins/manual-tool-changer.md
     - Replicator: plugins/replicator.md
     - BoxJoints: plugins/boxjoints.md
   - Controller Setup:

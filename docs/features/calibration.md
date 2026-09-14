@@ -56,6 +56,8 @@ by itself when the controller reports idle. A **Stop** button is available while
 
 ### 3. Measure
 
+<!-- CAPTURE NEEDED: assets/images/features/calibration-accuracy-measure.webp (Travel Accuracy, measure) -->
+
 Measure from your dot to the spot right under the bit tip now (or from your gantry line to the
 carriage's edge) and type exactly what you read. The guide tells you in plain words how far off the
 axis is, for example "It moved 0.50% less than asked", and how much that would be on a part of that
@@ -67,6 +69,8 @@ size.
 
 ### 4. Fix
 
+<!-- CAPTURE NEEDED: assets/images/features/calibration-accuracy-fix.webp (Travel Accuracy, fix) -->
+
 Shows the current steps/mm next to the proposed value, saves it to the controller, and reads it back
 to confirm it was accepted. The setting is kept after a restart and can be changed at any time from
 the Firmware tab.
@@ -74,8 +78,12 @@ the Firmware tab.
 ### 5. Move again and 6. Check
 
 Move the machine back to the start, make a fresh mark, move again, and measure again. If the second
-measurement lands within tolerance the axis is done. If not, the guide offers to adjust again from the
-new reading.
+measurement lands within tolerance the axis is done. If not, press **Adjust again** to correct from the
+new reading. **Skip the check** finishes without the second measurement.
+
+<!-- CAPTURE NEEDED: assets/images/features/calibration-accuracy-check.webp (Travel Accuracy, check) -->
+
+When an axis is done, **Calibrate Y next** (or the next axis) takes you straight to it.
 
 ## Travel Limits
 
@@ -109,6 +117,8 @@ to be safe or continue. The same keepout-zone check as the jog panel's Home butt
 
 ### 3. Find the end
 
+<!-- CAPTURE NEEDED: assets/images/features/calibration-limits-find-end.webp (Travel Limits, find the end) -->
+
 Jog the carriage away from home with the same jog control used everywhere else in ncSender. Only the
 axis being calibrated is enabled. Start on the 10 mm step (hold it to pick a bigger one) until you are
 about 100 mm from the end, then 1 mm, then 0.1 mm for the last bit.
@@ -119,9 +129,12 @@ the carriage is a finger's width from the end.
 
 ### 4. Set limit
 
+<!-- CAPTURE NEEDED: assets/images/features/calibration-limits-set.webp (Travel Limits, set limit) -->
+
 The measured distance becomes the new limit, minus an optional safety gap (2 mm by default; choose
-**None** to put the limit exactly where the carriage is). Saving writes the setting, reads it back to
-confirm, and switches the paused limits back on.
+**None** to put the limit exactly where the carriage is). **Save new limit** writes the setting, reads
+it back to confirm, and switches the paused limits back on. **Set Y limit next** (or the next axis)
+takes you straight to it.
 
 ## Squareness
 
@@ -150,10 +163,14 @@ along Y. Mark **C**. The drawing shows the bit running along each leg as it goes
 
 ### 3. Measure
 
+<!-- CAPTURE NEEDED: assets/images/features/calibration-square-measure.webp (Squareness, measure) -->
+
 Measure dot to dot, centre to centre: **A→B**, **B→C**, and the diagonal **A→C**. The guide shows the
 ideal diagonal for reference and rejects numbers that cannot form a triangle.
 
 ### 4. Result
+
+<!-- CAPTURE NEEDED: assets/images/features/calibration-square-result.webp (Squareness, result) -->
 
 Within 0.05% of the side length the gantry is square. Otherwise the guide reports the error, for
 example "out of square by 0.8 mm over 300 mm", the angle at corner B, and which end of the gantry sits
@@ -167,6 +184,10 @@ toward the front or back. The drawing shows the tilt exaggerated against a dotte
   rails and the second check fine-tunes it automatically. If the offset turned out to work in the other
   direction on your machine, the next check notices, flips it, and remembers that for good. You never
   have to measure the rail spacing. A "prefer to adjust by hand" link is there if you want it.
+    - **"That went the wrong way."** means the last offset made the error bigger. The guide has
+      already flipped the direction, so just apply again.
+    - **"That's more than the controller allows"** means the error is too big for the offset. Square
+      the gantry by hand first (see below), then use the offset for the fine adjustment.
 - **Single Y motor**: loosen the gantry where it bolts to the Y carriages, nudge the end the guide
   names toward the front or back by roughly the amount shown, tighten, and run the check again.
 
@@ -176,6 +197,14 @@ toward the front or back. The drawing shows the tilt exaggerated against a dotte
 
 - **"Not available right now"**: the message on the tab says why. Usually the machine is not
   connected, a job is running, or the machine is in alarm. Travel Limits also needs homing enabled.
+
+    <!-- CAPTURE NEEDED: assets/images/features/calibration-unavailable.webp (Calibration unavailable) -->
+
+- **"Your controller stores its steps/mm in a config file, which this guide can't edit yet."**: you
+  are on FluidNC. The guides only work with grblHAL.
+- **"This device is in view-only mode."**: you opened ncSender from another browser without remote
+  control. Use the host machine, or turn on **Allow Remote Control**. See
+  [Remote Access](../settings/remote-access.md).
 - **The machine alarms during a guide**: press **Clear alarm**. If it will not clear, release the
   E-stop or move off the limit switch first, then press it again.
 - **A move was stopped part way**: put the bit back on your start mark and start that step again.

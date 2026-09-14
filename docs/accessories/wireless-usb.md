@@ -1,133 +1,164 @@
 # Wireless USB
 
-The Wireless USB is a small USB-A stick that ncSender uses to talk to your
-wireless accessories — the Pendant, AutoDustBoot, and Smart RGB LED — over
-the air. One Wireless USB can host all of them simultaneously; you plug it
-into the computer running ncSender once and forget it.
+The Wireless USB is a small USB stick that links ncSender to your wireless
+accessories: the Pendant, AutoDustBoot and RGB LED. One Wireless USB serves
+all of them at once. Plug it into the computer running ncSender and leave it
+there.
 
 ![Wireless USB stick](../assets/images/features/wireless-usb-hardware.png){ .center width="360" }
 
 ## What it does
 
-- **Radio bridge** between ncSender and each paired accessory (no Wi-Fi
-  network required — it uses ESP-NOW, a low-latency direct-radio protocol).
-- **Multi-device pairing**. On firmware v0.3.0 and newer, one Wireless USB
-  can hold up to 8 paired devices at once. Older firmware only supports a
-  single paired pendant.
-- **Per-Wireless-USB licensing**. Some accessories check the Wireless USB's
-  licence when they connect — activation is per-Wireless-USB, not per-device,
-  so a licensed Wireless USB serves everything paired to it.
+- **Radio link** between ncSender and each paired accessory. No Wi-Fi network
+  is needed.
+- **Several devices at once.** On firmware v0.3.0 and newer, one Wireless USB
+  holds up to 8 paired devices. Older firmware pairs a single pendant only.
 
-## The Wireless USB dialog
+## Accessories
 
-Everything you need to pair, unpair, activate, or check device status is in
-one place — the **Wireless USB** dialog in ncSender.
+Pairing, activation and firmware updates for the Wireless USB and every
+accessory are in **Accessories**.
 
-**To open it:** click the **Wireless USB icon** in the ncSender toolbar
-(circled in the screenshot below — sits next to the workspace / status
-indicators). The dialog opens over the visualizer.
+**To open it:** click the pendant icon in the ncSender toolbar. Its tooltip
+reads *ncSender Accessories*.
 
-![Opening the Wireless USB dialog from the ncSender toolbar](../assets/images/features/ncsender-wireless-usb-button.png)
+![ncSender Accessories](../assets/images/accessories/accessories-open.webp)
 
-The dialog shows whether the Wireless USB is plugged in and activated,
-and lists every accessory in the paired-device catalogue. Ones you've
-paired show as **Connected** with an **Unpair** button; ones you don't
-own yet show a **Get One** link. Use **+ Pair New Device** at the top
-of the list to pair a new accessory.
+Pick a device in the list to see it. For each device you can:
+
+- **Connection** — see whether it is connected, whether it is reached over
+  **USB** or **Wireless**, whether it is activated, and its **Device ID**.
+  Click **Copy** to copy the Device ID for support.
+- **Firmware** — see the installed and latest versions, and update.
+- **Activation** — activate the device. Only shown when it needs it.
+- **Configuration** — for the AutoDustBoot and RGB LED, install their plugin
+  to change their settings.
+- **Pairing** — unpair the device. Not shown for the Wireless USB itself.
+- **Get one** — open the store page. On an ncSender kiosk this shows a code to
+  scan with your phone.
+
+Marks next to a device in the list:
+
+- **!** — the device needs activation.
+- **↑** — a firmware update is available.
+
+Accessories opens on the device that needs attention first. Devices that are
+not on sale yet are marked **Coming Soon** or **Not available**.
+
+## Activating
+
+The Wireless USB must be activated before you can pair anything to it. Until
+then, **Pair Device** stays greyed out.
+
+1. Open **Accessories** and select the device marked **!**.
+2. Click **Activate**.
+3. If the device has been activated before, that is all. If it is new to the
+   store, enter the **Installation ID** that came with it, then click
+   **Activate**.
+
+<!-- CAPTURE NEEDED: assets/images/accessories/accessories-activate.webp (Activating an accessory) -->
+
+The same steps activate the Pendant, AutoDustBoot and RGB LED.
 
 ## Pairing a new device
 
-The pendant, AutoDustBoot, and Smart RGB LED all pair the same way from the
-ncSender side.
-
-1. **Click the pendant icon** in the toolbar to open the Wireless USB
-   dialog.
-2. **Click "+ Pair New Device"**. A **30-second countdown** starts — the
-   Wireless USB is now listening for a new device to pair.
-3. **On the accessory, enter pairing mode.** The exact gesture varies by
-   device:
+1. Open **Accessories**.
+2. Click **Pair Device**. The Wireless USB listens for new devices for
+   **60 seconds**. The button counts down.
+3. **On the accessory, start pairing:**
     - **Pendant** — Setup → ESP-NOW → Scan
-    - **AutoDustBoot** — hold the pair button for 3 seconds (LED blinks)
-    - **Smart RGB LED** — hold the pair button for 3 seconds (strip flashes
-      white)
-4. **Verify.** The device appears in the Wireless USB dialog's device list
-   as *Connected* within a few seconds.
+    - **AutoDustBoot** — put it into pairing mode (see
+      [AutoDustBoot &rarr;](autodustboot.md#physical-buttons))
+      <!-- OWNER: confirm the AutoDustBoot pairing gesture. This page used to say "hold the pair button for 3 seconds (LED blinks)"; autodustboot.md says "hold Retract ▲ + Extend ▼ together for about 3 seconds". -->
+    - **RGB LED** — power it on
+4. **Check it.** Select the device in the list. It shows **Connected**, and
+   the Pairing card reads *Paired to this Wireless USB.*
 
-!!! tip "The 30-second window closes fast"
-    Start the accessory's pairing gesture as soon as you click *+ Pair New
-    Device* — if the window closes before you finish, just click it again.
+<!-- CAPTURE NEEDED: assets/images/accessories/accessories-pair-device.webp (Pairing a device) -->
+
+To stop early, click the counting button again.
+
+!!! tip "Missed the window?"
+    Start pairing on the accessory as soon as you click **Pair Device**. If
+    the countdown runs out, click it again.
 
 ## Unpairing a device
 
-In the Wireless USB dialog, click **Unpair** next to the device you want to
-remove and confirm. The device stays paired on its own side until you clear
-it there too (each accessory's page has its own unpair step).
+1. Open **Accessories** and select the device.
+2. In the **Pairing** card, click **Unpair**.
+3. Confirm with **Unpair**.
 
-## When to flash new firmware
+![Unpair confirmation](../assets/images/accessories/accessories-unpair-confirm.webp)
 
-Under normal use you never touch the Wireless USB. Flash a firmware update
-when:
+To use the device again, pair it again. The device may still show itself as
+paired on its own screen until you clear it there too.
 
-- **You're enabling wireless multi-device support.** Running the pendant
-  alongside AutoDustBoot or Smart RGB LED on the same Wireless USB requires
-  **v0.3.0 or newer**; older firmware only supports a single paired pendant.
-- **A newer firmware fixes an issue you're hitting** — pairing failures,
-  intermittent disconnects, LCD glitches, etc.
+## Updating firmware
 
-## How to flash the Wireless USB firmware
+On Wireless USB **v0.3.5 or newer**, update the Wireless USB and every
+accessory from **Accessories**:
 
-!!! success "You only have to do this once"
-    **v0.3.5 is the last firmware that needs the browser flasher.** From
-    v0.3.5 onward the Wireless USB can update *itself*, so every future
-    update — for the Wireless USB and for every accessory paired to it —
-    is done from inside ncSender / ncSender Pro under **Accessories**. No
-    BOOT button, no unplugging, no browser. Flash v0.3.5 once, and you are
-    finished with this page.
+1. Open **Accessories** and select the device. A **↑** mark means an update
+   is ready.
+2. In the **Firmware** card, check **Installed** and **Latest**.
+3. Click **Update to v…**.
+4. Keep the device powered and connected until it finishes.
 
-Unlike the pendant / AutoDustBoot / Smart RGB LED, the Wireless USB is
-flashed from your browser, not from inside ncSender. You'll need
-**Google Chrome or Microsoft Edge (v89+)** — Safari and Firefox do not
-support the Web Serial API the flasher uses.
+![Firmware card](../assets/images/accessories/accessories-firmware-update.webp)
 
-1. **Quit ncSender** on every computer that has this Wireless USB plugged
-   in. Only one program can hold the serial port at a time — if ncSender is
-   running, the flasher's *Connect* step will fail.
+If an update is interrupted, the current firmware keeps working. Just start
+the update again.
+
+- Accessories with a USB cable plugged in update over the cable. Otherwise they
+  update wirelessly. The RGB LED always updates wirelessly.
+- While one device is updating, pairing, unpairing and other updates wait.
+
+### Flashing a firmware file
+
+To install a `.bin` file you downloaded:
+
+1. Select the device in **Accessories**.
+2. Press and hold **Update** for about a second.
+3. Pick the file.
+
+If the file name doesn't look like firmware for that device, ncSender warns
+you before flashing. ncSender refuses a file that belongs to a different
+accessory.
+
+## Wireless USB older than v0.3.5
+
+A Wireless USB older than v0.3.5 cannot update itself. Flash v0.3.5 once from
+your browser. After that, use **Accessories** for every update.
+
+On v0.3.3 and older, wireless updates for the pendant, AutoDustBoot and RGB
+LED stall and never finish. Flash v0.3.5 first.
+
+You need **Google Chrome or Microsoft Edge (v89+)**. Safari and Firefox don't
+work.
+
+1. **Quit ncSender** on every computer this Wireless USB is plugged into. If
+   ncSender is running, the flasher can't connect.
 2. **Open the flasher** in Chrome or Edge:
    [Wireless USB Flasher &rarr;](../utility/wireless-usb-flasher.md)
-3. **Pick a firmware version** from the list on the page. **v0.3.5** is
-   the current release, and it is the last one you will ever flash this
-   way — see the note below. It is also required for wireless firmware
-   updates: on v0.3.3 and older the Wireless USB resets itself partway
-   through an over-the-air update, so pendant / AutoDustBoot / Smart RGB
-   LED updates stall and never finish.
+3. **Pick v0.3.5.**
 4. **Put the Wireless USB into boot mode:**
     1. Press and hold the small **BOOT** button on the Wireless USB.
-    2. While still holding, plug it into a USB port on your computer.
-    3. Continue holding for about **1 second**, then release.
-5. **Click Connect** in the flasher. A browser dialog asks which serial
-   device to attach — pick the entry that just appeared (usually shows
-   *ESP32-S3* or similar). If nothing appears in the list, the Wireless USB
-   isn't in boot mode — unplug it and repeat step 4.
-6. **Click Flash firmware.** A progress bar fills as the new firmware
-   writes. It takes about 10–20 seconds. Do not unplug the Wireless USB
-   while it's flashing.
-7. When the progress reaches 100%, **unplug the Wireless USB and plug it
-   back in**. On power-up it shows the new firmware version on its own LCD.
+    2. While still holding, plug it into your computer.
+    3. Keep holding for about **1 second**, then release.
+5. **Click Connect** in the flasher, and pick the device that just appeared
+   (usually *ESP32-S3*). If nothing appears, the Wireless USB isn't in boot
+   mode. Unplug it and repeat step 4.
+6. **Click Flash firmware.** It takes about 10–20 seconds. Don't unplug the
+   Wireless USB while it's flashing.
+7. At 100%, **unplug the Wireless USB and plug it back in**.
 
 !!! tip "Checking the Wireless USB firmware version"
-    The Wireless USB prints its firmware version on its own LCD at
-    power-on (e.g. `v0.3.0`). You can also see it at the top of the
-    **Wireless USB** dialog in ncSender.
+    Open **Accessories**, select **Wireless USB**, and look at **Installed**
+    in the Firmware card. The Wireless USB also shows its version on its own
+    screen when it powers on.
 
-!!! warning "Compatibility"
-    Accessories and the Wireless USB running mismatched firmware major
-    versions may fail to pair. If you update the Wireless USB to v0.3.x,
-    make sure your accessories are on their v0.3.x-compatible firmware
-    too (see each accessory's page for the exact minimum version).
+### After a Wireless USB update
 
-### After a major firmware update
-
-A major-version bump on the Wireless USB (for example `v0.2.x → v0.3.x`)
-wipes the stored paired-device list. Every previously-paired accessory will
-show as *disconnected* even though both devices power on normally. Re-pair
-each one — you only have to do this once per major-version change.
+If an accessory shows as not connected after a Wireless USB update, even
+though both devices power on normally, pair it again. The pendant needs
+firmware **v1.0.16 or newer** to pair with a Wireless USB on v0.3.x.

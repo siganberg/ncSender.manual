@@ -74,6 +74,9 @@ received the firmware settings and so does not know that it is.
    button stays disabled until the settings are re-read. This is the usual
    answer on a fresh install that "worked yesterday".
 
+The **Homing** step of the [Machine Setup Wizard](getting-started/setup-wizard.md)
+turns homing on with the recommended value in one click (**Use recommended (75)**).
+
 ### The firmware settings page is blank
 
 **Symptom.** **Settings → Firmware** shows nothing, or setting numbers with no
@@ -88,7 +91,7 @@ settings request is incomplete, the page keeps showing the empty copy.
 1. Click **Reload** on the firmware page — this re-fetches everything from the
    controller. It is display-only; nothing is written to the machine.
 2. If it is still blank, quit ncSender, delete `firmware.json` from ncSender's
-   application-data folder (or the whole `grblHAL` folder inside it), and start
+   application-data folder (or the whole `grblhal` folder inside it), and start
    ncSender again.
 3. Power-cycle the controller and reconnect.
 
@@ -104,7 +107,7 @@ same file and machine looked fine in another sender.
   Enabling homing is only bit 1. Bit 8 — *set machine origin to 0* — is what
   leaves the machine at a known zero after homing. Without it the machine homes
   but never establishes the origin the visualizer draws against.
-- **Settings → General → machine home location**, which tells the visualizer
+- **Settings → General → Machine Home Location**, which tells the visualizer
   *which corner* that origin is in.
 
 ncSender draws a bounded envelope, so a mismatch shows up immediately. A sender
@@ -113,37 +116,68 @@ looked correct elsewhere looks wrong here.
 
 **Fix.**
 
-1. Set **Settings → General → machine home location** to the corner the machine
+1. Set **Settings → General → Machine Home Location** to the corner the machine
    actually homes to.
 2. Make sure `$22` includes the *set machine origin to 0* bit. A machine
    reporting `$22=3` shows this fault; `$22=75` resolves it.
 3. Re-home and reload the file.
 
+The **Homing** step of the [Machine Setup Wizard](getting-started/setup-wizard.md)
+sets both `$22` and the home corner in one place.
+
 ### Commands keep failing even when they're valid
 
-**Symptom.** After a G-code error, the controller starts rejecting subsequent commands — either with the same error, or a generic "Unknown error" — even though those commands are correctly formatted and worked moments earlier.
+**Symptom.** After a G-code error, the controller keeps rejecting the next
+commands, even ones that worked moments earlier.
 
-**Common example.** You send a series of `M64` / `M65` (auxiliary output) commands. One fails. The next ones also fail, even though they're identical in shape to ones that just succeeded.
+**Cause.** After some errors grblHAL stays in an error state and rejects
+commands until that state is cleared.
 
-**Cause.** This is grblHAL behavior, not an ncSender bug. When grblHAL hits certain errors during a command stream, it can leave its parser and motion planner momentarily out of sync while it makes sure the machine is in a well-defined state. Until that state clears, subsequent commands that would normally succeed keep getting rejected — even benign ones like auxiliary output toggles. It's a safety-first choice by grblHAL: rather than accept commands into an ambiguous state, the controller stops accepting them at all.
+**Fix.** Update ncSender to the latest version. Current versions clear this
+state automatically before every command you type in the **Terminal**, press
+in the app or run from a macro. Lines of a running job are left alone, so a
+program still stops at a bad line.
 
-**Fix.** Send a **single jog command** to nudge the controller back into a normal ready state:
+If the machine is in an **alarm** rather than an error, follow the alarm
+dialog and press **Press to Unlock**.
 
-```
-$J=G21 G91 X1 F3000
-```
+### My machine shows an alarm right after power-on
 
-That's a 1 mm relative jog on X at 3000 mm/min — small, fast, and predictable. Once it completes, subsequent commands are accepted normally.
+**Symptom.** Every time the controller is powered on, ncSender shows a
+**Power-on safety check** alarm.
 
-If a 1 mm move isn't safe on your setup (near a fixture, small workspace), use a smaller step:
+**Cause.** Many grblHAL boards with an E-stop ask for this once after every
+power-on, to confirm the E-stop works.
 
-```
-$J=G21 G91 X0.1 F1000
-```
+**Fix.** Press the E-stop button in, release it, then press **Press to Unlock**.
 
-The specific movement doesn't matter — the point is to get one jog through the controller so it reinitialises its state.
+<!-- CAPTURE NEEDED: assets/images/getting-started/faq-alarm-power-on-check.webp (Power-on safety check alarm) -->
 
-**If the jog also fails,** the controller is likely in an **alarm** state (a stronger stop than an error state). Check the machine status in ncSender's status panel; you may need to send `$X` to unlock, then investigate what triggered the alarm.
+### Unlock does nothing
+
+**Symptom.** You press **Press to Unlock**, it shows **Unlocking…** with a
+countdown, and the alarm stays.
+
+**Cause.** The controller refuses to unlock while the cause is still active:
+the E-stop is held, a limit switch is pressed, or a motor fault input is
+active. One press keeps retrying for up to 30 seconds.
+
+**Fix.** Release the E-stop, move off the switch, or fix the motor fault
+input. It unlocks on the next try.
+
+<!-- CAPTURE NEEDED: assets/images/getting-started/faq-unlock-blocked.webp (Unlock blocked while the cause is active) -->
+
+### Motor fault alarm right after enabling motor fault inputs
+
+**Symptom.** A healthy machine raises a **Motor fault** alarm as soon as the
+motor fault inputs are turned on.
+
+**Cause.** The input reads backwards.
+
+**Fix.** Turn on **Invert** for that axis in the **Motor fault** step of the
+[Machine Setup Wizard](getting-started/setup-wizard.md) (or set `$745` under
+**Settings → Firmware**), then unlock. If the alarm appears at another time,
+check the motor wiring and driver temperature, power-cycle and re-home.
 
 ## Connection and performance
 
@@ -210,7 +244,9 @@ ncSender's probe and pin indicators never change.
 
 - **Invert the input**, then **reboot the controller** — the change is read at
   start-up. When an input is inverted correctly its pin indicator sits green
-  while nothing is touching it.
+  while nothing is touching it. The **Switches & probe** step of the
+  [Machine Setup Wizard](getting-started/setup-wizard.md) lets you touch the
+  probe and toggle **Invert** while watching the result live.
 - **Check the controller's own settings**, `$6` (invert probe pin) and `$10`
   (status report mask). ncSender only reports these; it does not set them.
 - **After swapping a controller, re-apply your probe and VFD settings.** A
@@ -257,11 +293,11 @@ tool setter with the first tool before you probe the workpiece is not necessary.
 **Symptom.** Pressing **Manual** moves to the changer anyway, or a surfacing
 bit too large for the magazine is treated as an automatic change.
 
-**Cause.** **Virtual Magazine Size** in the plugin settings decides this. Any
+**Cause.** **Number of Slots** on the Rapid Change ATC **Magazine** tab decides this. Any
 tool number **inside** that range is an automatic change through the magazine;
 anything **outside** it is a manual change and never goes near the changer.
 
-**Fix.** Set Virtual Magazine Size to the number of slots you actually have —
+**Fix.** Set Number of Slots to the number of slots you actually have —
 eight is common with a Solo — and give oversized tools a number above it. A
 2.5" surfacing bit numbered T12 with a magazine size of 8 is then handled as a
 manual change automatically.
@@ -309,7 +345,7 @@ nut is not threaded properly, or the load is loud and rough.
   speed, the spindle runs at `$31` instead. One machine with `$31=6000` ramped
   to 6000 rpm and plunged, damaging the spindle socket. Around **1000** is a
   typical value for tool changes.
-- **Spindle At-Speed** in the plugin's Advanced tab. When on, the controller
+- **Spindle At-Speed** on the Rapid Change ATC **Magazine** tab. When on, the controller
   waits for the VFD to report it has reached speed before moving — which needs
   firmware that supports it, and a VFD that reports it. If tool changes fail
   right after a `G65 P6`, that call is what this option emits: either update the
@@ -394,9 +430,9 @@ Circles are cut with a helical entry and a final finish pass.
 So if a hole comes out with a post in the middle, you asked for a perimeter cut
 where you wanted a clearing one — switch the mode rather than changing the bit.
 
-!!! note "QuickCut replaces the old ToolBench bore operation"
-    Older videos and forum posts point at ToolBench for circular cuts. QuickCut
-    is the current answer; ToolBench remains for surfacing and jointing.
+!!! note "QuickCut replaces ToolBench"
+    Older videos and forum posts point at ToolBench. ToolBench has been retired;
+    use [QuickCut](plugins/quickcut.md) instead.
 
 ### A plugin's settings dialog has no visible Save or Close button
 
@@ -404,7 +440,38 @@ At some window heights the dialog's buttons sit off the bottom of the screen —
 1920×1080 at 100% is a common case. Press **Ctrl+-** to zoom out, or **F11** for
 full screen, and they reappear.
 
+## Using the app
+
+### I have a new controller. Where do I start?
+
+Open **Settings → General** and click **Run setup wizard**. The
+[Machine Setup Wizard](getting-started/setup-wizard.md) sets up the connection,
+travel, switches and probe, homing and safety limits.
+
+### How do I change the language?
+
+In ncSender Pro, open **Settings → General → Language & Region** and pick a
+**Language**: English, Deutsch, Français or Español. Anything not yet
+translated shows in English.
+
+### Links do nothing on my kiosk
+
+A kiosk screen has no web browser, so links open a **Scan to open** QR code
+instead. Point your phone camera at it to open the page on your phone.
+
+### Where did the Wireless USB dialog go?
+
+It is now part of **Accessories**. Click the Accessories icon in the toolbar to
+pair, activate and update your Wireless USB, pendant and other accessories.
+See [Wireless USB](accessories/wireless-usb.md).
+
 ## Files, settings and updates
+
+### How do I go back to a previous version?
+
+In ncSender Pro, open **Software Update**, expand **Version History**, pick
+the version and press **Roll back**. See
+[Software Updates](getting-started/software-updates.md#going-back-to-an-older-version).
 
 ### Backup and Restore doesn't include my firmware settings
 

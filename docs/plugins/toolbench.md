@@ -1,50 +1,12 @@
-# ToolBench
+# ToolBench (retired)
 
-G-code generator for surfacing and jointing operations.
+ToolBench is no longer maintained. **[QuickCut](quickcut.md)** replaces it.
 
-!!! warning "Superseded by QuickCut"
-    [QuickCut &rarr;](quickcut.md) replaces this plugin. It has the same Planer
-    and Jointer operations plus parting cuts and shape generation, and it is
-    where boring now lives — as a Circle, which can clear the middle of the hole
-    as well as cut its perimeter. This page is kept for machines still running
-    ToolBench.
+QuickCut has everything ToolBench did, and more:
 
-<!-- TODO: Screenshot of ToolBench planer dialog -->
-![ToolBench planer](../assets/images/plugins/toolbench-planer.png){ .placeholder }
+- Surfacing is **Planer**.
+- Edge jointing is **Jointer**.
+- Boring a hole is **Circle**, which can also clear a flat-bottomed pocket.
 
-## Tools
-
-### Planer (Surfacing)
-
-Generate surfacing toolpaths for flattening material or wasteboards.
-
-**Modes:**
-
-| Mode | Z-Zero Reference | Use Case |
-|------|-----------------|----------|
-| **Target Depth** | Top of material | Remove a fixed depth from the surface |
-| **Target Thickness** | Bottom of material (wasteboard) | Mill down to a specific thickness |
-| **Wasteboard Surfacing** | Top of material | Surface the entire machine bed |
-
-<!-- TODO: Screenshot of wasteboard surfacing mode with dimensions auto-populated -->
-![Wasteboard mode](../assets/images/plugins/toolbench-wasteboard.png){ .placeholder }
-
-**Wasteboard Surfacing** automatically reads machine travel limits ($130/$131) and fills the entire work area. The origin picker and dimensions are disabled — the machine does all the work.
-
-**Parameters:**
-
-| Setting | Description |
-|---------|-------------|
-| **Direction** | Horizontal, Vertical, or Spiral pattern |
-| **Origin** | Work zero position (5-point picker) |
-| **X/Y Dimension** | Area to surface |
-| **Depth of Cut** | Material removed per pass |
-| **Stepover** | Percentage of bit diameter per step (10-100%) |
-| **Overrun** | Extra travel beyond edges for clean cuts |
-| **Bit Diameter** | Surfacing bit size |
-| **Feed Rate** | Cutting speed |
-| **Spindle RPM** | Spindle speed |
-| **Coolant** | Mist (M7) and Flood (M8) toggles |
-
-<!-- TODO: GIF/WebP animation of generated surfacing toolpath in visualizer -->
-![Surfacing toolpath](../assets/images/plugins/toolbench-toolpath.webp){ .placeholder }
+If ToolBench is still installed, install QuickCut from **Settings** >
+**Plugins** > **Install Plugin**, then **Uninstall** ToolBench.

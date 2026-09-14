@@ -14,9 +14,9 @@
     'features/4th-axis',
     'features/multi-workspace',
     'features/trace',
-    'features/safety-door',
+    'features/keepout-zone',
+    'features/language-region',
     'features/virtual-keyboard',
-    'plugins/rapid-change-atc',
   ];
 
   // Tab labels (inside Material `=== "…"` blocks) whose entire tab is Pro-only.

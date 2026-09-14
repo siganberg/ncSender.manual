@@ -1,71 +1,75 @@
 # 3DMesh
 
-Surface mesh probing with Z compensation for milling curved or uneven materials using flat (2D) G-code programs.
+3DMesh probes the surface of your stock at many points, then adjusts your
+program's depths so the cut follows the surface. Use it to engrave or carve on
+a warped board, a curved guitar top or a spoilboard that isn't flat.
 
-<!-- TODO: Screenshot of 3DMesh dialog with 3D mesh visualization -->
-![3DMesh dialog](../assets/images/plugins/3dmesh-dialog.png){ .placeholder }
+3DMesh is for **ncSender Pro**. You need a touch probe.
 
-## How It Works
+## Before you start
 
-3DMesh probes a grid of points across your workpiece surface to create a height map. It then adjusts the Z-coordinates in your G-code to follow the surface contour, compensating for material curvature or mounting inconsistencies.
+1. Install 3DMesh from **Settings** > **Plugins** > **Install Plugin**.
+2. Connect your probe and home the machine.
+3. Load your program.
+4. Set work zero.
 
-## Usage
+## Probe the surface
 
-1. Load your G-code program
-2. Open **3DMesh** from the Tools menu
-3. Configure the probe grid (rows, columns, or auto-detect from G-code bounds)
-4. Set probe parameters (feed rate, clearance, max plunge depth)
-5. Click **Start Probing** — the machine probes each grid point
-6. Review the 3D mesh visualization
-7. Click **Apply Z Compensation** to adjust the loaded program
+<!-- CAPTURE NEEDED: assets/images/plugins/3dmesh-probe.webp (3DMesh, Probe tab) -->
 
-## Grid Modes
+1. Open the **Plugins** tab in the console area and press **3DMesh**.
+2. On the **Probe** tab, set **Grid Mode**:
+    - **Auto from G-code**: covers the area of the loaded program.
+    - **Manual**: enter **Size X** and **Size Y** yourself.
+3. Set **Columns (X)** and **Rows (Y)**, the number of points in each
+   direction. More points follow the surface more closely but take longer.
+4. Check the probe settings (below).
+5. Jog the probe to the starting corner, above the stock.
+6. Press **Start Probing**.
 
-- **Auto** — Automatically calculates grid dimensions from the loaded G-code bounds
-- **Manual** — Specify rows, columns, and dimensions manually
+The machine probes each point in turn. Press **Stop** to halt.
 
-## 3D Visualization
+<!-- CAPTURE NEEDED: assets/images/plugins/3dmesh-probing.webp (Probing the grid) -->
 
-<!-- TODO: Screenshot of the 3D mesh visualization with color-coded height map -->
-![Mesh visualization](../assets/images/plugins/3dmesh-visualization.png){ .placeholder }
+!!! note
+    Between points the machine moves with the probe active, so it stops if the
+    probe touches something on the way.
 
-After probing, the plugin displays an interactive 3D view of the measured surface:
+Press **Save Settings** to keep your grid and probe settings for next time.
 
-- Isometric projection with drag rotation
-- XYZ axes and floor/side grids
-- Color-coded height values
-- Mesh data table with X, Y, Z coordinates
+## Apply to your program
 
-## Mesh Library
+<!-- CAPTURE NEEDED: assets/images/plugins/3dmesh-apply.webp (Applying the mesh) -->
 
-<!-- TODO: Screenshot of saved meshes list -->
-![Mesh library](../assets/images/plugins/3dmesh-library.png){ .placeholder }
+Press **Apply**. The adjusted program loads. Your original file is kept. To go
+back, use **Reset to Original** in the visualizer.
 
-Save and manage multiple mesh profiles:
+## Mesh Data
 
-- Auto-save after probing
-- Rename saved meshes
-- Load a previous mesh without re-probing
-- Each mesh stores grid parameters and all measured points
+<!-- CAPTURE NEEDED: assets/images/plugins/3dmesh-mesh-data.webp (3DMesh, Mesh Data tab) -->
+
+The **Mesh Data** tab shows the measured surface. Drag to rotate the 3D view.
+
+- **Current Mesh**: the points just measured. Type a name and press **Rename**
+  to keep it under that name.
+- **Saved Meshes**: meshes are saved after probing. Pick one to use it again
+  without probing, for example when you cut a second part on the same fixture.
 
 ## Settings
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| **Grid Mode** | Auto (from G-code) or Manual | Auto |
-| **Rows / Columns** | Number of probe points per axis | 3 x 5 |
-| **Probe Feed Rate** | Speed for Z probing | 100 mm/min |
-| **Travel Feed Rate** | Speed for XY travel between points | 2000 mm/min |
-| **Clearance Height** | Safe Z height between probes | 5 mm |
-| **Max Plunge** | Maximum Z probe depth | 20 mm |
+| Setting | What it does | Default |
+|---|---|---|
+| **Grid Mode** | **Manual** or **Auto from G-code** | |
+| **Columns (X)** / **Rows (Y)** | Number of points in each direction | 5 × 5 |
+| **Size X** / **Size Y** | Size of the area to probe (Manual only) | 100 mm |
+| **Probe Feed Rate** | How fast the probe moves down | 100 mm/min |
+| **Travel Feed Rate** | How fast it moves between points | 2000 mm/min |
+| **Clearance Height** | How high it lifts between points | 5 mm |
+| **Max Plunge** | How far down it searches before giving up | 20 mm |
 
-## Z Compensation
+## Troubleshooting
 
-The compensation uses bilinear interpolation between grid points:
-
-- Long moves are subdivided to follow the surface accurately
-- G0 rapid moves maintain safe Z heights
-- The original file is preserved for "Reset to Original"
-
-!!! warning "Double Compensation"
-    3DMesh detects if a file has already been compensated and prevents applying compensation twice.
+- **A point isn't found.** The surface is lower than **Max Plunge** reaches.
+  Raise Max Plunge or start closer to the stock.
+- **Probing hits a clamp.** Raise **Clearance Height**, or make the grid smaller
+  so it stays inside the stock.

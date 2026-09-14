@@ -1,38 +1,57 @@
 # G-Code Preview
 
-The **G-Code Preview** tab shows the loaded program as text, next to the
-[Terminal](console.md), [Macros](macros.md), Plugins, and [Events](program-events.md)
-tabs in the panel below the visualizer.
+The **G-Code Preview** tab shows the loaded file as text.
 
-![G-code preview](../assets/images/features/gcode-preview.png)
+![G-code preview](../assets/images/features/gcode-preview.webp)
 
-The docked tab gives you a readable view of the program:
+The tab shows:
 
-- **Syntax highlighting** — color-coded G-code
-- **Line numbers** — for reference
-- **Filename & line count** — shown in the footer
-- **Current-line tracking** — while a job runs, completed lines are dimmed and the line
-  currently streaming to the controller is highlighted. Turn on **Auto-Scroll** to keep
-  that line in view.
+- **Colour-coded G-code**
+- **Line numbers**
+- **File name and line count** at the bottom
+- **Current line**: while a job runs, finished lines are dimmed and the line being
+  sent is highlighted. Turn on **Auto-Scroll** to keep that line in view.
 
-## Detached window
+<!-- CAPTURE NEEDED: assets/images/features/gcode-preview-running.webp (Preview during a job) -->
 
-![Detached G-code preview with find & replace](../assets/images/features/gcode-preview-detached.png)
+With no file loaded, the tab reads **No G-code loaded**. Load a file from the
+[Visualizer](visualizer.md#loading-a-file), or drop a `.gcode` or `.nc` file onto the
+window.
 
-Click the **expand** button at the top-right of the tab to open the preview in a large
-window. What it offers depends on whether a job is running:
+## Start From Line
 
-- **While a job runs** — a read-only viewer with the same current-line tracking and its
-  own **Auto-Scroll** toggle.
-- **When idle** — a full **editable** editor. Make changes to the loaded program, then
-  **Commit Changes** to keep them or **Discard** to throw them away.
+To start a job partway through, double-click a line, or select it in the line
+numbers. The **Start From Line** dialog opens with that line filled in.
+
+![Start From Line from the preview](../assets/images/features/gcode-preview-start-from-line.webp)
+
+## Larger view
+
+Click **Open in larger view** to open the file in a large window. What you can do
+depends on whether a job is running:
+
+- **While a job runs**: you can read the file only. It follows the current line and
+  has its own **Auto-Scroll** switch.
+- **When idle**: you can edit the file.
+
+![Editing in the larger view](../assets/images/features/gcode-preview-editor.webp)
+
+### Editing a file
+
+1. Open the larger view while no job is running.
+2. Make your changes.
+3. Click **Commit Changes** to keep them. It turns on once you've changed something.
+
+To throw away your edits, click **Discard**. Before you edit, this button reads
+**Close**.
+
+If you open **Start From Line** with unsaved edits, ncSender asks what to do: **Save
+First**, **Discard** or **Cancel**. Unsaved edits are lost if a job starts.
 
 ### Find & Replace
 
-The detached window adds a Find & Replace toolbar:
-
-- **Find** — type to search; a counter shows the current match (e.g. *3 of 12*), and
-  ++enter++ / ++shift+enter++ jump to the next / previous match.
-- **Match Case** (`Aa`, ++alt+c++), **Match Whole Word** (++alt+w++), and **Regular
-  Expression** (`.*`, ++alt+r++) refine the search.
-- **Replace** and **Replace All** are available when no job is running.
+- **Find**: type to search. The count shows where you are, for example *3 of 12*.
+  Press ++enter++ for the next match and ++shift+enter++ for the previous one.
+- **Match Case** (`Aa`, ++alt+c++), **Match Whole Word** (++alt+w++) and **Use
+  Regular Expression** (`.*`, ++alt+r++) narrow the search.
+- **Replace** and **Replace All** work when no job is running.

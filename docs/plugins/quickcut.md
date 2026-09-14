@@ -1,110 +1,174 @@
 # QuickCut
 
-G-code generator for everyday operations — shapes, surfacing and edge work —
-straight from a dialog in ncSender. For the jobs where opening a CAM package to
-cut one rectangle, flatten a spoilboard or true up a rough edge isn't worth the
-setup.
+QuickCut makes G-code for everyday jobs straight from a dialog: cut a
+rectangle, circle or polygon, flatten a board or spoilboard, true up an edge or
+cut stock to size. Use it when opening a CAM program for one simple cut isn't
+worth it.
+
+The dialog title shows **Beta**.
 
 !!! info "QuickCut replaces ToolBench"
-    Surfacing, jointing and boring all moved here, and the shape operations are
-    new. See [Coming from ToolBench](#coming-from-toolbench) below.
+    Surfacing, jointing and boring moved here from the retired ToolBench plugin.
+    See [Coming from ToolBench](#coming-from-toolbench).
 
-<!-- TODO: Screenshot of the QuickCut dialog with the Circle tab open -->
+![QuickCut, Circle tab](../assets/images/plugins/quickcut-circle.webp)
 
-## Shapes
+## Make a cut
 
-Three shape operations — **Rectangle**, **Circle** and **Polygon** — that share
-the same cut types, origin picker and pattern options.
+1. Open the **Plugins** tab in the console area and press **QuickCut**.
+2. Pick a tab: **Rectangle**, **Circle**, **Polygon**, **Planer**, **Jointer**
+   or **Cutter**.
+3. Fill in the fields.
+4. Press **Generate**.
 
-### Cut type
+The dialog closes and the program loads, ready to check in the visualizer and
+run.
 
-The setting that decides whether anything is left in the middle:
+![Generate a program](../assets/images/plugins/quickcut-generate.webp)
 
-| Cut type | What it does |
+Each tab remembers its values for next time.
+
+## Settings on every tab
+
+**Tool**
+
+- **Bit Diameter**, **Feed Rate**, **Plunge Rate**.
+
+**Spindle & Coolant**
+
+- **Spindle RPM**.
+- **Delay (s)**: how long to wait for the spindle to get up to speed.
+- **Mist (M7)** and **Flood (M8)**: turn coolant on for the job.
+
+**Depth**
+
+- **Total Depth**: how deep to cut in total.
+- **Depth of Cut**: how deep each pass goes.
+
+QuickCut uses your ncSender units (mm or inches) and your Safe Z height.
+
+## Shapes: Rectangle, Circle, Polygon
+
+| Shape | Fields |
 |---|---|
-| **Inner (perimeter)** | Cuts around the inside of the line. On a through cut this frees a slug and leaves the centre uncut — right for a hole whose waste you intend to push out. |
-| **Inner (clearing)** | Clears the whole enclosed area, so a blind pocket comes out flat-bottomed with nothing standing in the middle. |
-| **Outer (part)** | Cuts outside the line, parting the shape off the surrounding stock. |
+| **Rectangle** | **Width**, **Height**, **Corner Radius** (0 for sharp corners) |
+| **Circle** | **Diameter**. Circles are cut with a spiral entry and a final clean-up pass. |
+| **Polygon** | **Sides** (3 to 12), **Diameter** (corner to corner), **Start Angle (°)** to turn the shape |
 
-If a hole comes out with a post in the middle, you asked for a perimeter cut
-where you wanted a clearing one — change the cut type rather than the bit.
+![QuickCut, Polygon tab](../assets/images/plugins/quickcut-polygon.webp)
 
-### Per-shape options
+### Cut Type
 
-| Shape | Options |
+This decides what is left in the middle.
+
+| Cut Type | What it does |
 |---|---|
-| **Rectangle** | Width, height, optional corner radius |
-| **Circle** | Diameter, cut with a helical entry and a final finish pass |
-| **Polygon** | Number of sides and rotation |
+| **Inner (perimeter)** | Cuts just inside the line. On a through cut the middle falls out as one piece. |
+| **Inner (clearing)** | Clears the whole inside, so a pocket comes out flat-bottomed. |
+| **Outer (part)** | Cuts just outside the line, freeing the shape from the stock. |
 
-### Patterns
+If a hole comes out with a post in the middle, you picked **Inner (perimeter)**
+where you wanted **Inner (clearing)**.
 
-Any shape can be repeated without generating the file again:
+**Stepover (% of bit)** sets how far the bit moves over on each lap when
+clearing.
 
-| Pattern | Layout |
-|---|---|
-| **Linear** | A grid — X × Y counts with signed distances, so the pattern can run in any direction from the origin |
-| **Circular (Identical)** | Copies spaced around a radius, each one in the same orientation |
-| **Circular (Path Direction)** | Copies spaced around a radius, each rotated to follow the circle |
+### Origin
 
-Both the shape and the pattern have their own rotation setting.
+Pick where work zero sits on the shape. The origin applies to the whole
+program, including every copy in a pattern, not just the first shape.
 
-!!! note "Origin applies to the whole program"
-    The origin you pick is the origin of everything QuickCut generates,
-    patterns included — not of the first shape in the pattern.
+### Pattern
 
-## Operations
+Turn on **Pattern** to cut several copies in one program, then pick a
+**Pattern Style**.
 
-### Planer
-
-Surface a flat region — a workpiece or the machine's own wasteboard.
-
-| Mode | Z-zero reference | Use case |
+| Pattern Style | Layout | Fields |
 |---|---|---|
-| **Target Depth** | Top of material | Remove a fixed depth from the surface |
-| **Target Thickness** | Bottom of material (wasteboard) | Mill down to a specific finished thickness |
-| **Wasteboard Surfacing** | Top of material | Surface the whole machine bed |
+| **Linear** | Rows and columns | **X Count**, **Y Count**, **X Distance**, **Y Distance**. Use a negative distance to go the other way. |
+| **Honeycomb** | Rows shifted by half a step, like a honeycomb | Same as Linear, plus **Symmetric Ends** |
+| **Circular (Identical)** | Around a circle, every copy facing the same way | **Count**, **Radius**, **Start Angle (°)** |
+| **Circular (Path Direction)** | Around a circle, each copy turned to follow the circle | **Count**, **Radius**, **Start Angle (°)** |
 
-**Wasteboard Surfacing** reads the machine's travel limits from grblHAL
-(`$130`/`$131`) and fills the work area, so there are no dimensions to enter.
+**Symmetric Ends** drops one copy from each shifted row so both ends of the
+honeycomb line up.
 
-Raster patterns: **Zigzag (long-X)**, **Zigzag (long-Y)**,
-**Spiral (outside-in)** and **Honeycomb**.
+On the **Circle** tab there is a single **Circular** style, because a turned
+circle looks the same.
 
-A side-view preview shows the Z0 reference line and depth arrows before you
-generate, which is the quickest way to catch a mode chosen in error — Target
-Depth and Target Thickness measure from opposite faces of the material.
+![Rectangle with a Honeycomb pattern](../assets/images/plugins/quickcut-rectangle-honeycomb.webp)
 
-### Jointer
+## Planer
 
-Make a straight reference edge on rough stock.
+Flatten an area of stock, or your whole spoilboard.
 
-Choose the side to work (**Front**, **Back**, **Left** or **Right**), a trim
-width and a number of trims. Cuts run in a single direction so climb or
-conventional stays consistent across every pass rather than alternating. A
-top-view preview shows the cut layout before the job runs.
+![QuickCut, Planer tab](../assets/images/plugins/quickcut-planer.webp)
 
-### Cutter
+Pick a **Mode**:
 
-A cold-saw-style parting cut: a single cut line at a target dimension,
-compensated for the bit radius, taken in multiple Z passes to keep the load off
-the bit.
+| Mode | Set Z zero on | Use it to |
+|---|---|---|
+| **Target Depth** | Top of the stock | Take a set amount off the top |
+| **Target Thickness** | Spoilboard (bottom of the stock) | Mill the stock down to a finished thickness. Enter the **Starting Thickness**. |
+| **Wasteboard Surfacing** | Top of the spoilboard | Flatten the whole machine bed |
 
-## Common settings
+**Wasteboard Surfacing** reads your machine's travel from the controller and
+covers the whole work area, so there is no size to enter.
 
-- **Units** — metric and imperial, following ncSender's own units preference.
-- **Safe Z** — uses ncSender's core Safe Z height, falling back to machine Z0
-  when that is unset.
-- **Direction** — Climb or Conventional.
-- **Persistence** — each operation remembers its settings between sessions.
+For the other modes, set:
+
+- **Width (X)** and **Height (Y)**: the area to flatten.
+- **Overrun**: how far past the edges to go, for a clean edge.
+- **Origin**: where work zero is on that area.
+- **Pattern**: **Zigzag (long-Y)**, **Zigzag (long-X)** or
+  **Spiral (outside-in)**.
+- **Stepover (% of bit)**.
+
+The side-view picture shows where Z zero is. Check it before you press
+**Generate**: Target Depth and Target Thickness measure from opposite faces of
+the stock.
+
+## Jointer
+
+Cut a straight, clean edge on rough stock.
+
+![QuickCut, Jointer tab](../assets/images/plugins/quickcut-jointer.webp)
+
+- **Side to Cut**: **Front**, **Back**, **Left** or **Right**.
+- **Trim Axis**: **X-axis** or **Y-axis**, the direction the edge runs.
+- **Length**: how long the edge is.
+- **Trim Width**: how much each trim takes off the edge.
+- **Number of Trims**: how many trims to take.
+- **Overrun**: how far past each end to go.
+- **Cut Direction**: **Conventional** or **Climb**. Every pass cuts the same
+  way.
+
+The top-view picture shows the cuts before you generate.
+
+## Cutter
+
+Cut stock to an exact size along one axis. QuickCut allows for the bit width
+so the piece you keep is the size you asked for.
+
+![QuickCut, Cutter tab](../assets/images/plugins/quickcut-cutter.webp)
+
+- **Cut Axis**: **X-axis** or **Y-axis**.
+- **Target Size**: the finished size of the piece.
+- **Cutting Length**: how long the cut is.
+- **Cut Direction**: **Conventional** or **Climb**.
+- **Origin (start side)**: **Front**, **Back**, **Left** or **Right**.
+
+The cut is taken in several passes, set by **Total Depth** and
+**Depth of Cut**.
 
 ## Coming from ToolBench
 
-QuickCut's Planer, Jointer and Cutter are the operations ToolBench provided,
-rebuilt. Two things to know when moving over:
+QuickCut's Planer, Jointer and Cutter replace the ToolBench operations. Two
+things work differently:
 
-- **Boring is now Circle.** A bored hole is a Circle with **Inner (perimeter)**;
-  the flat-bottomed pocket ToolBench could not produce is **Inner (clearing)**.
-- **Origin covers the whole program.** In ToolBench's boring feature a *center*
-  origin placed a pattern symmetrically on both sides of the origin. In QuickCut
-  the origin you select applies to everything generated, pattern included.
+- **Boring is now Circle.** A bored hole is a Circle with
+  **Inner (perimeter)**. A flat-bottomed pocket, which ToolBench could not make,
+  is **Inner (clearing)**.
+- **Origin covers the whole program.** In ToolBench, a centre origin placed a
+  bore pattern evenly around work zero. In QuickCut the origin applies to
+  everything generated, pattern included.

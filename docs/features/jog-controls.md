@@ -1,74 +1,80 @@
 # Jog Controls
 
-Jog controls let you manually move the machine to position your workpiece, set zeros, or verify clearances.
+Use the jog controls to move the machine by hand: to position your workpiece, set
+zeros, or check clearances.
 
 ## Jog Panel Layout
 
-![Jog panel layout](../assets/images/features/jog-panel.png)
+![Jog panel](../assets/images/features/jog-panel.webp)
 
-The jog panel consists of:
+The jog panel has:
 
-- **3×3 XY grid** — Directional buttons including the four diagonals
-- **Center stop button** (red) — Soft reset (`0x18`); halts all motion immediately and always stays enabled
-- **Z+ / Z- buttons** — Vertical movement
-- **A toggle** (top-right) — Switches the Z buttons to A+ / A- for 4th-axis rotation (when a rotary axis is configured)
-- **Step selector + Feed dropdown** — Jog step size and feed rate
-- **Home** — Homing (see [Homing](#homing))
-- **XY0 / Z0 / Park** — Go-to-zero and parking (see [Go To Zero & Park](#go-to-zero-park))
+- **XY buttons**: move X and Y, including the four diagonals.
+- **Stop button** (red, in the middle): stops all motion right away. It is always
+  available.
+- **Z+ / Z-**: move up and down.
+- **A toggle**: switches the Z buttons to A+ / A- for a rotary axis (only when your
+  controller has an A axis).
+- **Step and Feed**: how far and how fast each jog moves.
+- **Home**: see [Homing](#homing).
+- **XY0 / Z0, corner buttons and Park**: see [Go To Zero & Park](#go-to-zero-park).
 
 ## Step Sizes
 
-![Step sizes](../assets/images/features/jog-step-sizes.png)
+![Step sizes](../assets/images/features/jog-step-sizes.webp)
 
-There are three step buttons — a small, medium, and large range. **Tap** a button to
-select it; **long-press (500 ms)** to open a dropdown with every value in that range.
-Each button remembers the last value you picked, so switching between ranges keeps
-your preferred step for each.
+There are three step buttons: small, medium and large. **Tap** a button to use it.
+**Press and hold** it (half a second) to open a list of every value in its range.
+Each button remembers the last value you picked.
 
 === "Metric (mm)"
 
-    | Button | Values available in the dropdown |
-    |--------|----------------------------------|
-    | 0.1 | 0.05, 0.1, 0.2 … 0.9 |
+    | Button | Values in the list |
+    |--------|--------------------|
+    | 0.1 | 0.01, 0.05, 0.1, 0.2 … 0.9 |
     | 1 | 1, 2, 3 … 9 |
     | 10 | 10, 20 … 100, 150, 200, 250, 300 |
 
 === "Imperial (inches)"
 
-    | Button | Values available in the dropdown |
-    |--------|----------------------------------|
-    | 0.01 | 0.001, 0.005, 0.01 … 0.09 |
-    | 0.1 | 0.1, 0.125, 0.2, 0.25 … 0.9 |
+    | Button | Values in the list |
+    |--------|--------------------|
+    | 0.01 | 0.001, 0.005, 0.01, 1/64, 0.02, 1/32, 0.03 … 0.06, 1/16, 0.07 … 0.09 |
+    | 0.1 | 0.1, 1/8, 0.2, 1/4, 0.3, 0.4, 1/2, 0.6, 5/8, 0.7, 3/4, 0.8, 0.9 |
     | 1 | 1, 2, 3 … 10 |
 
 ## Feed Rates
 
-Each step button has its own feed rate, set with the **Feed** dropdown next to the
-step selector. The rate applies to XY moves; the other axes are scaled from it:
+Each step button has its own feed rate and its own **Feed** list. Pick a rate from
+the list next to the step buttons. The defaults are:
 
-- **Z-axis** automatically jogs at 50% of the XY feed rate
-- **A-axis** (4th axis) jogs at 25% of the XY feed rate
+| Step button | Metric | Imperial |
+|---|---|---|
+| Small | 500 mm/min | 20 in/min |
+| Medium | 3000 mm/min | 100 in/min |
+| Large | 6000 mm/min | 200 in/min |
+
+The rate is for X and Y. Z jogs at half of it, and the A axis at a quarter.
 
 ## Jog Modes
 
 ### Step Jog
 
-A quick **tap** (released within ~300 ms) moves a fixed distance — the selected step
-size. Each tap sends one discrete movement command.
+**Tap** a direction button to move one step.
 
 ### Continuous Jog
 
 ![Continuous jog](../assets/images/features/jog-continuous.webp)
 
-**Hold** a direction button (longer than ~300 ms) to move continuously. The machine
-moves at the selected feed rate until you release the button, at which point an
-automatic jog cancel (`0x85`) stops it right away.
+**Hold** a direction button to keep moving. The machine stops as soon as you let go.
 
 ### Diagonal Jog
 
-The four corner buttons (↖ ↗ ↙ ↘) move both X and Y axes simultaneously.
+The four corner arrows (↖ ↗ ↙ ↘) move X and Y together.
 
-## Keyboard Shortcuts
+## Keyboard and Gamepad
+
+The default keys are:
 
 | Key | Action |
 |-----|--------|
@@ -76,50 +82,85 @@ The four corner buttons (↖ ↗ ↙ ↘) move both X and Y axes simultaneously.
 | ++arrow-up++ / ++arrow-down++ | Jog Y+ / Y- |
 | ++page-up++ / ++page-down++ | Jog Z+ / Z- |
 
+To change keys or set up a gamepad, go to **Settings → Controls**. There you can also
+set keys to switch between step sizes and to home the machine.
+
+Keyboard jogging is off when your controller requires homing at startup and the
+machine is not homed yet.
+
 !!! tip "Quick Zero"
-    Double-click an axis card in the DRO to manually type a coordinate value. Long-press an axis card to zero it at the current position. See [DRO](dro.md) for the full set of gestures.
+    Double-click an axis card in the DRO to type a coordinate. Press and hold an axis
+    card to zero it where the machine is. See [DRO](dro.md).
 
 ## Homing
 
-Use the **Home** button in the center of the panel to run a homing cycle. As with the
-other action buttons, homing is a deliberate press-and-hold so it can't fire by accident:
+<!-- CAPTURE NEEDED: assets/images/features/jog-home.webp (Homing) -->
 
-- **Hold** the Home button (about 1 second) to home **all axes** (`$H`). A progress bar
-  fills while you hold, and the cycle starts when it completes.
-- **Double-tap** the Home button to split it into individual **HX / HY / HZ** buttons.
-  Hold one to home just that axis (`$HX`, `$HY`, `$HZ`) — handy when you only need to
-  re-establish a single axis.
+Homing uses press-and-hold so it can't start by accident:
+
+- **Hold** **Home** for about 1 second to home all axes. A bar fills while you hold.
+- **Double-tap** **Home** to split it into **HX**, **HY** and **HZ**. Hold one to home
+  just that axis.
 
 !!! info "Not-homed indicator"
-    While homing is enabled in the controller (`$22` > 0) and the machine has not been
-    homed yet, the Home button pulses to catch your attention. It stops as soon as a
-    homing cycle completes. If homing is disabled altogether the indicator never shows,
-    because the controller cannot report a homed state in that case.
+    When homing is set up on your controller and the machine has not been homed yet,
+    the **Home** button pulses. It stops once homing finishes. If your machine has no
+    homing, the button never pulses.
+
+<!-- CAPTURE NEEDED: assets/images/features/jog-not-homed.webp (Home button pulsing before homing) -->
+
+**Pro:** if a [keepout zone](keepout-zone.md) is on, ncSender asks you to confirm
+before homing X and Y.
 
 ## Go To Zero & Park
 
-![Go to zero — hold XY0 to move, double-tap to split into X0 / Y0](../assets/images/features/jog-zero-buttons.webp)
+![Go to zero](../assets/images/features/jog-zero-buttons.webp)
 
-The buttons on the right of the panel **move the machine** to a position — they don't set
-one. Hold a button to run its move; a progress bar fills as you hold.
+These buttons **move the machine** to a spot. They don't set one. Hold a button to
+move; a bar fills while you hold.
 
-- **XY0** — Hold to rapid to work X0 Y0. The machine retracts to a safe Z height first,
-  then moves in XY. **Double-tap** to split into separate **X0** and **Y0** buttons, each
-  of which holds-to-move a single axis.
-- **Z0** — Hold to move Z to its work zero.
-- **Park** — Hold ~1 second to move to the saved parking position (safe Z retract first).
-  To **set** a new parking position, jog to the spot you want, then **double-tap** Park:
-  the button changes to **Save**. Tap it once to store the current machine position; it
-  flashes **Saved** and returns to **Park**. Tap anywhere else, or wait a few seconds,
-  and it returns to **Park** without saving.
+- **XY0**: hold to go to work X0 Y0. Z rises to a safe height first. **Double-tap** to
+  split it into **X0** and **Y0**, each moving one axis.
+- **Z0**: hold to move Z to its work zero.
 
 !!! tip "Setting zero vs. going to zero"
-    These buttons *travel* to a stored zero. To *set* a work zero at the current
-    position instead, press and hold the matching axis card in the [DRO](dro.md).
+    These buttons *go to* a zero you already set. To *set* a work zero, press and hold
+    the axis card in the [DRO](dro.md).
 
-!!! note "Homing requirement"
-    When homing is disabled (`$22=0`) these move buttons are always enabled. When homing
-    is enabled and the machine has not been homed, holding **XY0**, **X0 / Y0** or **Z0**
-    first shows the *Machine is not homed* prompt — the same one a tool change shows —
-    so a rapid to an unknown position never happens by accident. Choose **Continue** to
-    move anyway or **Abort** to stop.
+### Corner Buttons
+
+<!-- CAPTURE NEEDED: assets/images/features/jog-corners.webp (Corner buttons) -->
+
+Hold **Top-Left**, **Top-Right**, **Bottom-Left** or **Bottom-Right** to move to that
+corner of the machine's travel.
+
+### Park
+
+Hold **Park** for about 1 second to go to your saved parking spot. Z rises to a safe
+height first.
+
+To save a parking spot:
+
+1. Jog to the spot you want.
+2. Double-tap **Park**. The button changes to **Save**.
+3. Tap **Save**. It shows **Saved**, then goes back to **Park**.
+
+If you don't tap **Save** within 6 seconds, the button goes back to **Park** without
+saving.
+
+<!-- CAPTURE NEEDED: assets/images/features/jog-park-save.webp (Saving a parking spot) -->
+
+If no spot is saved yet, holding **Park** shows **Parking Location Not Set** with these
+same steps.
+
+<!-- CAPTURE NEEDED: assets/images/features/jog-park-not-set.webp (Parking Location Not Set) -->
+
+## Homing Requirement
+
+- **XY0, X0 / Y0 and Z0** always work when your machine has no homing. When homing is
+  set up but the machine is not homed, holding one shows the **Machine is not homed**
+  prompt first. Choose **Continue** to move anyway or **Abort** to stop.
+- **Park and the corner buttons** need homing. They stay off until the machine is homed,
+  and they never work on a machine without homing.
+
+**Pro:** jogs stop at the edge of the [keepout zone](keepout-zone.md).

@@ -20,22 +20,22 @@ CNC routers.
 
 ## The grblHAL settings you'll touch
 
-ncSender surfaces all of these in the **Settings** panel — you can search
-by number. Setting numbers that only appear when a ModBus VFD plugin is
+ncSender shows all of these in **Settings → Firmware** — type the number
+in **Search Firmware Settings...**. Setting numbers that only appear when a ModBus VFD plugin is
 compiled into your grblHAL build:
 
 | Setting | Name | Notes |
 |--------:|------|-------|
-| `$395` | **Default spindle** at startup | Selects which spindle driver is active on boot (PWM, PWM2, Huanyang v1, Huanyang P2A, Durapulse GS20, Yalang YS620, MODVFD, H-100, Nowforever). Requires a hard reset after changing. |
+| `$395` | **Default spindle** at startup | Selects which spindle driver is active on boot (PWM, PWM2, Huanyang v1, Huanyang P2A, Durapulse GS20, Yalang YS620, MODVFD, H-100, Nowforever). Requires a hard reset after changing. The Firmware tab marks it **Requires Restart**. |
 | `$360` | **ModBus address** for the single VFD spindle | Default `1`. Must match the address configured on the VFD side. |
-| `$340` | **Spindle at-speed tolerance** (%) | Default `0` (disabled). If `>0`, grblHAL raises **ALARM 14** if the spindle doesn't reach the commanded RPM within `±$340%` inside a 4-second window. `10` is a sensible starting value once the VFD is proven. |
+| `$340` | **Spindle at-speed tolerance** (%) | Default `0` (disabled). If `>0`, grblHAL raises **ALARM 14** (*Spindle did not reach speed* in the alarm dialog) if the spindle doesn't reach the commanded RPM within `±$340%` inside a 4-second window. `10` is a sensible starting value once the VFD is proven. |
 | `$461` | **RPM ↔ Hz relationship** | Default `60` (60 RPM per Hz — a 2-pole motor). Set to `30` for a 4-pole motor. Used by drivers that compute frequency from RPM (GS20, YL-620 and similar). |
 | `$462`–`$471` | **MODVFD register overrides** | Only relevant when `$395 = MODVFD`. Lets you point the generic ModBus driver at any VFD's registers (run/stop, set-frequency, read-frequency, CW/CCW/stop command words, and RPM ratios). Defaults match the most common register layout. |
 | `$476`–`$479` | **ModBus address** for spindles 0–3 | Only used when you have multiple VFD spindles on the bus. For a single-spindle machine, ignore these and use `$360`. |
 
 !!! tip "Baud rate"
     Baud rate is exposed as a setting on most grblHAL builds — search
-    "modbus" in the Settings panel and you'll see it (numbering varies
+    "modbus" in **Settings → Firmware** and you'll see it (numbering varies
     by driver; commonly `$374` or nearby). The default is usually
     `19200 8N1`. **Whatever you set here must match the VFD side.**
     9600 is bulletproof; 19200 and 38400 also work fine on short runs.
@@ -108,7 +108,7 @@ common "spindle spins but ncSender shows wrong RPM / won't stop" complaint.
 
 | grblHAL setting | Value | Notes |
 |--:|--|--|
-| `$395` | `MODVFD` | Numeric value depends on which spindle drivers your grblHAL build has compiled in — pick MODVFD in the ncSender Settings picker; the number underneath will be whatever's correct for that build. |
+| `$395` | `MODVFD` | Numeric value depends on which spindle drivers your grblHAL build has compiled in — pick MODVFD in **Settings → Firmware**; the number underneath will be whatever's correct for that build. |
 | `$476` | `1` | ModBus address for spindle 0 (newer multi-spindle builds use `$476` instead of `$360`). Match the address on the VFD. |
 | `$374` | `3` | ModBus baud rate — `3` = 19200 on PwnCNC's shipped VFD. |
 | `$375` | `50` | ModBus rx timeout (ms). |
@@ -163,9 +163,12 @@ common "spindle spins but ncSender shows wrong RPM / won't stop" complaint.
 4. If nothing happens: check wiring (A/B not swapped, ground bonded)
    before assuming settings are wrong. RS485 has no error message for
    "no reply" — it just goes quiet.
-5. Once stable, raise `$340` from `0` to `10` to enable at-speed
-   monitoring. Program events like G-code tool changes rely on this to
-   wait for the spindle to actually be at RPM before continuing.
+5. If you see **ALARM 19** (*Modbus communication error*), the controller
+   lost contact with the VFD. Check the RS485 cable and VFD power, then
+   unlock.
+6. Once stable, raise `$340` from `0` to `10` to enable at-speed
+   monitoring. Programs that wait for the spindle to reach speed rely on
+   this before continuing.
 
 ## Where to go deeper
 

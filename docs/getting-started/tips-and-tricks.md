@@ -10,10 +10,12 @@ The dialog appears a moment after the interface loads. On the very first
 launch it stays out of the way so the
 [Machine Setup Wizard](setup-wizard.md) can run instead.
 
+![Tips & Tricks dialog](../assets/images/getting-started/tips-dialog.webp)
+
 - **Previous** and **Next** move through the set, wrapping around at either
   end. The left and right arrow keys do the same.
-- The caption reads **Tip N of M**, and the orange bar under the video shows
-  how far through the set you are.
+- The caption reads **Tip N of M**, and the progress bar shows how far
+  through the set you are.
 - Each launch opens on the tip after the one you last saw, so you see every
   tip once before the set starts over.
 
@@ -22,6 +24,8 @@ launch it stays out of the way so the
 Untick **Show at startup** in the dialog footer, or open **Settings →
 General → Application Settings** and turn off **Tips & Tricks at Startup**.
 The same row has a **Show tips now** link to open the dialog on demand.
+
+![Tips & Tricks at Startup setting](../assets/images/getting-started/tips-settings-toggle.webp)
 
 ## Where the tips come from
 

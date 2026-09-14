@@ -104,6 +104,14 @@ ncSender" confirmation, and surface the `error` text from a non-2xx reply.
 
 ## Notes
 
+- The port is set in **Settings → General → Remote Control Port** on the
+  ncSender computer. A CAM "Port" setting must match it. See
+  [Remote Access](../settings/remote-access.md).
+- Uploads work even when **Allow Remote Control** is off. Remote clients can
+  always manage files.
+- A sent program goes through the same plugin transforms as a file opened
+  by hand.
+
 - One request loads one program. Sending another file replaces the loaded
   program, which is the normal "post again after a change" workflow.
 - ncSender never starts a job on its own. The operator still presses Cycle

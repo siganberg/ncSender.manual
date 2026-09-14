@@ -3,54 +3,81 @@
 !!! tip "New controller?"
     On its first launch ncSender opens the [Machine Setup Wizard](setup-wizard.md),
     which sets up the connection and checks travel, switches, homing and
-    safety limits live on the machine. This page covers the connection on
-    its own.
+    safety limits live on the machine. To run it again later, open
+    **Settings → General** and click **Run setup wizard**. This page covers
+    the connection on its own.
 
 ## Connecting via USB
 
-1. Connect your CNC controller to your computer via USB
-2. Open ncSender
-3. The application will automatically detect and connect to your controller
+1. Connect your CNC controller to your computer with a USB cable.
+2. Open ncSender.
+3. Set up the connection in the wizard, or in **Settings → General → CNC Connection Setup**.
+4. Click **Save & connect**.
 
-![Connection status](../assets/images/getting-started/connection-status.png)
+After the connection is saved, ncSender connects on its own every time it starts.
 
-!!! tip "Auto-Connect"
-    ncSender scans available serial ports automatically. If your controller isn't detected, check **Settings > Connection** to manually select the port and baud rate.
+![CNC Connection Setup](../assets/images/getting-started/connection-setup-general.webp)
+
+!!! tip "Auto-detect"
+    **Auto-detect** tries every port that looks like a CNC controller. If
+    your board is not found, click **Rescan**, then pick its port by name
+    under **Serial port**.
 
 ## Connection Settings
 
-![Connection settings](../assets/images/getting-started/connection-settings.png)
-
 | Setting | Description | Default |
 |---------|-------------|---------|
-| **Connection Type** | USB or Ethernet | USB |
-| **Port** | Serial port (Auto-Detect or manual) | Auto-Detect |
-| **Baud Rate** | Communication speed | 115200 |
-| **IP address / Port** | Ethernet only: the controller's address | 23 (Telnet) or 81 (WebSocket) |
+| **Connection type** | USB or Ethernet | USB |
+| **Serial port** | USB only: **Auto-detect** or a specific port | Auto-detect |
+| **Baud rate** | USB only: communication speed | 115200 |
+| **IP address** | Ethernet only: the controller's address | 192.168.5.1 |
+| **Port** | Ethernet only | 23 (Telnet) or 81 (WebSocket) |
 | **Protocol** | Ethernet only: Telnet or WebSocket | Telnet |
 
-Click **Save & connect**. The status card under the form shows the live
-result, including which port and baud rate, or which address, it is using.
+![Ethernet connection settings](../assets/images/getting-started/connection-setup-ethernet.webp)
 
-## Supported Baud Rates
+Click **Save & connect**. When it works, the status reads **Connected via USB**
+(or Ethernet) with the port and baud rate, or the address, it is using.
+Click **Reconnect** to drop the connection and connect again.
 
-- **115200** — Standard for most grblHAL and FluidNC boards
-- **230400** — Higher speed option for some boards
+### Baud Rates
+
+grblHAL boards use **115200**. The list also offers 230400, 250000, 460800
+and 921600 for boards set up to use them.
 
 ## Verifying Connection
 
 Once connected, you should see:
 
-- Status changes from "Disconnected" to "Idle" (or "Alarm" if homing is required)
-- Machine coordinates appear in the DRO (Digital Readout)
-- The controller greeting message appears in the console
+- The toolbar status change from **Connecting...** to **Idle**, or to **Homing Required** if the machine must be homed first. **Setup Required** means no connection has been saved yet.
+- Machine coordinates in the DRO (Digital Readout).
+- The controller greeting message in the **Terminal**.
 
-![Connected state](../assets/images/getting-started/connected-state.png)
+<!-- CAPTURE NEEDED: assets/images/getting-started/connected-homing-required.webp (Homing Required after connecting) -->
+
+When the status is **Homing Required**, press **Home**. The status changes to **Idle**.
+
+![Connected and idle](../assets/images/getting-started/connected-idle.webp)
+
+## If an Alarm Appears
+
+Many grblHAL boards start in an alarm. ncSender shows an alarm dialog with a
+plain-language title and what to do.
+
+- **Power-on safety check**: press the E-stop button in, release it, then
+  press **Press to Unlock**. The controller asks for this once after every
+  power-on to confirm the E-stop works.
+- **Other alarms**: follow the fix in the dialog, then press **Press to Unlock**.
+
+One press keeps trying to unlock for up to 30 seconds. If the cause is still
+active (E-stop held, a limit switch pressed, a motor fault input), the dialog
+says so. Fix the cause and it unlocks on the next try.
+
+<!-- CAPTURE NEEDED: assets/images/getting-started/alarm-dialog-unlock.webp (Alarm dialog and unlock) -->
 
 ## Troubleshooting Connection Issues
 
-- **No ports detected**: Check USB cable and drivers
-- **Wrong device detected**: ncSender filters out Bluetooth and debug ports automatically
-- **Controller not responding**: Try a different baud rate or USB cable
-- See [Troubleshooting](../troubleshooting.md) for more help
-
+- **No ports detected**: check the USB cable and drivers.
+- **Controller not found by Auto-detect**: pick its port by name under **Serial port**. Auto-detect skips Bluetooth, debug and accessory ports, and ports that don't look like a CNC board.
+- **Controller not responding**: try a different USB cable or baud rate.
+- See [Troubleshooting](../troubleshooting.md) for more help.

@@ -1,41 +1,66 @@
-# Safety Door Intelligence
+# Safety Door
 
-!!! info "Pro Feature"
-    Safety Door Intelligence is available in **ncSender Pro** only.
+ncSender lets you jog slowly with the safety door open, and blocks commands that aren't safe with the door open.
 
-Enhanced safety door handling for professional CNC machines with `$61` (Ignore when idle) support.
+The safety door checks run when the controller reports the door pin or a Door state. The toolbar shows **Door Open** and the **Door** pin light turns on.
 
-![Safety Door animation](../assets/images/features/safety-door.webp)
+## Controlled Jogging
 
-## Features
+You can jog slowly with the door open, for setup and inspection:
 
-### Automatic Spindle Stop
+- Jogs are slowed to 1000 mm/min. This limit is fixed.
+- G1, G2 and G3 moves are also slowed to 1000 mm/min.
+- Plain `G0` rapid moves are blocked.
+- Every command goes through these checks, from the screen, the pendant, macros and the console.
 
-When the safety door opens while the spindle is running manually (no active job), ncSender automatically sends M5 to stop the spindle immediately. This prevents the spindle from running unattended with an open door.
+<!-- CAPTURE NEEDED: assets/images/features/safety-door-jog.webp (Jogging with the door open) -->
 
-### Controlled Jogging
+## Blocked Commands
 
-Allows slow jogging while the door is open for setup and inspection:
+With the door open, ncSender refuses:
 
-- Feed rate automatically limited to safe speeds (1000 mm/min)
-- Rapid moves are blocked
-- Both UI and pendant jog commands are routed through the safety processor
+- **G0 rapid moves**: the terminal shows "G0 rapid not allowed in Door state".
+- **Spindle start (M3/M4)**: the terminal shows "Spindle start not allowed in Door state".
+- **Trace**: the **Trace** button is greyed out.
 
-### Safety Command Processor
+<!-- CAPTURE NEEDED: assets/images/features/safety-door-blocked.webp (Spindle start blocked) -->
 
-All jog commands are processed through a safety layer that:
+- **Tool change (M6)** that doesn't come from a running job, for example from a macro or a tool button. **Pro only.**
 
-- Limits feed rates when the door is open
-- Blocks unsafe rapid moves
-- Annotates terminal output so operators can see when limits are applied
+## Terminal Feedback
 
-### Terminal Feedback
+When ncSender slows a command, the terminal shows the old and new feed rate:
 
-Door-limited commands are annotated in the terminal with clear messages showing when and why speed limits are applied.
+```
+$J=G91 X10 F1000 (F5000 -> F1000, Door safety)
+```
+
+## Automatic Spindle Stop
+
+**Pro only.** If you open the door while the spindle is running and no job is running, ncSender sends `M5` to stop the spindle. The terminal shows `M5 (safety door — spindle stop)`.
+
+This only happens when the grblHAL setting `$61` has **Ignore when idle** turned on. Without it, the controller handles the door itself.
+
+<!-- CAPTURE NEEDED: assets/images/features/safety-door-spindle-stop.webp (Spindle stopped by the door) -->
+
+## When the Door Closes
+
+When you close the door, a Door state becomes Hold. Press **Resume** (Cycle Start) to continue the job.
+
+## Door Alarms
+
+- **Safety door open**: close the door, then press **Unlock**.
+- **Door opened during homing**: close the door, unlock, then home again.
+
+<!-- CAPTURE NEEDED: assets/images/features/safety-door-alarm.webp (Safety door alarm) -->
+
+See [Alarms](../settings/alarms.md) for all alarms.
 
 ## Configuration
 
-Safety door behavior is controlled by the firmware setting `$61`:
+`$61` controls how grblHAL handles the door. It has several options. **Ignore when idle** lets you open the door while the machine is idle without a hold. Set it in **Settings → Firmware**. See [Firmware Settings](../settings/firmware.md).
 
-- `$61=0` — Door always triggers hold (default GRBL behavior)
-- `$61=1` — Door ignored when idle (ncSender adds intelligent handling)
+The slow jog and blocked commands work whatever `$61` is set to.
+
+!!! tip "Park on Pause"
+    **Settings → General → Park on Pause** lifts and parks the spindle when a job pauses. It needs the grblHAL parking settings to be set up first.

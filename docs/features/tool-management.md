@@ -1,171 +1,202 @@
 # Tool Management
 
-ncSender keeps a **Tool Library** — an inventory of your cutting tools — and surfaces
-the tools you use most as **tool buttons** in the visualizer, alongside the Tool Length
-Setter (TLS) and Probe. When you install a tool-changer plugin, it takes over these
-controls and drives tool changes for you.
+ncSender keeps a **Tool Library** of your cutting tools. The tools in your magazine
+show as **slot buttons** in the visualizer, next to the Tool Length Setter (TLS) and
+Probe. If you install a tool-changer plugin, it takes over these controls and runs
+tool changes for you.
 
 ## Tool Library
 
-Open **Settings → Tool Library**. This is where you keep an inventory of your bits and
-assign them to the slots (pockets) in your tool magazine.
+Open **Settings → Tool Library** to keep a list of your bits and assign them to the
+slots (pockets) in your tool magazine.
 
 ![Tool Library settings](../assets/images/features/tool-library.webp)
 
-Add, edit, and delete tools here. Each tool holds:
+Add, edit and delete tools here. Each tool has:
 
-- **Tool number** — the pocket / magazine slot it's assigned to (leave unassigned to
-  keep a bit in inventory without occupying a slot)
-- **Name** — a description such as *1/4" Flat Endmill*
-- **Type** — flat, ball, V-bit, drill, chamfer, surfacing, thread-mill, or probe
+- **Tool ID**: the tool's own number. Each tool needs a different ID.
+- **Assigned To Slot**: the magazine slot it sits in. See
+  [Assigning a tool to a magazine slot](#assigning-a-tool-to-a-magazine-slot).
+- **Tool Name / Description**: for example *1/4" Flat Endmill*.
+- **Tool Type**: Flat End Mill, Ball End Mill, V-Bit, Drill, Chamfer, Surfacing or
+  Thread Mill.
 - **Diameter**
-- **Tool length offset (TLO)** and its **TLS probe offsets** (X / Y / Z)
-- **Notes** and **SKU** for your own reference
+- **TLO**: the stored tool length offset.
+- **TLS X Offset**, **TLS Y Offset** and **TLS Z Offset**: move where this tool is
+  measured. Use them for a tool that sits off spindle center, such as a laser, or to
+  start the measurement higher or lower for a long or short tool. Hover over each
+  field for details.
+- **Notes** and **SKU / Part Number** for your own use.
 
 ### Import / Export
 
-The header shows **Import** and **Export** buttons for backing up your library or
-moving it between machines.
+Use **Import** and **Export** to back up your library or move it to another machine.
 
-- **Export** writes the current library to a `.json` file you can save anywhere.
-- **Import** reads a saved `.json` file back in. If a tool number in the file already
-  exists locally, ncSender surfaces the conflict and asks whether to overwrite.
+- **Export** saves the library to a `.json` file.
+- **Import** loads a saved `.json` file. If a tool ID in the file already exists,
+  ncSender lists them and asks before replacing.
 
-!!! info "Pro Feature"
-    The **Import** button in ncSender Pro also accepts **Vectric tool libraries
-    (`.vtdb`)** — the SQLite database VCarve / Aspire / Cut2D use for their tool
-    databases. Pick the file, review the mapped tools, and confirm the import.
-    Everything else on this page works the same in both editions.
+**Pro:** **Import** also accepts **Vectric tool databases (`.vtdb`)** from VCarve,
+Aspire and Cut2D.
 
 ### Assigning a tool to a magazine slot
 
-A tool only occupies a magazine pocket once you give it a slot. There are two ways to do
-that:
+A tool only takes a magazine slot once you assign it. There are two ways:
 
-- **From the Add / Edit Tool dialog** — set the **Assigned To Slot** dropdown to a slot
-  (`Slot 1`, `Slot 2`, …). Leave it on **None (Not in magazine)** to keep the bit in
-  inventory without a pocket.
-- **From the tool table** — click the tool's **slot cell** (the `SLOT#` / *No Slot* badge
-  in the Tool ID column) to open a slot picker, then choose a slot.
+- **In Add Tool or Edit Tool**: set **Assigned To Slot** to a slot. Leave it on
+  **None (Not in magazine)** to keep the bit in the library without a slot.
+- **In the tool table**: click the tool's slot badge (**Slot#** or **No Slot**), then
+  pick a slot.
 
-The available slots are limited by **Magazine size** — you can only assign Slot 1 through
-Slot N, where N is the magazine size.
+![Assigning a slot](../assets/images/features/tool-assign-slot.webp)
+
+You can only pick Slot1 up to the **Magazine Size**.
 
 !!! tip "Slots swap automatically"
-    If you assign a tool to a slot that another tool already occupies, ncSender **swaps**
-    them — the other tool moves to the slot the current tool just left. You won't get a
-    conflict error.
+    If another tool already sits in the slot you pick, the two tools swap. The list
+    shows "(Swap with …)" next to that slot.
 
 !!! note "Shrinking the magazine"
-    Lowering the magazine size unassigns any tools sitting in slots above the new size (it
-    asks you to confirm first). The tools stay in your library — they just lose their slot.
+    Lowering **Magazine Size** removes tools from the slots above the new size. It
+    asks first. The tools stay in your library.
 
-Assigned tools show an amber **`SLOT#`** badge in the table; unassigned ones show
-*No Slot*. The slot strip along the bottom is a quick visual map of the magazine — click
-an occupied slot to jump to that tool in the table.
+Assigned tools show a **Slot#** badge in the table. The slot strip is a map of the
+magazine: click a slot to jump to its tool.
+
+### Probe slot
+
+When **Probe** is on, the library adds a **Probe (T99)** slot. The number is your
+probe tool number, 99 by default. Assign your probe to it in **Assigned To Slot** or
+in the slot picker. It shows as a dashed **PROBE** box in the slot strip.
+
+The probe can then store a TLO like any other tool. The Probe slot stays assigned
+when you shrink the magazine.
 
 ### Tool button controls
 
-The Tool Library also decides what appears in the visualizer's tool area:
+These settings decide which buttons show in the visualizer:
 
-- **Magazine size** — how many numbered tool buttons (T1, T2, …) to show. Set it to the
-  number of pockets you use; set it lower to hide unused slots.
-- **Manual** — show the **Manual** tool-change button (for non-ATC workflows).
-- **TLS** — show the **Tool Length Setter** button.
-- **Probe** — show the **Probe** button (tool T99).
+- **Magazine Size**: how many slot buttons to show.
+- **Manual**: show the **Manual** button, for changing tools by hand.
+- **TLS**: show the **TLS** button.
+- **Probe**: show the **Probe** button.
 
 !!! note "Plugins take over these controls"
-    When a **Tool Changer** category plugin is installed and enabled, these controls are
-    disabled and a message shows which plugin owns them — *"Controls are disabled because
-    they are currently controlled by Plugin: …"*. The plugin decides how many buttons
-    appear and whether TLS / Probe are shown. Disable the plugin to hand the controls
-    back to the Tool Library.
+    When a **Tool Changer** plugin is on, these settings are locked and a message
+    names the plugin: *"Controls are disabled because they are currently controlled
+    by Plugin: …"*. The plugin decides which buttons show. Turn the plugin off to get
+    the settings back.
 
 ## Tool Buttons
 
-The tool buttons live at the bottom-right of the visualizer.
+![Tool buttons](../assets/images/features/tool-buttons.webp)
 
-![Tool buttons](../assets/images/features/tool-buttons.png)
+The buttons are, in order:
 
-- **T1, T2, … TN** — one button per magazine slot. The **active tool** is highlighted, and
-  any tool that appears in the loaded G-code is marked so you can see what the job needs.
-- **Manual** — for manual tool-changer workflows; active when the current tool isn't one
-  of the numbered slots.
-- **TLS** — runs the Tool Length Setter (see below). Disabled when no tool is loaded.
-  When the loaded tool has no measured length yet, the button pulses red until you
-  run it.
-- **Probe** — the probe tool (T99); active while the probe is the current tool.
+- **Slot1, Slot2 …**: one per magazine slot. The current tool is highlighted. Tools
+  used in the loaded file are marked, so you can see what the job needs.
+- **Manual**: for changing tools by hand. It is active when the current tool isn't
+  in a slot.
+- **Probe**: loads your probe tool. The tooltip shows its number, for example
+  *Probe (Hold to load T99)*.
+- **TLS**: measures the current tool (see below). It is off when no tool is loaded.
 
-Press and hold a tool button (about 1 second) to trigger it. Numbered tools issue a
-tool change (`M6`); the TLS button runs `$TLS`.
+To use the buttons:
+
+- **Hold** a slot button for 1 second to change to that tool.
+- **Hold** the current tool's button to unload it.
+- **Hold** **TLS** to measure the current tool.
+- **Tap** a slot button to see its tool ID, diameter and type.
+
+![Tap a slot to see its tool](../assets/images/features/visualizer-slot-tap.webp)
+
+<!-- CAPTURE NEEDED: assets/images/features/tool-change-hold.webp (Hold to change tool) -->
+
+A **dot** on a slot button, or on **Probe**, means that tool has a stored TLO. Hover
+over it to see the value.
+
+Tool change prompts show the tool's name, not just its number.
+
+!!! note "Machine is not homed"
+    If homing is set up but the machine isn't homed, a tool change or TLS shows
+    **Machine is not homed** first. Choose **Continue** to go ahead or **Abort** to
+    stop.
+
+<!-- CAPTURE NEEDED: assets/images/features/tool-unhomed-gate.webp (Machine is not homed) -->
+
+A tool change typed or sent outside a job is blocked while the
+[safety door](safety-door.md) is open.
 
 ## Tool Changer Plugins
 
-Tool management is extended through **Tool Changer** category plugins:
+**Tool Changer** plugins add more tool-change features:
 
-- **[Rapid Change ATC](../plugins/rapid-change-atc.md)** — automatic tool changer support
-- **[Manual Tool Changer](../plugins/manual-tool-changer.md)** — guided manual tool changes with TLS
+- **[Rapid Change ATC](../plugins/rapid-change-atc.md)**: automatic tool changer
+  support.
+- **[Pneumatic ATC](../plugins/pneumatic-atc.md)**: pneumatic automatic tool
+  changer support.
+- **[Manual Tool Changer](../plugins/manual-tool-changer.md)**: guided manual tool
+  changes with TLS.
 
-While one of these is enabled it becomes the *source* for the tool settings above — it sets
-the button count and forces the appropriate TLS / Probe options on. Removing or disabling
-the plugin returns control to the Tool Library.
+While one is on, it controls the tool settings above: how many buttons show, and
+whether TLS and Probe show. Turn the plugin off to give control back to the Tool
+Library.
 
 ### How `M6` is handled (grblHAL)
 
-Whether a plugin is installed changes what happens when the program (or a tool button)
-issues an `M6` tool change:
+What happens when a file or a button asks for a tool change (`M6`) depends on
+whether a plugin is on:
 
-- **No tool-changer plugin** — ncSender passes `M6` straight through to the controller.
-  On grblHAL, the firmware then handles the change according to its **`$341` Tool Change
-  Mode** setting.
-- **Tool-changer plugin enabled** — ncSender **intercepts** `M6` and runs the plugin's
-  own tool-change routine instead of leaving it to the firmware.
+- **No tool-changer plugin**: ncSender sends `M6` to the controller. grblHAL then
+  follows its **Tool Change Mode** setting (`$341`).
+- **Tool-changer plugin on**: ncSender runs the plugin's tool change instead.
 
-The grblHAL `$341` Tool Change Mode options are:
+The grblHAL Tool Change Mode options are:
 
-| `$341` | Tool Change Mode | Behaviour |
-|--------|------------------|-----------|
-| 0 | **Normal** | Allows jogging for a manual touch off; set the new position manually. |
-| 1 | **Manual touch off** | Rapids to the tool-change position; use jogging or `$TPW` for touch off. |
-| 2 | **Manual touch off @ G59.3** | Rapids to the tool-change position, then to G59.3 for a manual touch off. |
-| 3 | **Automatic touch off @ G59.3** | Rapids to the tool-change position, then to G59.3 for an automatic touch off. |
-| 4 | **Ignore M6** | The controller ignores `M6` entirely. |
+| `$341` | Tool Change Mode | What happens |
+|--------|------------------|--------------|
+| 0 | **Normal** | You can jog to touch off, then set the new position by hand. |
+| 1 | **Manual touch off** | Moves to the tool-change position. Jog or use `$TPW` to touch off. |
+| 2 | **Manual touch off @ G59.3** | Moves to the tool-change position, then to G59.3 to touch off by hand. |
+| 3 | **Automatic touch off @ G59.3** | Moves to the tool-change position, then to G59.3 to touch off automatically. |
+| 4 | **Ignore M6** | The controller ignores `M6`. |
 
-The tool-change position above is the tool-axis home, G59.3, or G30 position depending on
-your other grblHAL settings.
+The tool-change position is the tool-axis home, G59.3 or G30, depending on your other
+grblHAL settings.
 
 !!! note "FluidNC"
-    This passthrough behaviour is documented for grblHAL. FluidNC tool-change handling
-    isn't covered here yet.
+    This page covers grblHAL. FluidNC tool changes aren't covered here yet.
 
 ## Tool Length Setter (TLS)
 
-The TLS establishes a **Tool Length Reference (TLR)** so Z stays consistent across tool
-changes. Pressing **TLS** (or running `$TLS`) performs the measurement:
+The TLS sets a **Tool Length Reference (TLR)** so Z stays right after a tool change.
+Hold **TLS** (or send `$TLS`) to measure:
 
-1. Switches to the TLS probe input (if a separate probe source is configured).
-2. Moves to the TLS position and probes Z to touch off the tool.
-3. Sets the tool length offset for the current tool.
-4. Restores the normal probe source and returns to the previous XY position.
+1. ncSender switches to the TLS probe input, if you use a separate one.
+2. The machine moves to the TLS and touches off the tool.
+3. The tool length offset is saved for the current tool.
+4. The probe input is switched back and the machine returns to where it was in X
+   and Y.
+
+<!-- CAPTURE NEEDED: assets/images/features/tool-tls-run.webp (Running TLS) -->
 
 ### The glowing TLS button
 
-When a tool is loaded but its length hasn't been measured yet, the **TLS button pulses
-with a red glow**. It's a reminder that no Tool Length Reference is set — run TLS before
-you rely on Z.
+When a tool is loaded but hasn't been measured, the **TLS** button pulses. It is a
+reminder that no Tool Length Reference is set. Run TLS before you trust Z.
 
-![Glowing TLS button](../assets/images/features/tool-tls-glow.png)
+<!-- CAPTURE NEEDED: assets/images/features/tool-tls-glow.webp (Pulsing TLS button) -->
 
-If you try to **set Z0 (material height) without a Tool Length Reference**, ncSender
-interrupts with a warning dialog — *"Tool Length Reference Not Set"* — explaining that
-zeroing Z without a TLR can cause unpredictable Z offsets during tool changes. You can:
+If you try to **set Z0 without a Tool Length Reference**, ncSender shows **Tool
+Length Reference Not Set**. Setting Z0 without a TLR can give wrong Z heights after a
+tool change. You can choose:
 
-- **Run TLS** — measure now to establish the reference (recommended), or
-- **Zero Z Anyway** — proceed and set Z0 without a TLR, or
-- **Cancel**.
+- **Run TLS**: measure now (recommended).
+- **Zero Z Anyway**: set Z0 without a TLR.
+- **Cancel**
 
-![Tool Length Reference warning](../assets/images/features/tool-tlr-dialog.png)
+<!-- CAPTURE NEEDED: assets/images/features/dro-tlr-warning.webp (Tool Length Reference Not Set) -->
 
 !!! warning "Laser mode"
-    Tool buttons and the TLS glow/warning don't apply in laser mode — there's no tool
-    length to reference.
+    Tool buttons and the TLS warnings don't apply in laser mode, because a laser has
+    no tool length.
