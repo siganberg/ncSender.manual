@@ -46,7 +46,7 @@ press acts on the machine right away.
 **Pair Device** needs an activated Wireless USB. See
 [Wireless USB &rarr;](wireless-usb.md#activating).
 
-<!-- CAPTURE NEEDED: assets/images/accessories/pendant-pairing-screen.webp (Pendant wireless pairing screen) -->
+![Pendant wireless pairing screen](../assets/images/accessories/pendant-pairing-screen.webp)
 
 <!-- CAPTURE NEEDED: assets/images/accessories/pendant-pairing-flow.webp (Pairing the pendant) -->
 
@@ -98,7 +98,7 @@ screen.
 
 The home screen: your live readout and jogging controls.
 
-<!-- CAPTURE NEEDED: assets/images/accessories/pendant-jog-screen.webp (Pendant jog screen) -->
+![Pendant jog screen](../assets/images/accessories/pendant-jog-screen.webp)
 
 **Status bar (top)** shows the active workspace (e.g. `G54`), the machine
 status (`IDLE`, `RUN`, `HOLD`, `ALARM`, …), the connection icon and the
@@ -133,7 +133,7 @@ has its own.
 Aux switches, the tool changer slot picker and tool-change actions in one
 place.
 
-<!-- CAPTURE NEEDED: assets/images/accessories/pendant-outputs-screen.webp (Pendant Aux & Tool Change screen) -->
+![Pendant Aux & Tool Change screen](../assets/images/accessories/pendant-outputs-screen.webp)
 
 **Aux switches (top).** Up to six switches, each with its name and an ON/OFF
 dot. Empty spaces show *Empty*.
@@ -204,14 +204,28 @@ row. Long-press **Select** to start the probe.
 When you start a program, the pendant switches to the Job screen. You can also
 reach it any time from the screen cycle.
 
-<!-- CAPTURE NEEDED: assets/images/accessories/pendant-job-screen.webp (Pendant job screen) -->
+![Pendant job screen](../assets/images/accessories/pendant-job-screen.webp)
 
-- **Feedrate / Spindle** (top) — the live feed rate and spindle speed.
-- **Feed Override / Spindle Override** — pick one with the footer buttons,
-  then turn the jog knob to adjust it.
-- **Cycle** — start or resume the program.
+**Feedrate and Spindle.** Each card's title bar shows the live feed rate
+(mm/min or in/min) and spindle speed. Use the card to change its override
+while the program runs:
+
+- Tap **−** or **+** to change the override by 10 %. Hold the button to keep
+  changing it.
+- Tap the percentage to reset it to 100 %. It turns blue when it isn't at 100 %.
+- Or pick the card with **Prev / Next** and turn the jog knob. **Reset** sets
+  it back to 100 %.
+
+Overrides go from 10 % to 200 %. Lowering the feed override also slows rapid
+moves (see [Overrides](../features/visualizer.md#overrides)).
+
+**Program buttons:**
+
+- **Cycle** — hold to start or resume the program.
 - **Pause** — pause the program.
 - **Stop** — stop the program.
+
+Tap **Pause** or **Stop** once to select it, then tap it again to run it.
 
 When the job finishes or you stop it, the pendant returns to the Jog screen.
 
@@ -220,13 +234,13 @@ When the job finishes or you stop it, the pendant returns to the Jog screen.
 Shows the pendant's connection type, firmware version and device name. Press
 **Setup** here to open the Setup screen.
 
-<!-- CAPTURE NEEDED: assets/images/accessories/pendant-info-screen.webp (Pendant info screen) -->
+![Pendant info screen](../assets/images/accessories/pendant-info-screen.webp)
 
 ### Setup
 
 The pendant's own preferences.
 
-<!-- CAPTURE NEEDED: assets/images/accessories/pendant-setup-screen.webp (Pendant setup screen) -->
+![Pendant setup screen](../assets/images/accessories/pendant-setup-screen.webp)
 
 - **Show G-Code** — when on, commands from the pendant show in ncSender's
   console.

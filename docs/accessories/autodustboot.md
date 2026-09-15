@@ -71,8 +71,8 @@ Wire it the same way, and toggle the pin with whatever your controller uses
 2. Power on the AutoDustBoot V2.
 3. In ncSender, open **Accessories** (the pendant icon in the toolbar) and
    click **Pair Device**. You have **60 seconds**.
-4. On the AutoDustBoot, start pairing mode.
-   <!-- OWNER: confirm the AutoDustBoot pairing gesture. This page used to say "hold Retract ▲ + Extend ▼ together for about 3 seconds until it starts scanning"; wireless-usb.md said "hold the pair button for 3 seconds (LED blinks)". -->
+4. On the AutoDustBoot, start pairing mode: hold **Retract ▲** and **Extend ▼**
+   (the first and third buttons) together until it starts pairing.
 5. Select **AutoDustBoot** in Accessories. It shows **Connected**.
 6. If it shows **!**, click **Activate**. See
    [Wireless USB &rarr;](wireless-usb.md#activating).
@@ -98,8 +98,7 @@ the middle, and **Extend (▼)**.
 | **Mode ●** double-press | **Save the current position as the expand position.** |
 | **Mode ●** long-press | Restart the controller. It homes on startup. |
 | Hold **Retract ▲** while powering on | **Skip homing on startup.** Use this when homing would crash the boot into the work. |
-
-<!-- OWNER: confirm the pairing-mode gesture and add it back to this table. -->
+| Hold **Retract ▲** + **Extend ▼** together | **Start pairing** with the Wireless USB. |
 
 The plugin's Connections tab has the same actions: Retract, Expand, Home and
 Save.

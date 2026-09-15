@@ -9,10 +9,10 @@ G-code to add.
 
 ## Hardware
 
-- A wireless controller driving a **WS2811 RGB** LED strip. No other strip type
-  is supported.
-- Its own power supply, sized to your strip length.
-  <!-- OWNER: confirm the RGB LED power supply. This page said "Requires a 24 V power supply … 5 V / 12 V feeds don't drive the strip cleanly" in Hardware, but "Check the strip's own power (USB-C or 12 V)" in Troubleshooting. -->
+- A wireless controller driving a **12 V WS2811 RGB** LED strip. No other strip
+  type is supported.
+- A **24–48 V** power supply for the controller, sized to your strip length.
+  The controller powers the 12 V strip itself.
 - Pairs with the [Wireless USB &rarr;](wireless-usb.md), the same one the
   pendant and AutoDustBoot use.
 
@@ -93,8 +93,8 @@ firmware keeps working. Just start again.
 
 ## Troubleshooting
 
-- **Strip stays dark.** Check the strip has power. The controller can be
-  paired and working while the strip has none. Also check that **LED count**
+- **Strip stays dark.** Check the controller has its 24–48 V supply connected.
+  The controller can show as paired and working while the strip gets no power. Also check that **LED count**
   on the Status tab matches your strip.
 - **Wrong colours (green looks turquoise, red looks pink).** The RGB LED only
   works with **WS2811** strips. Other strip types show the wrong colours.

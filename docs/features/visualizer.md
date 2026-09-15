@@ -72,16 +72,37 @@ While a job runs:
 - The toolhead follows the machine in real time.
 - Completed paths change colour.
 - The **Job Progress** card shows progress and run time.
-- The live feed rate and spindle RPM (actual and target) show above the override
-  sliders.
+- The live feed rate and spindle RPM (actual and target) show on the override
+  cards.
 
 ### Overrides
 
-Use the **Feedrate** and **Spindle** sliders to speed up or slow down a running
-job. Each goes from 0 % to 200 % in 10 % steps. The change takes effect right
-away, without pausing. Press ↻ next to a slider to reset it to 100 %.
+![Feedrate and Spindle overrides](../assets/images/features/visualizer-overrides.webp)
 
-In Laser Mode the second slider is **Laser Power**.
+Use the **Feedrate** and **Spindle** overrides to speed up or slow down a
+running job. The change takes effect right away, without pausing.
+
+- Tap **−** or **+** to change the value by 10 %. Hold the button to keep
+  changing it.
+- Tap the percentage to reset it to 100 %. It shows in blue when it isn't at
+  100 %.
+- Overrides go from 10 % to 200 %.
+
+Rapid moves follow the **Feedrate** override, in the fixed steps grblHAL
+supports:
+
+| Feedrate override | Rapid moves |
+|---|---|
+| Above 50 % | 100 % |
+| 26 – 50 % | 50 % |
+| 11 – 25 % | 25 % |
+| 10 % | 5 % |
+
+!!! note
+    The 5 % rapid step needs grblHAL build 20260831 or newer. On older
+    firmware, rapid moves stay at 25 %.
+
+In Laser Mode the second card is **Laser Power**.
 
 ## Probe Button
 

@@ -67,9 +67,8 @@ The same steps activate the Pendant, AutoDustBoot and RGB LED.
    **60 seconds**. The button counts down.
 3. **On the accessory, start pairing:**
     - **Pendant** — Setup → ESP-NOW → Scan
-    - **AutoDustBoot** — put it into pairing mode (see
+    - **AutoDustBoot** — hold **Retract ▲** and **Extend ▼** together (see
       [AutoDustBoot &rarr;](autodustboot.md#physical-buttons))
-      <!-- OWNER: confirm the AutoDustBoot pairing gesture. This page used to say "hold the pair button for 3 seconds (LED blinks)"; autodustboot.md says "hold Retract ▲ + Extend ▼ together for about 3 seconds". -->
     - **RGB LED** — power it on
 4. **Check it.** Select the device in the list. It shows **Connected**, and
    the Pairing card reads *Paired to this Wireless USB.*
