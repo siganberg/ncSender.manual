@@ -63,6 +63,37 @@ You can only pick Slot1 up to the **Magazine Size**.
 Assigned tools show a **Slot#** badge in the table. The slot strip is a map of the
 magazine: click a slot to jump to its tool.
 
+### How a tool number finds its tool
+
+A tool's **TLO** and **TLS X/Y/Z Offsets** belong to the **tool**, not to the slot it
+sits in. Move a tool to another slot and its offsets go with it.
+
+When a file or a button asks for a tool, for example `M6 T4`, ncSender looks up the
+number in this order:
+
+1. **Slot.** If a tool is assigned to that slot, that tool is used.
+2. **Tool ID.** If no tool is in that slot, the tool with that Tool ID is used.
+3. **No match.** No stored offsets are applied.
+
+| You run | Tool Library | Tool used |
+|---------|--------------|-----------|
+| `M6 T4` | Tool ID 68 is in Slot 4 | Tool ID 68, with its offsets |
+| `M6 T87` | Tool ID 87 is in no slot | Tool ID 87, with its offsets |
+| `M6 T4` | Slot 4 is empty, Tool ID 4 is in no slot | Tool ID 4, with its offsets |
+| `M6 T99` | Nothing matches 99 | No stored offsets |
+
+So a tool doesn't need a slot to use its offsets. Keeping bits out of the magazine is
+fine. Give a tool a slot only if you want its slot button.
+
+!!! warning "The slot wins"
+    If a slot number and a Tool ID are the same number, the slot is used. With a
+    tool in Slot 4, `M6 T4` always gets that tool, never the tool whose Tool ID is 4.
+    Give tools you keep outside the magazine Tool IDs higher than your
+    **Magazine Size** to avoid this.
+
+The tool-changer plugins follow the same rule, and so does the TLO saved after a TLS
+measurement.
+
 ### Probe slot
 
 When **Probe** is on, the library adds a **Probe (T99)** slot. The number is your

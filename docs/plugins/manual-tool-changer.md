@@ -122,6 +122,11 @@ You can also type these in the console:
 - `$TLS`: measure the bit that is in the spindle.
 - `$POCKET1`: move to the Solo pocket (RapidChangeSolo only).
 
+!!! note "Tools outside the slots keep their offsets"
+    A tool doesn't need a slot to use its TLS offsets and stored TLO. The tool
+    number is looked up as a slot first, then as a Tool ID. See
+    [How a tool number finds its tool](../features/tool-management.md#how-a-tool-number-finds-its-tool).
+
 ## Troubleshooting
 
 - **The first press only unloads.** The controller thinks a tool is already

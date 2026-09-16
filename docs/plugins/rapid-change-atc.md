@@ -101,6 +101,11 @@ can copy it into your own program or post-processor.
 number higher than your number of slots, for example a large surfacing bit.
 You then change that tool by hand. Jog there and press **Grab current**.
 
+!!! note "Tools outside the slots keep their offsets"
+    A tool doesn't need a slot to use its TLS offsets and stored TLO. The tool
+    number is looked up as a slot first, then as a Tool ID. See
+    [How a tool number finds its tool](../features/tool-management.md#how-a-tool-number-finds-its-tool).
+
 ## Probe Tool
 
 ![Probe Tool tab](../assets/images/plugins/rcatc-probe-tool.webp)

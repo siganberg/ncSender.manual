@@ -156,6 +156,11 @@ a broken or bent probe tip before it can crash into the tool setter.
 number higher than your number of slots. You then change that tool by hand.
 Jog there and press **Grab current**.
 
+!!! note "Tools outside the slots keep their offsets"
+    A tool doesn't need a slot to use its TLS offsets and stored TLO. The tool
+    number is looked up as a slot first, then as a Tool ID. See
+    [How a tool number finds its tool](../features/tool-management.md#how-a-tool-number-finds-its-tool).
+
 ### Automatic Release/Clamp
 
 In the manual tool change prompts, **Release** opens the drawbar and **Clamp**
