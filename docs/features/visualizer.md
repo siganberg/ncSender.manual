@@ -41,6 +41,10 @@ Pick a view with the **Top**, **Side**, **3D** and **Split** buttons:
 - **Auto-Fit**: when on, the camera fits the loaded file. When off, it shows
   the whole grid.
 
+<video autoplay loop muted playsinline preload="metadata" aria-label="Spindle View following the cutter during a job" poster="../assets/images/features/visualizer-spindle-view-poster.jpg">
+  <source src="../assets/images/features/visualizer-spindle-view.mp4" type="video/mp4">
+</video>
+
 ## Loading a File
 
 - **Upload G-code**: pick a `.nc`, `.gcode`, `.gc`, `.ngc`, `.tap` or `.txt`

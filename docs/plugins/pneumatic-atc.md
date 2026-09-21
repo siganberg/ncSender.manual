@@ -85,6 +85,16 @@ goes to grab a tool.
 **Show G-Code Commands on Terminal** shows the command the plugin sends, so you
 can copy it into your own program or post-processor.
 
+## A tool change
+
+<video autoplay loop muted playsinline preload="metadata" aria-label="An automatic tool change: the spindle stops, swaps at the rack and resumes" poster="../assets/images/plugins/patc-tool-change-poster.jpg">
+  <source src="../assets/images/plugins/patc-tool-change.mp4" type="video/mp4">
+</video>
+
+A change from a running program: the spindle stops, the head routes to the
+rack, swaps the tool and returns to where it left off. The header reads
+**Tool Changing** throughout, and the job picks up on the next line.
+
 ## TLS
 
 ![TLS tab](../assets/images/plugins/patc-tls.webp)
