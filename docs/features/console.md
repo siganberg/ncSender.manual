@@ -54,13 +54,8 @@ The quick controls work only while connected and Idle.
 
 ### Spindle controls
 
-- **Spindle CW**: starts the spindle clockwise (`M3`).
-- **Spindle CCW**: starts the spindle counter-clockwise (`M4`).
-- **Stop Spindle**: stops the spindle (`M5`).
-
-Pick the speed from the RPM list first. The list goes from your controller's minimum
-to maximum spindle speed, in steps of 1000 RPM, and never starts below 1000. Until
-the controller settings load, it shows 1000 to 24000.
+The spindle buttons moved to the visualizer, where they don't cover the
+toolpath. See [Spindle control](visualizer.md#spindle-control).
 
 ## Other panel tabs
 

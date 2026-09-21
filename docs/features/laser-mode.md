@@ -60,6 +60,29 @@ When laser mode is on:
 
 ![Laser animation](../assets/images/features/laser-running.webp)
 
+## Test Fire
+
+![Laser test fire](../assets/images/features/laser-test-fire.webp)
+
+When no job is running, the **Laser Power** card becomes a test fire, for
+checking where the beam lands and for focusing.
+
+- **Hold** the middle button to fire. The laser stays on only while you hold
+  it — let go, slide your finger off the button, or switch away from the
+  window and it stops.
+- Tap **−** or **+** to set the power, as a percentage of your maximum S
+  value. Hold to keep changing it.
+- It starts at **1 %**, which is enough to see the spot without marking.
+
+!!! warning "Wear your laser glasses"
+    A test fire is still a live beam. Put your eye protection on first, and
+    make sure nothing flammable is under the head.
+
+!!! note "Why hold instead of tap?"
+    In laser mode `M4` only fires while the machine is moving, so firing on
+    the spot has to use `M3`, which stays on until something turns it off.
+    Holding the button means letting go always stops it.
+
 ## Power Tracking
 
 In laser mode the override panel label changes to **Laser Power** and shows the current S value.

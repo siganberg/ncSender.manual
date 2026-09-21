@@ -75,6 +75,37 @@ While a job runs:
 - The live feed rate and spindle RPM (actual and target) show on the override
   cards.
 
+### Spindle control
+
+![Spindle controls on the visualizer](../assets/images/features/visualizer-spindle-controls.webp)
+
+When no job is running, the **Spindle** card runs the spindle instead of
+overriding it — an override only means something while a program is feeding.
+
+- Tap **CW** or **CCW** to start the spindle at the speed shown.
+- Tap the speed to pick from a list of preset speeds.
+- Tap **−** or **+** to change the speed by 1000 RPM. Hold to keep changing it.
+  The speed never goes below or above what your controller allows (`$31`
+  and `$30`).
+
+Once the spindle is turning, the card changes:
+
+![Stopping the spindle](../assets/images/features/visualizer-spindle-stop.webp)
+
+- The middle button becomes **STOP** (`M5`).
+- **−** and **+** still change the speed, and the spindle follows straight
+  away, keeping the direction you started it in.
+
+The actual and target RPM always show at the top right of the card.
+
+The controls are hidden while a job is running, while the machine is homing
+or in alarm, and while the door is open. **STOP** stays available whenever
+the machine is connected.
+
+!!! tip "Where did the terminal buttons go?"
+    The spindle buttons used to live in the enlarged Terminal. They moved
+    here so you can reach them without covering the toolpath.
+
 ### Overrides
 
 ![Feedrate and Spindle overrides](../assets/images/features/visualizer-overrides.webp)
