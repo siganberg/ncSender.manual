@@ -32,7 +32,9 @@ whichever one is selected.
 Rolling back to an older version can leave newer settings unsupported.
 Existing settings are not migrated automatically.
 
-![Rolling back from Version History](../assets/images/getting-started/update-version-history-rollback.webp)
+<video controls autoplay loop muted playsinline aria-label="Rolling back from Version History">
+  <source src="../assets/images/getting-started/update-version-history-rollback.mp4" type="video/mp4">
+</video>
 
 ## Channels
 

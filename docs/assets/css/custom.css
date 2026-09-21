@@ -192,3 +192,19 @@ img.placeholder[src$=".webp"]::after {
   vertical-align: super;
   white-space: nowrap;
 }
+
+/* Demo clips. These replaced animated .webp, which Safari renders poorly —
+   and an h.264 .mp4 of the same clip is roughly a tenth of the size.
+   Sized to match the screenshots they sit beside: full column width, never
+   upscaled past their natural size. */
+.md-typeset video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.2rem;
+}
+
+.md-typeset video.center {
+  margin-left: auto;
+  margin-right: auto;
+}

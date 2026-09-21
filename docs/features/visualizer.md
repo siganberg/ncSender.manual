@@ -16,7 +16,9 @@ Pick a view with the **Top**, **Side**, **3D** and **Split** buttons:
 | **3D** | A perspective view you can rotate | General use, inspecting toolpaths |
 | **Split** | Top, Side and 3D at the same time | Detailed inspection |
 
-![View modes](../assets/images/features/visualizer-views.webp)
+<video controls autoplay loop muted playsinline aria-label="View modes">
+  <source src="../assets/images/features/visualizer-views.mp4" type="video/mp4">
+</video>
 
 ### Moving Around
 
@@ -27,7 +29,9 @@ Pick a view with the **Top**, **Side**, **3D** and **Split** buttons:
   cursor. On a touchscreen, pinch. The view zooms toward the point between your
   fingers.
 
-![Zooming toward the cursor](../assets/images/features/visualizer-zoom.webp)
+<video controls autoplay loop muted playsinline aria-label="Zooming toward the cursor">
+  <source src="../assets/images/features/visualizer-zoom.mp4" type="video/mp4">
+</video>
 
 ### View Toggles
 
@@ -65,7 +69,9 @@ Pick a view with the **Top**, **Side**, **3D** and **Split** buttons:
 All job buttons are off while ncSender is not connected. They are also off when
 the controller requires homing at startup and the machine is not homed yet.
 
-![Job running](../assets/images/features/visualizer-running.webp)
+<video controls autoplay loop muted playsinline aria-label="Job running">
+  <source src="../assets/images/features/visualizer-running.mp4" type="video/mp4">
+</video>
 
 While a job runs:
 
@@ -154,7 +160,9 @@ the spindle to a spot.
 The menu always opens fully on screen. It is not available while a job is
 running. Press ++escape++ or click outside the menu to close it.
 
-![Transform menu](../assets/images/features/visualizer-context-menu.webp)
+<video controls autoplay loop muted playsinline aria-label="Transform menu">
+  <source src="../assets/images/features/visualizer-context-menu.mp4" type="video/mp4">
+</video>
 
 The items depend on the view:
 
@@ -187,7 +195,9 @@ The items depend on the view:
 - **Arcs (G2/G3)**: smooth curves.
 - **Machine travel**: a cyan outline shows how far the machine can move.
 
-![Toolpath rendering](../assets/images/features/visualizer-toolpath.webp)
+<video controls autoplay loop muted playsinline aria-label="Toolpath rendering">
+  <source src="../assets/images/features/visualizer-toolpath.mp4" type="video/mp4">
+</video>
 
 ### Toolhead
 
@@ -232,7 +242,9 @@ The slot buttons change the tool in the spindle. They are, in order:
   Probe button shows the same dot.
 - With more than 8 slots, use the arrows to scroll.
 
-![Tap a slot to see its tool](../assets/images/features/visualizer-slot-tap.webp)
+<video controls autoplay loop muted playsinline aria-label="Tap a slot to see its tool">
+  <source src="../assets/images/features/visualizer-slot-tap.mp4" type="video/mp4">
+</video>
 
 See [Tool Management](tool-management.md) for setup.
 
@@ -255,7 +267,9 @@ When the keepout zone is on, it shows as a red box labelled **KEEPOUT ZONE**. It
 pulses if the loaded file passes through it. ncSender moves around the zone or
 refuses moves that end inside it. See [Keepout Zone](keepout-zone.md).
 
-![Keepout zone](../assets/images/features/visualizer-keepout.webp)
+<video controls autoplay loop muted playsinline aria-label="Keepout zone">
+  <source src="../assets/images/features/visualizer-keepout.mp4" type="video/mp4">
+</video>
 
 ## Out-of-Bounds Warning
 

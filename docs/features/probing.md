@@ -9,7 +9,9 @@ Use the probe dialog to find your work zero with a touch probe.
 Pick one under **Probe Type**. The fields change with the type and the
 **Probing Axis**. The dialog opens on **AutoZero Touch** with axis **Z**.
 
-![Probe types](../assets/images/features/probe-types.webp)
+<video controls autoplay loop muted playsinline aria-label="Probe types">
+  <source src="../assets/images/features/probe-types.mp4" type="video/mp4">
+</video>
 
 ### 3D Probe
 
@@ -91,7 +93,9 @@ Probe settings use your unit preference: mm and mm/min, or inches and in/min.
       or part.
 6. Click **Start Probe**.
 
-![Probing cycle](../assets/images/features/probe-cycle.webp)
+<video controls autoplay loop muted playsinline aria-label="Probing cycle">
+  <source src="../assets/images/features/probe-cycle.mp4" type="video/mp4">
+</video>
 
 To stop a probe cycle, press **Stop** in the Visualizer. If the probe ends in an
 alarm, **Start Probe** changes to **Unlock**. Press it to clear the alarm.

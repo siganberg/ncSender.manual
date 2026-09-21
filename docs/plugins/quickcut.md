@@ -24,7 +24,9 @@ The dialog title shows **Beta**.
 The dialog closes and the program loads, ready to check in the visualizer and
 run.
 
-![Generate a program](../assets/images/plugins/quickcut-generate.webp)
+<video controls autoplay loop muted playsinline aria-label="Generate a program">
+  <source src="../assets/images/plugins/quickcut-generate.mp4" type="video/mp4">
+</video>
 
 Each tab remembers its values for next time.
 

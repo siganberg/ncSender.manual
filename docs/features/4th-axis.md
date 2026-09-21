@@ -5,7 +5,9 @@
 
 Jog and read out a 4th axis (A-axis) for rotary and indexing work.
 
-![4th axis jogging](../assets/images/features/4th-axis.webp)
+<video controls autoplay loop muted playsinline aria-label="4th axis jogging">
+  <source src="../assets/images/features/4th-axis.mp4" type="video/mp4">
+</video>
 
 ## Features
 

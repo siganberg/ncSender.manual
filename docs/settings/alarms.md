@@ -80,4 +80,4 @@ Some alarms are caused by a setting, not a fault. Change these in [Firmware Sett
 
 ## Toolpath Outside the Machine
 
-Before you run, the visualizer shows **Toolpath exceeds machine boundaries** if the program would go past the machine's travel. This isn't an alarm yet, but running it would cause alarm 2. Check your work zero and program size. See [Out-of-Bounds Detection](../features/visualizer.md#out-of-bounds-detection).
+Before you run, the visualizer shows **Toolpath exceeds machine boundaries** if the program would go past the machine's travel. This isn't an alarm yet, but running it would cause alarm 2. Check your work zero and program size. See [Out-of-Bounds Detection](../features/visualizer.md#out-of-bounds-warning).

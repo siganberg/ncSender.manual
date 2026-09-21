@@ -17,7 +17,9 @@ The Laser Mode switch is hidden until you turn it on in Settings.
 
 ## Enabling Laser Mode
 
-![Laser settings](../assets/images/features/laser-settings.webp)
+<video controls autoplay loop muted playsinline aria-label="Laser settings">
+  <source src="../assets/images/features/laser-settings.mp4" type="video/mp4">
+</video>
 
 1. Click the gear button next to **Laser Mode** to open **Laser Settings**.
 2. Under **Spindle use for Laser**, pick the spindle output your laser is wired to (for example *PWM2 (Spindle 1)*).
@@ -58,7 +60,9 @@ When laser mode is on:
 - The view button reads **LaserHead View** instead of **Spindle View**.
 - The **Probe** button and the tool legend are hidden.
 
-![Laser animation](../assets/images/features/laser-running.webp)
+<video controls autoplay loop muted playsinline aria-label="Laser animation">
+  <source src="../assets/images/features/laser-running.mp4" type="video/mp4">
+</video>
 
 ## Test Fire
 

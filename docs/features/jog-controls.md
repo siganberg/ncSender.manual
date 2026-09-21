@@ -21,7 +21,9 @@ The jog panel has:
 
 ## Step Sizes
 
-![Step sizes](../assets/images/features/jog-step-sizes.webp)
+<video controls autoplay loop muted playsinline aria-label="Step sizes">
+  <source src="../assets/images/features/jog-step-sizes.mp4" type="video/mp4">
+</video>
 
 There are three step buttons: small, medium and large. **Tap** a button to use it.
 **Press and hold** it (half a second) to open a list of every value in its range.
@@ -64,7 +66,9 @@ The rate is for X and Y. Z jogs at half of it, and the A axis at a quarter.
 
 ### Continuous Jog
 
-![Continuous jog](../assets/images/features/jog-continuous.webp)
+<video controls autoplay loop muted playsinline aria-label="Continuous jog">
+  <source src="../assets/images/features/jog-continuous.mp4" type="video/mp4">
+</video>
 
 **Hold** a direction button to keep moving. The machine stops as soon as you let go.
 
@@ -114,7 +118,9 @@ before homing X and Y.
 
 ## Go To Zero & Park
 
-![Go to zero](../assets/images/features/jog-zero-buttons.webp)
+<video controls autoplay loop muted playsinline aria-label="Go to zero">
+  <source src="../assets/images/features/jog-zero-buttons.mp4" type="video/mp4">
+</video>
 
 These buttons **move the machine** to a spot. They don't set one. Hold a button to
 move; a bar fills while you hold.

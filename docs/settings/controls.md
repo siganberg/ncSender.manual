@@ -57,4 +57,4 @@ If a gamepad doesn't respond, check what ncSender sees:
 
 <!-- CAPTURE NEEDED: assets/images/settings/controls-gamepad-debug.webp (Gamepad Debug) -->
 
-See also [Jog Controls](../features/jog-controls.md#keyboard-shortcuts).
+See also [Jog Controls](../features/jog-controls.md#keyboard-and-gamepad).
