@@ -21,7 +21,7 @@ The jog panel has:
 
 ## Step Sizes
 
-<video controls autoplay loop muted playsinline aria-label="Step sizes">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Step sizes" poster="../assets/images/features/jog-step-sizes-poster.jpg">
   <source src="../assets/images/features/jog-step-sizes.mp4" type="video/mp4">
 </video>
 
@@ -66,7 +66,7 @@ The rate is for X and Y. Z jogs at half of it, and the A axis at a quarter.
 
 ### Continuous Jog
 
-<video controls autoplay loop muted playsinline aria-label="Continuous jog">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Continuous jog" poster="../assets/images/features/jog-continuous-poster.jpg">
   <source src="../assets/images/features/jog-continuous.mp4" type="video/mp4">
 </video>
 
@@ -118,7 +118,7 @@ before homing X and Y.
 
 ## Go To Zero & Park
 
-<video controls autoplay loop muted playsinline aria-label="Go to zero">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Go to zero" poster="../assets/images/features/jog-zero-buttons-poster.jpg">
   <source src="../assets/images/features/jog-zero-buttons.mp4" type="video/mp4">
 </video>
 

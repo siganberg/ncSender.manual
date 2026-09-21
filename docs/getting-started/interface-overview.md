@@ -37,7 +37,7 @@ See [DRO](../features/dro.md).
 The 3D visualizer shows the loaded G-code, the tool position and the machine
 work area. Rotate and zoom with the mouse or touch.
 
-<video controls autoplay loop muted playsinline aria-label="Visualizer with toolpath">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Visualizer with toolpath" poster="../assets/images/getting-started/visualizer-toolpath-poster.jpg">
   <source src="../assets/images/getting-started/visualizer-toolpath.mp4" type="video/mp4">
 </video>
 
@@ -97,7 +97,7 @@ Language and keyboard layout settings are part of ncSender Pro.
 
 ![Language & Region](../assets/images/getting-started/settings-language-region.webp)
 
-<video controls autoplay loop muted playsinline aria-label="Switching to German">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Switching to German" poster="../assets/images/getting-started/language-switch-german-poster.jpg">
   <source src="../assets/images/getting-started/language-switch-german.mp4" type="video/mp4">
 </video>
 

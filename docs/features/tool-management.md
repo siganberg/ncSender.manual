@@ -48,7 +48,7 @@ A tool only takes a magazine slot once you assign it. There are two ways:
 - **In the tool table**: click the tool's slot badge (**Slot#** or **No Slot**), then
   pick a slot.
 
-<video controls autoplay loop muted playsinline aria-label="Assigning a slot">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Assigning a slot" poster="../assets/images/features/tool-assign-slot-poster.jpg">
   <source src="../assets/images/features/tool-assign-slot.mp4" type="video/mp4">
 </video>
 
@@ -141,7 +141,7 @@ To use the buttons:
 - **Hold** **TLS** to measure the current tool.
 - **Tap** a slot button to see its tool ID, diameter and type.
 
-<video controls autoplay loop muted playsinline aria-label="Tap a slot to see its tool">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Tap a slot to see its tool" poster="../assets/images/features/visualizer-slot-tap-poster.jpg">
   <source src="../assets/images/features/visualizer-slot-tap.mp4" type="video/mp4">
 </video>
 

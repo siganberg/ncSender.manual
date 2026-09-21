@@ -24,7 +24,7 @@ The dialog title shows **Beta**.
 The dialog closes and the program loads, ready to check in the visualizer and
 run.
 
-<video controls autoplay loop muted playsinline aria-label="Generate a program">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Generate a program" poster="../assets/images/plugins/quickcut-generate-poster.jpg">
   <source src="../assets/images/plugins/quickcut-generate.mp4" type="video/mp4">
 </video>
 

@@ -23,7 +23,7 @@ window.
 To start a job partway through, double-click a line, or select it in the line
 numbers. The **Start From Line** dialog opens with that line filled in.
 
-<video controls autoplay loop muted playsinline aria-label="Start From Line from the preview">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Start From Line from the preview" poster="../assets/images/features/gcode-preview-start-from-line-poster.jpg">
   <source src="../assets/images/features/gcode-preview-start-from-line.mp4" type="video/mp4">
 </video>
 
@@ -36,7 +36,7 @@ depends on whether a job is running:
   has its own **Auto-Scroll** switch.
 - **When idle**: you can edit the file.
 
-<video controls autoplay loop muted playsinline aria-label="Editing in the larger view">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Editing in the larger view" poster="../assets/images/features/gcode-preview-editor-poster.jpg">
   <source src="../assets/images/features/gcode-preview-editor.mp4" type="video/mp4">
 </video>
 

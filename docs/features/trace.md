@@ -5,7 +5,7 @@
 
 Trace moves the machine around the outline of your program, so you can check it fits your material before cutting.
 
-<video controls autoplay loop muted playsinline aria-label="Trace animation">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Trace animation" poster="../assets/images/features/trace-poster.jpg">
   <source src="../assets/images/features/trace.mp4" type="video/mp4">
 </video>
 

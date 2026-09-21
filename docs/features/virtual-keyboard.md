@@ -5,7 +5,7 @@
 
 An on-screen keyboard for kiosk and touch screen setups with no physical keyboard.
 
-<video controls autoplay loop muted playsinline aria-label="Virtual Keyboard animation">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Virtual Keyboard animation" poster="../assets/images/features/virtual-keyboard-poster.jpg">
   <source src="../assets/images/features/virtual-keyboard.mp4" type="video/mp4">
 </video>
 

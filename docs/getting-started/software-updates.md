@@ -32,7 +32,7 @@ whichever one is selected.
 Rolling back to an older version can leave newer settings unsupported.
 Existing settings are not migrated automatically.
 
-<video controls autoplay loop muted playsinline aria-label="Rolling back from Version History">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Rolling back from Version History" poster="../assets/images/getting-started/update-version-history-rollback-poster.jpg">
   <source src="../assets/images/getting-started/update-version-history-rollback.mp4" type="video/mp4">
 </video>
 

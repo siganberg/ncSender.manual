@@ -9,7 +9,7 @@ the axis cards themselves.
 
 ## Setting work zeros (long-press)
 
-<video controls autoplay loop muted playsinline aria-label="DRO long-press to zero">
+<video autoplay loop muted playsinline preload="metadata" aria-label="DRO long-press to zero" poster="../assets/images/features/dro-long-press-poster.jpg">
   <source src="../assets/images/features/dro-long-press.mp4" type="video/mp4">
 </video>
 
@@ -35,7 +35,7 @@ Let go before the bar is full to cancel, so a stray tap won't reset your zeros.
 
 ## Entering a specific coordinate (double-click / double-tap)
 
-<video controls autoplay loop muted playsinline aria-label="DRO manual coordinate entry">
+<video autoplay loop muted playsinline preload="metadata" aria-label="DRO manual coordinate entry" poster="../assets/images/features/dro-manual-entry-poster.jpg">
   <source src="../assets/images/features/dro-manual-entry.mp4" type="video/mp4">
 </video>
 

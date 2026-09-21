@@ -5,7 +5,7 @@
 
 Load a program that uses several workspaces (G54–G59) and ncSender shows each one where it will cut. Use it to check batch and fixture jobs before you run them.
 
-<video controls autoplay loop muted playsinline aria-label="Multi-workspace">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Multi-workspace" poster="../assets/images/features/multi-workspace-poster.jpg">
   <source src="../assets/images/features/multi-workspace.mp4" type="video/mp4">
 </video>
 
@@ -39,6 +39,6 @@ If the program has no workspace words, only the active workspace is drawn.
 - The **Toolpath exceeds machine boundaries** warning checks every workspace in the program.
 - [Trace](trace.md) outlines all workspaces in the program together.
 
-<video controls autoplay loop muted playsinline aria-label="Multi-workspace animation">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Multi-workspace animation" poster="../assets/images/features/multi-workspace-running-poster.jpg">
   <source src="../assets/images/features/multi-workspace-running.mp4" type="video/mp4">
 </video>
