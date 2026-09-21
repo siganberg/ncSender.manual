@@ -101,6 +101,29 @@ Language and keyboard layout settings are part of ncSender Pro.
   <source src="../assets/images/getting-started/language-switch-german.mp4" type="video/mp4">
 </video>
 
+## Screen Orientation
+
+ncSender lays itself out for the screen it is on. The same 1080p panel works
+mounted either way, and nothing is hidden or cut off in either orientation —
+you get the same controls, rearranged.
+
+=== "Landscape (1920 x 1080)"
+
+    ![Landscape layout](../assets/images/getting-started/orientation-landscape.webp)
+
+    The visualizer takes the left, with jog, the DRO and the terminal panel
+    stacked down the right.
+
+=== "Portrait (1080 x 1920)"
+
+    ![Portrait layout](../assets/images/getting-started/orientation-portrait.webp)
+
+    The visualizer sits across the top, with jog and the DRO below it and the
+    terminal panel along the bottom.
+
+On a kiosk, set the orientation in your OS display settings — ncSender follows
+the screen and reflows on its own.
+
 ## Open Links on a Kiosk
 
 A kiosk screen has no web browser. When you tap a link (help, store, release
