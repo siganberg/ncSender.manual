@@ -16,6 +16,9 @@ walk around the machine while you work.
         - **ncSender Pro** — v2.0.117 or newer
         - **Pendant firmware** — v1.0.16 or newer
         - **Wireless USB firmware** — v0.3.0 or newer
+    - **Tool picker with Manual, live tool changer updates and the TLS
+      reminder** — pendant firmware **v1.0.37**, ncSender **v2.0.148** or
+      ncSender Pro **v2.0.220** or newer.
 
 ## Hardware
 
@@ -90,9 +93,18 @@ when:
 
 ## Screens
 
-Long-press **Prev** or **Next** to move between screens: **Jog**, **Aux &
-Tool Change**, **Probe**, **Job** and **Info**. Open **Setup** from the Info
-screen.
+Hold **Prev** or **Next** for half a second to move between screens: **Jog**,
+**Aux & Tool Change**, **Probe**, **Job** and **Info**. Open **Setup** from the
+Info screen.
+
+!!! info "Hold to activate"
+    Anything that moves the machine, changes a tool or ends a job needs a
+    **1-second hold** on the touch screen, so a stray touch can't set it off.
+    While you hold, a white fill sweeps across the control. Lift your finger
+    before the fill completes, or slide it off, to cancel.
+
+    A tap on the screen only selects the control. Once it's selected, press
+    **Exec** (the middle soft button) to run it straight away.
 
 ### Jog
 
@@ -114,19 +126,29 @@ Z jog is limited to what your machine can stop cleanly, so fast turns don't
 overshoot.
 
 **Changing the step size.** Use **Prev / Next** to pick an axis, then press
-**Select** to cycle its step: `0.01`, `0.1`, `1.0`. X and Y share a step; Z
-has its own.
+**Step/Zero** to cycle its step: `0.01`, `0.1`, `1.0`. X and Y share a step;
+Z has its own.
+
+**Zeroing an axis.** Hold the axis card on the screen for 1 second, or hold
+**Step/Zero** with the axis selected. The fill sweeps across the position side
+of the card.
 
 **Buttons:**
 
 - **HOME** — run the homing cycle.
-- **XY0 / X0 / Y0 / Z0** — zero those axes at the current position.
+- **XY0 / X0 / Y0 / Z0** — move to zero on those axes. The machine lifts to
+  safe Z first.
 
-**Footer.** Three soft buttons below the screen: **Prev / Select / Next**.
+Hold a button on the screen for 1 second to run it.
+
+**Footer.** Three soft buttons below the screen: **Prev**, the middle button
+and **Next**.
 
 - **Prev / Next** — move between the axes and buttons.
-- **Select** — on an axis, cycle the step; on a button, run it.
-- **Long-press Prev / Next** — change screen.
+- **Step/Zero** (axis selected) — press to cycle the step, hold to zero the
+  axis.
+- **Exec** (button selected) — run the button.
+- **Hold Prev / Next** — change screen.
 
 ### Aux & Tool Change
 
@@ -144,28 +166,37 @@ Auxiliary I/O**. Changes reach the pendant right away.
 
 ![ncSender Auxiliary I/O settings](../assets/images/features/ncsender-aux-outputs.png)
 
-A switch set to hold-to-activate needs a **1-second hold** to turn on.
+Hold a switch on the screen for 1 second to turn it on or off. Switches set to
+hold-to-activate show a **HOLD** badge after their command, and need a hold on
+**Exec** too.
 
-**Slot picker (middle).** Shows the chosen slot and your total slots (e.g.
-`1 /6`), with **Load** or **Unload** and the loaded tool number. Turn the jog
-knob to pick a slot. After the last slot, the picker shows **Probe** if the
-probe tool is turned on in the Tool Library. Long-press **Select** to load the
-chosen slot or the probe, or to unload the tool in the spindle.
+**Tool picker (middle).** The right side shows the chosen tool (e.g.
+**SLOT 1**) with your total slots underneath (**Total: 6**). The left side
+shows **LOAD** or **UNLOAD** with the tool in the spindle underneath (e.g.
+**Current: T1**).
 
-The slot count comes from your tool-change plugin (Pneumatic ATC, Rapid
-Change ATC or Manual Tool Changer). Save the plugin's settings and the pendant
-picks it up. With no tool-change plugin set up, the picker shows `-/-`.
+Turn the jog knob to pick a tool. After the last slot the picker offers:
 
-**Actions (bottom).**
+- **Manual** — change to a tool by hand, when your tool changer allows it.
+- **Probe** — load the probe, when the probe tool is turned on in your tool
+  changer.
 
-- **Manual** — change to a tool by hand. Long-press to start.
-- **TLS** — measure the tool length. Long-press to start.
+Hold the picker on the screen for 1 second, or press **Exec**, to load the
+chosen tool. If the chosen tool is already in the spindle, the same action
+unloads it.
 
-Both need a long-press, so a stray tap can't start a tool change or a probe.
+The slots, Manual, Probe and TLS come from your tool-change plugin (Pneumatic
+ATC, Rapid Change ATC or Manual Tool Changer). The pendant updates as soon as
+you enable, disable or change the plugin. With no tool changer set up, the
+picker is hatched out and can't be selected.
 
-**Footer.** **Prev / Next** move between items. **Select** runs the chosen
-item: a short press for aux switches, a long press for items that need a hold.
-Long-press **Prev** or **Next** to change screen.
+**TLS (bottom).** Measure the tool length. Hold for 1 second, or press
+**Exec**. When a tool is loaded but its length hasn't been measured, **TLS**
+glows red, the same as in ncSender, to remind you to measure it. TLS is hatched
+out when your tool changer has no tool length setter.
+
+**Footer.** **Prev / Next** move between items. **Exec** runs the chosen item.
+Hold **Prev** or **Next** to change screen.
 
 ### Probe
 
@@ -182,9 +213,10 @@ Jog to the touch-off point and start a probe without walking back to ncSender.
 4. Pick where the probe sits on the work: a corner, an edge or the centre.
    For **Center-In** and **Center-Out**, turn the jog knob to set the
    diameter instead.
-5. Hold **Start Probe**.
+5. Hold **Start Probe** for 1 second.
 
-While probing, the button changes to **Stop Probe**. Hold it to stop.
+While probing, the button changes to **Stop Probe**. Hold it for 1 second to
+stop.
 
 <!-- CAPTURE NEEDED: assets/images/accessories/pendant-probe-running.webp (Pendant probing) -->
 
@@ -219,15 +251,30 @@ while the program runs:
 Overrides go from 10 % to 200 %. Lowering the feed override also slows rapid
 moves (see [Overrides](../features/visualizer.md#overrides)).
 
-**Program buttons:**
+**Program buttons.** They use the same colours as in ncSender:
 
-- **Cycle** — hold to start or resume the program.
-- **Pause** — pause the program.
-- **Stop** — stop the program.
+- **Cycle** (blue) — start or resume the program. Hold for 1 second.
+- **Pause** (amber) — pause the program. A single tap pauses straight away.
+- **Stop** (red) — stop the program. Hold for 1 second.
 
-Tap **Pause** or **Stop** once to select it, then tap it again to run it.
+!!! question "Why does Pause work on a tap, but Stop needs a hold?"
+    A paused program simply carries on when you resume it, so an accidental
+    tap on **Pause** costs nothing, and you can pause the moment you need to.
+    A stopped program can't be resumed; it has to be started again. The
+    1-second hold on **Stop** makes sure it only happens when you mean it.
 
-When the job finishes or you stop it, the pendant returns to the Jog screen.
+    Stop on the pendant isn't an emergency stop. Use your machine's E-stop for
+    emergencies. If you want to stop right away from the pendant, select
+    **Stop** and press **Exec**.
+
+A button that can't be used right now is shown faded and can't be selected:
+**Cycle** while the program is running, and **Pause** when nothing is running
+or the program is already paused.
+
+With a button selected, press **Exec** to run it straight away. With a card
+selected, the middle button is **Reset**.
+
+When the job finishes or you stop it, the pendant stays on the Job screen.
 
 ### Info
 

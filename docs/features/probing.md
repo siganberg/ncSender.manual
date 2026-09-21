@@ -9,8 +9,8 @@ Use the probe dialog to find your work zero with a touch probe.
 Pick one under **Probe Type**. The fields change with the type and the
 **Probing Axis**. The dialog opens on **AutoZero Touch** with axis **Z**.
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="Probe types" poster="../assets/images/features/probe-types-poster.jpg">
-  <source src="../assets/images/features/probe-types.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Probe types" poster="../../assets/images/features/probe-types-poster.jpg">
+  <source src="../../assets/images/features/probe-types.mp4" type="video/mp4">
 </video>
 
 ### 3D Probe
@@ -93,8 +93,8 @@ Probe settings use your unit preference: mm and mm/min, or inches and in/min.
       or part.
 6. Click **Start Probe**.
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="Probing cycle" poster="../assets/images/features/probe-cycle-poster.jpg">
-  <source src="../assets/images/features/probe-cycle.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Probing cycle" poster="../../assets/images/features/probe-cycle-poster.jpg">
+  <source src="../../assets/images/features/probe-cycle.mp4" type="video/mp4">
 </video>
 
 To stop a probe cycle, press **Stop** in the Visualizer. If the probe ends in an

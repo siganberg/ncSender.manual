@@ -21,8 +21,8 @@ The jog panel has:
 
 ## Step Sizes
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="Step sizes" poster="../assets/images/features/jog-step-sizes-poster.jpg">
-  <source src="../assets/images/features/jog-step-sizes.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Step sizes" poster="../../assets/images/features/jog-step-sizes-poster.jpg">
+  <source src="../../assets/images/features/jog-step-sizes.mp4" type="video/mp4">
 </video>
 
 There are three step buttons: small, medium and large. **Tap** a button to use it.
@@ -66,8 +66,8 @@ The rate is for X and Y. Z jogs at half of it, and the A axis at a quarter.
 
 ### Continuous Jog
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="Continuous jog" poster="../assets/images/features/jog-continuous-poster.jpg">
-  <source src="../assets/images/features/jog-continuous.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Continuous jog" poster="../../assets/images/features/jog-continuous-poster.jpg">
+  <source src="../../assets/images/features/jog-continuous.mp4" type="video/mp4">
 </video>
 
 **Hold** a direction button to keep moving. The machine stops as soon as you let go.
@@ -118,8 +118,8 @@ before homing X and Y.
 
 ## Go To Zero & Park
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="Go to zero" poster="../assets/images/features/jog-zero-buttons-poster.jpg">
-  <source src="../assets/images/features/jog-zero-buttons.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Go to zero" poster="../../assets/images/features/jog-zero-buttons-poster.jpg">
+  <source src="../../assets/images/features/jog-zero-buttons.mp4" type="video/mp4">
 </video>
 
 These buttons **move the machine** to a spot. They don't set one. Hold a button to

@@ -9,8 +9,8 @@ the axis cards themselves.
 
 ## Setting work zeros (long-press)
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="DRO long-press to zero" poster="../assets/images/features/dro-long-press-poster.jpg">
-  <source src="../assets/images/features/dro-long-press.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="DRO long-press to zero" poster="../../assets/images/features/dro-long-press-poster.jpg">
+  <source src="../../assets/images/features/dro-long-press.mp4" type="video/mp4">
 </video>
 
 **Press and hold** an axis card for about **¾ of a second** to zero that axis
@@ -35,8 +35,8 @@ Let go before the bar is full to cancel, so a stray tap won't reset your zeros.
 
 ## Entering a specific coordinate (double-click / double-tap)
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="DRO manual coordinate entry" poster="../assets/images/features/dro-manual-entry-poster.jpg">
-  <source src="../assets/images/features/dro-manual-entry.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="DRO manual coordinate entry" poster="../../assets/images/features/dro-manual-entry-poster.jpg">
+  <source src="../../assets/images/features/dro-manual-entry.mp4" type="video/mp4">
 </video>
 
 To **type a coordinate** instead of zeroing, **double-click** the axis card (mouse)

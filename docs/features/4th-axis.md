@@ -5,8 +5,8 @@
 
 Jog and read out a 4th axis (A-axis) for rotary and indexing work.
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="4th axis jogging" poster="../assets/images/features/4th-axis-poster.jpg">
-  <source src="../assets/images/features/4th-axis.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="4th axis jogging" poster="../../assets/images/features/4th-axis-poster.jpg">
+  <source src="../../assets/images/features/4th-axis.mp4" type="video/mp4">
 </video>
 
 ## Features

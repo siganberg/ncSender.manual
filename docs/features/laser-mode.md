@@ -17,8 +17,8 @@ The Laser Mode switch is hidden until you turn it on in Settings.
 
 ## Enabling Laser Mode
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="Laser settings" poster="../assets/images/features/laser-settings-poster.jpg">
-  <source src="../assets/images/features/laser-settings.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Laser settings" poster="../../assets/images/features/laser-settings-poster.jpg">
+  <source src="../../assets/images/features/laser-settings.mp4" type="video/mp4">
 </video>
 
 1. Click the gear button next to **Laser Mode** to open **Laser Settings**.
@@ -60,8 +60,8 @@ When laser mode is on:
 - The view button reads **LaserHead View** instead of **Spindle View**.
 - The **Probe** button and the tool legend are hidden.
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="Laser animation" poster="../assets/images/features/laser-running-poster.jpg">
-  <source src="../assets/images/features/laser-running.mp4" type="video/mp4">
+<video autoplay loop muted playsinline preload="metadata" aria-label="Laser animation" poster="../../assets/images/features/laser-running-poster.jpg">
+  <source src="../../assets/images/features/laser-running.mp4" type="video/mp4">
 </video>
 
 ## Test Fire
