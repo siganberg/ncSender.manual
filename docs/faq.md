@@ -230,8 +230,9 @@ what they missed, then catch up. The job itself cuts correctly.
   against the same machine. If the remote view keeps up and only the local
   display lags, the problem is local rendering rather than the connection.
 - **Check GPU acceleration on non-standard hardware.** The prebuilt OS images
-  are built and tested for the Raspberry Pi 5 and gControl; on other mini PCs
-  the GPU may not be driven, leaving rendering to the CPU.
+  are built and tested for the Raspberry Pi 5 and for x86 mini PCs (Intel
+  NUC, N100 boxes, gControl); on other hardware the GPU may not be driven,
+  leaving rendering to the CPU.
 
 ## Probing and tool setting
 
