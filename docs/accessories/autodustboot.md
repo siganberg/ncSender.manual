@@ -124,7 +124,7 @@ let the boot finish moving before the machine continues.
 <!-- CAPTURE NEEDED: assets/images/accessories/autodustboot-connections-wired.webp (AutoDustBoot Connections tab — Wired) -->
 
 - **Retract Sequence** — sent before homing, tool changes and (if turned on)
-  console rapids. The default is `M8` · `G4 P0.1` · `M9` · `G4 P1`.
+  console rapids. The default is `M8` · `G4 P0.1` · `M9` · `G4 P1.5`.
 - **Expand Sequence** — sent when the boot should come back down, right
   before the next cut. The default is `M8`.
 
@@ -132,13 +132,14 @@ let the boot finish moving before the machine continues.
 
 ![AutoDustBoot Connections tab — Wireless](../assets/images/accessories/autodustboot-connections-wireless.webp)
 
-- **Pair New Device** — opens the same 60-second pairing window as **Pair
-  Device** in Accessories. **Unpair Device** removes the pairing.
 - **Retract**, **Expand** and **Home** move the boot. Hold the up or down
   arrow to jog it, and click **Save** to store the current position as the
   expand position.
 - **State**, **Position**, **Saved** and **Homed** show the boot's live
   status.
+
+Pairing and unpairing are done in **Accessories**, not in the plugin. See
+[Wireless setup](#wireless-setup-v2-only).
 
 <!-- CAPTURE NEEDED: assets/images/accessories/autodustboot-retract-expand.webp (Retract and expand from the plugin) -->
 
@@ -153,6 +154,11 @@ Choose when the plugin retracts the boot.
 - **Retract on Rapid Moves** *(on by default)* — retracts before a `G0` sent
   from the console or a macro. `G0` moves inside a running program are left
   alone.
+- **Max Travel** *(92 mm by default)* — how far the boot can extend, in mm.
+  It sets the range of the position readouts and the jog slider, and on a V2
+  it is sent to the controller as the bottom soft limit and saved there. Only
+  change it if your boot has a different stroke than the shipped firmware.
+  Accepts 10–500 mm.
 - **Show in Terminal** *(off by default)* — shows the plugin's commands in the
   console. Turn it on when troubleshooting.
 
