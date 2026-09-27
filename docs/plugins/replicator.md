@@ -3,7 +3,7 @@
 Replicator repeats the loaded program in a grid, so you can cut several copies
 of a part in one job.
 
-<!-- CAPTURE NEEDED: assets/images/plugins/replicator-dialog.webp (Replicator) -->
+![Replicator](../assets/images/plugins/replicator-dialog.webp)
 
 ## Make copies
 
@@ -27,7 +27,9 @@ of a part in one job.
 The new program loads. Replicator always starts from your original file, so you
 can open it again and change the grid.
 
-<!-- CAPTURE NEEDED: assets/images/plugins/replicator-generate.webp (Generated grid) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Generating a grid of copies" poster="../../assets/images/plugins/replicator-generate-poster.jpg">
+  <source src="../../assets/images/plugins/replicator-generate.mp4" type="video/mp4">
+</video>
 
 ## Troubleshooting
 

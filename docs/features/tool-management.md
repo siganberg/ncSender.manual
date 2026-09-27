@@ -12,6 +12,8 @@ slots (pockets) in your tool magazine.
 
 ![Tool Library settings](../assets/images/features/tool-library.webp)
 
+![Edit Tool dialog](../assets/images/features/tool-edit-dialog.webp)
+
 Add, edit and delete tools here. Each tool has:
 
 - **Tool ID**: the tool's own number. Each tool needs a different ID.
@@ -145,7 +147,9 @@ To use the buttons:
   <source src="../../assets/images/features/visualizer-slot-tap.mp4" type="video/mp4">
 </video>
 
-<!-- CAPTURE NEEDED: assets/images/features/tool-change-hold.webp (Hold to change tool) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Hold a slot button to change to that tool" poster="../../assets/images/features/tool-change-hold-poster.jpg">
+  <source src="../../assets/images/features/tool-change-hold.mp4" type="video/mp4">
+</video>
 
 A **dot** on a slot button, or on **Probe**, means that tool has a stored TLO. Hover
 over it to see the value.
@@ -213,7 +217,9 @@ Hold **TLS** (or send `$TLS`) to measure:
 4. The probe input is switched back and the machine returns to where it was in X
    and Y.
 
-<!-- CAPTURE NEEDED: assets/images/features/tool-tls-run.webp (Running TLS) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Holding TLS to measure the current tool" poster="../../assets/images/features/tool-tls-run-poster.jpg">
+  <source src="../../assets/images/features/tool-tls-run.mp4" type="video/mp4">
+</video>
 
 ### The glowing TLS button
 

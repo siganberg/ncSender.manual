@@ -6,7 +6,7 @@ Community and ncSender Pro, unless a plugin page says otherwise.
 
 ## Install a plugin
 
-![Install Plugin, Registry tab](../assets/images/plugins/plugins-install-registry.webp)
+![Install Plugin](../assets/images/plugins/plugins-install.webp)
 
 1. Open **Settings** > **Plugins**.
 2. Press **Install Plugin**.
@@ -37,7 +37,7 @@ running.
 
 ## Manage installed plugins
 
-![Installed plugins in Settings](../assets/images/plugins/plugins-settings-list.webp)
+![Installed plugins in Settings](../assets/images/plugins/plugins-installed.webp)
 
 Open **Settings** > **Plugins**. Each installed plugin has these buttons:
 

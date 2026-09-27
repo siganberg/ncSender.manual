@@ -10,7 +10,7 @@ When an alarm happens, a dialog appears over the visualizer. It shows:
 - What to do to fix it.
 - The controller's own code and message, with an **Alarm N** badge.
 
-<!-- CAPTURE NEEDED: assets/images/settings/alarm-dialog.webp (Alarm dialog) -->
+![Alarm dialog](../assets/images/settings/alarm-dialog.webp)
 
 The dialog closes by itself once the alarm clears. The pendant shows the alarm too, with its own Unlock.
 
@@ -22,7 +22,9 @@ The dialog closes by itself once the alarm clears. The pendant shows the alarm t
 
 If the cause is still there, the dialog says the controller refuses to unlock. Fix the cause (release the E-stop, clear the switch, or fix the motor fault input) and it unlocks on the next try.
 
-<!-- CAPTURE NEEDED: assets/images/settings/alarm-unlocking.webp (Unlocking) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Press to Unlock clears the alarm" poster="../../assets/images/settings/alarm-unlock-poster.jpg">
+  <source src="../../assets/images/settings/alarm-unlock.mp4" type="video/mp4">
+</video>
 
 You can also type `$X` in the console.
 

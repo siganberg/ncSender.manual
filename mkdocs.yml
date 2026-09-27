@@ -140,6 +140,7 @@ extra_javascript:
   - assets/js/source-stats.js
   - assets/js/pro-badge.js
   - assets/js/soon-badge.js
+  - assets/js/theme-media.js
 
 extra:
   social:

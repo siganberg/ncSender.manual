@@ -121,7 +121,7 @@ Choose **Wired** or **Wireless**.
 G-code the plugin sends to raise and lower the boot. You can add `G4` pauses to
 let the boot finish moving before the machine continues.
 
-<!-- CAPTURE NEEDED: assets/images/accessories/autodustboot-connections-wired.webp (AutoDustBoot Connections tab — Wired) -->
+![AutoDustBoot Connections tab, Wired](../assets/images/accessories/autodustboot-connections-wired.webp)
 
 - **Retract Sequence** — sent before homing, tool changes and (if turned on)
   console rapids. The default is `M8` · `G4 P0.1` · `M9` · `G4 P1.5`.
@@ -141,7 +141,9 @@ let the boot finish moving before the machine continues.
 Pairing and unpairing are done in **Accessories**, not in the plugin. See
 [Wireless setup](#wireless-setup-v2-only).
 
-<!-- CAPTURE NEEDED: assets/images/accessories/autodustboot-retract-expand.webp (Retract and expand from the plugin) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Retract and Expand from the plugin" poster="../../assets/images/accessories/autodustboot-retract-expand-poster.jpg">
+  <source src="../../assets/images/accessories/autodustboot-retract-expand.mp4" type="video/mp4">
+</video>
 
 ### Options
 

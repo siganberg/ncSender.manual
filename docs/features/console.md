@@ -5,6 +5,10 @@ common commands with one click.
 
 ## Terminal
 
+<video autoplay loop muted playsinline preload="metadata" aria-label="Typing a command in the terminal and sending it" poster="../../assets/images/features/console-send-command-poster.jpg">
+  <source src="../../assets/images/features/console-send-command.mp4" type="video/mp4">
+</video>
+
 ![Terminal](../assets/images/features/console-terminal.webp)
 
 The **Terminal** tab shows everything sent to and received from the controller:

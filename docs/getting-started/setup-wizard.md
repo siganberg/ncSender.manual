@@ -18,6 +18,10 @@ travel, limit switches and probe, homing and safety limits.
     launch. Closing it from a later step does not, and it will come back,
     unless you already applied settings.
 
+<video autoplay loop muted playsinline preload="metadata" aria-label="Walking through the Machine Setup Wizard" poster="../../assets/images/getting-started/setup-wizard-walk-poster.jpg">
+  <source src="../../assets/images/getting-started/setup-wizard-walk.mp4" type="video/mp4">
+</video>
+
 ![Machine Setup Wizard welcome page](../assets/images/getting-started/wizard-welcome.webp)
 
 ## Walking through it
@@ -63,7 +67,7 @@ shows the other way round, turn on **Invert** for it.
 The **Probe** row works the same way; a **Toolsetter** row appears when the
 controller reports a second probe input.
 
-<!-- CAPTURE NEEDED: assets/images/getting-started/wizard-switches-invert.webp (Checking a limit switch and Invert) -->
+![Switches & probe step, with Invert toggles](../assets/images/getting-started/wizard-switches.webp)
 
 !!! warning "Applied immediately"
     Invert is written to the controller the moment you toggle it (`$5` for
@@ -83,7 +87,7 @@ stop the moment a drive faults. If a healthy motor raises a motor fault alarm
 as soon as you enable it, the input reads backwards. Turn on **Invert** for
 that axis, then press **Unlock** on the alarm bar.
 
-<!-- CAPTURE NEEDED: assets/images/getting-started/wizard-motor-fault.webp (Motor fault step) -->
+![Motor fault step](../assets/images/getting-started/wizard-motor-fault.webp)
 
 ### Homing
 

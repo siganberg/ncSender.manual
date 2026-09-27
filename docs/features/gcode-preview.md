@@ -12,7 +12,9 @@ The tab shows:
 - **Current line**: while a job runs, finished lines are dimmed and the line being
   sent is highlighted. Turn on **Auto-Scroll** to keep that line in view.
 
-<!-- CAPTURE NEEDED: assets/images/features/gcode-preview-running.webp (Preview during a job) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="The preview follows the current line while a job runs" poster="../../assets/images/features/gcode-preview-running-poster.jpg">
+  <source src="../../assets/images/features/gcode-preview-running.mp4" type="video/mp4">
+</video>
 
 With no file loaded, the tab reads **No G-code loaded**. Load a file from the
 [Visualizer](visualizer.md#loading-a-file), or drop a `.gcode` or `.nc` file onto the
@@ -48,6 +50,8 @@ depends on whether a job is running:
 
 To throw away your edits, click **Discard**. Before you edit, this button reads
 **Close**.
+
+![Discard Changes confirmation](../assets/images/features/gcode-preview-discard-confirm.webp)
 
 If you open **Start From Line** with unsaved edits, ncSender asks what to do: **Save
 First**, **Discard** or **Cancel**. Unsaved edits are lost if a job starts.

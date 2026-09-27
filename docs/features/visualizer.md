@@ -56,11 +56,23 @@ Pick a view with the **Top**, **Side**, **3D** and **Split** buttons:
 
 ## Running a Job
 
+<video autoplay loop muted playsinline preload="metadata" aria-label="Pressing Cycle: the Program Start event runs, the tool is loaded and the cut begins" poster="../../assets/images/features/job-start-poster.jpg">
+  <source src="../../assets/images/features/job-start.mp4" type="video/mp4">
+</video>
+
 - **Cycle**: starts the loaded file. When the machine is on hold, it resumes.
   Cycle works when a file is loaded and the machine is Idle, or when it is on
   Hold. It stays off while the safety door is open.
+<video autoplay loop muted playsinline preload="metadata" aria-label="Pause holds the job; Resume picks it up where it left off" poster="../../assets/images/features/job-pause-resume-poster.jpg">
+  <source src="../../assets/images/features/job-pause-resume.mp4" type="video/mp4">
+</video>
+
 - **Pause**: holds the running job. It takes the place of **Trace** while a job
   is running or on hold.
+<video autoplay loop muted playsinline preload="metadata" aria-label="Stop ends the job" poster="../../assets/images/features/job-stop-poster.jpg">
+  <source src="../../assets/images/features/job-stop.mp4" type="video/mp4">
+</video>
+
 - **Stop**: stops the job. If a probe cycle is running, **Stop** stops the probe
   instead.
 - **Trace**: moves around the outline of the toolpath with the spindle off, so
@@ -87,7 +99,9 @@ While a job runs:
 
 ### Spindle control
 
-![Spindle controls on the visualizer](../assets/images/features/visualizer-spindle-controls.webp)
+<video autoplay loop muted playsinline preload="metadata" aria-label="Starting the spindle with CW, raising the speed, then STOP" poster="../../assets/images/features/visualizer-spindle-run-poster.jpg">
+  <source src="../../assets/images/features/visualizer-spindle-run.mp4" type="video/mp4">
+</video>
 
 When no job is running, the **Spindle** card runs the spindle instead of
 overriding it — an override only means something while a program is feeding.
@@ -99,8 +113,6 @@ overriding it — an override only means something while a program is feeding.
   and `$30`).
 
 Once the spindle is turning, the card changes:
-
-![Stopping the spindle](../assets/images/features/visualizer-spindle-stop.webp)
 
 - The middle button becomes **STOP** (`M5`).
 - **−** and **+** still change the speed, and the spindle follows straight
@@ -118,7 +130,9 @@ the machine is connected.
 
 ### Overrides
 
-![Feedrate and Spindle overrides](../assets/images/features/visualizer-overrides.webp)
+<video autoplay loop muted playsinline preload="metadata" aria-label="Raising the feedrate override during a job, then tapping the value to reset it" poster="../../assets/images/features/visualizer-overrides-poster.jpg">
+  <source src="../../assets/images/features/visualizer-overrides.mp4" type="video/mp4">
+</video>
 
 Use the **Feedrate** and **Spindle** overrides to speed up or slow down a
 running job. The change takes effect right away, without pausing.
@@ -186,7 +200,9 @@ The items depend on the view:
    are machine coordinates. Change them if needed.
 4. Press **Move**. The spindle rises to a safe Z height first, then moves.
 
-<!-- CAPTURE NEEDED: assets/images/features/visualizer-move-to.webp (Move To) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Right-click in Top view, choose Move To, then Move" poster="../../assets/images/features/visualizer-move-to-poster.jpg">
+  <source src="../../assets/images/features/visualizer-move-to.mp4" type="video/mp4">
+</video>
 
 !!! note "Why Move To is Top-only"
     Only in Top view does a click match an exact X and Y on the machine. In the
@@ -212,11 +228,13 @@ A 3D model shows where the machine is:
 - **Laser head**: a laser head with its beam. Needs
   [Laser Mode](laser-mode.md) (Pro).
 
-<!-- CAPTURE NEEDED: assets/images/features/visualizer-toolheads.webp (Spindle and laser head) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="The toolhead switches between the spindle and the laser head with Laser Mode" poster="../../assets/images/features/laser-mode-toggle-poster.jpg">
+  <source src="../../assets/images/features/laser-mode-toggle.mp4" type="video/mp4">
+</video>
 
 ### Workspace Markers
 
-![Workspace markers](../assets/images/features/visualizer-workspace-markers.png)
+![Workspace markers](../assets/images/features/visualizer-workspace-markers.webp)
 
 Markers show where the origins of G54 to G59 are on the machine. The active
 workspace is highlighted.
@@ -277,7 +295,9 @@ refuses moves that end inside it. See [Keepout Zone](keepout-zone.md).
 
 ## Out-of-Bounds Warning
 
-<!-- CAPTURE NEEDED: assets/images/features/visualizer-out-of-bounds.webp (Out-of-bounds warning) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Offsetting the file past the travel shows the banner; Reset to Original clears it" poster="../../assets/images/features/visualizer-out-of-bounds-poster.jpg">
+  <source src="../../assets/images/features/visualizer-out-of-bounds.mp4" type="video/mp4">
+</video>
 
 If the toolpath goes past the machine's travel, a red banner shows
 **Toolpath exceeds machine boundaries**. When known, it adds which way the file
@@ -296,7 +316,7 @@ unloaded.
 
 ## Alarm Dialog
 
-<!-- CAPTURE NEEDED: assets/images/features/visualizer-alarm.webp (Alarm dialog) -->
+![Alarm dialog](../assets/images/settings/alarm-dialog.webp)
 
 When the controller raises an alarm, a dialog opens. It closes on its own when
 the alarm clears.

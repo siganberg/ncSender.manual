@@ -73,7 +73,9 @@ One press keeps trying to unlock for up to 30 seconds. If the cause is still
 active (E-stop held, a limit switch pressed, a motor fault input), the dialog
 says so. Fix the cause and it unlocks on the next try.
 
-<!-- CAPTURE NEEDED: assets/images/getting-started/alarm-dialog-unlock.webp (Alarm dialog and unlock) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="An alarm dialog, and Press to Unlock clearing it" poster="../../assets/images/settings/alarm-unlock-poster.jpg">
+  <source src="../../assets/images/settings/alarm-unlock.mp4" type="video/mp4">
+</video>
 
 ## Troubleshooting Connection Issues
 

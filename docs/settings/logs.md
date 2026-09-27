@@ -8,7 +8,7 @@ ncSender keeps a log file for each day. Support may ask for one when you report 
 2. Pick a log file from the list. Today's log is the newest.
 3. Click **Refresh** to see new lines.
 
-<!-- CAPTURE NEEDED: assets/images/settings/logs-tab.webp (Logs tab) -->
+![Logs tab](../assets/images/settings/logs-tab.webp)
 
 The bottom shows the folder where logs are stored and how many log files there are.
 
@@ -25,4 +25,4 @@ The bottom shows the folder where logs are stored and how many log files there a
 
 Today's log is still in use, so ncSender clears its contents instead of deleting it. Click **Clear** to confirm.
 
-<!-- CAPTURE NEEDED: assets/images/settings/logs-delete-active.webp (Clearing today's log) -->
+![Clearing today's log](../assets/images/settings/logs-delete-active.webp)

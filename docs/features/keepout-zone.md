@@ -24,7 +24,7 @@ Your machine must be connected so ncSender can read its travel limits.
 4. Under **Size**, enter the width (**W**) and height (**H**).
 5. Check the preview. It saves by itself.
 
-<!-- CAPTURE NEEDED: assets/images/features/keepout-settings.webp (Keepout Zone settings) -->
+![Keepout Zone settings](../assets/images/features/keepout-settings.webp)
 
 !!! tip "Finding the corner"
     Jog the spindle to the corner of the area you want to protect and read the machine position from the DRO.
@@ -35,7 +35,7 @@ ncSender checks the zone against your machine's travel limits. If part of it is 
 
 The zone shows in the visualizer, labelled **KEEPOUT**. The label pulses when you load a program and after you change a work offset.
 
-<!-- CAPTURE NEEDED: assets/images/features/keepout-visualizer.webp (Keepout Zone in the visualizer) -->
+![Keepout Zone in the visualizer](../assets/images/features/keepout-visualizer.webp)
 
 ## When You Jog
 
@@ -43,7 +43,9 @@ The zone shows in the visualizer, labelled **KEEPOUT**. The label pulses when yo
 - A jog that is already at the edge does nothing.
 - The terminal shows where the jog was stopped, for example `(keepout: 250,300 → 180,300)`.
 
-<!-- CAPTURE NEEDED: assets/images/features/keepout-jog-clamp.webp (Jog stopping at the keepout edge) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="A jog stopping at the edge of the keepout zone" poster="../../assets/images/features/keepout-jog-clamp-poster.jpg">
+  <source src="../../assets/images/features/keepout-jog-clamp.mp4" type="video/mp4">
+</video>
 
 ## When You Send a Move
 
@@ -72,7 +74,7 @@ XY homing takes the shortest path to the switches and can pass through the zone.
 
 Homing only Z does not ask. The same check runs in the [Calibration](calibration.md) Travel Limits guide.
 
-<!-- CAPTURE NEEDED: assets/images/features/keepout-homing-gate.webp (Keepout homing warning) -->
+![Keepout homing warning](../assets/images/features/keepout-homing-gate.webp)
 
 ## Limits and Known Gaps
 

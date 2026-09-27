@@ -212,8 +212,6 @@ Add your own G-code to run at each step:
 
 ## Change a tool
 
-<!-- CAPTURE NEEDED: assets/images/plugins/patc-tool-change.webp (Tool change) -->
-
 Press a tool button on the main screen, or run `M6 T2` (for tool 2). A job that
 reaches a tool change does the same. The machine puts the current tool back in
 its slot, picks up the new one and measures it.

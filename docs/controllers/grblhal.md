@@ -9,7 +9,7 @@ Set up the connection in **Settings → General → CNC Connection Setup**.
 - **USB**: pick a **Serial port**, or leave it on **Auto-detect**. Pick a **Baud rate** from 115200, 230400, 250000, 460800 or 921600. grblHAL boards use 115200.
 - **Ethernet**: enter the board's **IP address**, then pick a **Protocol**: **Telnet** (port 23) or **WebSocket** (port 81). Only for boards with networking.
 
-<!-- CAPTURE NEEDED: assets/images/controllers/grblhal-connection.webp (grblHAL Ethernet connection) -->
+![grblHAL Ethernet connection](../assets/images/getting-started/connection-setup-ethernet.webp)
 
 grblHAL boards typically use DTR for USB communication. ncSender handles this automatically.
 
@@ -19,7 +19,7 @@ For a new controller, run the [Machine Setup Wizard](../getting-started/setup-wi
 
 Change grblHAL settings in **Settings → Firmware**. You can search, see what each setting does with its unit and range, and import or export all settings. Settings that need a controller restart show a **Requires Restart** badge. See [Firmware Settings](../settings/firmware.md).
 
-<!-- CAPTURE NEEDED: assets/images/controllers/grblhal-firmware-tab.webp (Firmware tab) -->
+![Firmware tab](../assets/images/settings/firmware-tab.webp)
 
 The same tab has **Flash Firmware** for loading new firmware onto the board.
 

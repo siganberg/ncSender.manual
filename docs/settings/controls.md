@@ -7,7 +7,7 @@ Jog and run jobs from a keyboard or a USB gamepad. Open **Settings → Controls*
 1. Open **Settings → Controls**.
 2. Turn on **Enable Keyboard**.
 
-<!-- CAPTURE NEEDED: assets/images/settings/controls-tab.webp (Controls tab) -->
+![Controls tab](../assets/images/settings/controls-tab.webp)
 
 Each row is an action, with a **Keyboard** column and a **Gamepad** column. Type in **Search Actions...** to find one.
 
@@ -28,7 +28,9 @@ Keyboard and gamepad jogs are ignored while a job or probe is running. If your c
 
 Click **×** next to a binding to remove it.
 
-<!-- CAPTURE NEEDED: assets/images/settings/controls-capture-key.webp (Waiting for a key) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Click a Keyboard cell, then press the key combination" poster="../../assets/images/settings/controls-capture-key-poster.jpg">
+  <source src="../../assets/images/settings/controls-capture-key.mp4" type="video/mp4">
+</video>
 
 ## Set Up a Gamepad
 
@@ -36,7 +38,7 @@ Click **×** next to a binding to remove it.
 2. Click the **Gamepad** cell for an action.
 3. When it says "Press a button or move axis...", press the button or move the stick.
 
-<!-- CAPTURE NEEDED: assets/images/settings/controls-gamepad-bind.webp (Binding a gamepad button) -->
+![Binding a gamepad button](../assets/images/settings/controls-gamepad-bind.webp)
 
 ## Long-Press Actions
 
@@ -55,6 +57,6 @@ If a gamepad doesn't respond, check what ncSender sees:
 3. If it says **No gamepad connected**, press a button on the gamepad or plug it in again.
 4. Click **Toggle Gamepad Debug** again to hide it.
 
-<!-- CAPTURE NEEDED: assets/images/settings/controls-gamepad-debug.webp (Gamepad Debug) -->
+![Gamepad Debug overlay](../assets/images/settings/controls-gamepad-debug.webp)
 
 See also [Jog Controls](../features/jog-controls.md#keyboard-and-gamepad).

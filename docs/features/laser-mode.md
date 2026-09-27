@@ -33,7 +33,9 @@ Entries marked **- enable in firmware first** can't be picked. Turn that spindle
 !!! warning "Unload the tool first"
     If a tool is in the spindle, ncSender shows **Tool Loaded in Spindle**. Click **Unload Tool** to unload it and continue.
 
-<!-- CAPTURE NEEDED: assets/images/features/laser-mode-toggle.webp (Turning on Laser Mode) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Turning Laser Mode on and off" poster="../../assets/images/features/laser-mode-toggle-poster.jpg">
+  <source src="../../assets/images/features/laser-mode-toggle.mp4" type="video/mp4">
+</video>
 
 ## Turning Laser Mode Off
 
@@ -50,7 +52,7 @@ You can't change Laser Mode or Laser Settings while a job is running or paused.
 
 ## Visualizer Changes
 
-<!-- CAPTURE NEEDED: assets/images/features/laser-visualization.webp (Laser mode visualization) -->
+![Laser mode visualization](../assets/images/features/laser-visualization.webp)
 
 When laser mode is on:
 

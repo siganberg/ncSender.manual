@@ -56,7 +56,7 @@ by itself when the controller reports idle. A **Stop** button is available while
 
 ### 3. Measure
 
-<!-- CAPTURE NEEDED: assets/images/features/calibration-accuracy-measure.webp (Travel Accuracy, measure) -->
+![Travel Accuracy, measure](../assets/images/features/calibration-accuracy-measure.webp)
 
 Measure from your dot to the spot right under the bit tip now (or from your gantry line to the
 carriage's edge) and type exactly what you read. The guide tells you in plain words how far off the
@@ -69,7 +69,7 @@ size.
 
 ### 4. Fix
 
-<!-- CAPTURE NEEDED: assets/images/features/calibration-accuracy-fix.webp (Travel Accuracy, fix) -->
+![Travel Accuracy, fix](../assets/images/features/calibration-accuracy-fix.webp)
 
 Shows the current steps/mm next to the proposed value, saves it to the controller, and reads it back
 to confirm it was accepted. The setting is kept after a restart and can be changed at any time from
@@ -117,7 +117,7 @@ to be safe or continue. The same keepout-zone check as the jog panel's Home butt
 
 ### 3. Find the end
 
-<!-- CAPTURE NEEDED: assets/images/features/calibration-limits-find-end.webp (Travel Limits, find the end) -->
+![Travel Limits, find the end](../assets/images/features/calibration-limits-find-end.webp)
 
 Jog the carriage away from home with the same jog control used everywhere else in ncSender. Only the
 axis being calibrated is enabled. Start on the 10 mm step (hold it to pick a bigger one) until you are
@@ -129,7 +129,7 @@ the carriage is a finger's width from the end.
 
 ### 4. Set limit
 
-<!-- CAPTURE NEEDED: assets/images/features/calibration-limits-set.webp (Travel Limits, set limit) -->
+![Travel Limits, set limit](../assets/images/features/calibration-limits-set.webp)
 
 The measured distance becomes the new limit, minus an optional safety gap (2 mm by default; choose
 **None** to put the limit exactly where the carriage is). **Save new limit** writes the setting, reads
@@ -163,14 +163,14 @@ along Y. Mark **C**. The drawing shows the bit running along each leg as it goes
 
 ### 3. Measure
 
-<!-- CAPTURE NEEDED: assets/images/features/calibration-square-measure.webp (Squareness, measure) -->
+![Squareness, measure](../assets/images/features/calibration-square-measure.webp)
 
 Measure dot to dot, centre to centre: **A→B**, **B→C**, and the diagonal **A→C**. The guide shows the
 ideal diagonal for reference and rejects numbers that cannot form a triangle.
 
 ### 4. Result
 
-<!-- CAPTURE NEEDED: assets/images/features/calibration-square-result.webp (Squareness, result) -->
+![Squareness, result](../assets/images/features/calibration-square-result.webp)
 
 Within 0.05% of the side length the gantry is square. Otherwise the guide reports the error, for
 example "out of square by 0.8 mm over 300 mm", the angle at corner B, and which end of the gantry sits

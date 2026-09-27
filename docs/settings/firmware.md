@@ -11,7 +11,9 @@ The controller must be connected. Otherwise the tab shows "Connect to a CNC cont
 3. Change the value in the **Value** column.
 4. Click **Submit** to send your changes to the controller.
 
-<!-- CAPTURE NEEDED: assets/images/settings/firmware-tab.webp (Firmware tab) -->
+![Firmware tab](../assets/images/settings/firmware-tab.webp)
+
+![Searching the firmware settings](../assets/images/settings/firmware-search.webp)
 
 Each row shows what the setting does, plus its unit, minimum and maximum. The bottom shows how many settings are listed and when they were last read.
 
@@ -57,7 +59,7 @@ To load settings from a file:
 5. Click **Flash Firmware** and wait. Don't unplug the board.
 6. When you see "Firmware flash completed! Please reconnect your device.", reconnect.
 
-<!-- CAPTURE NEEDED: assets/images/settings/firmware-flasher.webp (Flash Firmware dialog) -->
+![Flash Firmware dialog](../assets/images/settings/firmware-flasher.webp)
 
 The **Messages** box shows what's happening. If something fails, click **Copy** and include the messages when you ask for help.
 

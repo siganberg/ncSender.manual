@@ -102,7 +102,9 @@ can copy it into your own program or post-processor.
 
 ## Change a tool
 
-<!-- CAPTURE NEEDED: assets/images/plugins/mtc-tool-change.webp (Tool change) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="A guided manual tool change" poster="../../assets/images/plugins/mtc-tool-change-poster.jpg">
+  <source src="../../assets/images/plugins/mtc-tool-change.mp4" type="video/mp4">
+</video>
 
 1. Press a tool button on the main screen, or run `M6 T2` (for tool 2).
    A job that reaches a tool change does the same.

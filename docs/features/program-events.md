@@ -61,7 +61,7 @@ M8
 
 Program End shows `(Program End Event Begin)` and `(Program End Event End)` the same way.
 
-<!-- CAPTURE NEEDED: assets/images/features/events-terminal-markers.webp (Program End markers in the terminal) -->
+![Program Start markers in the terminal](../assets/images/features/events-terminal-markers.webp)
 
 If one line of an event fails, ncSender skips the rest of that event.
 

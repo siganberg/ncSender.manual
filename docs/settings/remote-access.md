@@ -18,7 +18,7 @@ Remote browsers can't move the machine until you allow it.
 2. Go to **Remote Control Settings**.
 3. Turn on **Allow Remote Control**.
 
-<!-- CAPTURE NEEDED: assets/images/settings/remote-settings.webp (Remote Control Settings) -->
+![Remote Control Settings](../assets/images/settings/remote-settings.webp)
 
 When it's off, remote browsers can only manage files.
 
@@ -44,13 +44,13 @@ When **Allow Remote Control** is off, a remote browser shows **Remote Control Di
 - Click **Open File Manager** to upload and manage G-code files.
 - View the [Calibration](../features/calibration.md) guides, but not run them.
 
-<!-- CAPTURE NEEDED: assets/images/settings/remote-gate.webp (Remote Control Disabled) -->
+![Remote Control Disabled](../assets/images/settings/remote-gate.webp)
 
 ## Phone Layout
 
 On a phone, ncSender shows a simpler layout. It includes **Workspace Offset** with **HOLD TO ZERO**, plus **Flood** and **Mist**.
 
-<!-- CAPTURE NEEDED: assets/images/settings/remote-mobile-view.webp (Phone layout) -->
+![Phone layout](../assets/images/settings/remote-mobile-view.webp)
 
 ## Kiosk Links
 

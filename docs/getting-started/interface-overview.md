@@ -26,9 +26,13 @@ The DRO (Digital Readout) shows work and machine coordinates for each axis.
 If a tool setter is enabled and no tool length is set yet, long-pressing Z
 shows a warning instead of zeroing. Measure the tool first.
 
-<!-- CAPTURE NEEDED: assets/images/getting-started/dro-zero-axis.webp (Zeroing an axis) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Press and hold an axis card to zero it" poster="../../assets/images/features/dro-long-press-poster.jpg">
+  <source src="../../assets/images/features/dro-long-press.mp4" type="video/mp4">
+</video>
 
-<!-- CAPTURE NEEDED: assets/images/getting-started/dro-edit-value.webp (Typing a coordinate value) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Double-tap an axis card to type a coordinate" poster="../../assets/images/features/dro-manual-entry-poster.jpg">
+  <source src="../../assets/images/features/dro-manual-entry.mp4" type="video/mp4">
+</video>
 
 See [DRO](../features/dro.md).
 
@@ -95,7 +99,7 @@ Language and keyboard layout settings are part of ncSender Pro.
 2. Pick a **Language**: English, Deutsch, Français or Español. Anything not yet translated shows in English.
 3. The on-screen keyboard switches to that language's layout. To choose a different one, pick it under **On-screen Keyboard Layout** (QWERTY, QWERTZ, AZERTY and regional variants).
 
-![Language & Region](../assets/images/getting-started/settings-language-region.webp)
+![Language & Region](../assets/images/features/language-region.webp)
 
 <video autoplay loop muted playsinline preload="metadata" aria-label="Switching to German" poster="../../assets/images/getting-started/language-switch-german-poster.jpg">
   <source src="../../assets/images/getting-started/language-switch-german.mp4" type="video/mp4">

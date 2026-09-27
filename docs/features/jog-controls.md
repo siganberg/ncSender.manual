@@ -98,7 +98,9 @@ machine is not homed yet.
 
 ## Homing
 
-<!-- CAPTURE NEEDED: assets/images/features/jog-home.webp (Homing) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Hold Home to home all axes" poster="../../assets/images/features/jog-home-poster.jpg">
+  <source src="../../assets/images/features/jog-home.mp4" type="video/mp4">
+</video>
 
 Homing uses press-and-hold so it can't start by accident:
 
@@ -135,7 +137,9 @@ move; a bar fills while you hold.
 
 ### Corner Buttons
 
-<!-- CAPTURE NEEDED: assets/images/features/jog-corners.webp (Corner buttons) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Holding a corner button to move to that corner of the travel" poster="../../assets/images/features/jog-corners-poster.jpg">
+  <source src="../../assets/images/features/jog-corners.mp4" type="video/mp4">
+</video>
 
 Hold **Top-Left**, **Top-Right**, **Bottom-Left** or **Bottom-Right** to move to that
 corner of the machine's travel.
@@ -154,12 +158,14 @@ To save a parking spot:
 If you don't tap **Save** within 6 seconds, the button goes back to **Park** without
 saving.
 
-<!-- CAPTURE NEEDED: assets/images/features/jog-park-save.webp (Saving a parking spot) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Double-tap Park, then tap Save to store the parking spot" poster="../../assets/images/features/jog-park-save-poster.jpg">
+  <source src="../../assets/images/features/jog-park-save.mp4" type="video/mp4">
+</video>
 
 If no spot is saved yet, holding **Park** shows **Parking Location Not Set** with these
 same steps.
 
-<!-- CAPTURE NEEDED: assets/images/features/jog-park-not-set.webp (Parking Location Not Set) -->
+![Parking Location Not Set](../assets/images/features/jog-park-not-set.webp)
 
 ## Homing Requirement
 

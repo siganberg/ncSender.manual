@@ -4,7 +4,9 @@ Macros let you save G-code you use often and run it with one click.
 
 ## Creating a Macro
 
-![Macros tab](../assets/images/features/macros-editor.webp)
+![Macros tab](../assets/images/features/macros-tab.webp)
+
+![Macro editor](../assets/images/features/macros-editor.webp)
 
 1. Go to the **Macros** tab.
 2. Click **+ New**.
@@ -35,7 +37,9 @@ When ncSender sees `M98 P<id>`, it finds the macro in your library and sends its
 G-code in its place. The controller never gets the `M98` itself. The terminal shows
 the macro's lines, with their indentation kept.
 
-<!-- CAPTURE NEEDED: assets/images/features/macros-run.webp (Running a macro) -->
+<video autoplay loop muted playsinline preload="metadata" aria-label="Pressing Play on a macro; its lines show in the terminal" poster="../../assets/images/features/macros-run-poster.jpg">
+  <source src="../../assets/images/features/macros-run.mp4" type="video/mp4">
+</video>
 
 ## Nested Macros
 

@@ -22,7 +22,7 @@ accessory are in **Accessories**.
 **To open it:** click the pendant icon in the ncSender toolbar. Its tooltip
 reads *ncSender Accessories*.
 
-![ncSender Accessories](../assets/images/accessories/accessories-open.webp)
+![ncSender Accessories](../assets/images/getting-started/accessories-view.webp)
 
 Pick a device in the list to see it. For each device you can:
 
@@ -73,7 +73,7 @@ The same steps activate the Pendant, AutoDustBoot and RGB LED.
 4. **Check it.** Select the device in the list. It shows **Connected**, and
    the Pairing card reads *Paired to this Wireless USB.*
 
-<!-- CAPTURE NEEDED: assets/images/accessories/accessories-pair-device.webp (Pairing a device) -->
+![Pairing a device](../assets/images/accessories/accessories-pair-device.webp)
 
 To stop early, click the counting button again.
 

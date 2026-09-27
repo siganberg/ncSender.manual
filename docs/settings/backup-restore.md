@@ -8,7 +8,7 @@ Save your ncSender setup to one file, and restore it on the same or a new comput
 2. Tick any extras you want (see below).
 3. Click **Download Backup**. On a kiosk, click **Save Backup** and pick an external drive.
 
-<!-- CAPTURE NEEDED: assets/images/settings/backup-tab.webp (Backup tab) -->
+![Backup tab](../assets/images/settings/backup-tab.webp)
 
 You get one `.ncsbackup` file. Make one before a big upgrade or moving to a new computer.
 

@@ -14,7 +14,7 @@ Edge Align is for **ncSender Pro**. You need a touch probe.
 
 ## Measure the edge
 
-<!-- CAPTURE NEEDED: assets/images/plugins/edge-align-probe.webp (Edge Align, Probe section) -->
+![Edge Align, Probe section](../assets/images/plugins/edge-align-probe.webp)
 
 1. Open the **Plugins** tab in the console area and press **Edge Align**.
 2. Jog the probe close to the edge you want to measure.
@@ -49,7 +49,7 @@ If the probe triggers an alarm, press **Unlock**.
 
 ## Settings
 
-<!-- CAPTURE NEEDED: assets/images/plugins/edge-align-settings.webp (Edge Align, Settings section) -->
+![Edge Align, Settings section](../assets/images/plugins/edge-align-settings.webp)
 
 | Setting | What it does | Default |
 |---|---|---|

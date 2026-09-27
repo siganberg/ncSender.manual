@@ -11,11 +11,11 @@ Choose the language ncSender uses for labels and instructions, and the letter la
 2. Scroll to **Language & Region**.
 3. Pick a **Language**: English, Deutsch, Français or Español.
 
-<!-- CAPTURE NEEDED: assets/images/features/language-region.webp (Language & Region settings) -->
+![Language & Region settings](../assets/images/features/language-region.webp)
 
 The screen changes right away. Every screen connected to this ncSender changes with it.
 
-<!-- CAPTURE NEEDED: assets/images/features/language-german-ui.webp (ncSender in German) -->
+![ncSender in German](../assets/images/features/language-german-ui.webp)
 
 ## What Is Translated
 
@@ -36,7 +36,7 @@ Changing **Language** also sets the on-screen keyboard to that language's layout
 | Français | Français · AZERTY |
 | Español | Español · QWERTY |
 
-<!-- CAPTURE NEEDED: assets/images/features/language-keyboard-follows.webp (Keyboard layout follows the language) -->
+![The on-screen keyboard follows the language](../assets/images/features/language-keyboard-follows.webp)
 
 The number pad stays the same for every layout. See [Virtual Keyboard](virtual-keyboard.md).
 
