@@ -58,11 +58,12 @@ await k.forThemes(async (theme) => {
     await k.tap(k.btn(/^Stop$/), { settle: 200 }); mark('stop');
     await k.waitIdle({ timeout: 120000 }); await k.sleep(2000); mark('stopped');
   } else {
-  // pause / resume
+  // pause / resume (only while actually cutting, never inside a tool change)
+  await waitCutting(3000);
   await k.tap(k.btn(/^Pause$/), { settle: 200 }); mark('pause');
   await waitStatus(/Hold|Door/); await k.sleep(4000);
   await k.still('features/visualizer-paused.webp', { clip: VIS });
-  await page.evaluate(() => window.__capRipple(419, 1023)); await k.api('/api/gcode-job/resume', {}); mark('resume');
+  await k.tap(k.btn(/^Resume$/), { settle: 200 }); mark('resume');
   await waitCutting(); await k.sleep(3000);
   // next tool change (M6 T2)
   await waitFor(m => m.isToolChanging, 600000, 'toolchange'); mark('toolchange-start');
@@ -75,8 +76,8 @@ await k.forThemes(async (theme) => {
   await k.tap(k.btn(/^Stop$/), { settle: 200 }); mark('stop');
   await k.waitIdle({ timeout: 120000 }); await k.sleep(2000); mark('stopped');
   }
-  const raw = await k.recStop();
-  { const dur = Number((await import('node:child_process')).execSync(`ffprobe -v error -show_entries format=duration -of csv=p=0 ${raw}`).toString()); const sc = dur / (marks.stopped + 0.9); for (const n in marks) marks[n] = (marks[n] + 0.9) * sc; console.log('time scale', sc.toFixed(4)); }
+  const raw = await k.recStop({ tail: 1500 });
+  for (const n in marks) marks[n] += 0.7;   // recStart's settle before t0
   fs.writeFileSync(`raw/job-run${k.SUFFIX}.json`, JSON.stringify(marks, null, 1));
 
   await setProgramStart(false);

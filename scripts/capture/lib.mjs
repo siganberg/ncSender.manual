@@ -3,11 +3,13 @@
 // - records the real screen with wf-recorder on the kiosk
 // - encodes clips (2x speed, 30 fps, 1280x720 h264) + posters, stills as webp
 import { chromium } from 'playwright-core';
+import { startCast } from './cast.mjs';
 import { execSync, spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
 export const KIOSK = 'root@10.0.2.117';
+const API = 'http://10.0.2.117:8090';
 export const MANUAL = '/Users/francis/Projects/ncSender/ncSender.manual/docs/assets/images';
 export const WORK = path.dirname(new URL(import.meta.url).pathname);
 export const RAW = path.join(WORK, 'raw');
@@ -18,7 +20,17 @@ export const ssh = (cmd) => execSync(`ssh ${KIOSK} bash -s`, { input: cmd + '\n'
 
 // --- CDP connection ---------------------------------------------------------
 let browser, page;
+export const LOCAL = process.env.MODE === 'local';   // render + record the kiosk's web UI in Chrome on this Mac
 export async function connect() {
+  if (LOCAL) {
+    browser = await chromium.launch({ channel: 'chrome', headless: false, args: ['--window-size=1920,1080', '--window-position=0,0', '--hide-scrollbars', '--autoplay-policy=no-user-gesture-required'] });
+    const ctx = await browser.newContext({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1, hasTouch: false });
+    page = await ctx.newPage();
+    await page.goto(API + '/', { waitUntil: 'networkidle' });
+    await sleep(3500);
+    await installOverlay();
+    return page;
+  }
   browser = await chromium.connectOverCDP('http://127.0.0.1:9222');
   const ctx = browser.contexts()[0];
   page = ctx.pages().find(p => p.url().startsWith('http://localhost:8090') && !p.url().includes('sw.js'));
@@ -27,7 +39,7 @@ export async function connect() {
   return page;
 }
 export function getPage() { return page; }
-export async function disconnect() { await browser?.close(); }
+export async function disconnect() { if (LOCAL) { try { await setTheme('dark'); } catch {} } await browser?.close(); }
 
 // --- overlay: click ripple + hide the update badge --------------------------
 const OVERLAY_JS = `
@@ -131,15 +143,17 @@ export async function still(rel, { quality = 82, clip } = {}) {
 
 // --- recording --------------------------------------------------------------
 // wf-recorder runs on the kiosk; we stop it with SIGINT and scp the file back.
-let recName = null;
+let recName = null, cast = null;
 export async function recStart(name) {
   name = name + SUFFIX;
   recName = name;
+  if (LOCAL) { cast = await startCast(page, path.join(RAW, 'cast-' + name)); await sleep(700); return; }
   ssh(`export WAYLAND_DISPLAY=wayland-0 XDG_RUNTIME_DIR=/run/user/0; mkdir -p /root/rec; rm -f /root/rec/${name}.mp4; setsid nohup wf-recorder -f /root/rec/${name}.mp4 -r 30 -c libx264 -p preset=ultrafast -p crf=18 -y >/root/rec/${name}.log 2>&1 </dev/null & echo $! > /root/rec/${name}.pid`);
   await sleep(900); // let the first frames land
 }
 export async function recStop({ tail = 4000 } = {}) {
   const name = recName; recName = null;
+  if (LOCAL) { await sleep(400); const local = path.join(RAW, name + '.mp4'); await cast.stop(local); cast = null; return local; }
   await sleep(tail);   // let the encoder catch up before SIGINT, which drops queued frames
   ssh(`kill -INT $(cat /root/rec/${name}.pid); for i in $(seq 1 600); do kill -0 $(cat /root/rec/${name}.pid) 2>/dev/null || break; sleep 0.2; done; kill -0 $(cat /root/rec/${name}.pid) 2>/dev/null && echo STILL-RUNNING; true`);
   const local = path.join(RAW, name + '.mp4');
@@ -150,7 +164,7 @@ export async function recStop({ tail = 4000 } = {}) {
 
 // --- clip encoding ----------------------------------------------------------
 // speed: 2 => 2x. Output 1280x720 30fps h264 yuv420p + poster jpg next to it.
-export function clip(rawMp4, rel, { speed = 2, start = 0, end, crop, width = 1280, crf = 27, posterAt = 0.2, hold = 0.8 } = {}) {
+export function clip(rawMp4, rel, { speed = 1.5, start = 0, end, crop, width = 1280, crf = 27, posterAt = 0.2, hold = 0.3 } = {}) {
   rel = withSuffix(rel);
   const out = path.join(MANUAL, rel);
   fs.mkdirSync(path.dirname(out), { recursive: true });
@@ -175,7 +189,6 @@ export function videoTag(rel, label, depth = '../../') {
 }
 
 // --- machine helpers --------------------------------------------------------
-const API = 'http://10.0.2.117:8090';
 export async function api(p, body) {
   const r = await fetch(API + p, body === undefined ? {} : { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
   const t = await r.text();
@@ -232,16 +245,27 @@ export async function currentTheme() {
   const s = await api('/api/settings');
   return s.theme;
 }
+// The page is the truth: read the rendered background, not the saved setting.
+export async function pageTheme() {
+  // mean luminance of the rendered header strip; the body background does not change with the theme
+  const png = await page.screenshot({ clip: { x: 0, y: 0, width: 1920, height: 100 } });
+  const out = execSync('ffmpeg -v error -i - -frames:v 1 -f rawvideo -pix_fmt gray -s 32x2 -', { input: png });
+  let sum = 0; for (const b of out) sum += b;
+  return sum / out.length < 128 ? 'dark' : 'light';
+}
 export async function setTheme(t) {
-  const cur = await currentTheme();
-  if (cur !== t) {
-    const btn = page.locator('.theme-toggle').first();
-    if (await btn.count()) { const c = await center(btn); await page.mouse.click(c.x, c.y); } else { await page.mouse.click(1783, 54); }
+  await closeDialogs();
+  await page.evaluate(() => document.activeElement && document.activeElement.blur());
+  await sleep(500);
+  for (let i = 0; i < 3 && (await pageTheme()) !== t; i++) {
+    const btn = page.locator('.theme-toggle[title="Toggle theme"]').first();
+    const c = await center(btn);
+    await page.mouse.click(c.x, c.y);
     await sleep(1200);
-    let now = await currentTheme();
-    if (now !== t) { await api('/api/settings', { theme: t }); await sleep(1500); now = await currentTheme(); }
-    if (now !== t) throw new Error('theme toggle failed: ' + now);
   }
+  const now = await pageTheme();
+  if (now !== t) throw new Error('theme toggle failed: page is ' + now);
+  if ((await currentTheme()) !== t) await api('/api/settings', { theme: t });
   SUFFIX = t === 'light' ? '-light' : '';
   console.log('theme', t, 'suffix', JSON.stringify(SUFFIX));
 }
@@ -261,12 +285,13 @@ export async function section(name, fn) {
     failures.push(name);
     console.log(`!! section ${name} failed: ${e.message.split('\n')[0]}`);
     try { await page.screenshot({ path: path.join(RAW, `fail-${name}${SUFFIX}.png`) }); } catch {}
-    try { if (recName) ssh(`pkill -INT wf-recorder`); recName = null; } catch {}
+    try { if (recName && LOCAL && cast) { await cast.stop(path.join(RAW, 'failed-' + recName + '.mp4')); cast = null; } else if (recName) ssh(`pkill -INT wf-recorder`); recName = null; } catch {}
     await closeDialogs();
   }
 }
 export async function closeDialogs() {
-  for (let i = 0; i < 4 && await page.locator('.dialog-backdrop').count(); i++) { await page.keyboard.press('Escape'); await sleep(400); }
+  const open = async () => (await page.locator('.dialog-backdrop').count()) + (await page.locator('.plugin-dialog-backdrop').count());
+  for (let i = 0; i < 6 && await open(); i++) { await page.keyboard.press('Escape'); await sleep(400); }
   const n = await page.locator('.dialog-backdrop').count();
   if (n) { const x = page.locator('.dialog-backdrop button', { hasText: /^Close$/ }).last(); if (await x.count()) await tap(x, { settle: 500 }); }
 }

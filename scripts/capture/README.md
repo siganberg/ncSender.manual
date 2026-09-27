@@ -21,9 +21,9 @@ light scheme. Run `python3 scripts/theme-media-manifest.py` after adding capture
 
 ```sh
 cd scripts/capture && npm i
-ssh root@10.0.2.117 ncapp-restart --debug
-ssh -N -L 9222:127.0.0.1:9222 root@10.0.2.117 &
-node jog.mjs
+MODE=local node jog.mjs          # or vis / settings / s2 / s4 / s6 / s5 / s3
+MODE=local ONLY=alarm THEMES=dark node s4.mjs
+node reencode.mjs && JOB=1 node reencode.mjs
 ```
 
 Things learned the hard way: wf-recorder drops the queued frames on SIGINT, so
