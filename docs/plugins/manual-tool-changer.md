@@ -39,8 +39,6 @@ unsaved changes, you can **Cancel**, **Discard** or **Save & close**.
 - **Use Legacy Tool Probe Method**: an older method that touches twice, the
   second time slowly. When on, set **Second Seek Distance (mm)** and
   **Second Seek Feedrate (mm/min)**.
-- **Perform TLS after first $H**: measures the bit automatically after the
-  first homing. The machine moves on its own, so keep clear.
 
 ## Probe Tool
 
@@ -115,6 +113,13 @@ can copy it into your own program or post-processor.
     - **Tool Change**: swap the bit for the new one.
 4. Press **Continue**, or **Abort** to stop.
 5. The machine measures the new bit on the tool setter.
+6. The spindle goes back to where it was before the change, at safe height,
+   before the job carries on. The spindle starts there, not above the tool
+   setter.
+
+If you set Z0 before any tool was measured, the change first measures the bit
+that is still in the spindle, so your Z0 carries over to the new bit. See
+[Set Z0 before or after TLS](../features/tool-management.md#set-z0-before-or-after-tls-both-work).
 
 A highlighted tool button is the bit that is loaded now. Long-press it to
 unload.

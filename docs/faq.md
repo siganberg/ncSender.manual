@@ -283,9 +283,26 @@ file: with no tool loaded it continues into the program without probing.
 
 ### What order should I home, probe and change tools in?
 
-Home, measure the tool setter, probe the workpiece, load the first tool — which
-measures its length as part of the change — then start the job. Measuring the
-tool setter with the first tool before you probe the workpiece is not necessary.
+Home first. After that, either order works with a tool changer plugin:
+
+- **Measure, then zero:** run TLS, probe or zero Z, start the job.
+- **Zero, then measure:** probe or zero Z with the bit in the spindle and start
+  the job. At the first tool change the bit still in the spindle is measured
+  before it comes out, so your Z0 carries over to the next bit.
+
+See [Set Z0 before or after TLS](features/tool-management.md#set-z0-before-or-after-tls-both-work).
+
+### The bit plunged into the work after the first tool change
+
+**Cause.** Z0 was set before any tool had been measured on the tool setter, and
+the first measurement then shifted every Z by the whole touch height. Older
+versions of ncSender and of the tool changer plugins did this when you zeroed
+first and measured later.
+
+**Fix.** Update ncSender and your tool changer plugin. Both now keep a Z0 set
+before the first measurement. The visualizer shows a short note while such a
+Z0 is waiting to be measured. See
+[Set Z0 before or after TLS](features/tool-management.md#set-z0-before-or-after-tls-both-work).
 
 ## Tool changers
 

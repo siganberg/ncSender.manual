@@ -25,13 +25,10 @@ set when the bar is full. Setting a zero does not move the machine.
 
 Let go before the bar is full to cancel, so a stray tap won't reset your zeros.
 
-!!! note "Z zero with a Tool Length Setter"
-    If TLS is on but you haven't measured the tool yet, holding the Z card opens
-    **Tool Length Reference Not Set** instead of zeroing. Choose **Run TLS**,
-    **Zero Z Anyway** or **Cancel**. See
-    [Tool Management](tool-management.md#the-glowing-tls-button).
-
-<!-- CAPTURE NEEDED: assets/images/features/dro-tlr-warning.webp (Tool Length Reference Not Set) -->
+!!! note "Z zero before measuring the tool"
+    You can zero Z before the tool has been measured on the tool setter.
+    ncSender remembers it and the next measurement keeps it. See
+    [Set Z0 before or after TLS](tool-management.md#set-z0-before-or-after-tls-both-work).
 
 ## Entering a specific coordinate (double-click / double-tap)
 

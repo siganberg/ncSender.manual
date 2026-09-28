@@ -221,22 +221,37 @@ Hold **TLS** (or send `$TLS`) to measure:
   <source src="../../assets/images/features/tool-tls-run.mp4" type="video/mp4">
 </video>
 
-### The glowing TLS button
+### Set Z0 before or after TLS: both work
 
-When a tool is loaded but hasn't been measured, the **TLS** button pulses. It is a
-reminder that no Tool Length Reference is set. Run TLS before you trust Z.
+You can set Z0 first and measure later, or measure first and set Z0 after. The
+result is the same, and your Z0 is kept either way.
 
-<!-- CAPTURE NEEDED: assets/images/features/tool-tls-glow.webp (Pulsing TLS button) -->
+- **Z0 first, measure later.** If you set Z0 while no Tool Length Reference
+  exists, ncSender remembers it and which tool set it. The visualizer shows a
+  short note while that is pending. The next measurement keeps your Z0:
+    - **TLS** (the button or `$TLS`) measures the tool and moves the work
+      offset by the same amount.
+    - **A tool change** first touches off the tool that is still in the spindle,
+      then swaps and measures the new one. Your Z0 carries over to the new tool.
+      A blue banner says so while it happens and goes away when that step is
+      done.
+- **Measure first, Z0 after.** The classic order: hold **TLS**, then set Z0.
 
-If you try to **set Z0 without a Tool Length Reference**, ncSender shows **Tool
-Length Reference Not Set**. Setting Z0 without a TLR can give wrong Z heights after a
-tool change. You can choose:
+<!-- CAPTURE NEEDED: assets/images/features/tool-z0-kept-notice.webp (Z0 is kept note in the visualizer) -->
 
-- **Run TLS**: measure now (recommended).
-- **Zero Z Anyway**: set Z0 without a TLR.
-- **Cancel**
+!!! tip "Coming from gSender?"
+    Your habit works here: home, load the bit, probe Z, run the job. At the
+    first tool change the old bit is measured before it comes out, just like
+    gSender's tool change.
 
-<!-- CAPTURE NEEDED: assets/images/features/dro-tlr-warning.webp (Tool Length Reference Not Set) -->
+The one case ncSender can't carry over: the tool number changed without a
+tool change, for example with `M61`, after you set Z0. The note then turns
+orange and says so. Set Z0 again with the tool that is in the spindle.
+
+!!! note "Keeping Z0 needs a tool changer plugin"
+    Manual Tool Changer, Rapid Change ATC and Pneumatic ATC all keep your Z0.
+    Without one of them, `$TLS` and `M6` go straight to your controller, so
+    measure first and set Z0 after.
 
 !!! warning "Laser mode"
     Tool buttons and the TLS warnings don't apply in laser mode, because a laser has

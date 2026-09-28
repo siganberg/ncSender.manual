@@ -130,8 +130,6 @@ Press **Cancel** to stop early. The machine stops right away.
   above your longest tool.
 - **Seek Distance (mm)** and **Seek Feedrate (mm/min)**: how far and how fast
   it searches for the tool setter.
-- **Perform TLS after first $H**: measures automatically after the first
-  homing. The machine moves on its own, so keep clear.
 
 ## Probe
 
@@ -215,6 +213,10 @@ Add your own G-code to run at each step:
 Press a tool button on the main screen, or run `M6 T2` (for tool 2). A job that
 reaches a tool change does the same. The machine puts the current tool back in
 its slot, picks up the new one and measures it.
+
+If you set Z0 before any tool was measured, the change first measures the tool
+that is still in the spindle, so your Z0 carries over. See
+[Set Z0 before or after TLS](../features/tool-management.md#set-z0-before-or-after-tls-both-work).
 
 You can also type these in the console:
 
