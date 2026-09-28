@@ -106,6 +106,9 @@ rack, swaps the tool and returns to where it left off. The header reads
 - **Use tool library offset (probe when missing)**: uses the length saved in
   the Tool Library, and only measures a tool that has no saved length.
 
+Manual tools, numbered above your slot count, are always measured, whatever
+the strategy. They are fitted by hand, so their length changes every time.
+
 ### Measure all tools
 
 Press **Measure all tools…** to load every tool that has a rack slot, measure
