@@ -51,7 +51,7 @@ You can also type `$X` in the console.
 | 14 | Spindle did not reach speed | The spindle didn't reach the set RPM in time. Check the VFD and spindle, then unlock and retry. See [VFD Setup](../resources/vfd-setup.md). |
 | 15 | Second limit switch not found | The auto-squared axis couldn't find its second switch. Check both switches and wiring, then re-home. |
 | 16 | Controller self-test failed | Power-cycle the controller. If it repeats, check the board and drivers. |
-| 17 | Motor fault | A motor driver reported a fault. If this started right after turning on motor fault inputs, the input reads backwards. See [below](#alarms-that-point-to-a-setting). Otherwise check motor wiring and driver temperature, power-cycle, then re-home. |
+| 17 | Motor fault | A motor driver reported a fault. Right after an E-stop, drivers can flag a fault while their power comes back: wait a few seconds, then unlock. If this started right after turning on motor fault inputs, the input reads backwards. See [below](#alarms-that-point-to-a-setting). Otherwise check motor wiring and driver temperature, power-cycle, then re-home. |
 | 18 | Homing not configured correctly | Homing settings are invalid. Check the homing settings (`$22`, `$23`, `$44`–`$47`) before homing again. |
 | 19 | Modbus communication error | The controller lost contact with the VFD. Check the RS485 cable and VFD power, then unlock. |
 | 20 | I/O expander not responding | Check the I/O expander's wiring and power-cycle the controller. |

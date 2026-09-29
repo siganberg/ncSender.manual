@@ -39,6 +39,13 @@ active. See the FAQ:
 - [My machine shows an alarm right after power-on](faq.md#my-machine-shows-an-alarm-right-after-power-on)
 - [Unlock does nothing](faq.md#unlock-does-nothing)
 
+### Disconnects After a Reset, or a Job Stalls on Wireless USB
+
+Older versions could drop the connection when the controller sent garbled data,
+for example after a reset during a motor fault alarm. A job could also stall
+when the Wireless USB stopped accepting data. Both are fixed. Update ncSender to
+the latest version.
+
 ## Visualizer Issues
 
 ### G-Code Not Rendering

@@ -8,9 +8,12 @@ tool changes for you.
 ## Tool Library
 
 Open **Settings → Tool Library** to keep a list of your bits and assign them to the
-slots (pockets) in your tool magazine.
+slots (pockets) in your tool magazine. The bottom of the tab shows how many tools
+are in the library. The button settings (Magazine Size, Manual, TLS, Probe) are on
+the [Tool Changer tab](#tool-changer-settings).
 
 ![Tool Library settings](../assets/images/features/tool-library.webp)
+
 
 ![Edit Tool dialog](../assets/images/features/tool-edit-dialog.webp)
 
@@ -54,7 +57,8 @@ A tool only takes a magazine slot once you assign it. There are two ways:
   <source src="../../assets/images/features/tool-assign-slot.mp4" type="video/mp4">
 </video>
 
-You can only pick Slot1 up to the **Magazine Size**.
+You can only pick Slot1 up to the **Magazine Size**. Set it on the
+[Tool Changer tab](#tool-changer-settings).
 
 !!! tip "Slots swap automatically"
     If another tool already sits in the slot you pick, the two tools swap. The list
@@ -107,7 +111,13 @@ in the slot picker. It shows as a dashed **PROBE** box in the slot strip.
 The probe can then store a TLO like any other tool. The Probe slot stays assigned
 when you shrink the magazine.
 
-### Tool button controls
+## Tool Changer Settings
+
+Open **Settings → Tool Changer**.
+
+![Settings, Tool Changer tab](../assets/images/features/tool-changer-settings.webp)
+
+### Setup
 
 These settings decide which buttons show in the visualizer:
 
@@ -122,6 +132,21 @@ These settings decide which buttons show in the visualizer:
     by Plugin: …"*. The plugin decides which buttons show. Turn the plugin off to get
     the settings back.
 
+### Tool Length Measuring
+
+This card shows only when **TLS** is on and a tool changer plugin is installed.
+
+After the machine is powered on, the tool in the spindle needs to be measured once
+before it cuts. If you haven't done it, ncSender measures it for you when you start
+a job. See [Measuring after power-up](#measuring-after-power-up).
+
+- **TLS after homing** *(off by default)*: measure the tool right after homing
+  instead of waiting for the job to start.
+
+!!! warning "The machine moves on its own"
+    With **TLS after homing** on, the gantry moves to the tool setter by itself
+    after homing to measure the tool. Keep your hands clear of the machine.
+
 ## Tool Buttons
 
 ![Tool buttons](../assets/images/features/tool-buttons.webp)
@@ -135,6 +160,7 @@ The buttons are, in order:
 - **Probe**: loads your probe tool. The tooltip shows its number, for example
   *Probe (Hold to load T99)*.
 - **TLS**: measures the current tool (see below). It is off when no tool is loaded.
+  It blinks red when the loaded tool hasn't been measured since power-up.
 
 To use the buttons:
 
@@ -221,6 +247,39 @@ Hold **TLS** (or send `$TLS`) to measure:
   <source src="../../assets/images/features/tool-tls-run.mp4" type="video/mp4">
 </video>
 
+### Measuring after power-up
+
+After the machine is powered on, the tool in the spindle has to be measured once
+before it cuts. Until then:
+
+- The **TLS** button blinks red. The [pendant](../accessories/pendant.md)'s TLS
+  blinks too.
+- A blue note on the 3D view says *"T1 hasn't been measured since power-up. Run
+  TLS now, or it's measured automatically when the job starts."* It hides while a
+  job or tool change runs. If you already set Z0, the Z0 note shows instead.
+
+![TLS blinking red and the "not measured since power-up" note](../assets/images/features/tool-unmeasured-notice.webp)
+
+You don't have to do anything. When you press **Cycle Start**, ncSender first
+measures the loaded tool on the tool setter, then starts the program. A blue
+banner says *"Measuring T1 before the job…"* while it happens. This keeps a Z0
+saved in the controller from an earlier session correct.
+
+![Measuring the tool before the job](../assets/images/features/tool-measure-before-job.webp)
+
+It is skipped when:
+
+- the program's first tool change loads a different tool (that change measures
+  anyway),
+- laser mode is on,
+- no tool is loaded,
+- no tool changer plugin with a tool setter is on.
+
+To measure right after homing instead, turn on **TLS after homing** in
+[Settings → Tool Changer](#tool-length-measuring). Homing then ends with a trip to
+the tool setter, and a blue banner says *"Measuring T1 after homing…"*. Once the
+tool is measured, later homes don't measure it again.
+
 ### Set Z0 before or after TLS: both work
 
 You can set Z0 first and measure later, or measure first and set Z0 after. The
@@ -237,7 +296,7 @@ result is the same, and your Z0 is kept either way.
       done.
 - **Measure first, Z0 after.** The classic order: hold **TLS**, then set Z0.
 
-<!-- CAPTURE NEEDED: assets/images/features/tool-z0-kept-notice.webp (Z0 is kept note in the visualizer) -->
+![Z0 is kept note](../assets/images/features/tool-z0-kept-notice.webp)
 
 !!! tip "Coming from gSender?"
     Your habit works here: home, load the bit, probe Z, run the job. At the

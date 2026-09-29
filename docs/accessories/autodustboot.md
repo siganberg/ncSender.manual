@@ -161,6 +161,11 @@ Choose when the plugin retracts the boot.
   it is sent to the controller as the bottom soft limit and saved there. Only
   change it if your boot has a different stroke than the shipped firmware.
   Accepts 10–500 mm.
+- **Home Offset** *(0 mm by default)* — how far below the top the boot stops
+  when it retracts. With 0 it goes all the way up. Set, say, 10 mm and every
+  retract stops 10 mm lower, which is quicker and keeps it off the top stop.
+  The setting is saved on the boot itself (V2 with firmware 1.0.12 or newer)
+  and takes effect right away, no re-homing needed. Accepts 0–50 mm.
 - **Show in Terminal** *(off by default)* — shows the plugin's commands in the
   console. Turn it on when troubleshooting.
 
@@ -190,11 +195,40 @@ doesn't move twice.
 **Console rapids (`G0`).** With *Retract on Rapid Moves* on, retracts before a
 `G0` sent from the console or a macro.
 
+**Waiting for the boot (Wireless).** In **Wireless** mode, whether the boot is
+linked over the air or by a USB cable, the machine waits after each retract or
+expand until the boot reports that it got there. If it is already in
+place, for example a retract when it is already up, there is no wait at all. A
+slow move is waited out, so the machine never moves on too early. In **Wired**
+mode, the `G4` pauses in your sequences set the wait, as before.
+
+### If the boot doesn't answer
+
+If the boot is offline (its radio is reconnecting) or doesn't report that it
+reached its position, a violet card says *"Waiting for the dust boot to answer.
+Its last move is sent again as soon as it reconnects."* ncSender sends the move
+again for you.
+
+![Waiting for the dust boot to answer](../assets/images/accessories/autodustboot-waiting.webp)
+
+If it still doesn't answer (about 10 seconds at most), the job pauses and
+**Dust boot not responding** opens:
+
+- **Continue**: only after you have checked the boot is clear of the tool and
+  the work.
+- **Abort**: stop the job.
+
+![Dust boot not responding](../assets/images/accessories/autodustboot-not-responding.webp)
+
 ## Troubleshooting
 
 - **Wired: boot doesn't respond.** Check the wiring and polarity. Type the
   matching command in the console (e.g. `M8` for Flood, or `M64 P0` for an aux
   pin) and watch the boot move.
+- **Wireless: the job paused with "Dust boot not responding".** The boot
+  didn't confirm its move. Look at the boot and make sure it is clear of the
+  tool and the work before you press **Continue**. If it happens often, check
+  that it shows **Connected** in **Accessories**.
 - **Wireless: boot doesn't retract on tool change.** Open **Accessories** and
   select **AutoDustBoot**. If it isn't **Connected**, power-cycle the
   controller. If it still doesn't connect, pair it again.

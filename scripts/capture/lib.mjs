@@ -1,4 +1,4 @@
-// Capture library for the ncSender kiosk (10.0.2.117).
+// Capture library for the ncSender kiosk (10.0.2.254; KIOSK_IP to override).
 // - drives the Electron page over CDP (ssh tunnel on 127.0.0.1:9222)
 // - records the real screen with wf-recorder on the kiosk
 // - encodes clips (2x speed, 30 fps, 1280x720 h264) + posters, stills as webp
@@ -8,8 +8,9 @@ import { execSync, spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export const KIOSK = 'root@10.0.2.117';
-const API = 'http://10.0.2.117:8090';
+const KIOSK_IP = process.env.KIOSK_IP || '10.0.2.254';
+export const KIOSK = `root@${KIOSK_IP}`;
+const API = `http://${KIOSK_IP}:8090`;
 export const MANUAL = '/Users/francis/Projects/ncSender/ncSender.manual/docs/assets/images';
 export const WORK = path.dirname(new URL(import.meta.url).pathname);
 export const RAW = path.join(WORK, 'raw');

@@ -179,6 +179,9 @@ motor fault inputs are turned on.
 **Settings → Firmware**), then unlock. If the alarm appears at another time,
 check the motor wiring and driver temperature, power-cycle and re-home.
 
+Right after an E-stop, the drivers can flag a fault while their power comes
+back. Wait a few seconds, then unlock.
+
 ## Connection and performance
 
 ### The controller is found but nothing responds
@@ -291,6 +294,14 @@ Home first. After that, either order works with a tool changer plugin:
   before it comes out, so your Z0 carries over to the next bit.
 
 See [Set Z0 before or after TLS](features/tool-management.md#set-z0-before-or-after-tls-both-work).
+
+### The machine goes to the tool setter when I start a job
+
+The tool in the spindle hasn't been measured since the machine was powered on.
+ncSender measures it first, then starts the program. Run **TLS** yourself
+before the job if you'd rather choose when it happens, or turn on
+**TLS after homing** in **Settings → Tool Changer**. See
+[Measuring after power-up](features/tool-management.md#measuring-after-power-up).
 
 ### The bit plunged into the work after the first tool change
 

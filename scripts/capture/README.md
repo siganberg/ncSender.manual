@@ -1,6 +1,6 @@
 # Capture toolkit
 
-Drives the ncSender kiosk (Radxa, 10.0.2.117) to reshoot the manual's screenshots
+Drives the ncSender kiosk (x86, 10.0.2.254; `KIOSK_IP` to override) to reshoot the manual's screenshots
 and clips. Every capture is taken twice, dark and light; the light file gets a
 `-light` suffix and `assets/js/theme-media.js` swaps it in when the reader uses the
 light scheme. Run `python3 scripts/theme-media-manifest.py` after adding captures.

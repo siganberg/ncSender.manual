@@ -125,6 +125,12 @@ Add your own G-code to run at each step:
 - **Post TLS**: just after measuring, for example `M65 P1` to switch it off.
 - **Abort Event**: when a tool change is aborted.
 
+The **Post Tool Change** code runs once the new tool is loaded and measured and
+the spindle has left the magazine and tool setter at safe Z, **before** the machine goes back to
+where the tool change started. Use it for steps like picking up a dust shoe. It
+runs the same way for a tool change you start by hand, not only during a job.
+**Post TLS** still runs at the tool setter, right after measuring.
+
 ## Change a tool
 
 <!-- CAPTURE NEEDED: assets/images/plugins/rcatc-tool-change.webp (Tool change) -->
@@ -135,7 +141,10 @@ picks up the new one and measures it, then goes back to where it was before
 the change at safe height. The spindle starts there, not above the tool setter.
 
 If you set Z0 before any tool was measured, the change first measures the tool
-that is still in the spindle, so your Z0 carries over. See
+that is still in the spindle, so your Z0 carries over. A tool that hasn't been
+measured since power-up is measured for you when you start a job. See
+[Measuring after power-up](../features/tool-management.md#measuring-after-power-up)
+and
 [Set Z0 before or after TLS](../features/tool-management.md#set-z0-before-or-after-tls-both-work).
 
 If a tool doesn't come off or go on, you see **Unload Failed** or

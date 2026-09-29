@@ -191,8 +191,9 @@ you enable, disable or change the plugin. With no tool changer set up, the
 picker is hatched out and can't be selected.
 
 **TLS (bottom).** Measure the tool length. Hold for 1 second, or press
-**Exec**. When a tool is loaded but its length hasn't been measured, **TLS**
-glows red, the same as in ncSender, to remind you to measure it. TLS is hatched
+**Exec**. When a tool is loaded but hasn't been measured since power-up,
+**TLS** blinks red, the same as in ncSender, to remind you to measure it. See
+[Measuring after power-up](../features/tool-management.md#measuring-after-power-up). TLS is hatched
 out when your tool changer has no tool length setter.
 
 **Footer.** **Prev / Next** move between items. **Exec** runs the chosen item.

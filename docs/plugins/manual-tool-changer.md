@@ -87,11 +87,18 @@ and can damage the Solo. See
 Add your own G-code to run at each step:
 
 - **Pre Tool Change**: at the start of every tool change.
-- **Post Tool Change**: at the end of every tool change.
+- **Post Tool Change**: after the new bit is loaded and measured, before the
+  spindle goes back to where the change started.
 - **Pre TLS**: just before measuring, for example `M64 P1` to switch on a wired
   tool setter.
 - **Post TLS**: just after measuring, for example `M65 P1` to switch it off.
 - **Abort Event**: when you press **Abort** during a tool change.
+
+The **Post Tool Change** code runs once the new tool is loaded and measured and
+the spindle has left the tool setter at safe Z, **before** the machine goes back to
+where the tool change started. Use it for steps like picking up a dust shoe. It
+runs the same way for a tool change you start by hand, not only during a job.
+**Post TLS** still runs at the tool setter, right after measuring.
 
 ## Options
 
@@ -112,13 +119,18 @@ can copy it into your own program or post-processor.
     - **Loading**: put in the new bit.
     - **Tool Change**: swap the bit for the new one.
 4. Press **Continue**, or **Abort** to stop.
-5. The machine measures the new bit on the tool setter.
+5. The machine measures the new bit on the tool setter, then lifts to safe Z
+   and runs your **Post Tool Change** code, if any.
 6. The spindle goes back to where it was before the change, at safe height,
    before the job carries on. The spindle starts there, not above the tool
    setter.
 
 If you set Z0 before any tool was measured, the change first measures the bit
-that is still in the spindle, so your Z0 carries over to the new bit. See
+that is still in the spindle, so your Z0 carries over to the new bit. A bit
+that hasn't been measured since power-up is measured for you when you start a
+job. See
+[Measuring after power-up](../features/tool-management.md#measuring-after-power-up)
+and
 [Set Z0 before or after TLS](../features/tool-management.md#set-z0-before-or-after-tls-both-work).
 
 A highlighted tool button is the bit that is loaded now. Long-press it to
