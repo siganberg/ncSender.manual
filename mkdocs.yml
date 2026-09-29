@@ -83,7 +83,8 @@ nav:
     - DRO: features/dro.md
     - Probing: features/probing.md
     - Calibration: features/calibration.md
-    - Tool Management: features/tool-management.md
+    - Tool Library: features/tool-library.md
+    - Tool Changer: features/tool-changer.md
     - Macros: features/macros.md
     - Console & Terminal: features/console.md
     - G-Code Preview: features/gcode-preview.md

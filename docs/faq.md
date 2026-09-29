@@ -293,7 +293,7 @@ Home first. After that, either order works with a tool changer plugin:
   the job. At the first tool change the bit still in the spindle is measured
   before it comes out, so your Z0 carries over to the next bit.
 
-See [Set Z0 before or after TLS](features/tool-management.md#set-z0-before-or-after-tls-both-work).
+See [Set Z0 before or after TLS](features/tool-changer.md#set-z0-before-or-after-tls-both-work).
 
 ### The machine goes to the tool setter when I start a job
 
@@ -301,7 +301,7 @@ The tool in the spindle hasn't been measured since the machine was powered on.
 ncSender measures it first, then starts the program. Run **TLS** yourself
 before the job if you'd rather choose when it happens, or turn on
 **TLS after homing** in **Settings → Tool Changer**. See
-[Measuring after power-up](features/tool-management.md#measuring-after-power-up).
+[Measuring after power-up](features/tool-changer.md#measuring-after-power-up).
 
 ### The bit plunged into the work after the first tool change
 
@@ -313,7 +313,7 @@ first and measured later.
 **Fix.** Update ncSender and your tool changer plugin. Both now keep a Z0 set
 before the first measurement. The visualizer shows a short note while such a
 Z0 is waiting to be measured. See
-[Set Z0 before or after TLS](features/tool-management.md#set-z0-before-or-after-tls-both-work).
+[Set Z0 before or after TLS](features/tool-changer.md#set-z0-before-or-after-tls-both-work).
 
 ## Tool changers
 

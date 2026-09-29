@@ -268,7 +268,7 @@ The slot buttons change the tool in the spindle. They are, in order:
   <source src="../../assets/images/features/visualizer-slot-tap.mp4" type="video/mp4">
 </video>
 
-See [Tool Management](tool-management.md) for setup.
+See [Tool Library](tool-library.md) and [Tool Changer](tool-changer.md) for setup.
 
 ## Coolant and Outputs
 

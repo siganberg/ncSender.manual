@@ -26,7 +26,8 @@ ncSender controls your CNC machine. It gives you a 3D visualizer, jog controls, 
 | Console & Terminal | :material-check: | :material-check: |
 | Plugin System | :material-check: | :material-check: |
 | Macros | :material-check: | :material-check: |
-| Tool Management | :material-check: | :material-check: |
+| Tool Library | :material-check: | :material-check: |
+| Tool Changer & Tool Length Setter | :material-check: | :material-check: |
 | Machine Setup Wizard | :material-check: | :material-check: |
 | Tips & Tricks | :material-check: | :material-check: |
 | Keepout Zone | :material-check: | :material-check: |

@@ -25,7 +25,7 @@ The DRO (Digital Readout) shows work and machine coordinates for each axis.
 
 With a tool setter you can zero Z before or after measuring the tool. If you
 zero first, ncSender keeps that Z0 when the tool is measured. See
-[Tool Management](../features/tool-management.md#set-z0-before-or-after-tls-both-work).
+[Tool Changer](../features/tool-changer.md#set-z0-before-or-after-tls-both-work).
 
 <video autoplay loop muted playsinline preload="metadata" aria-label="Press and hold an axis card to zero it" poster="../../assets/images/features/dro-long-press-poster.jpg">
   <source src="../../assets/images/features/dro-long-press.mp4" type="video/mp4">

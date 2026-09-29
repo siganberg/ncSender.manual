@@ -89,7 +89,7 @@ Only one tool changer plugin can be enabled at a time.
   off automatically.
 
 While a tool changer is enabled, it controls the tool buttons on the main
-screen. See [Tool Management](../features/tool-management.md).
+screen. See [Tool Changer](../features/tool-changer.md#tool-buttons).
 
 ## Troubleshooting
 

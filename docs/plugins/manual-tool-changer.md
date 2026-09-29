@@ -129,9 +129,9 @@ If you set Z0 before any tool was measured, the change first measures the bit
 that is still in the spindle, so your Z0 carries over to the new bit. A bit
 that hasn't been measured since power-up is measured for you when you start a
 job. See
-[Measuring after power-up](../features/tool-management.md#measuring-after-power-up)
+[Measuring after power-up](../features/tool-changer.md#measuring-after-power-up)
 and
-[Set Z0 before or after TLS](../features/tool-management.md#set-z0-before-or-after-tls-both-work).
+[Set Z0 before or after TLS](../features/tool-changer.md#set-z0-before-or-after-tls-both-work).
 
 A highlighted tool button is the bit that is loaded now. Long-press it to
 unload.
@@ -144,7 +144,7 @@ You can also type these in the console:
 !!! note "Tools outside the slots keep their offsets"
     A tool doesn't need a slot to use its TLS offsets and stored TLO. The tool
     number is looked up as a slot first, then as a Tool ID. See
-    [How a tool number finds its tool](../features/tool-management.md#how-a-tool-number-finds-its-tool).
+    [How a tool number finds its tool](../features/tool-library.md#how-a-tool-number-finds-its-tool).
 
 ## Troubleshooting
 

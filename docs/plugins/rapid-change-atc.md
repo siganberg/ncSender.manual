@@ -102,7 +102,7 @@ You then change that tool by hand. Jog there and press **Grab current**.
 !!! note "Tools outside the slots keep their offsets"
     A tool doesn't need a slot to use its TLS offsets and stored TLO. The tool
     number is looked up as a slot first, then as a Tool ID. See
-    [How a tool number finds its tool](../features/tool-management.md#how-a-tool-number-finds-its-tool).
+    [How a tool number finds its tool](../features/tool-library.md#how-a-tool-number-finds-its-tool).
 
 ## Probe Tool
 
@@ -143,9 +143,9 @@ the change at safe height. The spindle starts there, not above the tool setter.
 If you set Z0 before any tool was measured, the change first measures the tool
 that is still in the spindle, so your Z0 carries over. A tool that hasn't been
 measured since power-up is measured for you when you start a job. See
-[Measuring after power-up](../features/tool-management.md#measuring-after-power-up)
+[Measuring after power-up](../features/tool-changer.md#measuring-after-power-up)
 and
-[Set Z0 before or after TLS](../features/tool-management.md#set-z0-before-or-after-tls-both-work).
+[Set Z0 before or after TLS](../features/tool-changer.md#set-z0-before-or-after-tls-both-work).
 
 If a tool doesn't come off or go on, you see **Unload Failed** or
 **Load Failed**. Remove or fit the bit by hand, then press **Continue**, or

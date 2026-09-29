@@ -28,7 +28,7 @@ Let go before the bar is full to cancel, so a stray tap won't reset your zeros.
 !!! note "Z zero before measuring the tool"
     You can zero Z before the tool has been measured on the tool setter.
     ncSender remembers it and the next measurement keeps it. See
-    [Set Z0 before or after TLS](tool-management.md#set-z0-before-or-after-tls-both-work).
+    [Set Z0 before or after TLS](tool-changer.md#set-z0-before-or-after-tls-both-work).
 
 ## Entering a specific coordinate (double-click / double-tap)
 
