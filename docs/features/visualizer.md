@@ -99,14 +99,18 @@ While a job runs:
 
 ### Spindle control
 
-<video autoplay loop muted playsinline preload="metadata" aria-label="Starting the spindle with CW, raising the speed, then STOP" poster="../../assets/images/features/visualizer-spindle-run-poster.jpg">
-  <source src="../../assets/images/features/visualizer-spindle-run.mp4" type="video/mp4">
-</video>
+![Spindle card with the two HOLD buttons either side of the speed](../../assets/images/features/visualizer-spindle-controls.webp)
+
+<!-- CAPTURE NEEDED: assets/images/features/visualizer-spindle-run.mp4 (hold CW for 1 s until the fill completes, raise the speed, then STOP; needs the spindle to run) -->
 
 When no job is running, the **Spindle** card runs the spindle instead of
 overriding it — an override only means something while a program is feeding.
 
-- Tap **CW** or **CCW** to start the spindle at the speed shown.
+- Press and hold a **HOLD** button for 1 second to start the spindle at the
+  speed shown. The left button turns it clockwise (**CW** in its arrow), the
+  right one counter-clockwise (**CCW**). A fill sweeps across the button while
+  you hold; the spindle starts when it reaches the end. Let go early and
+  nothing happens, so a stray touch can't start the spindle.
 - Tap the speed to pick from a list of preset speeds.
 - Tap **−** or **+** to change the speed by 1000 RPM. Hold to keep changing it.
   The speed never goes below or above what your controller allows (`$31`
@@ -114,7 +118,8 @@ overriding it — an override only means something while a program is feeding.
 
 Once the spindle is turning, the card changes:
 
-- The middle button becomes **STOP** (`M5`).
+- The middle button becomes **STOP** (`M5`). One tap stops the spindle, no
+  hold needed.
 - **−** and **+** still change the speed, and the spindle follows straight
   away, keeping the direction you started it in.
 

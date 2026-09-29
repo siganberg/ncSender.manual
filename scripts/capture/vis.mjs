@@ -87,7 +87,7 @@ await k.forThemes(async (theme) => {
   // spindle controls: CW -> + -> STOP (spindle runs in air a few seconds)
   await k.still('features/visualizer-spindle-controls.webp', { clip: { x: 350, y: 860, width: 540, height: 125 } });
   await k.recStart('visualizer-spindle-run');
-  await k.tap(k.btn(/^CW$/), { settle: 2200 });
+  await k.hold(page.locator('.spindle-run__dir').first(), 1400, { settle: 2200 });   // start needs a 1 s hold
   await k.still('features/visualizer-spindle-stop.webp', { clip: { x: 350, y: 860, width: 540, height: 125 } });
   await k.tap(page.locator('button', { hasText: /^\+$/ }).nth(1), { settle: 1500 });
   await k.tap(page.locator('.spindle-run__stop'), { settle: 1800 });
