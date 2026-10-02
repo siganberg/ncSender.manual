@@ -171,6 +171,33 @@ Choose when the plugin retracts the boot.
 
 Click **Save** after changing anything.
 
+## Commands you can type
+
+With the plugin installed, you can move the boot yourself by typing these in
+the console. They also work in a macro or in your G-code, on a line of their
+own.
+
+| Command | What it does |
+|---|---|
+| `$ADB_RETRACT` | Retracts the boot (moves it up). |
+| `$ADB_EXPAND` | Expands the boot to the height you saved. |
+| `$ADB_GOTO 20` | Moves the boot to an exact height: here, 20 mm below its retracted position. |
+
+**`$ADB_GOTO`** takes a height in millimetres, measured down from where the boot
+sits when retracted. Decimals are fine (`$ADB_GOTO 12.5`). `$ADB_GOTO 0` is the
+same as a retract. A height past the bottom of the boot's travel stops at the
+bottom.
+
+Like a retract or expand, the machine waits until the boot reports it got
+there before it carries on, so you can put `$ADB_GOTO` in a program right
+before a move that needs the boot at that height.
+
+!!! note
+    `$ADB_GOTO` needs the **wireless** AutoDustBoot (V2, plugin in Wireless
+    mode, linked over the air or by USB cable). In Wired mode the boot can only
+    retract and expand, so the console shows a note instead and nothing moves.
+    The boot also needs to have homed first.
+
 ## Firmware updates
 
 Firmware updates apply to the V2 only.
