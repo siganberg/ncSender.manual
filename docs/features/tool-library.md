@@ -96,6 +96,35 @@ fine. Give a tool a slot only if you want its slot button.
 The tool-changer plugins follow the same rule, and so does the TLO saved after a TLS
 measurement.
 
+## Tool IDs and your controller's tool table
+
+After every tool change, ncSender tells your controller which tool is now in the
+spindle, using the tool's **Tool ID** (for example `M61 Q300` for Tool ID 300).
+
+Some grblHAL firmware is built with a **tool table**: a fixed list of tool entries
+stored on the controller. The Sienci SuperLongBoard firmware, for example, has a
+32-entry table, made for Sienci's own ATC. A controller with a tool table refuses any
+tool number higher than its number of entries. On a 32-entry table, Tool ID 33 and
+up can't be set.
+
+!!! danger "Tool IDs above the table size are not recorded"
+    The tool change runs, but the controller rejects the new tool number
+    (`error:38`, *Tool number greater than max supported value*) and keeps the
+    previous one. The next tool change then thinks the wrong tool, or no tool, is in
+    the spindle, and can drive the loaded tool into the magazine.
+
+**Check your controller.** Type `$I` in the console. The last number on the
+`[OPT:…]` line is the size of the tool table. For example `[OPT:VNMZHS2,128,1024,4,32]`
+means 32 entries. `0` means the firmware has no tool table.
+
+**Then either:**
+
+- **Keep every Tool ID at or below that number**, for example 1 to 32 on a
+  SuperLongBoard; or
+- **Use firmware built without a tool table.** ncSender's tool changer plugins don't
+  use the controller's tool table: ncSender keeps each tool's length itself and sets
+  it at every tool change. Without a table, higher Tool IDs such as 300 work.
+
 ## Probe slot
 
 When **Probe** is on, the library adds a **Probe (T99)** slot. The number is your
