@@ -11,12 +11,37 @@ Open **Settings → Tool Changer**.
 
 ![Settings, Tool Changer tab](../assets/images/features/tool-changer-settings.webp)
 
+### Tool Numbering
+
+At the top of the tab, choose what the **T** in a tool change (`M6 T5`) means. Tap
+the card you want:
+
+- **Slot (classic)**: `M6 T5` loads the tool in **Slot 5**, the way tool changes
+  always worked on most CNC controllers.
+    - Each slot uses the tool you assigned to it in the
+      [Tool Library](tool-library.md): its name and its stored length.
+    - A slot with nothing assigned is simply *Tool 5*.
+    - Tools in your library that aren't in a slot aren't used.
+    - The **Manual** button changes a tool outside the magazine by hand.
+- **Tool ID**: `M6 T5` loads the tool whose **Tool ID** is 5 in the Tool Library,
+  whichever slot it sits in.
+    - A tool that isn't in any slot is changed by hand and gets a button of its own.
+    - Use this to keep the tool numbers from your CAM software, even when tools
+      move between slots.
+
+A new installation starts on **Slot (classic)**. If you already kept tools in your
+Tool Library before this setting existed, you start on **Tool ID**, so nothing
+changes for you. You can switch at any time; your Tool Library isn't changed either
+way.
+
+Tool Numbering is yours to choose even when a tool changer plugin controls the
+**Setup** settings below.
+
 ### Setup
 
 These settings decide which buttons show in the visualizer:
 
 - **Magazine Size**: how many slot buttons to show.
-- **Manual**: show the **Manual** button, for changing tools by hand.
 - **TLS**: show the **TLS** button.
 - **Probe**: show the **Probe** button.
 
@@ -53,8 +78,12 @@ The buttons are, in order:
 
 - **Slot1, Slot2 …**: one per magazine slot. The current tool is highlighted. Tools
   used in the loaded file are marked, so you can see what the job needs.
-- **Manual**: for changing tools by hand. It is active when the current tool isn't
-  in a slot.
+    - With **Tool ID** numbering, a slot with no tool assigned is greyed out and
+      does nothing: assign a tool to it in the Tool Library first. Tools you keep
+      outside the magazine get their own buttons after the slots.
+- **Manual** (**Slot (classic)** numbering only): for changing tools by hand. It
+  loads the first number past your magazine (Slot 7 on a 6-slot magazine) and is
+  active when the current tool isn't in a slot.
 - **Probe**: loads your probe tool. The tooltip shows its number, for example
   *Probe (Hold to load T99)*.
 - **TLS**: measures the current tool (see below). It is off when no tool is loaded.

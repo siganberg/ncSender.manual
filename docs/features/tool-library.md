@@ -67,34 +67,20 @@ magazine: click a slot to jump to its tool.
 
 ## How a tool number finds its tool
 
+What `M6 T4` loads depends on **Tool Numbering** in
+[Settings → Tool Changer](tool-changer.md#tool-numbering):
+
+| You run | Tool Library | **Slot (classic)** loads | **Tool ID** loads |
+|---------|--------------|--------------------------|-------------------|
+| `M6 T4` | Tool ID 68 is in Slot 4 | Tool ID 68, with its offsets | Tool ID 4, if you have one; otherwise by hand |
+| `M6 T87` | Tool ID 87 is in no slot | By hand (past the magazine) | Tool ID 87, by hand, with its offsets |
+| `M6 T4` | Slot 4 is empty | *Tool 4* from Slot 4 | Tool ID 4, if you have one |
+
 A tool's **TLO** and **TLS X/Y/Z Offsets** belong to the **tool**, not to the slot it
 sits in. Move a tool to another slot and its offsets go with it.
 
-When a file or a button asks for a tool, for example `M6 T4`, ncSender looks up the
-number in this order:
-
-1. **Slot.** If a tool is assigned to that slot, that tool is used.
-2. **Tool ID.** If no tool is in that slot, the tool with that Tool ID is used.
-3. **No match.** No stored offsets are applied.
-
-| You run | Tool Library | Tool used |
-|---------|--------------|-----------|
-| `M6 T4` | Tool ID 68 is in Slot 4 | Tool ID 68, with its offsets |
-| `M6 T87` | Tool ID 87 is in no slot | Tool ID 87, with its offsets |
-| `M6 T4` | Slot 4 is empty, Tool ID 4 is in no slot | Tool ID 4, with its offsets |
-| `M6 T99` | Nothing matches 99 | No stored offsets |
-
-So a tool doesn't need a slot to use its offsets. Keeping bits out of the magazine is
-fine. Give a tool a slot only if you want its slot button.
-
-!!! warning "The slot wins"
-    If a slot number and a Tool ID are the same number, the slot is used. With a
-    tool in Slot 4, `M6 T4` always gets that tool, never the tool whose Tool ID is 4.
-    Give tools you keep outside the magazine Tool IDs higher than your
-    **Magazine Size** to avoid this.
-
-The tool-changer plugins follow the same rule, and so does the TLO saved after a TLS
-measurement.
+With **Slot (classic)**, a tool's length is saved to the tool assigned to that slot.
+A slot with no tool assigned keeps no length: the tool is measured when it's loaded.
 
 ## Tool IDs and your controller's tool table
 
@@ -119,6 +105,8 @@ means 32 entries. `0` means the firmware has no tool table.
 
 **Then either:**
 
+- **Use Slot (classic) numbering.** Tool numbers are then your slot numbers, which
+  stay small. See [Tool Numbering](tool-changer.md#tool-numbering); or
 - **Keep every Tool ID at or below that number**, for example 1 to 32 on a
   SuperLongBoard; or
 - **Use firmware built without a tool table.** ncSender's tool changer plugins don't

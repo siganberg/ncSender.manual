@@ -26,8 +26,12 @@ unsaved changes, you can **Cancel**, **Discard** or **Save & close**.
    about 25 to 40 mm (1 to 1.5 in) above it, and press **Grab current**.
 2. **Manual Tool Change Position**: jog to a spot where you can easily reach the
    spindle and press **Grab current**.
-3. **Number of Tools**: how many tool buttons show on the main screen.
-4. Press **Save**.
+3. Press **Save**.
+
+Without a RapidChangeSolo every tool change is done by hand, so there are no slots.
+Your tools come from the [Tool Library](../features/tool-library.md), and with
+[Slot (classic) numbering](../features/tool-changer.md#tool-numbering) you type the
+tool number (`M6 T2`) or use the **Manual** button.
 
 ## TLS
 
@@ -61,11 +65,16 @@ turns by itself during tool changes to screw the collet nut on and off.
     Keep hands and clothing clear whenever a tool change may start.
 
 1. Turn on **Enable RapidChangeSolo**.
-2. **Solo Pocket Position**: centre the spindle over the Solo pocket without
+2. **Magazine Size**: how many tools the Solo handles (1 by default). They show as
+   slot buttons on the main screen; assign a tool to each slot in the
+   [Tool Library](../features/tool-library.md). A tool in a slot is changed by the
+   Solo. Any other tool, such as a 3D probe you load yourself, is swapped by hand
+   at the Manual Tool Change Position.
+3. **Solo Pocket Position**: centre the spindle over the Solo pocket without
    rubbing, lower Z until the nut touches the bearing inside, then press
    **Grab current**. The plugin stores a Z 5 mm lower so the nut engages
    properly.
-3. **Tool Change Motion**:
+4. **Tool Change Motion**:
     - **Load RPM** and **Unload RPM**: spindle speed while screwing the nut on
       and off.
     - **Retract (mm)**: how far the spindle lifts between moves.
