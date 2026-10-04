@@ -29,7 +29,7 @@ await k.forThemes(async (theme) => {
   await S('edgealign', async () => {
     await openPlugin('Edge Align');
     await k.still('plugins/edge-align-probe.webp');
-    const st = page.locator('.dialog-backdrop').getByText('Settings', { exact: true }).first();
+    const st = page.locator('.dialog-backdrop, .plugin-dialog-backdrop').getByText('Settings', { exact: true }).first();
     if (await st.count()) { await k.tap(st, { settle: 900 }); await k.still('plugins/edge-align-settings.webp'); }
     await k.closeDialogs();
   });

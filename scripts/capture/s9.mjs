@@ -91,6 +91,24 @@ await k.forThemes(async () => {
 }, themes);
 if (aBefore !== true) await k.patchSettings({ features: { showAAxis: aBefore ?? false } });
 
+// Virtual keyboard: the number pad (X readout entry, cancelled) and the
+// QWERTZ layout on the command line (layout put back afterwards).
+const layoutBefore = (await k.api('/api/settings')).keyboardLayout || 'en-US';
+await k.forThemes(async () => {
+  await S('vkeyboard', async () => {
+    await k.closeDialogs();
+    await k.dbl(page.locator('.work-coord:visible').first(), { settle: 1200 });
+    await k.still('features/virtual-keyboard-numpad.webp');
+    await page.keyboard.press('Escape'); await k.sleep(400);
+    await page.evaluate(() => document.activeElement && document.activeElement.blur()); await k.sleep(600);
+    await k.patchSettings({ keyboardLayout: 'de-DE' }); await k.sleep(1000);
+    await k.tap(page.getByPlaceholder('Send command(s)'), { settle: 1500 });
+    await k.still('features/virtual-keyboard-qwertz.webp');
+    await page.evaluate(() => document.activeElement && document.activeElement.blur()); await k.sleep(600);
+    await k.patchSettings({ keyboardLayout: layoutBefore }); await k.sleep(800);
+  });
+}, themes);
+
 // Portrait last: it changes the viewport.
 await S('portrait', async () => {
   await k.setTheme('dark');
