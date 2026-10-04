@@ -11,7 +11,7 @@ const openPlugin = async (name) => {
   await k.tap(tab('Plugins'), { settle: 800 });
   await k.tap(page.locator('.tool-menu-item, .plugin-tile, button, div', { hasText: new RegExp('^' + name + '$') }).last(), { settle: 1800 });
 };
-const pluginTab = async (t) => { await k.tap(page.locator('.dialog-backdrop').getByText(t, { exact: true }).first(), { settle: 900 }); };
+const pluginTab = async (t) => { await k.tap(page.locator('.dialog-backdrop, .plugin-dialog-backdrop').getByText(t, { exact: true }).first(), { settle: 900 }); };
 
 await k.forThemes(async (theme) => {
   await S('quickcut', async () => {
@@ -36,7 +36,7 @@ await k.forThemes(async (theme) => {
   await S('patc', async () => {
     await openPlugin('PneumaticATC');
     for (const [t, rel] of [['ATC Setup', 'plugins/patc-setup.webp'], ['TLS', 'plugins/patc-tls.webp'], ['Probe', 'plugins/patc-probe.webp'], ['Manual', 'plugins/patc-manual.webp'], ['Events', 'plugins/patc-events.webp'], ['Advanced', 'plugins/patc-advanced.webp']]) {
-      const l = page.locator('.dialog-backdrop').getByText(t, { exact: true }).first();
+      const l = page.locator('.dialog-backdrop, .plugin-dialog-backdrop').getByText(t, { exact: true }).first();
       if (await l.count()) { await k.tap(l, { settle: 900 }); await k.still(rel); } else console.log('no tab', t);
     }
     await k.closeDialogs();

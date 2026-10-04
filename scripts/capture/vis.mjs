@@ -44,7 +44,12 @@ await k.forThemes(async (theme) => {
   if (at('moveto')) {
   await k.recStart('visualizer-move-to');
   await k.tap(k.btn(/^Top$/), { settle: 1500 });
-  await page.mouse.click(760, 520, { button: 'right' }); await page.evaluate(() => window.__capRipple(760, 520)); await k.sleep(1000);
+  // The middle of the view in Top: the loaded toolpath, always inside the
+  // machine's travel. A fixed pixel drifted outside it when the layout moved
+  // (Oct 2026) and the controller refused the move with ALARM:2.
+  const view = await page.locator("canvas").first().boundingBox();
+  const mx = Math.round(view.x + view.width / 2), my = Math.round(view.y + view.height / 2);
+  await page.mouse.click(mx, my, { button: 'right' }); await page.evaluate(([x, y]) => window.__capRipple(x, y), [mx, my]); await k.sleep(1000);
   await k.tap(menu('Move To'), { settle: 1400 });
   await k.tap(k.btn(/^Move$/), { settle: 300 }); await k.waitIdle({ timeout: 90000 });
   await k.sleep(800);
