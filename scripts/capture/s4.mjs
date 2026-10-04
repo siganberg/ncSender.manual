@@ -45,10 +45,10 @@ await k.forThemes(async (theme) => {
     await openPlugin('AutoDustBoot');
     await k.still('accessories/autodustboot-connections-wireless.webp');
     await k.recStart('autodustboot-retract-expand');
-    await k.tap(page.locator('.dialog-backdrop button', { hasText: /^Retract$/ }).first(), { settle: 4000 });
-    await k.tap(page.locator('.dialog-backdrop button', { hasText: /^Expand$/ }).first(), { settle: 4000 });
+    await k.tap(page.locator('.dialog-backdrop button, .plugin-dialog-backdrop button', { hasText: /^Retract$/ }).first(), { settle: 4000 });
+    await k.tap(page.locator('.dialog-backdrop button, .plugin-dialog-backdrop button', { hasText: /^Expand$/ }).first(), { settle: 4000 });
     await k.recStop();
-    const opt = page.locator('.dialog-backdrop').getByText('Options', { exact: true }).first();
+    const opt = page.locator('.dialog-backdrop, .plugin-dialog-backdrop').getByText('Options', { exact: true }).first();
     if (await opt.count()) { await k.tap(opt, { settle: 900 }); await k.still('accessories/autodustboot-options.webp'); }
     await k.closeDialogs();
   });
@@ -109,12 +109,12 @@ await k.forThemes(async (theme) => {
   });
   await S('german', async () => {
     await k.closeDialogs();
-    await k.api('/api/settings', { language: 'de' }); await k.sleep(2500);
+    await k.patchSettings({ language: 'de', keyboardLayout: 'de-DE' }); await k.sleep(2500);
     await k.still('features/language-german-ui.webp');
     await k.tap(page.getByPlaceholder(/Befehl|command/i).first(), { settle: 1200 });
     await k.still('features/language-keyboard-follows.webp');
     await page.evaluate(() => document.activeElement && document.activeElement.blur()); await k.sleep(600);
-    await k.api('/api/settings', { language: 'en' }); await k.sleep(2500);
+    await k.patchSettings({ language: 'en', keyboardLayout: 'en-US' }); await k.sleep(2500);
   });
   await S('virtual-keyboard', async () => {
     await k.closeDialogs();

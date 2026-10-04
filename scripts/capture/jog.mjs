@@ -25,15 +25,15 @@ await k.hold(chip(2), 900, { settle: 600 }); await k.tap(listItem('10'), { settl
 
 // 2. continuous jog ---------------------------------------------------------
 await k.recStart('jog-continuous');
-await k.hold(k.btn(/^Jog X positive$/), 1300, { settle: 300 }); await k.waitIdle();
-await k.hold(k.btn(/^Jog X negative$/), 1300, { settle: 300 }); await k.waitIdle();
+await k.hold(k.btn(/^Jog X positive$/).first(), 1300, { settle: 300 }); await k.waitIdle();
+await k.hold(k.btn(/^Jog X negative$/).first(), 1300, { settle: 300 }); await k.waitIdle();
 await k.sleep(500);
 await k.recStop();
 
 // 3. DRO long press (step 10: jog X+10, Y+10, then zero) --------------------
 await k.tap(chip(2), F);
-await k.tap(k.btn(/^Jog X positive$/), F); await k.waitIdle();
-await k.tap(k.btn(/^Jog Y positive$/), F); await k.waitIdle();
+await k.tap(k.btn(/^Jog X positive$/).first(), F); await k.waitIdle();
+await k.tap(k.btn(/^Jog Y positive$/).first(), F); await k.waitIdle();
 await k.recStart('dro-long-press');
 await k.sleep(400);
 await k.holdAt(1358, 460, 1000, { settle: 1200 });       // X card
@@ -54,8 +54,8 @@ const m1 = await k.machine();
 console.log('WCO after entry', m1.WCO, 'WPos', m1.WPos);
 
 // 5. go to zero buttons -----------------------------------------------------
-await k.tap(k.btn(/^Jog Z positive$/), F); await k.waitIdle();
-await k.tap(k.btn(/^Jog Z positive$/), F); await k.waitIdle();
+await k.tap(k.btn(/^Jog Z positive$/).first(), F); await k.waitIdle();
+await k.tap(k.btn(/^Jog Z positive$/).first(), F); await k.waitIdle();
 await k.recStart('jog-zero-buttons');
 await k.sleep(300);
 await k.hold(k.btn(/^XY0/), 1200, { settle: 300 }); await k.waitIdle({ timeout: 90000 });

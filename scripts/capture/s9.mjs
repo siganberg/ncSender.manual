@@ -77,6 +77,20 @@ await k.forThemes(async () => {
   });
 }, themes);
 
+// 4th axis: show the A controls, double-click the A readout for the angle entry.
+const aBefore = (await k.api('/api/settings')).features?.showAAxis;
+await k.forThemes(async () => {
+  await S('aangle', async () => {
+    await k.closeDialogs();
+    await k.patchSettings({ features: { showAAxis: true } }); await k.sleep(1500);
+    await k.dbl(page.locator('.work-coord:visible').last(), { settle: 1200 });   // A is the last readout shown
+    await k.still('features/4th-axis-enter-angle.webp');
+    await page.keyboard.press('Escape'); await k.sleep(400);
+    await page.evaluate(() => document.activeElement && document.activeElement.blur()); await k.sleep(600);
+  });
+}, themes);
+if (aBefore !== true) await k.patchSettings({ features: { showAAxis: aBefore ?? false } });
+
 // Portrait last: it changes the viewport.
 await S('portrait', async () => {
   await k.setTheme('dark');

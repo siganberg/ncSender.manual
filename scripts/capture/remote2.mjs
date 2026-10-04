@@ -3,7 +3,7 @@ import { chromium } from 'playwright-core';
 import { execSync } from 'node:child_process';
 const M = '/Users/francis/Projects/ncSender/ncSender.manual/docs/assets/images';
 const suffix = process.env.SUFFIX || '';
-const API = 'http://10.0.2.117:8090';
+const API = `http://${process.env.KIOSK_IP || '10.0.2.254'}:8090`;
 const api = async (p, body) => { const r = await fetch(API + p, body === undefined ? {} : { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }); return r.json().catch(() => null); };
 const b = await chromium.launch({ channel: 'chrome', headless: true });
 const shot = async (viewport, rel, extra = {}) => {

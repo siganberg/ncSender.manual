@@ -196,6 +196,9 @@ export async function api(p, body) {
   try { return JSON.parse(t); } catch { return t; }
 }
 export const cmd = (c) => api('/api/send-command', { command: c });
+// PATCH, unlike api()'s POST, broadcasts settings-changed, so the open page
+// follows (language, units). Use it for anything the page must react to.
+export const patchSettings = async (body) => (await fetch(API + '/api/settings', { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })).ok;
 export async function machine() { const s = await api('/api/server-state'); return s.machineState || s; }
 export async function waitIdle({ timeout = 60000, settle = 400 } = {}) {
   const t0 = Date.now();
