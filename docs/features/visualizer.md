@@ -99,7 +99,7 @@ While a job runs:
 
 ### Spindle control
 
-![Spindle card with the two HOLD buttons either side of the speed](../../assets/images/features/visualizer-spindle-controls.webp)
+![Spindle card with the two HOLD buttons either side of the speed](../assets/images/features/visualizer-spindle-controls.webp)
 
 <!-- CAPTURE NEEDED: assets/images/features/visualizer-spindle-run.mp4 (hold CW for 1 s until the fill completes, raise the speed, then STOP; needs the spindle to run) -->
 
