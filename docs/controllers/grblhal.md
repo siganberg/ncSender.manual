@@ -35,6 +35,8 @@ The same tab has **Flash Firmware** for loading new firmware onto the board.
 | Setting | Description | Example |
 |---------|-------------|---------|
 | `$22` | Homing enable | 1 (enabled) |
+| `$30` | Maximum spindle speed (RPM). Set it to your spindle's real maximum: it scales every S value and sets the top of the [spindle card](../features/visualizer.md#spindle-control) presets. The default of 1000 is almost never right. | 24000 |
+| `$31` | Minimum spindle speed (RPM). Set it to your spindle's real minimum: lower S values run at this speed, and it is the lowest spindle card preset. | 0 or 6000 |
 | `$32` | Laser mode | 1 (laser), 0 (normal) |
 | `$100-$102` | Steps per mm (X/Y/Z). Tune with [Calibration](../features/calibration.md) (Pro). | 80 steps/mm |
 | `$110-$112` | Max feed rate (X/Y/Z) | 5000 mm/min |

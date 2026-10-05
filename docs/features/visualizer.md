@@ -112,9 +112,29 @@ overriding it — an override only means something while a program is feeding.
   you hold; the spindle starts when it reaches the end. Let go early and
   nothing happens, so a stray touch can't start the spindle.
 - Tap the speed to pick from a list of preset speeds.
-- Tap **−** or **+** to change the speed by 1000 RPM. Hold to keep changing it.
+- Tap **−** or **+** to change the speed by one step. Hold to keep changing it.
   The speed never goes below or above what your controller allows (`$31`
   and `$30`).
+
+The presets and the step size come from your spindle's speed range: `$31`
+(minimum RPM) to `$30` (maximum RPM). You always get at least six presets,
+with your minimum and maximum at either end. For example:
+
+| `$31` / `$30` | Step | Presets |
+|---|---|---|
+| 0 / 24000 (router) | 1000 | 1000, 5000, 10000, 15000, 20000, 24000 |
+| 0 / 6000 (high-torque spindle) | 200 | 200, 1000, 2000, 3000, 4000, 5000, 6000 |
+| 0 / 50000 (high-speed spindle) | 2000 | 2000, 10000, 20000, 30000, 40000, 50000 |
+
+If `$31` is 0, the lowest preset is one step, so the card never starts the
+spindle at 0 RPM.
+
+!!! warning "Set `$30` and `$31` to match your spindle"
+    The presets are only as good as these two settings. grblHAL ships with
+    `$30=1000`, so a new board that was never set up offers nothing above
+    1000 RPM. Set `$30` to your spindle's maximum RPM and `$31` to its minimum
+    in **Settings → Firmware** (see [grblHAL Setup](../controllers/grblhal.md#key-settings)).
+    The card picks up the change straight away; no restart is needed.
 
 Once the spindle is turning, the card changes:
 
