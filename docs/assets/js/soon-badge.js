@@ -14,7 +14,7 @@
  */
 (function () {
   var SOON_PAGES = [
-    'accessories/smart-rgb-led',
+    // e.g. 'accessories/<page>',
   ];
 
   function slugFromHref(href) {
