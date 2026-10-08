@@ -115,6 +115,22 @@ that measurement matches the tool's saved length (within 0.05 mm), the new
 tool's saved length is used and it isn't measured. If it doesn't match, the new
 tool is measured as usual.
 
+#### Why a tool with a saved length is sometimes measured anyway
+
+With **Use tool library offset**, a tool can still be measured even though its
+button shows a dot (a saved length). This happens on the first tool change
+after:
+
+- **Power-up or a controller reset.** Nothing has been measured yet, so the
+  saved lengths have nothing to line up with.
+- **An aborted tool change or TLS.** If you abort a tool change, for example
+  when the tool sensor finds no tool, ncSender clears the current tool length,
+  because it can't tell how far the change got. The next change measures the
+  new tool to start fresh.
+
+This is a safety step, not a fault. The measurement normally matches the saved
+length, and the saved lengths are used again from the next change on.
+
 ### Measure all tools
 
 Press **Measure all tools…** to load every tool that has a rack slot, measure
