@@ -123,10 +123,11 @@ after:
 
 - **Power-up or a controller reset.** Nothing has been measured yet, so the
   saved lengths have nothing to line up with.
-- **An aborted tool change or TLS.** If you abort a tool change, for example
-  when the tool sensor finds no tool, ncSender clears the current tool length,
-  because it can't tell how far the change got. The next change measures the
-  new tool to start fresh.
+- **A tool change or TLS stopped in the middle of measuring.** If the change
+  had already cleared the tool length or started measuring, ncSender can't
+  trust the length any more, so it clears it and the next change measures the
+  new tool. An abort before that point, for example when the tool sensor finds
+  no tool, keeps the length, and the next change uses the saved one.
 
 This is a safety step, not a fault. The measurement normally matches the saved
 length, and the saved lengths are used again from the next change on.
@@ -270,6 +271,20 @@ left loose or dropped.
 
 **Unload Failed** / **Load Failed**: remove or fit the bit by hand, then press
 **Continue**, or press **Abort** to stop.
+
+**Drawbar Did Not Open**, **Drawbar Did Not Close** and **No Tool In
+Spindle**: a drawbar or tool sensor didn't report what it should. The spindle
+lifts to safe Z first, so your hands are clear of the rack.
+
+- **Continue**: the sensor was wrong, or you fixed it by hand. The tool change
+  carries on as if the check had passed.
+- **Abort**: the spindle leaves the rack the normal way and goes back to where
+  the tool change started, then the change stops. If the drawbar was opened
+  for an unload, it is closed again first, so a tool still in the spindle
+  stays held.
+
+**Tool Did Not Release**: the tool came out of the rack with the spindle.
+Remove it by hand, then press **Continue**, or press **Abort** to stop.
 
 **Manual Unload**, **Manual Load** and **Manual Swap**: shown for tool numbers
 above your slot count.
