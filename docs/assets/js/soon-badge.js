@@ -14,7 +14,7 @@
  */
 (function () {
   var SOON_PAGES = [
-    // e.g. 'accessories/<page>',
+    'accessories/ncwirelessio',
   ];
 
   function slugFromHref(href) {

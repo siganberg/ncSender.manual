@@ -208,3 +208,8 @@ img.placeholder[src$=".webp"]::after {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ncWirelessIO wiring diagrams: inline SVG drawn in currentColor, so they follow the theme. */
+.wio-fig { margin: 1rem 0; text-align: center; }
+.wio-fig svg.wio-svg { max-width: 100%; height: auto; color: var(--md-default-fg-color); }
+.wio-fig figcaption { font-size: 0.75rem; color: var(--md-default-fg-color--light); }
