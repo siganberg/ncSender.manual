@@ -10,10 +10,6 @@ It is built for ncSender's [Pneumatic ATC &rarr;](../plugins/pneumatic-atc.md)
 plugin: a drawbar sensor, a tool sensor and the clamp solenoid. The two spare
 inputs and three spare outputs are yours for anything else.
 
-!!! note "Coming soon"
-    ncWirelessIO is in development. Pneumatic ATC support for it arrives with
-    the plugin's ncWirelessIO profile.
-
 ![ncWirelessIO in its case](../assets/images/accessories/ncwirelessio-board.webp)
 
 ## Hardware
@@ -277,8 +273,77 @@ For a pneumatic tool changer:
 | Drawbar sensor | **INPUT 1** | **INPUT COM** to match the sensor (NPN or PNP) |
 | Tool sensor | **INPUT 2** | Same |
 | Clamp / unclamp solenoid | **OUT1** | **OUT1** jumper on the valve's voltage |
-| Air pressure switch (optional) | **INPUT 3** | Wire as a switch |
-| Taper blow valve (optional) | **OUT2** | **OUT2** jumper on the valve's voltage |
+| Taper blow (optional) | Air only: teed off the release line | Turn on **Taper Blow / Cone Clean** in the plugin |
+
+See [Wiring a pneumatic ATC](#wiring-a-pneumatic-atc) for the whole picture.
+
+## Wiring a pneumatic ATC
+
+A typical set-up with an air-operated ATC spindle (gPenny or similar). On
+these spindles the air fittings, the motor cable and the sensor cable all
+come out of the top. The air parts and the spindle are not part of
+ncWirelessIO. They are drawn so you can see where everything goes.
+
+<figure class="wio-fig wio-fig--wide" markdown>
+![Wiring diagram: power supply to PWR IN, solenoid valve coil to OUT1, the spindle's sensor plug to INPUT 1 and INPUT 2, the motor plug to the VFD, and the air line from the regulator through the valve to the release fitting on top of the spindle](../assets/images/accessories/ncwirelessio-atc-wiring.svg)
+<figcaption>Electrical wires to the board, air lines (blue) from the regulator through the valve to the spindle.</figcaption>
+</figure>
+
+**Electrical**
+
+1. **Power**: your 24–48 V supply to **PWR IN**.
+2. **Valve**: the solenoid coil's two wires to **OUT1**, either way round. Set
+   the **OUT1** jumper to the coil's voltage (usually 24 V).
+3. **Sensor plug**: the spindle's sensors share one plug, usually four wires.
+   Use the pinout on your spindle's sheet:
+    - **+V** to INPUT 1 `V`
+    - **0 V** to INPUT 1 `G`
+    - **tool released** signal to INPUT 1 `S` (the drawbar sensor)
+    - **tool clamped** signal to INPUT 2 `S` (the tool sensor)
+
+    INPUT 2 only needs its `S` wire: every input shares the same `V` and `G`.
+    If your spindle has two separate sensor cables, wire each one to its own
+    input instead: brown to `V`, black to `S`, blue to `G`.
+4. Set **INPUT SENSOR V** to the sensors' voltage and **INPUT COM** to their
+   type. Most ATC spindle sensors are **24 V NPN**. Check your spindle's sheet.
+5. The **motor plug** goes to your VFD as usual. It does not connect to
+   ncWirelessIO.
+
+**Air**
+
+1. Compressor to a **filter / regulator**, set to the pressure your spindle
+   asks for.
+2. Regulator to the valve's **inlet** (marked `P` or `1`).
+3. The valve's **outlet** (`A` or `2`) to the **release** fitting on top of
+   the spindle (the drawbar cylinder).
+4. Put a muffler on the valve's **exhaust** (`R` or `3`).
+5. **Taper blow (optional)**: if your spindle has a second fitting for cone
+   clean, tee it off the line to the release fitting, then turn on **Taper Blow / Cone Clean**
+   in the plugin. Air then blows through the taper whenever the drawbar is
+   open.
+
+!!! warning "Use a normally closed valve"
+    Use a **3/2 normally closed** valve, or a **5/2 single-solenoid** valve
+    with spring return. With the coil off, the release port vents and the
+    spindle's springs keep the tool clamped. A power cut, a lost link or a
+    crashed PC then never drops a tool. ncWirelessIO also switches OUT1 off by
+    itself if it stops hearing ncSender.
+
+**Check it before the first tool change**
+
+- With the spindle stopped, turn OUT1 on from ncSender: the
+  drawbar releases and **INPUT 1**'s blue light comes on. Turn it off: the light goes off.
+- Put a tool holder in the spindle and clamp it: **INPUT 2**'s light comes on.
+  Take it out: it goes off.
+- If a light does the opposite, check **INPUT COM** against the sensor type.
+
+**In ncSender**
+
+Open the **Pneumatic ATC** plugin and pick the **ncSender Wireless ATC**
+profile. It uses OUT1 for the valve, INPUT 1 for the drawbar sensor and
+INPUT 2 for the tool sensor, so there is nothing else to set for the wiring.
+See [Pneumatic ATC &rarr;](../plugins/pneumatic-atc.md) for the rack and tool
+setter.
 
 ## Status light
 
