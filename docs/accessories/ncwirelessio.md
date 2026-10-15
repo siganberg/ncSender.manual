@@ -237,6 +237,40 @@ An output can be set to **switch off on its own if the link to ncSender is
 lost**, for example if the PC sleeps or the Wireless USB is unplugged. Use it
 for anything that should not stay on unattended.
 
+### Output roles
+
+An output can be given a **role**. With a role, ncWirelessIO looks after that
+output itself, from the spindle speed ncSender sends it, so it behaves the
+same whether or not a job or a tool change is running. Each output has one
+role at most, and the board remembers it when it is switched off.
+
+| Role | What the output does | Set from |
+|---|---|---|
+| None | Only what ncSender, a macro or a switch tells it. The default. | — |
+| **Drawbar** | The clamp valve. It never turns on while the spindle could be turning, and switches off at once if the spindle starts. | Pneumatic ATC: the clamp output |
+| **Water pump** | Turns on when the spindle starts. Switches off once the spindle has been stopped for the idle time you choose. | Pneumatic ATC: Advanced tab, Spindle Water Pump |
+
+**Drawbar.** Releasing the tool while the spindle turns can throw the tool or
+damage the taper, so the drawbar output is blocked whenever the spindle is
+turning, or ncWirelessIO hasn't heard from ncSender for 3 seconds and can't
+be sure. ncSender blocks the release too and shows *Drawbar Release Blocked*.
+The Pneumatic ATC plugin gives the role to whichever ncWirelessIO output you
+pick as the clamp output, in any profile.
+
+**Water pump.** For a water-cooled spindle. The pump starts with the spindle,
+and keeps running for the idle time after the spindle stops, so the spindle
+cools down before the water does. Choose 30 seconds (for checking the
+wiring), 5, 10, 15 or 20 minutes; 10 minutes if you don't choose.
+
+- You can still switch the pump yourself. Switched off while the spindle runs,
+  it stays off until the spindle next starts. Switched on while the spindle is
+  stopped, it runs for the idle time, then switches off.
+- If ncWirelessIO stops hearing from ncSender, it treats the spindle as
+  stopped, so the pump still switches off after the idle time instead of
+  running all night.
+- Moving the pump to another output switches the old output off.
+- The pump can't share an output with the clamp valve.
+
 ## LED strip
 
 Plug a **12 V WS2811** strip into **LED STRIP**:
@@ -250,6 +284,9 @@ The strip works exactly like the [RGB LED &rarr;](smart-rgb-led.md): white at
 idle, green while running, red on an alarm, a light show when a job finishes,
 and so on. Set it up with the **RGB LED** plugin, the same way. The strip's
 power comes from the board through a resettable fuse.
+
+After the machine has sat **Idle for 5 minutes**, the strip dims to its
+lowest level, and comes back the moment the machine moves or changes state.
 
 No strip? The **status light** on the board shows the same colours.
 
@@ -284,26 +321,36 @@ these spindles the air fittings, the motor cable and the sensor cable all
 come out of the top. The air parts and the spindle are not part of
 ncWirelessIO. They are drawn so you can see where everything goes.
 
-<figure class="wio-fig wio-fig--wide" markdown>
-![Wiring diagram: power supply to PWR IN, solenoid valve coil to OUT1, the spindle's sensor plug to INPUT 1 and INPUT 2, the motor plug to the VFD, and the air line from the regulator through the valve to the release fitting on top of the spindle](../assets/images/accessories/ncwirelessio-atc-wiring.svg)
-<figcaption>Electrical wires to the board, air lines (blue) from the regulator through the valve to the spindle.</figcaption>
-</figure>
+Spindles wire their sensors one of two ways. Pick the tab that matches yours.
+
+=== "Shared sensor wires (4 wires)"
+
+    <figure class="wio-fig wio-fig--wide" markdown>
+    ![Wiring diagram: power supply to PWR IN, solenoid valve coil to OUT1, the spindle's four-wire sensor plug to INPUT 1 and INPUT 2, the motor plug to the VFD, and the air line from the regulator through the valve to the release fitting on top of the spindle](../assets/images/accessories/ncwirelessio-atc-wiring.svg)
+    <figcaption>Both sensors share +V and 0 V: four wires in total.</figcaption>
+    </figure>
+
+=== "Separate wires per sensor (3 + 3)"
+
+    <figure class="wio-fig wio-fig--wide" markdown>
+    ![Wiring diagram: as before, but each sensor has its own brown, black and blue wires, the drawbar sensor's to INPUT 1 and the tool sensor's to INPUT 2](../assets/images/accessories/ncwirelessio-atc-wiring-3wire.svg)
+    <figcaption>Each sensor has its own brown, black and blue: one set per input.</figcaption>
+    </figure>
 
 **Electrical**
 
 1. **Power**: your 24–48 V supply to **PWR IN**.
 2. **Valve**: the solenoid coil's two wires to **OUT1**, either way round. Set
    the **OUT1** jumper to the coil's voltage (usually 24 V).
-3. **Sensor plug**: the spindle's sensors share one plug, usually four wires.
-   Use the pinout on your spindle's sheet:
-    - **+V** to INPUT 1 `V`
-    - **0 V** to INPUT 1 `G`
-    - **tool released** signal to INPUT 1 `S` (the drawbar sensor)
-    - **tool clamped** signal to INPUT 2 `S` (the tool sensor)
-
-    INPUT 2 only needs its `S` wire: every input shares the same `V` and `G`.
-    If your spindle has two separate sensor cables, wire each one to its own
-    input instead: brown to `V`, black to `S`, blue to `G`.
+3. **Sensors**: the drawbar sensor (tool released) goes to **INPUT 1**, the
+   tool sensor (tool clamped) to **INPUT 2**. Use the pinout on your
+   spindle's sheet.
+    - **Shared wires (4)**: +V to INPUT 1 `V`, 0 V to INPUT 1 `G`, the
+      released signal to INPUT 1 `S`, the clamped signal to INPUT 2 `S`.
+      INPUT 2 only needs its `S` wire: every input shares the same `V` and
+      `G`.
+    - **Separate wires (3 + 3)**: each sensor to its own input, brown to `V`,
+      black to `S`, blue to `G`.
 4. Set **INPUT SENSOR V** to the sensors' voltage and **INPUT COM** to their
    type. Most ATC spindle sensors are **24 V NPN**. Check your spindle's sheet.
 5. The **motor plug** goes to your VFD as usual. It does not connect to

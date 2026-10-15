@@ -97,10 +97,10 @@
 <text x="900.0" y="500" font-size="15" text-anchor="middle" font-weight="700" fill="#1F2933">ATC</text>
 <text x="900.0" y="518" font-size="15" text-anchor="middle" font-weight="700" fill="#1F2933">spindle</text>
 <text x="840" y="658" font-size="11" text-anchor="end" font-weight="400" fill="#52606D">collet</text>
-<path d="M1048,256 L1090,256 L1090,712 L330,712 L330,493" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
-<path d="M1048,260 L1080,260 L1080,704 L355,704 L355,493" fill="none" stroke="#1F2933" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
-<path d="M1048,264 L1070,264 L1070,696 L380,696 L380,493" fill="none" stroke="#8B5A2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
-<path d="M1048,268 L1060,268 L1060,688 L455,688 L455,493" fill="none" stroke="#9AA5B1" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M1048,256 L1087,256 L1087,720 L330,720 L330,493" fill="none" stroke="#2F6FD6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M1048,260 L1078,260 L1078,712 L355,712 L355,493" fill="none" stroke="#1F2933" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M1048,264 L1069,264 L1069,704 L380,704 L380,493" fill="none" stroke="#8B5A2B" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M1048,268 L1060,268 L1060,696 L455,696 L455,493" fill="none" stroke="#9AA5B1" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
 <text x="355" y="429" font-size="11" text-anchor="middle" font-weight="700" fill="#F97316">drawbar</text>
 <text x="455" y="429" font-size="11" text-anchor="middle" font-weight="700" fill="#F97316">tool</text>
 <path d="M40,756 L80,756" fill="none" stroke="#3B8FD9" stroke-width="8" stroke-linejoin="round"/>

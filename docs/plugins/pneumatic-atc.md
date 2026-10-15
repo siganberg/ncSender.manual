@@ -237,6 +237,12 @@ runs the same way for a tool change you start by hand, not only during a job.
   chips out of the spindle just before each pickup, and the drawbar closes
   while travelling so air isn't wasted. Leave it off if nothing is connected
   to the blow port.
+- **Spindle Water Pump**: for a water-cooled spindle whose pump is wired to an
+  [ncWirelessIO &rarr;](../accessories/ncwirelessio.md#output-roles) output.
+  Turn it on, pick the **Pump Output**, and choose **Off After Idle** (30
+  seconds for checking the wiring, or 5 to 20 minutes). The pump then starts
+  with the spindle and stops once the spindle has been stopped that long, with
+  or without a job running. It can't be the clamp output.
 - **Tool Sensors** (**Coming soon**): **Tool Sensor** and **Tool Holder** can be
   set now, but nothing checks them yet.
 
