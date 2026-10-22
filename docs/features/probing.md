@@ -29,11 +29,23 @@ For 3D touch probes with a ball tip.
 **Settings:**
 
 - **Diameter**: the ball tip diameter.
-- **Z-Plunge** (XYZ and center modes)
+- **Z-Plunge** (XYZ and center modes): how far down the probe goes to touch the
+  sides.
+    - **XYZ**, and **Center - Outer** with **Probe Z First**: measured from the
+      top it just found. It touches the sides Z-Plunge below the top and moves
+      between sides 4 mm above the top.
+    - **Center - Inner**, and **Center - Outer** without **Probe Z First**:
+      measured from where you start the probe. It drops exactly Z-Plunge, and
+      goes back up to that starting height to move between sides. Start high
+      enough to clear the part, and set Z-Plunge to reach far enough below its
+      top.
 - **Z-Offset**
 - **Rapid Movement**: the speed for fast moves.
+- **Center Axes** (center modes): **X**, **XY** or **Y**. Pick one axis when the
+  part only leaves room to probe from two sides, for example a part held in a
+  vise or chuck. Only that axis is probed and zeroed.
 - **X Dimension** and **Y Dimension**: the rough size of the hole or part (center
-  modes).
+  modes). The one for an axis you don't probe is greyed out.
 - **Probe Z First**: probe the top before finding the center (Center - Outer).
 
 ### Standard Block
@@ -89,8 +101,8 @@ Probe settings use your unit preference: mm and mm/min, or inches and in/min.
 5. Tell ncSender where to probe:
     - **XY or XYZ**: click the corner on the picture.
     - **X or Y**: click the side. **Start Probe** stays off until you pick a side.
-    - **Center modes**: place the probe 3–5 mm above the rough center of the hole
-      or part.
+    - **Center modes**: place the probe above the rough center of the hole or
+      part, high enough to clear it.
 6. Click **Start Probe**.
 
 <video autoplay loop muted playsinline preload="metadata" aria-label="Probing cycle" poster="../../assets/images/features/probe-cycle-poster.jpg">
