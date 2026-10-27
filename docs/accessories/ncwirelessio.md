@@ -1,5 +1,10 @@
 # ncWirelessIO
 
+!!! info "This page is for v1.1 boards"
+    A v1.1 board has **ver1.1** printed on the top and **ncWirelessIO ver 1.1**
+    on the underside. Have a board printed **ver1.0**? See
+    [ncWirelessIO v1.0 &rarr;](ncwirelessio-v1.0.md).
+
 ncWirelessIO gives ncSender **four inputs**, **four switched outputs** and a
 **machine-status LED strip port**, linked wirelessly through the
 [Wireless USB &rarr;](wireless-usb.md). Mount it at the tool changer and wire
@@ -21,6 +26,8 @@ inputs and three spare outputs are yours for anything else.
 - **LED strip port** for a **12 V WS2811** strip. It shows machine state the
   same way the [RGB LED &rarr;](smart-rgb-led.md) does.
 - **24–48 V DC** supply, reverse-polarity protected.
+- **3.5 mm screw terminals** for every input, output and ground, big enough
+  for ordinary sensor and solenoid wire.
 - **USB-C** for set-up and fast firmware updates.
 - Pairs with the [Wireless USB &rarr;](wireless-usb.md), the same one the
   pendant, AutoDustBoot and RGB LED use.
@@ -33,23 +40,22 @@ inputs and three spare outputs are yours for anything else.
 
 Everything is printed on the board. The numbers below match the picture.
 
-![ncWirelessIO top view with numbered connectors](../assets/images/accessories/ncwirelessio-board-map.webp)
+<!-- TODO: v1.1 board photo with numbered connectors (ncwirelessio-v1.1-board-map.webp) -->
 
 | # | Label on the board | What it is |
 |---|---|---|
 | 1 | **PWR IN** `+` `−` | Power in, 24–48 V DC |
-| 2 | **PWR OUT** `+` `−` | The same supply passed on to another device (optional) |
-| 3 | **FUSE** | Resettable fuse for the sensor supply |
-| 4 | **INPUT SENSOR V** `5` `24` `12` | Jumper: the voltage on every input's `V` screw |
-| 5 | **INPUT COM** `GND` … `V+` | Jumper: PNP or NPN sensors |
-| 6 | **INPUT 1** … **INPUT 4** (left to right) | Input terminals. **INPUT PINS: G S V** is printed beside them |
-| 7 | Output jumpers, rows `12` `24` `5` | One per output, above its terminal: that output's voltage |
-| 8 | Output terminals `−` `+` | One per output. From the left: **OUT4**, **OUT3**, **OUT2**, **OUT1** (printed below the jumpers) |
-| 9 | **GND** | Three spare ground screws |
-| 10 | **BOOT** | Pairing button |
-| 11 | **USB** | USB-C |
-| 12 | **LED STRIP** `GND` `DAT` `12V` | Plug for the LED strip |
-| 13 | Status light | Shows machine state and pairing (see [Status light](#status-light)) |
+| 2 | **FUSE** | Resettable fuse for the sensor supply |
+| 3 | **INPUT SENSOR V** `5` `24` `12` | Jumper: the voltage on every input's `V` screw |
+| 4 | **INPUT COM** `GND` … `V+` | Jumper: PNP or NPN sensors |
+| 5 | **INPUT 1** … **INPUT 4** (left to right) | Input terminals. **INPUT PINS: G S V** is printed beside them |
+| 6 | Output jumpers, rows `12` `24` `5` | One per output, above its terminal: that output's voltage |
+| 7 | Output terminals `−` `+` | One per output. From the left: **OUT4**, **OUT3**, **OUT2**, **OUT1** (printed below the jumpers) |
+| 8 | **GND** | Three spare ground screws |
+| 9 | **BOOT** | Pairing button |
+| 10 | **USB** | USB-C |
+| 11 | **LED STRIP** `GND` `DAT` `12V` | Plug for the LED strip |
+| 12 | Status light | Shows machine state and pairing (see [Status light](#status-light)) |
 
 The underside repeats the terminal names (**INPUT 1** … and `V S G`, mirrored), so
 you can check your wiring with the board turned over.
@@ -59,16 +65,13 @@ you can check your wiring with the board turned over.
 Connect a **24–48 V DC** supply to **PWR IN**: `+` to the supply's positive,
 `−` to its negative.
 
-<figure class="wio-fig" markdown>
-![](../assets/images/accessories/ncwirelessio-power.webp)
-<figcaption>PWR IN from the supply (red +, black −). PWR OUT can feed another device.</figcaption>
-</figure>
+<!-- TODO: v1.1 photo of PWR IN wired (ncwirelessio-v1.1-power.webp) -->
 
 - Wired backwards, the board stays off and nothing is damaged. Swap the wires.
-- **PWR OUT** passes your supply straight on, exactly as it is wired, so you
-  can power another accessory (an RGB LED or AutoDustBoot controller) without
-  a second run back to the supply. It is not fused or protected by
-  ncWirelessIO, so check the polarity before you connect the next device.
+- **PWR IN** is a plug-in terminal: pull the plug off the board, screw the
+  supply wires into it, and push it back on.
+- v1.1 has no **PWR OUT**. To power another accessory from the same supply,
+  run its wires from the supply itself.
 - With a **24 V** supply, outputs set to `24` get slightly less than 24 V. Use
   a 36 V or 48 V supply if a 24 V load needs a full 24 V.
 - USB-C alone powers the brain of the board, enough to set it up and update it.
@@ -95,7 +98,7 @@ is active, so you can check a sensor without opening ncSender.
 ### Sensor supply jumper (INPUT SENSOR V)
 
 The `V` screw on all four inputs carries the same voltage. Choose it with the
-**INPUT SENSOR V** jumper (**4** in the picture). Its columns are printed `5`,
+**INPUT SENSOR V** jumper (**3** in the picture). Its columns are printed `5`,
 `24` and `12`:
 
 <figure class="wio-fig" markdown>
@@ -115,7 +118,7 @@ cuts out on a short and comes back once the short is removed.
 
 ### NPN or PNP (INPUT COM)
 
-The **INPUT COM** jumper (**5** in the picture) sets the sensor type for all
+The **INPUT COM** jumper (**4** in the picture) sets the sensor type for all
 four inputs. Its three pins run top to bottom: `GND`, COM, `V+`.
 
 <figure class="wio-fig" markdown>
@@ -187,7 +190,7 @@ load runs. Each output has a **blue light**, between its jumper and its terminal
 
 ### Output voltage jumpers (OUT1 … OUT4)
 
-Each output has its own jumper, directly above its terminal (**7** in the
+Each output has its own jumper, directly above its terminal (**6** in the
 picture). Its rows are printed `12`, `24` and `5` from the top:
 
 <figure class="wio-fig" markdown>

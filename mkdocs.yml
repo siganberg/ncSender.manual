@@ -110,6 +110,7 @@ nav:
     - AutoDustBoot: accessories/autodustboot.md
     - RGB LED: accessories/smart-rgb-led.md
     - ncWirelessIO: accessories/ncwirelessio.md
+    - ncWirelessIO v1.0: accessories/ncwirelessio-v1.0.md
   - Plugins:
     - Overview: plugins/overview.md
     - QuickCut: plugins/quickcut.md
