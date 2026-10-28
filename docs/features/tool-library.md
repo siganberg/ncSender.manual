@@ -113,6 +113,30 @@ means 32 entries. `0` means the firmware has no tool table.
   use the controller's tool table: ncSender keeps each tool's length itself and sets
   it at every tool change. Without a table, higher Tool IDs such as 300 work.
 
+### Building firmware without a tool table
+
+You can build this firmware yourself in the free
+[grblHAL Web Builder](https://svn.io-engineering.com:8443/):
+
+1. Choose your **Machine vendor**, **Machine** and **Variant**, or your **Driver**
+   and **Board**. For example, a Sienci AltMill MK2 on a SuperLongBoard. This loads
+   the same options as your current firmware.
+2. Open the **Advanced features** tab.
+3. Set **Tool table** to **No**. Leave everything else as it is, especially
+   **RS274 NGC expression support**, which ncSender's probing and tool changes need.
+
+    ![grblHAL Web Builder with Tool table set to No](../assets/images/features/grblhal-web-builder-tool-table.webp)
+
+4. Click **Generate and download firmware**, then flash it. The Web Builder's
+   **How to flash the firmware** link explains how for your board.
+
+!!! warning "Back up your settings first"
+    Flashing new firmware can reset your controller's settings. Before you flash,
+    use **Export** in [Firmware Settings](../settings/firmware.md#import-and-export-settings)
+    to save them, and check them afterwards.
+
+Then type `$I` again. The last number on the `[OPT:…]` line should now be `0`.
+
 ## Probe slot
 
 When **Probe** is on, the library adds a **Probe (T99)** slot. The number is your
