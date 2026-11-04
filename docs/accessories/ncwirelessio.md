@@ -15,7 +15,7 @@ It is built for ncSender's [Pneumatic ATC &rarr;](../plugins/pneumatic-atc.md)
 plugin: a drawbar sensor, a tool sensor and the clamp solenoid. The two spare
 inputs and three spare outputs are yours for anything else.
 
-![ncWirelessIO in its case](../assets/images/accessories/ncwirelessio-board.webp)
+![ncWirelessIO in its case](../assets/images/accessories/ncwirelessio-v1.1-case.webp)
 
 ## Hardware
 
@@ -40,7 +40,7 @@ inputs and three spare outputs are yours for anything else.
 
 Everything is printed on the board. The numbers below match the picture.
 
-<!-- TODO: v1.1 board photo with numbered connectors (ncwirelessio-v1.1-board-map.webp) -->
+![ncWirelessIO top view with numbered connectors](../assets/images/accessories/ncwirelessio-v1.1-board-map.webp)
 
 | # | Label on the board | What it is |
 |---|---|---|
