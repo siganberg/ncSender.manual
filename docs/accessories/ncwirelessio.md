@@ -65,7 +65,9 @@ you can check your wiring with the board turned over.
 Connect a **24–48 V DC** supply to **PWR IN**: `+` to the supply's positive,
 `−` to its negative.
 
-<!-- TODO: v1.1 photo of PWR IN wired (ncwirelessio-v1.1-power.webp) -->
+<figure class="wio-fig" markdown>
+![](../assets/images/accessories/ncwirelessio-v1.1-power.webp)
+</figure>
 
 - Wired backwards, the board stays off and nothing is damaged. Swap the wires.
 - **PWR IN** is a plug-in terminal: pull the plug off the board, screw the
@@ -82,7 +84,7 @@ Connect a **24–48 V DC** supply to **PWR IN**: `+` to the supply's positive,
 Each input has a 3-screw terminal:
 
 <figure class="wio-fig" markdown>
-![](../assets/images/accessories/ncwirelessio-inputs.webp)
+![](../assets/images/accessories/ncwirelessio-v1.1-inputs.webp)
 <figcaption>INPUT 1 to INPUT 4, left to right. Every terminal is G, S, V.</figcaption>
 </figure>
 
@@ -102,7 +104,7 @@ The `V` screw on all four inputs carries the same voltage. Choose it with the
 `24` and `12`:
 
 <figure class="wio-fig" markdown>
-![](../assets/images/accessories/ncwirelessio-insel.webp)
+![](../assets/images/accessories/ncwirelessio-v1.1-insel.webp)
 <figcaption>INPUT SENSOR V: where the shunt goes for 5, 24 and 12 V.</figcaption>
 </figure>
 
@@ -122,7 +124,7 @@ The **INPUT COM** jumper (**4** in the picture) sets the sensor type for all
 four inputs. Its three pins run top to bottom: `GND`, COM, `V+`.
 
 <figure class="wio-fig" markdown>
-![](../assets/images/accessories/ncwirelessio-com.webp)
+![](../assets/images/accessories/ncwirelessio-v1.1-com.webp)
 <figcaption>INPUT COM: one setting for all four inputs.</figcaption>
 </figure>
 
@@ -140,7 +142,7 @@ either setting if you wire it between `S` and the right screw: `S`–`V` with
 === "NPN sensor"
 
     <figure class="wio-fig" markdown>
-    ![](../assets/images/accessories/ncwirelessio-npn.webp)
+    ![](../assets/images/accessories/ncwirelessio-v1.1-npn.webp)
     </figure>
 
     - **INPUT COM** on the bottom two pins (**V+** side).
@@ -151,7 +153,7 @@ either setting if you wire it between `S` and the right screw: `S`–`V` with
 === "PNP sensor"
 
     <figure class="wio-fig" markdown>
-    ![](../assets/images/accessories/ncwirelessio-pnp.webp)
+    ![](../assets/images/accessories/ncwirelessio-v1.1-pnp.webp)
     </figure>
 
     - **INPUT COM** on the top two pins (**GND** side).
@@ -161,7 +163,7 @@ either setting if you wire it between `S` and the right screw: `S`–`V` with
 === "Switch"
 
     <figure class="wio-fig" markdown>
-    ![](../assets/images/accessories/ncwirelessio-switch.webp)
+    ![](../assets/images/accessories/ncwirelessio-v1.1-switch.webp)
     </figure>
 
     For limit switches, reed switches, pressure switches and similar dry
@@ -176,7 +178,7 @@ either setting if you wire it between `S` and the right screw: `S`–`V` with
 Each output has a 2-screw terminal and its own voltage jumper.
 
 <figure class="wio-fig" markdown>
-![](../assets/images/accessories/ncwirelessio-outputs.webp)
+![](../assets/images/accessories/ncwirelessio-v1.1-outputs.webp)
 <figcaption>OUT4 to OUT1, left to right. Each output: terminal − +, its jumper below.</figcaption>
 </figure>
 
@@ -194,7 +196,7 @@ Each output has its own jumper, directly above its terminal (**6** in the
 picture). Its rows are printed `12`, `24` and `5` from the top:
 
 <figure class="wio-fig" markdown>
-![](../assets/images/accessories/ncwirelessio-outsel.webp)
+![](../assets/images/accessories/ncwirelessio-v1.1-outsel.webp)
 <figcaption>An output jumper (OUT1 shown): where the shunt goes for 12, 24 and 5 V.</figcaption>
 </figure>
 
@@ -213,7 +215,7 @@ Each output can use a different voltage. From the left, the terminals are
 ### Sample wiring: air solenoid
 
 <figure class="wio-fig" markdown>
-![](../assets/images/accessories/ncwirelessio-solenoid.webp)
+![](../assets/images/accessories/ncwirelessio-v1.1-solenoid.webp)
 <figcaption>A 24 V solenoid valve on OUT1, jumper across the middle row.</figcaption>
 </figure>
 
@@ -279,7 +281,7 @@ wiring), 5, 10, 15 or 20 minutes; 10 minutes if you don't choose.
 Plug a **12 V WS2811** strip into **LED STRIP**:
 
 <figure class="wio-fig" markdown>
-![](../assets/images/accessories/ncwirelessio-strip.webp)
+![](../assets/images/accessories/ncwirelessio-v1.1-strip.webp)
 <figcaption>Connect the strip's input end (the end its arrows point away from).</figcaption>
 </figure>
 
