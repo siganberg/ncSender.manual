@@ -71,7 +71,6 @@ nav:
   - Home: index.md
   - Getting Started:
     - Installation: getting-started/installation.md
-    - Installing ncSenderOS: getting-started/ncsenderos.md
     - License Activation: getting-started/license-activation.md
     - First Connection: getting-started/first-connection.md
     - Machine Setup Wizard: getting-started/setup-wizard.md
@@ -96,7 +95,7 @@ nav:
     - Trace: features/trace.md
     - Virtual Keyboard: features/virtual-keyboard.md
     - Safety Door: features/safety-door.md
-    - Keepout Zones: features/keepout-zone.md
+    - Keepout Zone: features/keepout-zone.md
     - Language & Region: features/language-region.md
   - Settings:
     - Firmware Settings & Flashing: settings/firmware.md
