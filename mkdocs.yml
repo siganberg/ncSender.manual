@@ -71,6 +71,7 @@ nav:
   - Home: index.md
   - Getting Started:
     - Installation: getting-started/installation.md
+    - Installing ncSenderOS: getting-started/ncsenderos.md
     - License Activation: getting-started/license-activation.md
     - First Connection: getting-started/first-connection.md
     - Machine Setup Wizard: getting-started/setup-wizard.md
@@ -95,7 +96,7 @@ nav:
     - Trace: features/trace.md
     - Virtual Keyboard: features/virtual-keyboard.md
     - Safety Door: features/safety-door.md
-    - Keepout Zone: features/keepout-zone.md
+    - Keepout Zones: features/keepout-zone.md
     - Language & Region: features/language-region.md
   - Settings:
     - Firmware Settings & Flashing: settings/firmware.md
@@ -121,6 +122,15 @@ nav:
     - 3DMesh: plugins/3dmesh.md
     - Replicator: plugins/replicator.md
     - BoxJoints: plugins/boxjoints.md
+  - Plugin Development:
+    - Overview: plugin-dev/index.md
+    - manifest.json: plugin-dev/manifest.md
+    - The Script (commands.js): plugin-dev/script.md
+    - pluginContext: plugin-dev/plugin-context.md
+    - Pages & Dialogs: plugin-dev/ui.md
+    - Floating Panels: plugin-dev/panels.md
+    - HTTP API: plugin-dev/http-api.md
+    - Testing & Publishing: plugin-dev/publishing.md
   - Controller Setup:
     - grblHAL: controllers/grblhal.md
     - FluidNC: controllers/fluidnc.md
