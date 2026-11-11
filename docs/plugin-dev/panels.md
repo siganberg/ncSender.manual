@@ -166,6 +166,8 @@ badge.
 - The operator drags the panel by any part of the page that is not a
   `button`, `a`, `input`, `select`, `textarea` or `label`. Add the attribute
   `data-no-drag` to anything else that must not start a drag.
+- A frameless page does not scroll by touch (a finger drag moves the panel),
+  so size the panel to fit its content.
 - There is no title bar, so offer your own close or shrink control:
 
     ```js
