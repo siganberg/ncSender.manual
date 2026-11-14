@@ -5,6 +5,9 @@ accessories: the Pendant, AutoDustBoot and RGB LED. One Wireless USB serves
 all of them at once. Plug it into the computer running ncSender and leave it
 there.
 
+The [Wireless Receiver &rarr;](wireless-receiver.md) does the same job and also
+drives a wireless probe. Use one or the other, not both.
+
 ![Wireless USB stick](../assets/images/features/wireless-usb-hardware.png){ .center width="360" }
 
 ## What it does
