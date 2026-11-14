@@ -27,8 +27,8 @@ Wireless I/O pair to it the same way.
 | Connector | Pins (left to right, as pictured) | Use |
 |---|---|---|
 | **J1** (top) | Signal · GND · 5–24 V | To the controller's probe or toolsetter input |
-| **J2** (bottom left) | V+ · GND · Signal | Input 1, a wired sensor (optional) |
-| **J3** (bottom right) | V+ · GND · Signal | Input 2, a wired sensor (optional) |
+| **J2** (bottom left) | V+ · GND · Signal | Input 1: another wired probe or a wired toolsetter (optional) |
+| **J3** (bottom right) | V+ · GND · Signal | Input 2: another wired probe or a wired toolsetter (optional) |
 | **USB-C** | | To the computer running ncSender (optional) |
 | **Pairing button** | | Hold 3 s to open the pairing window |
 
@@ -49,13 +49,15 @@ Wire **J1** to your controller with three wires:
 
 Check your controller's manual for the pin order of its probe port.
 
-### Wired sensor inputs
+### Wired probe inputs
 
-**J2** and **J3** take an extra wired sensor each, such as a wired touch
-plate or toolsetter. A trigger on either input, or on the wireless probe,
-triggers **J1**, so they share the one controller input.
+**J2** and **J3** let you keep a wired probe on the same controller input,
+for example a wired toolsetter (TLS) or a second wired probe. The inputs and
+the wireless probe are joined by **OR**: a trigger on any of them triggers
+**J1**. So one controller input serves the wireless probe and up to two wired
+ones.
 
-- **V+** is the same 5–24 V that powers the receiver, for the sensor's supply.
+- **V+** is the same 5–24 V that powers the receiver, to power the wired probe.
 - **Signal** accepts 3.3–24 V. A high signal counts as triggered; an
   unconnected input reads as not triggered.
 - A blue light next to the inputs lights while each input is triggered.
