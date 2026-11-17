@@ -37,6 +37,51 @@ to a TTL aux output and drive it from your G-code.
   pin works too.
 - **A wire from that pin to the AutoDustBoot's control input**, plus ground.
 
+### The V2 connectors
+
+The two connectors are on the top edge of the V2 controller. The 4-pin one
+is the **motor**. The 3-pin one is **power and signal**. With the connectors
+at the top, as in the picture, its pins are, from left to right:
+
+| Pin | What it's for |
+|---|---|
+| **V+** (left) | Power: 24–48 V |
+| **GND** (middle) | Ground |
+| **SIG** (right) | The CNC signal, 3.3–5 V. Wired (TTL) setups only. |
+
+<figure class="wio-fig" markdown>
+![AutoDustBoot V2 controller with the connectors at the top: the 4-pin motor connector on the left, and the 3-pin power and signal connector on the right with V+ on the left, GND in the middle and SIG on the right](../assets/images/accessories/autodustboot-v2-connectors.webp)
+<figcaption>The V2 controller, connectors at the top.</figcaption>
+</figure>
+
+### Example: Sienci SLB-EXT
+
+This is for a **wired** (TTL) setup. Running the boot **wirelessly**, it
+only needs power: connect **V+** and **GND** to the 48 V supply's **+** and
+**−** and leave **Signal** unconnected.
+
+On a Sienci SuperLongBoard EXT, use the **FLOOD** terminal on the top edge
+of the board. `M8` turns it on and retracts the boot; `M9` expands it.
+These are the plugin's default sequences, so there is nothing to change.
+
+<figure class="wio-fig wio-fig--wide" markdown>
+![Wiring diagram on the SLB-EXT board: FLOOD + to the AutoDustBoot's Signal, FLOOD − to its GND, and the boot's V+ to the 48 V supply that powers the board](../assets/images/accessories/autodustboot-slb-ext-wiring.webp)
+<figcaption>AutoDustBoot V2 on an SLB-EXT, powered from the board's 48 V supply.</figcaption>
+</figure>
+
+| AutoDustBoot | SLB-EXT |
+|---|---|
+| **Signal** | **FLOOD +** |
+| **GND** | **FLOOD −** |
+| **V+** (V2: 24–48 V) | **+** of the 48 V supply that powers the SLB-EXT |
+
+- **AutoDustBoot V1** runs on 24 V only. Take its power from **PWR2 +24v**
+  instead of the 48 V supply.
+- **Sharing FLOOD with a RapidChange ATC** is fine: the boot and the ATC
+  magazine cover both follow `M8` / `M9`.
+- Keep the boot's **GND** on **FLOOD −**. Signal and power need a common
+  ground, or the boot ignores the signal.
+
 ### Operating it
 
 Once wired, retract and expand with G-code:
