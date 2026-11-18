@@ -326,6 +326,10 @@ these spindles the air fittings, the motor cable and the sensor cable all
 come out of the top. The air parts and the spindle are not part of
 ncWirelessIO. They are drawn so you can see where everything goes.
 
+For a full worked example with a water-cooled spindle, an H100 VFD and an
+SLB-EXT, see the user guide
+[Water-cooled Pneumatic ATC &rarr;](ncwirelessio-water-cooled-atc.md).
+
 Spindles wire their sensors one of two ways. Pick the tab that matches yours.
 
 === "Shared sensor wires (4 wires)"
