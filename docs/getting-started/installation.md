@@ -63,29 +63,14 @@ After installing, see [License Activation](license-activation.md) to unlock the 
     2. Install: `sudo dpkg -i ncSender_*.deb`
     3. Launch from the application menu or run `ncsender`
 
-=== "Raspberry Pi 5"
+=== "ncSenderOS (x64 PC / Raspberry Pi 5)"
 
     !!! info "Pro Feature"
-        The pre-built Raspberry Pi 5 OS image ships with **ncSender Pro** only.
+        ncSenderOS ships with **ncSender Pro** only.
 
-    A ready-to-boot SD-card image is published for the Pi 5. No manual OS
-    setup is needed. It boots straight into ncSender Pro in kiosk mode.
-
-    1. Download the latest `ncSenderOS-pi5-vX.Y.Z.img.xz` from the
-       [ncSender Pro OS releases page](https://github.com/siganberg/ncSenderProOs.releases/releases).
-       (If you see a `.rp.img.xz` file next to it, ignore it. That's a
-       vendor-specific build, not the general image.)
-    2. Flash it to a microSD card (16 GB or larger recommended) using
-       [balenaEtcher](https://etcher.balena.io/): select the `.img.xz` file,
-       select your card, then click **Flash**. Etcher decompresses the archive
-       on the fly, so there's no need to extract it first.
-    3. Insert the card into your Pi 5, connect a display, keyboard, and your
-       CNC controller, then power it on. ncSender Pro launches automatically
-       on first boot and walks you through the same first-launch steps as
-       below.
-
-    To use ncSender in German, French or Spanish, open **Settings → General →
-    Language & Region** after setup.
+    A ready-made system that boots straight into ncSender Pro. Use the ISO
+    for an x64 PC, or the SD-card image for a Raspberry Pi 5. See
+    [Installing ncSenderOS](ncsenderos.md) for the step-by-step guide.
 
 ## What Happens on First Launch
 
